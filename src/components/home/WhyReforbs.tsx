@@ -11,21 +11,21 @@ export default function WhyReforbs() {
             Reforbs Raises The Bar
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1B1D1C] font-heading leading-tight">
-            The Unique <span className="text-[#007A7A]">-3P</span> &amp;{" "}
-            <span className="text-[#B8860B]">-3D</span> Living Standard
+            The Unique <span className="text-[#007A7A]">3P</span> &amp;{" "}
+            <span className="text-[#B8860B]">3D</span> Living Standard
           </h2>
           <p className="text-[#4A524F] text-sm sm:text-base mt-4 font-medium leading-relaxed">
             Where most coliving companies conventionally market comfort and security, we at Reforbs focus on vibes, ownership, freedom, and emotional connection.
           </p>
         </div>
 
-        {/* -3P and -3D Cards */}
+        {/* 3P and 3D Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* -3P Container */}
+          {/* 3P Container */}
           <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E1E7E6] shadow-card relative overflow-hidden">
             <div className="flex items-center gap-4 mb-8 pb-5 border-b border-[#E1E7E6]">
               <div className="w-16 h-16 rounded-2xl bg-[#FFDE59] text-[#1B1D1C] font-black text-2xl flex items-center justify-center font-heading shadow-sm shrink-0">
-                -3P
+                3P
               </div>
               <div>
                 <h3 className="text-xl font-black text-[#1B1D1C] font-heading">
@@ -85,11 +85,11 @@ export default function WhyReforbs() {
             </div>
           </div>
 
-          {/* -3D Container */}
+          {/* 3D Container */}
           <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E1E7E6] shadow-card relative overflow-hidden">
             <div className="flex items-center gap-4 mb-8 pb-5 border-b border-[#E1E7E6]">
               <div className="w-16 h-16 rounded-2xl bg-[#007A7A] text-white font-black text-2xl flex items-center justify-center font-heading shadow-sm shrink-0">
-                -3D
+                3D
               </div>
               <div>
                 <h3 className="text-xl font-black text-[#1B1D1C] font-heading">

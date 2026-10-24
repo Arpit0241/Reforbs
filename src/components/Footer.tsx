@@ -37,12 +37,12 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
-              <div className="relative w-44 h-11">
+              <div className="relative w-44 h-12">
                 <Image
-                  src="/assets/reforbs-logo-teal.png"
+                  src="/assets/reforbs-logo-white.png"
                   alt="Reforbs Living"
                   fill
-                  className="object-contain brightness-0 invert"
+                  className="object-contain"
                 />
               </div>
             </Link>
@@ -210,7 +210,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  The -3P &amp; -3D Standard
+                  The 3P &amp; 3D Standard
                 </Link>
               </li>
               <li>

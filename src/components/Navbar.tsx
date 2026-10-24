@@ -30,16 +30,14 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo with real asset */}
+          {/* Logo with official user uploaded asset */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-40 h-10 sm:w-44 sm:h-11">
+            <div className="relative w-40 h-10 sm:w-44 sm:h-12">
               <Image
-                src="/assets/reforbs-logo-teal.png"
+                src={scrolled ? "/assets/reforbs-official-logo.png" : "/assets/reforbs-logo-white.png"}
                 alt="Reforbs Living"
                 fill
-                className={`object-contain transition-all ${
-                  !scrolled ? "brightness-0 invert drop-shadow-md" : ""
-                }`}
+                className="object-contain transition-all"
                 priority
               />
             </div>
@@ -254,7 +252,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className="block py-2 text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
             >
-              About Us (The -3P &amp; -3D Standard)
+              About Us (The 3P &amp; 3D Standard)
             </Link>
 
             <Link

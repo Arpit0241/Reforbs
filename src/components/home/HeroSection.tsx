@@ -1,39 +1,46 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Search,
   MapPin,
   Building2,
   GraduationCap,
-  Sparkles,
-  PhoneCall,
+  Compass,
   ShieldCheck,
   CheckCircle2,
-  Play,
-  Pause,
-  Compass,
-  ArrowRight,
 } from "lucide-react";
 
+const brandHeroImages = [
+  {
+    image: "/images/image4.png",
+    tag: "Reforbs Living Spaces",
+    caption: "Modern, customized private spaces in Viman Nagar",
+  },
+  {
+    image: "/assets/543f61a0a_generated_0051b70d.png",
+    tag: "Vibrant Community",
+    caption: "Young professionals enjoying together at Reforbs",
+  },
+  {
+    image: "/images/image3.png",
+    tag: "The Reforbs Way",
+    caption: "Ecosystem built for comfort, freedom & emotional connect",
+  },
+  {
+    image: "/assets/e74b3f267_generated_c9a9b56e.png",
+    tag: "Recreation & Lounge",
+    caption: "Chilling and unwinding in our shared game lounges",
+  },
+];
+
 export default function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState<"all" | "student" | "coliving">("all");
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedHub, setSelectedHub] = useState("all");
-  const [isPlaying, setIsPlaying] = useState(true);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,49 +51,32 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[96vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#0A0D0C]">
-      {/* High-Definition Architectural Video Background */}
+    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0D1110]">
+      {/* Brand Hero Background Slideshow */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/assets/543f61a0a_generated_0051b70d.png"
-          className="w-full h-full object-cover scale-105 filter brightness-[0.72] contrast-[1.08]"
-        >
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
-        </video>
+        {brandHeroImages.map((slide, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              currentSlide === idx ? "opacity-45 scale-100" : "opacity-0 scale-105"
+            } transform transition-transform duration-7000`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.caption}
+              fill
+              className="object-cover"
+              priority={idx === 0}
+            />
+          </div>
+        ))}
 
         {/* Sophisticated Dual Gradient & Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D0C] via-[#0A0D0C]/65 to-[#0A0D0C]/85 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#004D4D]/20 to-[#0A0D0C]/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110] via-[#0D1110]/60 to-[#0D1110]/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#004D4D]/15 to-[#0D1110]/85 pointer-events-none" />
       </div>
 
-      {/* Floating Video Controller */}
-      <div className="absolute top-28 right-6 z-20 hidden md:flex items-center gap-2">
-        <button
-          type="button"
-          onClick={toggleVideo}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold transition-all hover:scale-105"
-          aria-label="Toggle background video playback"
-        >
-          {isPlaying ? (
-            <>
-              <Pause size={13} className="text-[#FFDE59]" />
-              <span>Video Playing</span>
-            </>
-          ) : (
-            <>
-              <Play size={13} className="text-[#FFDE59]" />
-              <span>Video Paused</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4 sm:pt-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2 sm:pt-6">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-6 shadow-lg">
@@ -98,76 +88,31 @@ export default function HeroSection() {
             <span className="text-white/90 hidden sm:inline font-semibold">Direct Host Booking</span>
           </div>
 
-          {/* Punchy Master Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08] mb-6 font-heading">
+          {/* Master Headline with Custom Styled Underline on 'experience' */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] mb-10 font-heading">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
-            <span className="text-[#FFDE59] relative inline-block underline decoration-[#007A7A] decoration-wavy decoration-2 sm:decoration-4 underline-offset-8">
+            <span className="relative inline-block text-[#FFDE59]">
               experience
+              <svg
+                className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[#007A7A]"
+                viewBox="0 0 250 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M3 14C60 4 170 3 247 10C170 17 80 18 3 14Z"
+                  fill="currentColor"
+                />
+              </svg>
             </span>{" "}
             to cherish.
           </h1>
-
-          <p className="text-base sm:text-xl text-[#F1F5F4] leading-relaxed max-w-2xl mx-auto mb-8 font-medium">
-            Curated student sanctuaries and vibrant co-living spaces in <strong className="text-white font-bold">Viman Nagar, Pune</strong>. Zero brokerage, chef-ready private kitchens, and zero moral policing.
-          </p>
-
-          {/* Primary High-Visibility Call & WhatsApp Quick Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10">
-            {/* Direct Call Button */}
-            <a
-              href="tel:+917420040241"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white hover:bg-[#F1F5F4] text-[#1B1D1C] font-black text-sm shadow-xl hover:scale-105 active:scale-95 transition-all group"
-            >
-              <div className="w-7 h-7 rounded-xl bg-[#007A7A] text-white flex items-center justify-center group-hover:bg-[#005C5C] transition-colors">
-                <PhoneCall size={14} />
-              </div>
-              <div className="text-left">
-                <span className="block text-[10px] text-[#666B68] font-bold uppercase tracking-wider leading-none">
-                  Call Host Directly
-                </span>
-                <span className="text-sm font-extrabold text-[#1B1D1C] leading-tight">
-                  +91 74200 40241
-                </span>
-              </div>
-            </a>
-
-            {/* Direct WhatsApp Button */}
-            <a
-              href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Viman%20Nagar%2C%20Pune."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-sm shadow-xl shadow-emerald-950/20 hover:scale-105 active:scale-95 transition-all"
-            >
-              <svg className="w-6 h-6 fill-white shrink-0" viewBox="0 0 24 24">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-              </svg>
-              <span>Chat on WhatsApp</span>
-              <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">
-                Online
-              </span>
-            </a>
-
-            {/* Visit Booking */}
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#FFDE59] hover:bg-[#FADC46] text-[#1B1D1C] font-black text-sm shadow-xl hover:scale-105 active:scale-95 transition-all"
-            >
-              <Sparkles size={16} />
-              <span>Schedule Free Visit</span>
-            </Link>
-          </div>
-
-          {/* Sales Anti-Spam Guarantee Box */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-[#007A7A]/35 backdrop-blur-md border border-[#007A7A]/60 text-xs sm:text-sm text-white mb-10 shadow-xl">
-            <ShieldCheck size={17} className="text-[#FFDE59] shrink-0" />
-            <span className="font-extrabold text-[#FFDE59]">Take it if you like it!!</span>
-            <span className="text-white/90">We don&apos;t push for sales. You will never receive follow-up disturbance calls from our side.</span>
-          </div>
         </div>
 
-        {/* Stanza-style Modern Search & Quick Filter Component */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/60">
+        {/* Stanza Living-Style Modern Search & Quick Filter Component (Centerpiece) */}
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/70">
           {/* Top Category Tab Pills */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E1E7E6] pb-4 mb-5">
             <div className="flex flex-wrap items-center gap-2">
@@ -303,7 +248,7 @@ export default function HeroSection() {
               ))}
             </div>
 
-            {/* Quick Perks Line from PDF */}
+            {/* Quick Perks Line */}
             <div className="mt-4 pt-3 border-t border-[#E1E7E6] flex flex-wrap items-center justify-between text-xs text-[#4A524F] font-semibold gap-2">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 size={14} className="text-[#007A7A]" /> Zero Lock-in Period
@@ -319,6 +264,25 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Slideshow Selector Strip */}
+        <div className="mt-8 flex items-center justify-center gap-2 sm:gap-3">
+          {brandHeroImages.map((slide, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setCurrentSlide(idx)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                currentSlide === idx
+                  ? "bg-white text-[#1B1D1C] shadow-lg scale-105"
+                  : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${currentSlide === idx ? "bg-[#007A7A]" : "bg-white/40"}`} />
+              <span>{slide.tag}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>

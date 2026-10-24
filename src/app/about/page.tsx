@@ -137,7 +137,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* -3P and -3D Official Breakdown */}
+      {/* 3P and 3D Official Breakdown */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -145,15 +145,15 @@ export default function AboutPage() {
               REFORBS RAISES THE BAR
             </div>
             <h2 className="section-heading-lg">
-              The -3P and -3D Framework
+              The 3P and 3D Framework
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* -3P */}
+            {/* 3P */}
             <div className="bg-[#FAF6E8] rounded-3xl p-8 sm:p-10 border border-[#E6D7A8]">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#E6D7A8]">
-                <span className="text-3xl font-black text-[#1B1D1C] font-heading">-3P</span>
+                <span className="text-3xl font-black text-[#1B1D1C] font-heading">3P</span>
                 <span className="text-xs font-black uppercase text-[#007A7A]">Privacy • Personalization • Positivity</span>
               </div>
               <div className="space-y-6 text-sm font-medium">
@@ -178,10 +178,10 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* -3D */}
+            {/* 3D */}
             <div className="bg-[#E6F4F3] rounded-3xl p-8 sm:p-10 border border-[#BDE3DF]">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#BDE3DF]">
-                <span className="text-3xl font-black text-[#007A7A] font-heading">-3D</span>
+                <span className="text-3xl font-black text-[#007A7A] font-heading">3D</span>
                 <span className="text-xs font-black uppercase text-[#007A7A]">Daily Support • Decor • Details</span>
               </div>
               <div className="space-y-6 text-sm font-medium">
