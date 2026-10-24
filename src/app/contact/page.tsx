@@ -91,7 +91,7 @@ export default function ContactPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-3">
                   <a
-                    href="https://wa.me/919876543210?text=Hi%20Reforbs!%20I%20just%20submitted%20a%20site%20visit%20request."
+                    href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20submitted%20a%20site%20visit%20request."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-teal text-xs py-3 px-6"
@@ -139,7 +139,7 @@ export default function ContactPage() {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 74200 40241"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
@@ -240,8 +240,9 @@ export default function ContactPage() {
                 </button>
 
                 <div className="pt-2 text-center">
-                  <span className="text-[11px] text-[#666B68] font-medium">
-                    🔒 Zero-spam guarantee: We never share your contact or spam you with marketing calls.
+                  <span className="text-[11px] text-[#666B68] font-medium flex items-center justify-center gap-1.5">
+                    <ShieldCheck size={14} className="text-[#007A7A] shrink-0" />
+                    <span>Zero-spam guarantee: We never share your contact or spam you with marketing calls.</span>
                   </span>
                 </div>
               </form>
@@ -282,11 +283,14 @@ export default function ContactPage() {
                       Phone &amp; WhatsApp
                     </span>
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+917420040241"
                       className="text-sm font-black text-[#1B1D1C] hover:text-[#007A7A] transition-colors block"
                     >
-                      +91 98765 43210
+                      +91 74200 40241
                     </a>
+                    <span className="text-xs text-[#666B68] font-medium block mt-0.5">
+                      Host: Arpit Agarwal
+                    </span>
                   </div>
                 </div>
 
@@ -324,7 +328,7 @@ export default function ContactPage() {
 
               <div className="pt-4 border-t border-[#E1E7E6]">
                 <a
-                  href="https://wa.me/919876543210?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Viman%20Nagar."
+                  href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Viman%20Nagar."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-yellow w-full py-3.5 rounded-2xl justify-center font-extrabold text-xs shadow-md"

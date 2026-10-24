@@ -67,7 +67,7 @@ export default function CtaSection() {
                     Our Viman Nagar property host will message you on WhatsApp with parking and entrance directions.
                   </p>
                   <a
-                    href="https://wa.me/919876543210?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
+                    href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-teal text-xs py-3 px-6"
@@ -107,7 +107,7 @@ export default function CtaSection() {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 74200 40241"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
@@ -168,8 +168,9 @@ export default function CtaSection() {
                     <ArrowRight size={16} />
                   </button>
 
-                  <p className="text-[11px] text-center text-[#666B68] font-medium pt-1">
-                    🔒 Zero-spam guarantee: You will never receive marketing follow-up calls.
+                  <p className="text-[11px] text-center text-[#666B68] font-medium pt-1 flex items-center justify-center gap-1.5">
+                    <ShieldCheck size={14} className="text-[#007A7A] shrink-0" />
+                    <span>Zero-spam guarantee: You will never receive marketing follow-up calls.</span>
                   </p>
                 </form>
               )}

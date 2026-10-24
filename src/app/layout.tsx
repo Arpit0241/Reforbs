@@ -3,8 +3,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import StickyBottomBar from "@/components/StickyBottomBar";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://reforbs.com"),
   title: "Reforbs Living | Modern Co-Living & Student Housing in Pune",
   description:
     "Reforbs offers innovative co-living spaces and student housing in Viman Nagar, Pune. Enjoy single & double occupancy rooms, benchmark amenities, vibrant backpacker-inspired community, and zero restrictions. Discover Nirvana, Moksha, ABC (near SLS) & XYZ (near SCMS).",
@@ -33,6 +35,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <StickyBottomBar />
       </body>
     </html>
   );

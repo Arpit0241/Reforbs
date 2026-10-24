@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Lock, Sliders, SunMedium, LifeBuoy, Palette, Sparkles, ArrowRight } from "lucide-react";
+import { Heart, Lock, Sliders, SunMedium, LifeBuoy, Palette, Sparkles, ArrowRight, Backpack, PartyPopper, HeartHandshake } from "lucide-react";
 
 export const metadata = {
   title: "About Us | Reforbs Living - Pune's Vibrant Co-Living Ecosystem",
@@ -99,8 +99,8 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-3xl p-8 border border-[#E1E7E6] shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#007A7A] text-white flex items-center justify-center font-bold text-lg mb-6">
-                🎒
+              <div className="w-12 h-12 rounded-2xl bg-[#007A7A] text-white flex items-center justify-center font-bold text-lg mb-6 shadow-sm">
+                <Backpack size={22} className="text-white" />
               </div>
               <h3 className="text-xl font-black font-heading text-[#1B1D1C] mb-3">
                 Hippie &amp; Vibrant
@@ -111,8 +111,8 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white rounded-3xl p-8 border border-[#E1E7E6] shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFDE59] text-[#1B1D1C] flex items-center justify-center font-bold text-lg mb-6">
-                🎉
+              <div className="w-12 h-12 rounded-2xl bg-[#FFDE59] text-[#1B1D1C] flex items-center justify-center font-bold text-lg mb-6 shadow-sm">
+                <PartyPopper size={22} className="text-[#1B1D1C]" />
               </div>
               <h3 className="text-xl font-black font-heading text-[#1B1D1C] mb-3">
                 Invite Friends Over
@@ -123,8 +123,8 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white rounded-3xl p-8 border border-[#E1E7E6] shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#007A7A] text-white flex items-center justify-center font-bold text-lg mb-6">
-                🤝
+              <div className="w-12 h-12 rounded-2xl bg-[#007A7A] text-white flex items-center justify-center font-bold text-lg mb-6 shadow-sm">
+                <HeartHandshake size={22} className="text-white" />
               </div>
               <h3 className="text-xl font-black font-heading text-[#1B1D1C] mb-3">
                 Sense of Ownership
