@@ -163,7 +163,9 @@ export default function FeaturedProperties() {
   };
 
   return (
-    <section id="properties" className="py-24 bg-[#FAFAFA]">
+    <section id="properties" className="py-24 bg-[#FAFAFA] relative">
+      <div id="student-housing" className="absolute -top-24 left-0" />
+      <div id="co-living" className="absolute -top-24 left-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -172,7 +174,7 @@ export default function FeaturedProperties() {
             <h2 className="section-heading-lg">
               Spaces built around <span className="text-[#007A7A]">comfort</span>
             </h2>
-            <p className="text-[#666B68] text-sm sm:text-base max-w-xl mt-3 font-medium">
+            <p className="text-[#2D3748] text-sm sm:text-base max-w-xl mt-3 font-semibold">
               Choose a home with the essentials covered, relaxed common spaces, and easy access to colleges and work hubs in Pune.
             </p>
           </div>
@@ -293,7 +295,7 @@ export default function FeaturedProperties() {
 
                   {/* Body Content */}
                   <div className="p-6 sm:p-7">
-                    <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed mb-5 font-medium">
+                    <p className="text-xs sm:text-sm text-[#1F2937] leading-relaxed mb-5 font-semibold">
                       {property.description}
                     </p>
 

@@ -64,7 +64,13 @@ export default function Navbar() {
               onMouseEnter={() => setPropertiesOpen(true)}
               onMouseLeave={() => setPropertiesOpen(false)}
             >
-              <button
+              <Link
+                href="/#properties"
+                onClick={() => {
+                  setPropertiesOpen(false);
+                  const el = document.getElementById("properties");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
                 className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
                   pathname.includes("student-housing") || pathname.includes("coliving")
                     ? "text-[#007A7A]"
@@ -75,12 +81,35 @@ export default function Navbar() {
               >
                 <span>Properties</span>
                 <ChevronDown size={14} className={`transition-transform duration-200 ${propertiesOpen ? "rotate-180" : ""}`} />
-              </button>
+              </Link>
 
               {propertiesOpen && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-2 animate-fadeIn z-50">
                   <Link
-                    href="/#student-housing"
+                    href="/#properties"
+                    onClick={() => {
+                      setPropertiesOpen(false);
+                      const el = document.getElementById("properties");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#007A7A] text-white flex items-center justify-center shrink-0">
+                      <Building2 size={20} />
+                    </div>
+                    <div>
+                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        All 5 Properties
+                      </div>
+                      <div className="text-xs text-[#4B5563]">
+                        Student housing and co-living spaces in Viman Nagar
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/student-housing"
+                    onClick={() => setPropertiesOpen(false)}
                     className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
@@ -90,14 +119,15 @@ export default function Navbar() {
                       <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
                         Student Housing
                       </div>
-                      <div className="text-xs text-[#666B68]">
+                      <div className="text-xs text-[#4B5563]">
                         Shubh Gateway (Opp. SLS) &amp; Sakore Nagar (Near SCMS)
                       </div>
                     </div>
                   </Link>
 
                   <Link
-                    href="/#co-living"
+                    href="/coliving"
+                    onClick={() => setPropertiesOpen(false)}
                     className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 group-hover:bg-[#FFDE59] transition-colors">
@@ -107,7 +137,7 @@ export default function Navbar() {
                       <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
                         Co-Living for Professionals
                       </div>
-                      <div className="text-xs text-[#666B68]">
+                      <div className="text-xs text-[#4B5563]">
                         Moksha, Vipasana &amp; Shubh Nirvana in Viman Nagar
                       </div>
                     </div>
@@ -249,14 +279,25 @@ export default function Navbar() {
             </Link>
 
             <div className="py-2 border-y border-[#E1E7E6] space-y-2">
-              <span className="text-[11px] font-black uppercase tracking-wider text-[#666B68]">
-                Properties in Viman Nagar, Pune
-              </span>
+              <Link
+                href="/#properties"
+                onClick={() => {
+                  setIsOpen(false);
+                  const el = document.getElementById("properties");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="flex items-center justify-between text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
+              >
+                <span>All Properties (5 Residences)</span>
+                <span className="text-xs bg-[#E6F4F3] text-[#007A7A] font-extrabold px-2.5 py-1 rounded-full">
+                  View All
+                </span>
+              </Link>
               <div className="grid gap-2 pl-2">
                 <Link
-                  href="/#student-housing"
+                  href="/student-housing"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-sm font-bold text-[#1B1D1C] hover:text-[#007A7A] py-1.5"
+                  className="flex items-center justify-between text-sm font-bold text-[#374151] hover:text-[#007A7A] py-1.5"
                 >
                   <span>Student Housing (Shubh Gateway &amp; Sakore)</span>
                   <span className="text-xs bg-[#E6F4F3] text-[#007A7A] font-extrabold px-2 py-0.5 rounded-full">
@@ -264,9 +305,9 @@ export default function Navbar() {
                   </span>
                 </Link>
                 <Link
-                  href="/#co-living"
+                  href="/coliving"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-sm font-bold text-[#1B1D1C] hover:text-[#007A7A] py-1.5"
+                  className="flex items-center justify-between text-sm font-bold text-[#374151] hover:text-[#007A7A] py-1.5"
                 >
                   <span>Co-Living (Moksha, Vipasana, Nirvana)</span>
                   <span className="text-xs bg-[#FFF9D4] text-[#1B1D1C] font-extrabold px-2 py-0.5 rounded-full">

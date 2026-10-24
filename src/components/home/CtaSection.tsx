@@ -8,9 +8,7 @@ export default function CtaSection() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    property: "Shubh Gateway (Opp. SLS)",
-    occupancy: "Single Occupancy",
-    date: "",
+    property: "Shubh Gateway (Opp. SLS Campus)",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,53 +22,59 @@ export default function CtaSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Info */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-black text-xs uppercase tracking-wider shadow-sm font-heading">
-              <Sparkles size={14} /> Ready to experience the vibe?
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#111827] font-black text-xs uppercase tracking-wider shadow-sm font-heading">
+              <Sparkles size={14} className="text-[#111827]" /> Ready to experience the vibe?
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading leading-tight text-white">
               Your new home is waiting in <span className="text-[#FFDE59]">Viman Nagar</span>.
             </h2>
 
-            <p className="text-white/90 text-base sm:text-lg leading-relaxed font-medium">
-              Join hundreds of young professionals and students who chose community over loneliness. Start your Reforbs journey today.
+            <p className="text-white text-base sm:text-lg leading-relaxed font-medium">
+              Join hundreds of Symbiosis students and young professionals who chose community over loneliness. Start your Reforbs journey today.
             </p>
 
             <div className="space-y-3.5 pt-2 text-sm text-white font-bold">
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 size={18} className="text-[#FFDE59] shrink-0" />
-                <span>Zero follow-up disturbance calls: Take it if you like it!!</span>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#FFDE59] text-[#111827] flex items-center justify-center shrink-0 font-bold text-xs">
+                  ✓
+                </div>
+                <span className="text-white font-semibold">Zero follow-up disturbance calls: Take it if you like it!!</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 size={18} className="text-[#FFDE59] shrink-0" />
-                <span>Walking distance to Symbiosis SLS &amp; SCMS Campuses</span>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#FFDE59] text-[#111827] flex items-center justify-center shrink-0 font-bold text-xs">
+                  ✓
+                </div>
+                <span className="text-white font-semibold">Walking distance to Symbiosis SLS &amp; SCMS Campuses</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 size={18} className="text-[#FFDE59] shrink-0" />
-                <span>Zero lock-ins and full cooking freedom</span>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-[#FFDE59] text-[#111827] flex items-center justify-center shrink-0 font-bold text-xs">
+                  ✓
+                </div>
+                <span className="text-white font-semibold">Zero lock-ins and complete cooking freedom</span>
               </div>
             </div>
           </div>
 
-          {/* Right Form Card */}
+          {/* Right Form Card - Minimalistic Stanza Style */}
           <div className="lg:col-span-6">
-            <div className="bg-white rounded-3xl p-6 sm:p-10 text-[#1B1D1C] shadow-2xl border border-white/60">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 text-[#111827] shadow-2xl border border-white/80">
               {submitted ? (
                 <div className="text-center py-8">
-                  <div className="w-14 h-14 rounded-full bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 size={32} />
+                  <div className="w-16 h-16 rounded-full bg-[#007A7A]/10 text-[#007A7A] flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 size={36} />
                   </div>
-                  <h3 className="text-2xl font-black font-heading text-[#1B1D1C] mb-2">
+                  <h3 className="text-2xl font-black font-heading text-[#111827] mb-2">
                     Tour Request Received!
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#4A524F] max-w-sm mx-auto mb-6 font-medium">
-                    Our Viman Nagar property host will message you on WhatsApp with parking and entrance directions.
+                  <p className="text-sm text-[#374151] max-w-sm mx-auto mb-6 font-medium">
+                    Our Viman Nagar property host will message you on WhatsApp with parking directions and schedule confirmation.
                   </p>
                   <a
                     href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-teal text-xs py-3 px-6"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3.5 rounded-full font-bold text-sm shadow hover:bg-[#20bd5a] transition"
                   >
                     Open WhatsApp Directly
                   </a>
@@ -78,16 +82,19 @@ export default function CtaSection() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black font-heading text-[#1B1D1C]">
-                      Book a Free In-Person Visit
+                    <span className="inline-block text-[11px] font-black tracking-wider uppercase text-[#007A7A] bg-[#007A7A]/10 px-2.5 py-1 rounded-md mb-2 font-heading">
+                      Quick 30-Second Inquiry
+                    </span>
+                    <h3 className="text-2xl font-black font-heading text-[#111827]">
+                      Book a Free Site Visit
                     </h3>
-                    <p className="text-xs text-[#666B68] mt-1 font-medium">
-                      Takes 30 seconds. No pushy sales calls guaranteed.
+                    <p className="text-xs text-[#374151] mt-1 font-medium">
+                      Minimal details needed. No pushy sales calls guaranteed.
                     </p>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
+                    <label className="block text-xs font-bold text-[#111827] mb-1.5">
                       Full Name *
                     </label>
                     <input
@@ -96,81 +103,53 @@ export default function CtaSection() {
                       placeholder="e.g. Priyanshu Sharma"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
+                    <label className="block text-xs font-bold text-[#111827] mb-1.5">
                       WhatsApp Mobile Number *
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="+91 74200 40241"
+                      placeholder="+91 98765 43210"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm"
                     />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                        Select Property *
-                      </label>
-                      <select
-                        value={form.property}
-                        onChange={(e) => setForm({ ...form, property: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] cursor-pointer"
-                      >
-                        <option value="Shubh Gateway (Opp. SLS)">Shubh Gateway (Opp. SLS)</option>
-                        <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Living Sakore Nagar (SCMS)</option>
-                        <option value="Moksha (Co-Living)">Moksha (Co-Living)</option>
-                        <option value="Vipasana (Co-Living)">Vipasana (Co-Living)</option>
-                        <option value="Shubh Nirvana (Co-Living)">Shubh Nirvana (Co-Living)</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                        Occupancy *
-                      </label>
-                      <select
-                        value={form.occupancy}
-                        onChange={(e) => setForm({ ...form, occupancy: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] cursor-pointer"
-                      >
-                        <option value="Single Occupancy">Single Occupancy (100% Private)</option>
-                        <option value="Double Sharing">Double Sharing</option>
-                      </select>
-                    </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Preferred Date *
+                    <label className="block text-xs font-bold text-[#111827] mb-1.5">
+                      Preferred Space in Viman Nagar *
                     </label>
-                    <input
-                      type="date"
-                      required
-                      value={form.date}
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
-                    />
+                    <select
+                      value={form.property}
+                      onChange={(e) => setForm({ ...form, property: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-bold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm cursor-pointer"
+                    >
+                      <option value="Shubh Gateway (Opp. SLS Campus)">Shubh Gateway (Opp. SLS Campus)</option>
+                      <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Living Sakore Nagar (SCMS Campus)</option>
+                      <option value="Moksha (Co-Living / Working Professionals)">Moksha (Co-Living / Working Professionals)</option>
+                      <option value="Vipasana (Co-Living / Premium Suites)">Vipasana (Co-Living / Premium Suites)</option>
+                      <option value="Shubh Nirvana (Co-Living / Executive)">Shubh Nirvana (Co-Living / Executive)</option>
+                      <option value="Any Available Space in Viman Nagar">Any Available Space in Viman Nagar</option>
+                    </select>
                   </div>
 
                   <button
                     type="submit"
-                    className="btn-teal w-full py-4 rounded-2xl font-black text-sm shadow-md mt-2"
+                    className="w-full py-3.5 bg-[#007A7A] hover:bg-[#006060] text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2 mt-4 cursor-pointer"
                   >
-                    <span>Confirm Free Site Visit</span>
+                    <span>Request Free Callback &amp; Visit</span>
                     <ArrowRight size={16} />
                   </button>
 
-                  <p className="text-[11px] text-center text-[#666B68] font-medium pt-1 flex items-center justify-center gap-1.5">
-                    <ShieldCheck size={14} className="text-[#007A7A] shrink-0" />
-                    <span>Zero-spam guarantee: You will never receive marketing follow-up calls.</span>
+                  <p className="text-xs text-center text-[#4B5563] font-medium pt-2 flex items-center justify-center gap-1.5">
+                    <ShieldCheck size={16} className="text-[#007A7A] shrink-0" />
+                    <span>Zero-spam guarantee: Take it only if you like it!!</span>
                   </p>
                 </form>
               )}

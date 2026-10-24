@@ -43,11 +43,7 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    email: "",
     property: "Shubh Gateway (Opp. SLS)",
-    occupancy: "Single Occupancy",
-    visitDate: "",
-    notes: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -58,191 +54,127 @@ export default function ContactPage() {
   return (
     <div className="pt-24 pb-20 bg-[#FAFAFA] min-h-screen">
       {/* Header */}
-      <section className="bg-[#111312] text-white py-16 sm:py-20 relative overflow-hidden">
+      <section className="bg-[#0D1110] text-white py-16 sm:py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-black text-xs uppercase tracking-wider mb-6 font-heading">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-black text-xs uppercase tracking-wider mb-6 font-heading shadow-md">
             <Sparkles size={14} />
             <span>Connect with Reforbs</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4">
-            Book a Site Tour or <span className="text-[#007A7A]">Say Hello</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4 text-white">
+            Book a Site Tour or <span className="text-[#FFDE59]">Say Hello</span>
           </h1>
-          <p className="text-[#E1E7E6] text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-white text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-semibold">
             Drop by any of our Viman Nagar properties for a relaxed walkthrough. No sales reps pestering you later — that&apos;s our Reforbs guarantee!
           </p>
         </div>
       </section>
 
-      {/* Main Grid: Form + Contact Cards */}
+      {/* Main Grid: Minimalistic Stanza-Style Form + Contact Cards */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Form */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-[#E1E7E6] shadow-card">
             {submitted ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mx-auto mb-4 shadow-sm">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-black font-heading text-[#1B1D1C] mb-2">
-                  Visit Request Confirmed!
+                <h3 className="text-2xl font-black font-heading text-[#111827] mb-2">
+                  Request Confirmed!
                 </h3>
-                <p className="text-sm text-[#4A524F] max-w-md mx-auto mb-6 font-medium">
-                  Thank you, <strong>{form.name}</strong>. Our on-ground property host in Viman Nagar will text you via WhatsApp with the entrance location and parking info.
+                <p className="text-sm text-[#1F2937] max-w-md mx-auto mb-6 font-semibold">
+                  Thank you, <strong>{form.name}</strong>. Our on-ground host in Viman Nagar will text you on WhatsApp ({form.phone}) with building location and timings.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-3">
                   <a
-                    href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20submitted%20a%20site%20visit%20request."
+                    href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20my%20name%20is%20${encodeURIComponent(
+                      form.name
+                    )}.%20I%20am%20interested%20in%20${encodeURIComponent(form.property)}.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-teal text-xs py-3 px-6"
+                    className="btn-teal text-xs py-3 px-6 font-bold"
                   >
                     Open WhatsApp Directly
                   </a>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="btn-outline-teal text-xs py-3 px-6"
+                    className="btn-outline-teal text-xs py-3 px-6 font-bold"
                   >
-                    Book for Another Date
+                    Submit Another Inquiry
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-black font-heading text-[#1B1D1C]">
-                    Schedule Your Free Visit
+                  <h2 className="text-xl sm:text-2xl font-black font-heading text-[#111827]">
+                    Request a Callback / Schedule Visit
                   </h2>
-                  <p className="text-xs text-[#666B68] mt-1 font-medium">
-                    Takes only 30 seconds. No obligation, no spam.
+                  <p className="text-xs sm:text-sm text-[#374151] mt-1 font-semibold">
+                    Takes only 10 seconds. We never push for sales or disturb you.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Siddharth Joshi"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      WhatsApp Mobile Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+91 74200 40241"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Target Property *
-                    </label>
-                    <select
-                      value={form.property}
-                      onChange={(e) => setForm({ ...form, property: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] cursor-pointer"
-                    >
-                      <option value="Shubh Gateway (Opp. SLS)">
-                        Shubh Gateway (Opp. SLS)
-                      </option>
-                      <option value="Reforbs Living Sakore Nagar (SCMS)">
-                        Reforbs Living Sakore Nagar (SCMS)
-                      </option>
-                      <option value="Moksha (Co-Living)">
-                        Moksha (Co-Living)
-                      </option>
-                      <option value="Vipasana (Co-Living)">
-                        Vipasana (Co-Living)
-                      </option>
-                      <option value="Shubh Nirvana (Co-Living)">
-                        Shubh Nirvana (Co-Living)
-                      </option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Occupancy Preference *
-                    </label>
-                    <select
-                      value={form.occupancy}
-                      onChange={(e) => setForm({ ...form, occupancy: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] cursor-pointer"
-                    >
-                      <option value="Single Occupancy">Single Occupancy (100% Private)</option>
-                      <option value="Double Sharing">Double Sharing</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Preferred Visit Date *
-                    </label>
-                    <input
-                      type="date"
-                      required
-                      value={form.visitDate}
-                      onChange={(e) => setForm({ ...form, visitDate: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                      Email Address (Optional)
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="name@example.com"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
-                    />
-                  </div>
-                </div>
-
+                {/* Field 1: Name */}
                 <div>
-                  <label className="block text-[11px] font-black uppercase tracking-wider text-[#666B68] mb-1">
-                    Any specific questions or move-in timeline?
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#111827] mb-1.5 font-heading">
+                    Full Name *
                   </label>
-                  <textarea
-                    rows={3}
-                    placeholder="e.g. Looking to move in next Monday, bringing my laptop and bicycle..."
-                    value={form.notes}
-                    onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                    className="w-full px-4 py-3 rounded-2xl border border-[#E1E7E6] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Siddharth Joshi"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all"
                   />
+                </div>
+
+                {/* Field 2: Mobile */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#111827] mb-1.5 font-heading">
+                    Mobile / WhatsApp Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+91 74200 40241"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all"
+                  />
+                </div>
+
+                {/* Field 3: Preferred Property */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#111827] mb-1.5 font-heading">
+                    Preferred Space in Viman Nagar *
+                  </label>
+                  <select
+                    value={form.property}
+                    onChange={(e) => setForm({ ...form, property: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] cursor-pointer transition-all"
+                  >
+                    <option value="Shubh Gateway (Opp. SLS)">Shubh Gateway (Opp. Symbiosis SLS)</option>
+                    <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Sakore Nagar (Near SCMS)</option>
+                    <option value="Moksha (Co-Living)">Moksha Co-Living (Terrace Garden)</option>
+                    <option value="Vipasana (Co-Living)">Vipasana Co-Living (Sanctuary)</option>
+                    <option value="Shubh Nirvana (Co-Living)">Shubh Nirvana Co-Living (Lounge)</option>
+                  </select>
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-teal w-full py-4 rounded-2xl font-black text-sm shadow-md"
+                  className="btn-teal w-full py-4 rounded-2xl font-black text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] mt-2"
                 >
-                  <span>Confirm Free Site Visit</span>
+                  <span>Request Callback / Book Free Visit</span>
                   <ArrowRight size={16} />
                 </button>
 
                 <div className="pt-2 text-center">
-                  <span className="text-[11px] text-[#666B68] font-medium flex items-center justify-center gap-1.5">
-                    <ShieldCheck size={14} className="text-[#007A7A] shrink-0" />
-                    <span>Zero-spam guarantee: We never share your contact or spam you with marketing calls.</span>
+                  <span className="text-xs text-[#1F2937] font-semibold flex items-center justify-center gap-1.5">
+                    <ShieldCheck size={16} className="text-[#007A7A] shrink-0" />
+                    <span>Zero-spam guarantee: You will never receive unsolicited marketing calls.</span>
                   </span>
                 </div>
               </form>
@@ -252,8 +184,8 @@ export default function ContactPage() {
           {/* Contact Details */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card space-y-6">
-              <h3 className="text-xl font-black font-heading text-[#1B1D1C]">
-                Direct Contact
+              <h3 className="text-xl font-black font-heading text-[#111827]">
+                Direct Host Contact
               </h3>
 
               <div className="space-y-4">
@@ -262,13 +194,13 @@ export default function ContactPage() {
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <span className="text-[11px] text-[#666B68] block font-black uppercase">
+                    <span className="text-xs text-[#374151] block font-black uppercase font-heading">
                       Locations
                     </span>
-                    <span className="text-sm font-black text-[#1B1D1C]">
+                    <span className="text-sm font-black text-[#111827]">
                       Viman Nagar, Pune, Maharashtra 411014
                     </span>
-                    <span className="text-xs text-[#666B68] block mt-0.5 font-medium">
+                    <span className="text-xs text-[#374151] block mt-0.5 font-semibold">
                       (Near Symbiosis SLS &amp; SCMS campuses)
                     </span>
                   </div>
@@ -279,16 +211,16 @@ export default function ContactPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <span className="text-[11px] text-[#666B68] block font-black uppercase">
+                    <span className="text-xs text-[#374151] block font-black uppercase font-heading">
                       Phone &amp; WhatsApp
                     </span>
                     <a
                       href="tel:+917420040241"
-                      className="text-sm font-black text-[#1B1D1C] hover:text-[#007A7A] transition-colors block"
+                      className="text-sm font-black text-[#111827] hover:text-[#007A7A] transition-colors block"
                     >
                       +91 74200 40241
                     </a>
-                    <span className="text-xs text-[#666B68] font-medium block mt-0.5">
+                    <span className="text-xs text-[#374151] font-bold block mt-0.5">
                       Host: Arpit Agarwal
                     </span>
                   </div>
@@ -299,12 +231,12 @@ export default function ContactPage() {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <span className="text-[11px] text-[#666B68] block font-black uppercase">
+                    <span className="text-xs text-[#374151] block font-black uppercase font-heading">
                       Email
                     </span>
                     <a
                       href="mailto:hello@reforbs.com"
-                      className="text-sm font-black text-[#1B1D1C] hover:text-[#007A7A] transition-colors block"
+                      className="text-sm font-black text-[#111827] hover:text-[#007A7A] transition-colors block"
                     >
                       hello@reforbs.com
                     </a>
@@ -316,10 +248,10 @@ export default function ContactPage() {
                     <Clock size={20} />
                   </div>
                   <div>
-                    <span className="text-[11px] text-[#666B68] block font-black uppercase">
+                    <span className="text-xs text-[#374151] block font-black uppercase font-heading">
                       Tour Hours
                     </span>
-                    <span className="text-sm font-black text-[#1B1D1C]">
+                    <span className="text-sm font-black text-[#111827]">
                       Everyday: 9:00 AM – 8:00 PM
                     </span>
                   </div>
@@ -331,7 +263,7 @@ export default function ContactPage() {
                   href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Viman%20Nagar."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-yellow w-full py-3.5 rounded-2xl justify-center font-extrabold text-xs shadow-md"
+                  className="btn-yellow w-full py-3.5 rounded-2xl justify-center font-black text-xs shadow-md"
                 >
                   <MessageCircle size={16} />
                   <span>Instant WhatsApp Chat</span>
@@ -339,13 +271,13 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Anti-spam badge card from Slide 9 */}
-            <div className="bg-[#FAF6E8] rounded-3xl p-6 border border-[#E6D7A8]">
+            {/* Anti-spam badge card */}
+            <div className="bg-[#FAF6E8] rounded-3xl p-6 border border-[#E6D7A8] shadow-sm">
               <div className="flex items-center gap-2 text-[#007A7A] font-black text-sm mb-2 font-heading">
                 <ShieldCheck size={18} />
                 <span>The Reforbs Sales Guarantee</span>
               </div>
-              <p className="text-xs text-[#4A524F] leading-relaxed font-medium">
+              <p className="text-xs text-[#1F2937] leading-relaxed font-semibold">
                 &ldquo;Take it if you like it !! We don&apos;t push for sales. You will never receive a follow up call from our side. Instead we focus on quality of our accommodations and services.&rdquo;
               </p>
             </div>
@@ -356,7 +288,7 @@ export default function ContactPage() {
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <span className="badge-eyebrow mb-2">FAQ</span>
-            <h3 className="section-heading-lg">Everything You Need to Know</h3>
+            <h3 className="section-heading-lg text-[#111827]">Everything You Need to Know</h3>
           </div>
 
           <div className="space-y-4">
@@ -368,16 +300,16 @@ export default function ContactPage() {
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-black text-[#1B1D1C] text-sm sm:text-base hover:text-[#007A7A] transition-colors font-heading"
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-black text-[#111827] text-sm sm:text-base hover:text-[#007A7A] transition-colors font-heading"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
                     size={18}
-                    className={`shrink-0 transition-transform ${openFaq === i ? "rotate-180 text-[#007A7A]" : "text-[#666B68]"}`}
+                    className={`shrink-0 transition-transform ${openFaq === i ? "rotate-180 text-[#007A7A]" : "text-[#4B5563]"}`}
                   />
                 </button>
                 {openFaq === i && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-[#4A524F] leading-relaxed border-t border-[#E1E7E6] pt-3 font-medium">
+                  <div className="px-5 pb-5 text-sm text-[#1F2937] leading-relaxed border-t border-[#E1E7E6] pt-3 font-semibold">
                     {faq.a}
                   </div>
                 )}
