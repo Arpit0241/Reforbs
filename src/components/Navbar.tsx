@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap, Users, HeartHandshake } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,63 +20,40 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Community", href: "/community" },
-    { label: "Contact", href: "/contact" },
-  ];
-
-  const isLightPage = pathname === "/" ? !scrolled : false;
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md py-3"
-          : "bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-transparent py-4"
+          ? "bg-[#FAFAFA]/95 backdrop-blur-md border-b border-[#E1E7E6] shadow-sm py-3"
+          : "bg-gradient-to-b from-[#111312]/80 via-[#111312]/40 to-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm bg-white p-1">
+          {/* Logo with real asset */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-40 h-10 sm:w-44 sm:h-11">
               <Image
-                src="/images/image1.png"
-                alt="Reforbs Living Logo"
+                src="/assets/reforbs-logo-teal.png"
+                alt="Reforbs Living"
                 fill
-                className="object-contain"
+                className={`object-contain transition-all ${
+                  !scrolled ? "brightness-0 invert drop-shadow-md" : ""
+                }`}
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span
-                className={`text-xl sm:text-2xl font-black font-heading tracking-tight transition-colors ${
-                  scrolled ? "text-slate-900" : "text-white"
-                }`}
-              >
-                REFORBS<span className="text-brand-teal">.</span>
-              </span>
-              <span
-                className={`text-[9px] font-bold tracking-widest uppercase -mt-1 ${
-                  scrolled ? "text-brand-teal" : "text-brand-yellow"
-                }`}
-              >
-                Living Ecosystem
-              </span>
-            </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8">
             <Link
               href="/"
-              className={`text-sm font-semibold transition-colors duration-200 ${
+              className={`text-sm font-bold transition-colors ${
                 pathname === "/"
-                  ? "text-brand-teal font-bold"
+                  ? "text-[#007A7A]"
                   : scrolled
-                  ? "text-slate-700 hover:text-brand-teal"
+                  ? "text-[#1B1D1C] hover:text-[#007A7A]"
                   : "text-white/90 hover:text-white"
               }`}
             >
@@ -90,11 +67,11 @@ export default function Navbar() {
               onMouseLeave={() => setPropertiesOpen(false)}
             >
               <button
-                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 ${
-                  pathname.startsWith("/student-housing") || pathname.startsWith("/coliving")
-                    ? "text-brand-teal font-bold"
+                className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
+                  pathname.includes("student-housing") || pathname.includes("coliving")
+                    ? "text-[#007A7A]"
                     : scrolled
-                    ? "text-slate-700 hover:text-brand-teal"
+                    ? "text-[#1B1D1C] hover:text-[#007A7A]"
                     : "text-white/90 hover:text-white"
                 }`}
               >
@@ -103,37 +80,37 @@ export default function Navbar() {
               </button>
 
               {propertiesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 grid gap-2 animate-fadeIn z-50">
+                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-2 animate-fadeIn z-50">
                   <Link
-                    href="/student-housing"
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-teal-50 transition-colors group"
+                    href="/#student-housing"
+                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-brand-teal-100 text-brand-teal flex items-center justify-center shrink-0 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
                       <GraduationCap size={20} />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-slate-900 group-hover:text-brand-teal">
+                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
                         Student Housing
                       </div>
-                      <div className="text-xs text-slate-500">
-                        ABC (Near SLS) & XYZ (Near SCMS) in Viman Nagar
+                      <div className="text-xs text-[#666B68]">
+                        Shubh Gateway (Opp. SLS) &amp; Sakore Nagar (Near SCMS)
                       </div>
                     </div>
                   </Link>
 
                   <Link
-                    href="/coliving"
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-teal-50 transition-colors group"
+                    href="/#co-living"
+                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-brand-yellow-100 text-brand-dark-900 flex items-center justify-center shrink-0 group-hover:bg-brand-yellow group-hover:text-brand-dark-900 transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 group-hover:bg-[#FFDE59] transition-colors">
                       <Building2 size={20} />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-slate-900 group-hover:text-brand-teal">
-                        Co-Living for Pros
+                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        Co-Living for Professionals
                       </div>
-                      <div className="text-xs text-slate-500">
-                        Nirvana & Moksha curated properties in Viman Nagar
+                      <div className="text-xs text-[#666B68]">
+                        Moksha, Vipasana &amp; Shubh Nirvana in Viman Nagar
                       </div>
                     </div>
                   </Link>
@@ -143,11 +120,11 @@ export default function Navbar() {
 
             <Link
               href="/about"
-              className={`text-sm font-semibold transition-colors duration-200 ${
+              className={`text-sm font-bold transition-colors ${
                 pathname === "/about"
-                  ? "text-brand-teal font-bold"
+                  ? "text-[#007A7A]"
                   : scrolled
-                  ? "text-slate-700 hover:text-brand-teal"
+                  ? "text-[#1B1D1C] hover:text-[#007A7A]"
                   : "text-white/90 hover:text-white"
               }`}
             >
@@ -156,11 +133,11 @@ export default function Navbar() {
 
             <Link
               href="/community"
-              className={`text-sm font-semibold transition-colors duration-200 ${
+              className={`text-sm font-bold transition-colors ${
                 pathname === "/community"
-                  ? "text-brand-teal font-bold"
+                  ? "text-[#007A7A]"
                   : scrolled
-                  ? "text-slate-700 hover:text-brand-teal"
+                  ? "text-[#1B1D1C] hover:text-[#007A7A]"
                   : "text-white/90 hover:text-white"
               }`}
             >
@@ -169,11 +146,11 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className={`text-sm font-semibold transition-colors duration-200 ${
+              className={`text-sm font-bold transition-colors ${
                 pathname === "/contact"
-                  ? "text-brand-teal font-bold"
+                  ? "text-[#007A7A]"
                   : scrolled
-                  ? "text-slate-700 hover:text-brand-teal"
+                  ? "text-[#1B1D1C] hover:text-[#007A7A]"
                   : "text-white/90 hover:text-white"
               }`}
             >
@@ -181,36 +158,36 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Action Buttons */}
+          {/* Action CTAs */}
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:+919876543210"
-              className={`flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-full transition-colors ${
+              className={`flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full transition-all ${
                 scrolled
-                  ? "text-slate-700 hover:text-brand-teal bg-slate-100"
-                  : "text-white hover:text-brand-yellow bg-white/10 backdrop-blur-sm"
+                  ? "text-[#1B1D1C] bg-[#F1F4F4] hover:bg-[#E6F4F3] hover:text-[#007A7A]"
+                  : "text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm"
               }`}
             >
-              <Phone size={13} className="text-brand-teal" />
+              <Phone size={13} className="text-[#4AA8A0]" />
               <span>+91 98765 43210</span>
             </a>
 
             <Link
               href="/contact"
-              className="btn-yellow text-xs py-2.5 px-5 shadow-sm"
+              className="btn-yellow text-xs py-2.5 px-6 shadow-sm font-extrabold"
             >
               <Sparkles size={14} />
-              <span>Explore Stays</span>
+              <span>Schedule Visit</span>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-xl transition-colors ${
-              scrolled ? "text-slate-900 bg-slate-100" : "text-white bg-white/10"
+            className={`lg:hidden p-2.5 rounded-2xl transition-colors ${
+              scrolled ? "text-[#1B1D1C] bg-[#F1F4F4]" : "text-white bg-white/15"
             }`}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -219,39 +196,39 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 shadow-2xl animate-fadeIn">
+        <div className="lg:hidden bg-white border-t border-[#E1E7E6] shadow-2xl animate-fadeIn">
           <div className="px-5 py-6 space-y-3">
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
-              className="block py-2 text-base font-bold text-slate-800 hover:text-brand-teal"
+              className="block py-2 text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
             >
               Home
             </Link>
 
-            <div className="py-2 border-y border-slate-100 space-y-2">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-                Our Properties in Viman Nagar
+            <div className="py-2 border-y border-[#E1E7E6] space-y-2">
+              <span className="text-[11px] font-black uppercase tracking-wider text-[#666B68]">
+                Properties in Viman Nagar, Pune
               </span>
               <div className="grid gap-2 pl-2">
                 <Link
-                  href="/student-housing"
+                  href="/#student-housing"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-sm font-semibold text-slate-700 hover:text-brand-teal py-1.5"
+                  className="flex items-center justify-between text-sm font-bold text-[#1B1D1C] hover:text-[#007A7A] py-1.5"
                 >
-                  <span>Student Housing (SLS & SCMS)</span>
-                  <span className="text-xs bg-brand-teal-50 text-brand-teal font-bold px-2 py-0.5 rounded-full">
+                  <span>Student Housing (Shubh Gateway &amp; Sakore)</span>
+                  <span className="text-xs bg-[#E6F4F3] text-[#007A7A] font-extrabold px-2 py-0.5 rounded-full">
                     2 Properties
                   </span>
                 </Link>
                 <Link
-                  href="/coliving"
+                  href="/#co-living"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-sm font-semibold text-slate-700 hover:text-brand-teal py-1.5"
+                  className="flex items-center justify-between text-sm font-bold text-[#1B1D1C] hover:text-[#007A7A] py-1.5"
                 >
-                  <span>Co-Living (Nirvana & Moksha)</span>
-                  <span className="text-xs bg-brand-yellow-100 text-brand-dark-900 font-bold px-2 py-0.5 rounded-full">
-                    2 Properties
+                  <span>Co-Living (Moksha, Vipasana, Nirvana)</span>
+                  <span className="text-xs bg-[#FFF9D4] text-[#1B1D1C] font-extrabold px-2 py-0.5 rounded-full">
+                    3 Properties
                   </span>
                 </Link>
               </div>
@@ -260,41 +237,41 @@ export default function Navbar() {
             <Link
               href="/about"
               onClick={() => setIsOpen(false)}
-              className="block py-2 text-base font-bold text-slate-800 hover:text-brand-teal"
+              className="block py-2 text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
             >
-              About Us (Our Story & -3P/-3D)
+              About Us (The -3P &amp; -3D Standard)
             </Link>
 
             <Link
               href="/community"
               onClick={() => setIsOpen(false)}
-              className="block py-2 text-base font-bold text-slate-800 hover:text-brand-teal"
+              className="block py-2 text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
             >
-              Reforbs Community & Cult
+              Community &amp; Cult
             </Link>
 
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="block py-2 text-base font-bold text-slate-800 hover:text-brand-teal"
+              className="block py-2 text-base font-extrabold text-[#1B1D1C] hover:text-[#007A7A]"
             >
-              Contact & Book Site Visit
+              Contact &amp; Book Free Visit
             </Link>
 
             <div className="pt-4 flex flex-col gap-2">
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="btn-teal w-full justify-center text-sm py-3"
+                className="btn-teal w-full justify-center text-sm py-3.5"
               >
-                Schedule A Free Visit
+                Schedule A Free Walkthrough
               </Link>
               <a
                 href="tel:+919876543210"
-                className="flex items-center justify-center gap-2 text-xs font-bold py-3 text-slate-700 border border-slate-200 rounded-full"
+                className="flex items-center justify-center gap-2 text-xs font-bold py-3 text-[#1B1D1C] border border-[#E1E7E6] rounded-full"
               >
-                <Phone size={14} className="text-brand-teal" />
-                <span>Call Us: +91 98765 43210</span>
+                <Phone size={14} className="text-[#007A7A]" />
+                <span>Call Directly: +91 98765 43210</span>
               </a>
             </div>
           </div>

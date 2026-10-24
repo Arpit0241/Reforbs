@@ -1,102 +1,65 @@
 import Image from "next/image";
-import { Star, Quote, CheckCircle, Award } from "lucide-react";
-
-const reviews = [
-  {
-    name: "Rohan Deshmukh",
-    role: "Symbiosis Law School (SLS) Student",
-    property: "ABC – Near SLS",
-    rating: 5,
-    text: "Reforbs is the best decision I made moving to Pune. 2 mins walk to SLS campus, no grumpy wardens or illogical curfews, and my own quiet single room to prepare for moot court competitions. The vibes on the terrace at night are unbeatable!",
-  },
-  {
-    name: "Aanya Verma",
-    role: "Symbiosis Centre for Mgmt (SCMS)",
-    property: "XYZ – Near SCMS",
-    rating: 5,
-    text: "They literally don't impose food on you. I have my own private kitchen corner and can cook what I like or order with roommates. When they promised 'no follow-up pushy sales calls', they actually meant it. Super respectful management.",
-  },
-  {
-    name: "Siddharth Mehta",
-    role: "Senior Software Engineer, Tech Mahindra",
-    property: "Reforbs Nirvana, Viman Nagar",
-    rating: 5,
-    text: "Moved from Bangalore to Pune and was dreading typical PG broker traps. Reforbs Nirvana feels like a boutique backpackers resort. Gigabit fiber never drops, gym inside, and the community BBQs helped me make close friends in 2 weeks.",
-  },
-  {
-    name: "Pooja Hegde",
-    role: "Product Designer, SaaS Startup",
-    property: "Reforbs Moksha, Viman Nagar",
-    rating: 5,
-    text: "The interior decor and lighting are stunning! As a designer, my environment dictates my energy. Living in Moksha with leafy balcony spaces and supportive hosts who resolve maintenance within an hour has been a dream.",
-  },
-];
+import { Award, Quote, CheckCircle2 } from "lucide-react";
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-24 bg-white border-b border-[#E1E7E6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="section-tag mb-3">Genuine Resident Love</span>
-          <h2 className="section-title">
-            What Customers Say About Us
+        {/* Section Header from reforbs.com */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="badge-eyebrow mb-3">Stories from our tribe</div>
+          <h2 className="section-heading-lg">
+            Hear from <span className="text-[#007A7A]">our community</span>
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-3">
-            Real feedback from students and working professionals living across our Viman Nagar properties.
+          <p className="text-[#666B68] text-sm sm:text-base mt-3 font-medium">
+            Over the years, Reforbs has made sure that tenants enjoy absolute freedom of choice. Here is what real residents say about us on Google:
           </p>
         </div>
 
-        {/* Reviews Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {reviews.map((rev, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-card transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(rev.rating)].map((_, idx) => (
-                      <Star key={idx} size={18} fill="currentColor" />
-                    ))}
-                  </div>
-                  <span className="text-xs font-bold text-brand-teal bg-brand-teal-50 px-3 py-1 rounded-full border border-brand-teal-100">
-                    {rev.property}
-                  </span>
-                </div>
+        {/* Real Google Review Screenshots from reforbs.com */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="rounded-3xl overflow-hidden border border-[#E1E7E6] shadow-card hover:shadow-card-hover transition-all bg-[#FAFAFA]">
+            <Image
+              src="/assets/review-kushagra-shivannya.png"
+              alt="Google reviews from Kushagra Tiwari and Shivannya Dhule"
+              width={800}
+              height={500}
+              className="w-full h-auto object-cover"
+            />
+          </div>
 
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic mb-6">
-                  &ldquo;{rev.text}&rdquo;
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-1.5">
-                    <span>{rev.name}</span>
-                    <CheckCircle size={14} className="text-emerald-500" />
-                  </div>
-                  <div className="text-xs text-slate-500">{rev.role}</div>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center">
-                  <Quote size={16} />
-                </div>
-              </div>
-            </div>
-          ))}
+          <div className="rounded-3xl overflow-hidden border border-[#E1E7E6] shadow-card hover:shadow-card-hover transition-all bg-[#FAFAFA]">
+            <Image
+              src="/assets/review-saurav-kalpana.png"
+              alt="Google reviews from Saurav Goswami and Kalpana Dholi"
+              width={800}
+              height={500}
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </div>
 
-        {/* The Spotlight on Us (Slide 13 & image8.png) */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-teal mb-2">
+        {/* The ReForbs Cult Manifesto (Slide 14) */}
+        <div className="bg-[#FAF6E8] rounded-3xl p-8 sm:p-12 border border-[#E6D7A8] max-w-4xl mx-auto text-center mb-16 shadow-sm">
+          <Quote size={32} className="text-[#007A7A] mx-auto mb-4 opacity-40" />
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#1B1D1C] font-heading leading-relaxed mb-4">
+            &ldquo;Over the period of years, ReForbs has made sure that tenants enjoy absolute freedom of choice. We don&apos;t impose our food service on you. We don&apos;t believe in lock ins. We let you change layout of the room. We let you voice out your demands. That&apos;s ReForbs Cult !! We are a family away from your family.&rdquo;
+          </h3>
+          <span className="text-xs font-black uppercase tracking-widest text-[#007A7A]">
+            — Official Reforbs Cult Philosophy
+          </span>
+        </div>
+
+        {/* The Spotlight on us (Slide 13 & image8.png) */}
+        <div className="bg-[#FAFAFA] rounded-3xl p-8 sm:p-10 border border-[#E1E7E6] text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#007A7A] mb-2">
             <Award size={16} />
             <span>As Featured In Mainstream Media</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-black font-heading text-slate-900 mb-2">
-            The <span className="text-brand-teal">Spotlight</span> On Us
+          <h3 className="text-2xl sm:text-3xl font-black text-[#1B1D1C] font-heading mb-2">
+            The <span className="text-[#007A7A]">Spotlight</span> On Us
           </h3>
-          <p className="text-sm text-slate-600 max-w-xl mx-auto mb-8">
+          <p className="text-xs sm:text-sm text-[#666B68] max-w-xl mx-auto mb-8 font-medium">
             We don&apos;t just make second homes in Pune. We make headlines as well.
           </p>
 
@@ -105,7 +68,7 @@ export default function TestimonialsSection() {
               src="/images/image8.png"
               alt="Reforbs in Forbes, Entrepreneur, VCCIRCLE, YourStory, LiveMint"
               fill
-              className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-85 hover:opacity-100"
             />
           </div>
         </div>

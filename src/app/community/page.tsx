@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Sparkles, Heart, Film, Utensils, Sun, Award, Flame, Quote, CheckCircle2, ArrowRight } from "lucide-react";
+import { Users, Sparkles, Heart, Film, Utensils, Sun, Quote, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "The Reforbs Community & Cult | Co-Living in Pune",
@@ -11,7 +11,7 @@ export const metadata = {
 const communityMoments = [
   {
     title: "Weekend Rooftop Yoga",
-    desc: "Unwind under the morning skies of Viman Nagar with guided wellness and meditation.",
+    desc: "Laugh, eat, and breathe your way to wellness under the morning skies of Viman Nagar.",
     tag: "Wellness",
   },
   {
@@ -31,7 +31,7 @@ const communityMoments = [
   },
   {
     title: "Professional Networking & Mentorship",
-    desc: "Connect with tech leaders, lawyers, and founders residing within the Reforbs network.",
+    desc: "Group interactions and mentorship with working professionals residing in Reforbs.",
     tag: "Career",
   },
   {
@@ -43,20 +43,20 @@ const communityMoments = [
 
 export default function CommunityPage() {
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-24 pb-20 bg-[#FAFAFA]">
       {/* Hero Header */}
-      <section className="bg-gradient-to-b from-slate-950 via-brand-dark to-slate-900 text-white py-20 relative overflow-hidden">
+      <section className="bg-[#111312] text-white py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-yellow text-brand-dark-900 font-extrabold text-xs uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-black text-xs uppercase tracking-wider mb-6 font-heading">
             <Users size={16} />
             <span>The Reforbs Cult</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-6 max-w-4xl mx-auto">
             A Family Away From <br className="hidden sm:block" />
-            <span className="text-brand-teal">Your Family</span>.
+            <span className="text-[#007A7A]">Your Family</span>.
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            We understand the profound importance of human connection. The Reforbs family gives every resident a warm, supportive circle to overcome stress and celebrate life together.
+          <p className="text-[#E1E7E6] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
+            We understand the profound importance of social interactions and bonding, especially after the COVID pandemic. The Reforbs family gives every member a supportive group to help them cope with difficult challenges.
           </p>
         </div>
       </section>
@@ -64,34 +64,34 @@ export default function CommunityPage() {
       {/* Community Visual Feature */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl mb-16">
-            <div className="relative h-72 sm:h-96 md:h-[460px] w-full bg-slate-950">
+          <div className="relative rounded-3xl overflow-hidden border border-[#E1E7E6] shadow-card mb-16">
+            <div className="relative h-72 sm:h-96 md:h-[460px] w-full bg-[#111312]">
               <Image
                 src="/images/image7.png"
                 alt="Never a dull moment at Reforbs"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111312] via-[#111312]/40 to-transparent" />
             </div>
 
-            <div className="p-8 sm:p-12 bg-slate-950 text-white">
-              <span className="text-brand-yellow font-bold text-xs uppercase tracking-widest block mb-2">
-                POST-COVID WELLNESS MANIFESTO
+            <div className="p-8 sm:p-12 bg-[#111312] text-white">
+              <span className="text-[#FFDE59] font-black text-xs uppercase tracking-widest block mb-2 font-heading">
+                STEP INTO REFORBS COMMUNITY !!
               </span>
               <h2 className="text-2xl sm:text-4xl font-black font-heading mb-4">
                 Channeling Social Bonding Towards Personal Growth
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
-                Bachelors in Pune have their work and college routines, but mental wellness demands more than isolation in front of a screen. At Reforbs, you can laugh, eat, and breathe your way to wellness through spontaneous gatherings and enriching memories that last a lifetime.
+              <p className="text-[#E1E7E6] text-sm sm:text-base leading-relaxed max-w-3xl font-medium">
+                The bachelors today have their own network of friends and colleagues; it is important to channel the social bonding towards personal growth. You can laugh, eat, and breathe your way to wellness through memorable living experiences that are enriching, ensure personal growth and networking. That has something for everyone!!
               </p>
             </div>
           </div>
 
           {/* Activities Grid */}
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="section-tag mb-3">Community Experiences</span>
-            <h3 className="section-title">
+            <span className="badge-eyebrow mb-3">Recreational Activities</span>
+            <h3 className="section-heading-lg">
               What Keeps The Energy High
             </h3>
           </div>
@@ -100,44 +100,44 @@ export default function CommunityPage() {
             {communityMoments.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 hover:bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 hover:border-brand-teal-300 hover:shadow-card transition-all"
+                className="bg-[#FAFAFA] hover:bg-white rounded-3xl p-7 border border-[#E1E7E6] hover:border-[#007A7A] hover:shadow-card transition-all"
               >
-                <span className="text-[11px] font-extrabold uppercase px-3 py-1 rounded-full bg-brand-teal-50 text-brand-teal border border-brand-teal-200 inline-block mb-4">
+                <span className="text-[11px] font-black uppercase px-3 py-1 rounded-full bg-[#E6F4F3] text-[#007A7A] inline-block mb-4 font-heading">
                   {item.tag}
                 </span>
-                <h4 className="text-lg font-bold font-heading text-slate-900 mb-2">
+                <h4 className="text-lg font-black font-heading text-[#1B1D1C] mb-2">
                   {item.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
                   {item.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Manifesto Callout */}
-          <div className="bg-gradient-to-br from-brand-teal-50 via-white to-brand-yellow-50 rounded-3xl p-8 sm:p-12 border border-brand-teal-200 text-center max-w-4xl mx-auto shadow-sm">
-            <Quote size={32} className="text-brand-teal mx-auto mb-4 opacity-50" />
-            <h3 className="text-2xl sm:text-3xl font-black font-heading text-slate-900 mb-4">
-              &ldquo;Over the period of years, ReForbs has made sure that tenants enjoy absolute freedom of choice. We don&apos;t impose our food service on you. We don&apos;t believe in lock-ins. We let you change the layout of the room. We let you voice out your demands. That&apos;s ReForbs Cult!!&rdquo;
+          {/* Manifesto Callout (Slide 14) */}
+          <div className="bg-[#FAF6E8] rounded-3xl p-8 sm:p-12 border border-[#E6D7A8] text-center max-w-4xl mx-auto shadow-sm">
+            <Quote size={32} className="text-[#007A7A] mx-auto mb-4 opacity-40" />
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-heading text-[#1B1D1C] mb-4 leading-relaxed">
+              &ldquo;Over the period of years, ReForbs has made sure that tenants enjoy absolute freedom of choice. We don&apos;t impose our food service on you. We don&apos;t believe in lock ins. We let you change layout of the room. We let you voice out your demands. That&apos;s ReForbs Cult !! We are a family away from your family.&rdquo;
             </h3>
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              — The Official Reforbs Resident Pledge
-            </p>
+            <span className="text-xs font-black uppercase tracking-widest text-[#007A7A]">
+              — Official Reforbs Resident Pledge
+            </span>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-dark-900 text-white text-center">
+      <section className="py-16 bg-[#007A7A] text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h3 className="text-2xl sm:text-4xl font-black font-heading mb-4">
             Become Part of The Family Today
           </h3>
-          <p className="text-slate-300 text-sm sm:text-base mb-8 max-w-xl mx-auto">
-            Single and double occupancies available in Viman Nagar. Drop by, have a chai with us, and check out the spaces!
+          <p className="text-white/90 text-sm sm:text-base mb-8 max-w-xl mx-auto font-medium">
+            Single and double occupancies available in Viman Nagar. Drop by, meet the hosts, and check out the spaces!
           </p>
-          <Link href="/contact" className="btn-yellow text-sm font-bold py-3.5 px-8">
+          <Link href="/contact" className="btn-yellow text-xs font-black py-3.5 px-8">
             Book a Free Community Tour
           </Link>
         </div>

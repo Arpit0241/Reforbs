@@ -2,33 +2,27 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  ArrowRight,
-  Heart,
-} from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark-900 text-white border-t border-slate-800">
+    <footer className="bg-[#111312] text-white border-t border-[#272B29]" id="contact">
       {/* Top Banner */}
-      <div className="bg-brand-teal text-white py-8">
+      <div className="bg-[#007A7A] text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="text-xl sm:text-2xl font-black font-heading text-white">
                 Experience Pune&apos;s Most Vibrant Co-Living Ecosystem
               </h3>
-              <p className="text-white/80 text-xs sm:text-sm mt-1">
+              <p className="text-white/90 text-xs sm:text-sm mt-1 font-medium">
                 Zero pushy calls. Zero hidden lock-ins. 100% freedom, community, and emotional connect.
               </p>
             </div>
             <div className="flex items-center gap-3">
               <Link
                 href="/contact"
-                className="btn-yellow text-xs font-bold py-3 px-6 shadow-md whitespace-nowrap"
+                className="btn-yellow text-xs font-black py-3 px-6 shadow-md whitespace-nowrap"
               >
                 Schedule A Visit <ArrowRight size={14} />
               </Link>
@@ -42,42 +36,34 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-white p-1">
+            <Link href="/" className="inline-block">
+              <div className="relative w-44 h-11">
                 <Image
-                  src="/images/image1.png"
-                  alt="Reforbs Living Logo"
+                  src="/assets/reforbs-logo-teal.png"
+                  alt="Reforbs Living"
                   fill
-                  className="object-contain"
+                  className="object-contain brightness-0 invert"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-black font-heading text-white">
-                  REFORBS<span className="text-brand-teal">.</span>
-                </span>
-                <span className="text-[9px] font-bold tracking-widest uppercase text-brand-yellow -mt-1">
-                  Living Ecosystem
-                </span>
               </div>
             </Link>
 
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-[#A0AAA5] leading-relaxed max-w-sm font-medium">
               Reforbs is an innovative living space solution in Pune, that offers an ecosystem, and not just accommodations. Affordable and customized spaces enabling tenants to live, work, study, and play.
             </p>
 
-            <div className="space-y-2.5 pt-2 text-xs text-slate-300">
+            <div className="space-y-2.5 pt-2 text-xs text-[#E1E7E6] font-medium">
               <div className="flex items-center gap-2.5">
-                <MapPin size={15} className="text-brand-teal shrink-0" />
+                <MapPin size={15} className="text-[#4AA8A0] shrink-0" />
                 <span>Viman Nagar, Pune, Maharashtra 411014</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone size={15} className="text-brand-yellow shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-brand-yellow transition-colors">
+                <Phone size={15} className="text-[#FFDE59] shrink-0" />
+                <a href="tel:+919876543210" className="hover:text-[#FFDE59] transition-colors">
                   +91 98765 43210
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail size={15} className="text-brand-teal shrink-0" />
+                <Mail size={15} className="text-[#4AA8A0] shrink-0" />
                 <a href="mailto:hello@reforbs.com" className="hover:text-white transition-colors">
                   hello@reforbs.com
                 </a>
@@ -90,7 +76,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-teal text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#007A7A] text-[#A0AAA5] hover:text-white flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
@@ -101,7 +87,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-teal text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#007A7A] text-[#A0AAA5] hover:text-white flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
@@ -112,7 +98,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-teal text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#007A7A] text-[#A0AAA5] hover:text-white flex items-center justify-center transition-colors"
                 aria-label="X / Twitter"
               >
                 <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
@@ -123,7 +109,7 @@ export default function Footer() {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-teal text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#007A7A] text-[#A0AAA5] hover:text-white flex items-center justify-center transition-colors"
                 aria-label="YouTube"
               >
                 <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
@@ -133,25 +119,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Student Housing Links */}
+          {/* Student Housing */}
           <div>
-            <h4 className="font-bold text-white text-sm mb-4 font-heading">
+            <h4 className="font-black text-white text-sm mb-4 font-heading">
               Student Housing
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
+            <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/student-housing" className="hover:text-white transition-colors">
+                <Link href="/#student-housing" className="hover:text-white transition-colors">
                   Overview (Viman Nagar)
                 </Link>
               </li>
               <li>
-                <Link href="/student-housing/abc-near-sls" className="hover:text-white transition-colors">
-                  ABC – Near SLS (Law)
+                <Link href="/student-housing/shubh-gateway" className="hover:text-white transition-colors">
+                  Shubh Gateway (Opp. SLS)
                 </Link>
               </li>
               <li>
-                <Link href="/student-housing/xyz-near-scms" className="hover:text-white transition-colors">
-                  XYZ – Near SCMS (Mgmt)
+                <Link href="/student-housing/sakore-nagar" className="hover:text-white transition-colors">
+                  Sakore Nagar (Near SCMS)
                 </Link>
               </li>
               <li>
@@ -162,25 +148,30 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Co-Living Links */}
+          {/* Co-Living */}
           <div>
-            <h4 className="font-bold text-white text-sm mb-4 font-heading">
+            <h4 className="font-black text-white text-sm mb-4 font-heading">
               Co-Living (Pros)
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
+            <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/coliving" className="hover:text-white transition-colors">
+                <Link href="/#co-living" className="hover:text-white transition-colors">
                   Overview (Viman Nagar)
                 </Link>
               </li>
               <li>
-                <Link href="/coliving/nirvana" className="hover:text-white transition-colors">
-                  Reforbs Nirvana
+                <Link href="/coliving/moksha" className="hover:text-white transition-colors">
+                  Moksha (Terraces)
                 </Link>
               </li>
               <li>
-                <Link href="/coliving/moksha" className="hover:text-white transition-colors">
-                  Reforbs Moksha
+                <Link href="/coliving/vipasana" className="hover:text-white transition-colors">
+                  Vipasana (Sanctuary)
+                </Link>
+              </li>
+              <li>
+                <Link href="/coliving/shubh-nirvana" className="hover:text-white transition-colors">
+                  Shubh Nirvana (Lounge)
                 </Link>
               </li>
               <li>
@@ -191,20 +182,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Info & Philosophy */}
+          {/* About & Philosophy */}
           <div>
-            <h4 className="font-bold text-white text-sm mb-4 font-heading">
+            <h4 className="font-black text-white text-sm mb-4 font-heading">
               The Reforbs Way
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
+            <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  About Us &amp; Our Story
+                  About Us &amp; Our Vision
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  The -3P &amp; -3D Framework
+                  The -3P &amp; -3D Standard
                 </Link>
               </li>
               <li>
@@ -223,12 +214,12 @@ export default function Footer() {
       </div>
 
       {/* Bottom Legal bar */}
-      <div className="border-t border-slate-800 py-6 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="border-t border-[#272B29] py-6 text-xs text-[#666B68]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 font-medium">
           <p>© {new Date().getFullYear()} Reforbs Living. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
             <span>Crafted with</span>
-            <Heart size={13} className="text-rose-500 fill-rose-500" />
+            <Heart size={13} className="text-[#FFDE59] fill-[#FFDE59]" />
             <span>for vibrant community living in Pune</span>
           </p>
         </div>
