@@ -1,27 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --teal-primary: #0097B2;
+  --yellow-accent: #FFDE59;
+  --dark-bg: #0F2F3D;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+  .btn-teal {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-semibold px-6 py-3.5 rounded-full transition-all duration-300 shadow-md hover:bg-brand-teal-600 hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base;
   }
+  
+  .btn-yellow {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-yellow text-brand-dark-900 font-bold px-6 py-3.5 rounded-full transition-all duration-300 shadow-md hover:bg-brand-yellow-400 hover:shadow-glow-yellow hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base;
+  }
+
+  .btn-outline-teal {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-brand-dark-900 font-semibold px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base;
+  }
+
+  .section-tag {
+    @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase bg-brand-teal-50 text-brand-teal border border-brand-teal-200;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-slate-900 tracking-tight leading-tight;
+  }
+
+  .card-premium {
+    @apply bg-white rounded-3xl border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden;
+  }
+
+  .glass-dark {
+    @apply bg-brand-dark/85 backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0097B2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #007A91;
 }
