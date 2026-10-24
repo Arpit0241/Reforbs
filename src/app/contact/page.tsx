@@ -53,17 +53,20 @@ export default function ContactPage() {
 
   return (
     <div className="pt-24 pb-20 bg-[#FAFAFA] min-h-screen">
-      {/* Header */}
-      <section className="bg-[#0D1110] text-white py-16 sm:py-20 relative overflow-hidden">
+      {/* Header with Radiant Brand Teal */}
+      <section className="bg-gradient-to-b from-[#006A6A] to-[#007A7A] text-white py-16 sm:py-20 relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#FFDE59]/10 rounded-full blur-2xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-black text-xs uppercase tracking-wider mb-6 font-heading shadow-md">
-            <Sparkles size={14} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#111827] font-black text-xs uppercase tracking-wider mb-6 font-heading shadow-md">
+            <Sparkles size={14} className="text-[#111827]" />
             <span>Connect with Reforbs</span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4 text-white">
-            Book a Site Tour or <span className="text-[#FFDE59]">Say Hello</span>
+            Book a Site Tour or <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Say Hello</span>
           </h1>
-          <p className="text-white text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-semibold">
+          <p className="text-white text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
             Drop by any of our Viman Nagar properties for a relaxed walkthrough. No sales reps pestering you later — that&apos;s our Reforbs guarantee!
           </p>
         </div>

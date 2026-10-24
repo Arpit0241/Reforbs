@@ -59,16 +59,19 @@ const colivingProperties = [
 export default function ColivingIndex() {
   return (
     <div className="pt-24 pb-20 bg-[#FAFAFA]">
-      <section className="bg-[#111312] text-white py-16 sm:py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-[#006A6A] to-[#007A7A] text-white py-16 sm:py-20 relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#FFDE59]/10 rounded-full blur-2xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#1B1D1C] font-extrabold text-xs uppercase tracking-wider mb-6">
-            <Building2 size={16} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#111827] font-black text-xs uppercase tracking-wider mb-6 font-heading shadow-md">
+            <Building2 size={16} className="text-[#111827]" />
             <span>Co-Living for Working Professionals</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4">
-            Co-Living in <span className="text-[#007A7A]">Viman Nagar</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4 text-white">
+            Co-Living in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Viman Nagar</span>
           </h1>
-          <p className="text-[#E1E7E6] text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-white text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
             Single &amp; Double occupancies, designed especially for Working professionals in a way so as to maintain their privacy intact. No rigid rules. No sales pressure.
           </p>
         </div>

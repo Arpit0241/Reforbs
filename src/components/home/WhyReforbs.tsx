@@ -170,10 +170,10 @@ export default function WhyReforbs() {
               <h3 className="text-2xl sm:text-4xl font-black font-heading text-white mb-4">
                 We create unique spaces that are full of personality.
               </h3>
-              <p className="text-sm sm:text-base text-[#E1E7E6] leading-relaxed mb-4">
-                Not just the rooms, but the entire space is full of great vibes. At Reforbs it&apos;s all about <strong className="text-[#4AA8A0]">EMOTIONAL CONNECT</strong>.
+              <p className="text-sm sm:text-base text-white/95 leading-relaxed mb-4 font-medium">
+                Not just the rooms, but the entire space is full of great vibes. At Reforbs it&apos;s all about <strong className="text-[#FFDE59]">EMOTIONAL CONNECT</strong>.
               </p>
-              <p className="text-xs sm:text-sm text-[#A0AAA5] leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/85 leading-relaxed font-medium">
                 Rooms are curated for individual needs, tastes and comfort. Privacy is paramount. At Reforbs it&apos;s all about <strong className="text-[#FFDE59]">YOU</strong>.
               </p>
             </div>

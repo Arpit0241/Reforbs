@@ -34,12 +34,12 @@ export default function CommunitySection() {
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-white mb-4">
                 Never a dull moment. <br />
-                <span className="text-[#007A7A]">In your story, your stay with us will be the most memorable chapter.</span>
+                <span className="text-[#FFDE59]">In your story, your stay with us will be the most memorable chapter.</span>
               </h2>
-              <p className="text-sm sm:text-base text-[#E1E7E6] leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-white/95 leading-relaxed mb-4 font-medium">
                 We all understand the importance of social interactions and bonding, especially after the COVID pandemic. With high risks of stress, frustration, and loneliness, the ReForbs family gives its members a supportive group to help them cope with difficult challenges.
               </p>
-              <p className="text-xs sm:text-sm text-[#A0AAA5] leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
                 The bachelors today have their own network of friends and colleagues; it is important to channel the social bonding towards personal growth.
               </p>
             </div>
