@@ -190,19 +190,6 @@ export const propertiesData: PropertyItem[] = [
   },
 ];
 
-// Headline words for staggered entrance
-const headlineWords = [
-  "Spaces",
-  "Built",
-  "For",
-  "How",
-  "You",
-  "Truly",
-  "Live",
-  "in",
-  "Pune",
-];
-
 export default function FeaturedProperties() {
   const [activeTab, setActiveTab] = useState<"all" | "student" | "coliving">("all");
   const [activePhotoMap, setActivePhotoMap] = useState<{ [id: string]: string }>({});
@@ -219,75 +206,61 @@ export default function FeaturedProperties() {
   };
 
   return (
-    <section id="properties" className="py-24 bg-[#FAFAFA] relative overflow-hidden">
+    <section id="properties" className="pt-8 sm:pt-12 pb-20 bg-[#FAFAFA] relative overflow-hidden">
       <div id="student-housing" className="absolute -top-24 left-0" />
       <div id="co-living" className="absolute -top-24 left-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header: Staggered Headline Words & Subtitle Fade */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        {/* Section Header: Tight, balanced spacing with immediate visibility */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider mb-5 font-heading"
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider mb-3.5 font-heading"
           >
             <Sparkles size={14} className="text-[#007A7A]" />
             <span>Curated Living Experiences</span>
           </motion.div>
 
-          {/* Staggered Rising Words */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111827] font-heading tracking-tight leading-[1.15] mb-5 flex flex-wrap justify-center gap-x-2.5 sm:gap-x-3.5">
-            {headlineWords.map((word, i) => (
-              <span key={i} className="inline-block overflow-hidden py-1">
-                <motion.span
-                  initial={{ y: "110%", opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    delay: i * 0.06,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className={`inline-block ${
-                    word === "Truly" || word === "Live"
-                      ? "text-[#007A7A] underline decoration-[#FFDE59] decoration-wavy decoration-2 underline-offset-8"
-                      : ""
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </h2>
-
-          {/* Subtitle Fade */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
+          {/* Headline - Guaranteed visible, crisp, and no blank space */}
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-[#374151] text-sm sm:text-base md:text-lg leading-relaxed font-semibold max-w-2xl mx-auto"
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111827] font-heading tracking-tight leading-tight mb-3"
           >
-            Explore handcrafted student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. The residences below show what living with zero compromises looks like.
+            Our <span className="text-[#007A7A]">Properties</span> in Viman Nagar
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-[#4A524F] text-sm sm:text-base md:text-lg leading-relaxed font-semibold max-w-2xl mx-auto mb-4"
+          >
+            Explore handcrafted student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, and real community.
           </motion.p>
 
           {/* Animated Accent Divider Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-            className="h-1 w-24 bg-[#007A7A] rounded-full mx-auto my-7"
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto my-5"
           />
 
           {/* Stanza-style Category Switcher */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            viewport={{ once: true, margin: "100px" }}
+            transition={{ duration: 0.4, delay: 0.35 }}
             className="inline-flex items-center gap-2 p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm max-w-full overflow-x-auto no-scrollbar"
           >
             <button

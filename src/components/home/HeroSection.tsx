@@ -90,10 +90,7 @@ export default function HeroSection() {
           {/* Master Headline with Custom Styled Underline on 'experience' */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] mb-8 sm:mb-10 font-heading">
             Not just an accommodation, <br className="hidden sm:block" />
-            but an{" "}
-            <span className="relative inline-block text-[#FFDE59]">
-              experience
-              <svg
+            but an <span className="relative inline-block text-[#FFDE59]">experience<svg
                 className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[#007A7A]"
                 viewBox="0 0 250 20"
                 fill="none"
@@ -104,9 +101,7 @@ export default function HeroSection() {
                   d="M3 14C60 4 170 3 247 10C170 17 80 18 3 14Z"
                   fill="currentColor"
                 />
-              </svg>
-            </span>{" "}
-            to cherish.
+              </svg></span> to cherish.
           </h1>
         </div>
 

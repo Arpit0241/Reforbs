@@ -2,9 +2,9 @@ import { Sparkles, Heart, Users, Smile } from "lucide-react";
 
 export default function StatsSection() {
   return (
-    <section className="py-20 bg-white border-b border-[#E1E7E6]">
+    <section className="pt-12 sm:pt-16 pb-8 sm:pb-10 bg-white border-b border-[#E1E7E6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <div className="badge-eyebrow mb-2">The Reforbs Difference</div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#1B1D1C] font-heading">
             What makes Reforbs <span className="text-[#007A7A]">different</span>
@@ -15,11 +15,12 @@ export default function StatsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-card transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-5 font-bold">
+          {/* Card 1: Freedom */}
+          <div className="group p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] group-hover:bg-[#007A7A] group-hover:text-white flex items-center justify-center mb-5 font-bold transition-all duration-300 shadow-sm">
               <Smile size={24} />
             </div>
-            <h3 className="text-lg font-black text-[#1B1D1C] font-heading mb-2">
+            <h3 className="text-lg font-black text-[#1B1D1C] group-hover:text-[#007A7A] font-heading mb-2 transition-colors">
               Freedom
             </h3>
             <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
@@ -27,11 +28,12 @@ export default function StatsSection() {
             </p>
           </div>
 
-          <div className="p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-card transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center mb-5 font-bold">
+          {/* Card 2: Community (Reforbs Premium Teal Theme) */}
+          <div className="group p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] group-hover:bg-[#007A7A] group-hover:text-white flex items-center justify-center mb-5 font-bold transition-all duration-300 shadow-sm">
               <Users size={24} />
             </div>
-            <h3 className="text-lg font-black text-[#1B1D1C] font-heading mb-2">
+            <h3 className="text-lg font-black text-[#1B1D1C] group-hover:text-[#007A7A] font-heading mb-2 transition-colors">
               Community
             </h3>
             <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
@@ -39,11 +41,12 @@ export default function StatsSection() {
             </p>
           </div>
 
-          <div className="p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-card transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-5 font-bold">
+          {/* Card 3: Comfort */}
+          <div className="group p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] group-hover:bg-[#007A7A] group-hover:text-white flex items-center justify-center mb-5 font-bold transition-all duration-300 shadow-sm">
               <Heart size={24} />
             </div>
-            <h3 className="text-lg font-black text-[#1B1D1C] font-heading mb-2">
+            <h3 className="text-lg font-black text-[#1B1D1C] group-hover:text-[#007A7A] font-heading mb-2 transition-colors">
               Comfort
             </h3>
             <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
@@ -51,11 +54,12 @@ export default function StatsSection() {
             </p>
           </div>
 
-          <div className="p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-card transition-all">
-            <div className="w-12 h-12 rounded-2xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center mb-5 font-bold">
+          {/* Card 4: Vibes (Reforbs Premium Teal Theme) */}
+          <div className="group p-7 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] hover:border-[#007A7A] hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] group-hover:bg-[#007A7A] group-hover:text-white flex items-center justify-center mb-5 font-bold transition-all duration-300 shadow-sm">
               <Sparkles size={24} />
             </div>
-            <h3 className="text-lg font-black text-[#1B1D1C] font-heading mb-2">
+            <h3 className="text-lg font-black text-[#1B1D1C] group-hover:text-[#007A7A] font-heading mb-2 transition-colors">
               Vibes
             </h3>
             <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
