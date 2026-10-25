@@ -1,14 +1,65 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Sparkles, Flame, Film, Sun, Utensils, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Users, Sparkles, Flame, Film, Sun, Utensils, ArrowRight, Check } from "lucide-react";
 
 const activities = [
-  { icon: Sun, title: "Group Yoga & Wellness", desc: "Laugh, eat, and breathe your way to wellness with morning rooftop sessions." },
-  { icon: Flame, title: "DIY & Art Sessions", desc: "Expressive painting, pottery, and creative workshops." },
-  { icon: Utensils, title: "Community Cooking & BBQs", desc: "Communal feasts and sharing your favorite regional cuisines." },
-  { icon: Sparkles, title: "Festival Celebrations", desc: "Holi, Diwali, Christmas, and New Year with your Reforbs family." },
-  { icon: Users, title: "Mentorship & Networking", desc: "Group interactions with senior working professionals and founders." },
-  { icon: Film, title: "Picnics & In-House Movie Nights", desc: "Weekend getaways and cozy cinema screenings with popcorn." },
+  {
+    number: "01",
+    icon: Sun,
+    title: "Group Yoga & Wellness",
+    desc: "Laugh, eat, and breathe your way to wellness with morning rooftop sessions.",
+    gradient: "from-[#006E6E] via-[#004D4D] to-[#022626]",
+    tag1: "Rooftop Sunrise",
+    tag2: "Mindful Flow",
+  },
+  {
+    number: "02",
+    icon: Flame,
+    title: "DIY & Art Sessions",
+    desc: "Expressive painting, pottery, and creative workshops.",
+    gradient: "from-[#0F6274] via-[#0A4552] to-[#04242B]",
+    tag1: "Creative Expression",
+    tag2: "Hands-on Workshops",
+  },
+  {
+    number: "03",
+    icon: Utensils,
+    title: "Community Cooking & BBQs",
+    desc: "Communal feasts and sharing your favorite regional cuisines.",
+    gradient: "from-[#047857] via-[#065F46] to-[#02281D]",
+    tag1: "Regional Flavors",
+    tag2: "Weekend BBQs",
+  },
+  {
+    number: "04",
+    icon: Sparkles,
+    title: "Festival Celebrations",
+    desc: "Holi, Diwali, Christmas, and New Year with your Reforbs family.",
+    gradient: "from-[#115E59] via-[#0D4440] to-[#032220]",
+    tag1: "Grand Festive Dinners",
+    tag2: "Family Vibes",
+  },
+  {
+    number: "05",
+    icon: Users,
+    title: "Mentorship & Networking",
+    desc: "Group interactions with senior working professionals and founders.",
+    gradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
+    tag1: "Founders & CXOs",
+    tag2: "Career Growth",
+  },
+  {
+    number: "06",
+    icon: Film,
+    title: "Picnics & In-House Movie Nights",
+    desc: "Weekend getaways and cozy cinema screenings with popcorn.",
+    gradient: "from-[#0D5C5A] via-[#083E3D] to-[#022120]",
+    tag1: "Cinema Lounges",
+    tag2: "Road Trips",
+  },
 ];
 
 export default function CommunitySection() {
@@ -48,35 +99,83 @@ export default function CommunitySection() {
 
         {/* 6 Recreational Activities from the slide */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#007A7A]/30 text-[#4AA8A0] text-xs font-black uppercase tracking-wider mb-3">
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "50px" }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#007A7A]/30 text-[#4AA8A0] border border-[#007A7A]/40 text-xs font-black uppercase tracking-wider mb-3.5"
+          >
             Wholesome &amp; Holistic Living
-          </span>
-          <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
+          </motion.span>
+          <motion.h3
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-black font-heading text-white tracking-tight"
+          >
             Recreational Activities &amp; Mentorship
-          </h3>
-          <p className="text-xs sm:text-sm text-[#A0AAA5] mt-2 font-medium">
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xs sm:text-sm text-[#A0AAA5] mt-2 font-medium max-w-xl mx-auto"
+          >
             Memorable living experience that is enriching, ensures personal growth and networking. That has something for everyone!!
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {activities.map((act, i) => {
             const Icon = act.icon;
             return (
-              <div
+              <motion.div
                 key={i}
-                className="bg-[#1B1D1C] hover:bg-[#272B29] rounded-3xl p-7 border border-[#272B29] transition-all duration-300 group"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "50px" }}
+                transition={{
+                  duration: 0.55,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className={`group relative rounded-3xl p-7 text-white bg-gradient-to-br ${act.gradient} shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between overflow-hidden border border-white/15`}
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#007A7A]/20 text-[#4AA8A0] flex items-center justify-center mb-5 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
-                  <Icon size={24} />
+                {/* Ambient Glow */}
+                <div className="absolute -top-16 -right-16 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-700" />
+
+                <div>
+                  {/* Top Monogram and Number Badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#FFDE59] group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 shadow-md">
+                      <Icon size={24} />
+                    </div>
+                    <span className="text-[11px] font-black tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/15 text-white/90 backdrop-blur-sm border border-white/20">
+                      {act.number}
+                    </span>
+                  </div>
+
+                  <h4 className="text-xl font-black font-heading text-white mb-2.5 group-hover:text-[#FFDE59] transition-colors">
+                    {act.title}
+                  </h4>
+
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
+                    {act.desc}
+                  </p>
                 </div>
-                <h4 className="text-lg font-black font-heading text-white mb-2">
-                  {act.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-[#A0AAA5] leading-relaxed font-medium">
-                  {act.desc}
-                </p>
-              </div>
+
+                {/* Bottom Stats / Highlights Bar */}
+                <div className="pt-4 mt-6 border-t border-white/15 flex items-center justify-between text-[11px] font-bold text-white/90">
+                  <span className="text-white/70">{act.tag1}</span>
+                  <span className="text-[#FFDE59] font-extrabold flex items-center gap-1">
+                    <Check size={12} className="text-[#FFDE59]" />
+                    <span>{act.tag2}</span>
+                  </span>
+                </div>
+              </motion.div>
             );
           })}
         </div>
