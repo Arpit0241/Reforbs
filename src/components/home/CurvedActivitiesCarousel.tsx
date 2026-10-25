@@ -26,7 +26,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#006E6E] via-[#004D4D] to-[#022626]",
     tag1: "Rooftop Sunrise",
     tag2: "Mindful Flow",
-    image: "/images/image7.png",
+    image: "/assets/pdf/extracted/page-3-image-1-X4.jpg",
   },
   {
     id: "art",
@@ -37,7 +37,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#0F6274] via-[#0A4552] to-[#04242B]",
     tag1: "Creative Expression",
     tag2: "Hands-on Art",
-    image: "/assets/cdb800f12_generated_1e273698.png",
+    image: "/assets/pdf/extracted/page-3-image-4-X8.jpg",
   },
   {
     id: "cooking",
@@ -48,7 +48,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#047857] via-[#065F46] to-[#02281D]",
     tag1: "Regional Flavors",
     tag2: "Weekend BBQs",
-    image: "/images/image3.png",
+    image: "/assets/pdf/extracted/page-7-image-3-X7.jpg",
   },
   {
     id: "festivals",
@@ -59,7 +59,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#115E59] via-[#0D4440] to-[#032220]",
     tag1: "Festive Dinners",
     tag2: "Family Vibes",
-    image: "/images/image7.png",
+    image: "/assets/pdf/extracted/page-2-image-2-X6.jpg",
   },
   {
     id: "mentorship",
@@ -70,7 +70,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
     tag1: "Founders & CXOs",
     tag2: "Career Growth",
-    image: "/assets/543f61a0a_generated_0051b70d.png",
+    image: "/assets/pdf/extracted/page-4-image-2-X6.jpg",
   },
   {
     id: "movies",
@@ -81,7 +81,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#0D5C5A] via-[#083E3D] to-[#022120]",
     tag1: "Cinema Lounges",
     tag2: "Road Trips",
-    image: "/assets/e74b3f267_generated_c9a9b56e.png",
+    image: "/assets/pdf/extracted/page-7-image-1-X4.jpg",
   },
 ];
 
