@@ -85,7 +85,7 @@ export const propertiesData: PropertyItem[] = [
     subLocation: "3 mins walk to SCMS campus",
     priceDouble: "₹12,000",
     priceSingle: "₹17,500",
-    cardGradient: "from-[#B45309] via-[#854D0E] to-[#361805]",
+    cardGradient: "from-[#0F766E] via-[#115E59] to-[#042F2C]",
     coverImage: "/assets/pdf/extracted/page-6-image-1-X4.jpg",
     gallery: [
       "/assets/pdf/extracted/page-6-image-1-X4.jpg",
@@ -175,7 +175,7 @@ export const propertiesData: PropertyItem[] = [
     subLocation: "Near Phoenix Marketcity & IT Corridor",
     priceDouble: "₹15,000",
     priceSingle: "₹22,500",
-    cardGradient: "from-[#7C3AED] via-[#5B21B6] to-[#250953]",
+    cardGradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
     coverImage: "/assets/pdf/extracted/page-7-image-5-X9.jpg",
     gallery: [
       "/assets/pdf/extracted/page-7-image-5-X9.jpg",
