@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Quote, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Users, Quote, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata = {
   title: "The Reforbs Community & Cult | Co-Living in Pune",

@@ -100,10 +100,11 @@ export default function CtaSection() {
                     <input
                       type="text"
                       required
+                      autoComplete="name"
                       placeholder="e.g. Priyanshu Sharma"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm"
+                      className="w-full px-4 py-3.5 rounded-xl border border-gray-300 text-base sm:text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm min-h-[48px]"
                     />
                   </div>
 
@@ -113,22 +114,25 @@ export default function CtaSection() {
                     </label>
                     <input
                       type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
                       required
                       placeholder="+91 98765 43210"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm"
+                      className="w-full px-4 py-3.5 rounded-xl border border-gray-300 text-base sm:text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#111827] mb-1.5">
+                    <label htmlFor="preferred-space-select" className="block text-xs font-bold text-[#111827] mb-1.5">
                       Preferred Space in Viman Nagar *
                     </label>
                     <select
+                      id="preferred-space-select"
                       value={form.property}
                       onChange={(e) => setForm({ ...form, property: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm font-bold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm cursor-pointer"
+                      className="w-full px-4 py-3.5 rounded-xl border border-gray-300 text-base sm:text-sm font-bold text-[#111827] focus:outline-none focus:ring-2 focus:ring-[#007A7A] focus:border-transparent bg-white shadow-sm cursor-pointer min-h-[48px]"
                     >
                       <option value="Shubh Gateway (Opp. SLS Campus)">Shubh Gateway (Opp. SLS Campus)</option>
                       <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Living Sakore Nagar (SCMS Campus)</option>

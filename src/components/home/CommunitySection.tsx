@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Sparkles, Heart, Flame, Film, Sun, Utensils, ArrowRight } from "lucide-react";
+import { Users, Sparkles, Flame, Film, Sun, Utensils, ArrowRight } from "lucide-react";
 
 const activities = [
   { icon: Sun, title: "Group Yoga & Wellness", desc: "Laugh, eat, and breathe your way to wellness with morning rooftop sessions." },

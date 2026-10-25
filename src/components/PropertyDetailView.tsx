@@ -97,38 +97,78 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
           </div>
         </div>
 
-        {/* Stanza-style Photo Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-10 h-[360px] sm:h-[480px]">
-          {/* Main Large Image */}
-          <div className="md:col-span-8 relative rounded-3xl overflow-hidden shadow-card bg-[#111312] border border-[#E1E7E6]">
-            <Image
-              src={activePhoto}
-              alt={property.name}
-              fill
-              className="object-cover transition-all duration-300"
-              priority
-            />
-            <div className="absolute bottom-4 left-4 bg-[#111312]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-white">
-              Official Property Photos
+        {/* Stanza-style Photo Gallery Grid with Mobile Swipe & Dots */}
+        <div className="mb-8 sm:mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 h-[280px] sm:h-[380px] md:h-[480px]">
+            {/* Main Large Image */}
+            <div className="md:col-span-8 relative rounded-3xl overflow-hidden shadow-card bg-[#111312] border border-[#E1E7E6]">
+              <Image
+                src={activePhoto}
+                alt={property.name}
+                fill
+                className="object-cover transition-all duration-300"
+                priority
+              />
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-[#111312]/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-white flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#007A7A]" />
+                <span>Verified Property Photos</span>
+              </div>
+
+              {/* Mobile pagination dots overlay */}
+              <div className="md:hidden absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full">
+                {property.galleryImages.slice(0, 4).map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActivePhoto(img)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      activePhoto === img ? "bg-[#FFDE59] w-4" : "bg-white/60"
+                    }`}
+                    aria-label={`View photo ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Thumbnails (unchanged on md+) */}
+            <div className="hidden md:grid md:col-span-4 grid-cols-2 gap-3">
+              {property.galleryImages.slice(0, 4).map((img, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActivePhoto(img)}
+                  className={`relative rounded-2xl overflow-hidden border-2 transition-all ${
+                    activePhoto === img
+                      ? "border-[#007A7A] shadow-md scale-95"
+                      : "border-transparent opacity-80 hover:opacity-100"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${property.name} gallery ${i}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Thumbnails */}
-          <div className="hidden md:grid md:col-span-4 grid-cols-2 gap-3">
-            {property.galleryImages.slice(0, 4).map((img, i) => (
+          {/* Mobile Horizontal Thumbnail Strip for 1-Tap Switching */}
+          <div className="flex md:hidden items-center gap-2 overflow-x-auto no-scrollbar pt-3">
+            {property.galleryImages.map((img, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setActivePhoto(img)}
-                className={`relative rounded-2xl overflow-hidden border-2 transition-all ${
+                className={`relative w-20 h-14 rounded-xl overflow-hidden shrink-0 border-2 transition-all active:scale-95 ${
                   activePhoto === img
-                    ? "border-[#007A7A] shadow-md scale-95"
-                    : "border-transparent opacity-80 hover:opacity-100"
+                    ? "border-[#007A7A] shadow-md scale-105"
+                    : "border-transparent opacity-70"
                 }`}
               >
                 <Image
                   src={img}
-                  alt={`${property.name} gallery ${i}`}
+                  alt={`${property.name} mobile thumb ${i}`}
                   fill
                   className="object-cover"
                 />
@@ -341,7 +381,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                       placeholder="Your Full Name"
                       value={visitForm.name}
                       onChange={(e) => setVisitForm({ ...visitForm, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E1E7E6] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                      className="w-full px-3.5 py-3 rounded-xl border border-[#E1E7E6] text-base sm:text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] min-h-[44px]"
                     />
                   </div>
 
@@ -352,7 +392,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                       placeholder="WhatsApp Mobile Number"
                       value={visitForm.phone}
                       onChange={(e) => setVisitForm({ ...visitForm, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E1E7E6] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                      className="w-full px-3.5 py-3 rounded-xl border border-[#E1E7E6] text-base sm:text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] min-h-[44px]"
                     />
                   </div>
 
@@ -362,13 +402,13 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                       required
                       value={visitForm.date}
                       onChange={(e) => setVisitForm({ ...visitForm, date: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E1E7E6] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA]"
+                      className="w-full px-3.5 py-3 rounded-xl border border-[#E1E7E6] text-base sm:text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#007A7A] bg-[#FAFAFA] min-h-[44px]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="btn-teal w-full py-3 rounded-xl justify-center font-black text-xs shadow-md"
+                    className="btn-teal w-full min-h-[48px] py-3.5 rounded-xl justify-center font-black text-xs shadow-md active:scale-98"
                   >
                     <span>Confirm Free Site Visit</span>
                     <ArrowRight size={14} />
@@ -380,10 +420,10 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <a
                   href="tel:+917420040241"
-                  className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-2xl border border-[#E1E7E6] bg-[#F1F4F4] hover:bg-[#E6F4F3] text-[#1B1D1C] text-xs font-black transition-all hover:scale-105 active:scale-95"
+                  className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#E1E7E6] bg-[#F1F4F4] hover:bg-[#E6F4F3] text-[#1B1D1C] text-xs font-black transition-all active:scale-95"
                   title="Call Host: +91 74200 40241"
                 >
-                  <Phone size={14} className="text-[#007A7A]" />
+                  <Phone size={15} className="text-[#007A7A]" />
                   <span>Call Host</span>
                 </a>
 
@@ -393,7 +433,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                   )}%20in%20Viman%20Nagar.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-md transition-all hover:scale-105 active:scale-95"
+                  className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-md transition-all active:scale-95"
                   title="WhatsApp Property Manager"
                 >
                   <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">

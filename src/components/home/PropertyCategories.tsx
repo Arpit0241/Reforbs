@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { GraduationCap, Briefcase, ArrowRight, MapPin, CheckCircle, Bed, Users } from "lucide-react";
+import { GraduationCap, Briefcase, ArrowRight, MapPin, CheckCircle } from "lucide-react";
 
 export default function PropertyCategories() {
   return (

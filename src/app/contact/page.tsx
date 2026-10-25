@@ -126,10 +126,11 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
+                    autoComplete="name"
                     placeholder="e.g. Siddharth Joshi"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-base sm:text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all min-h-[48px]"
                   />
                 </div>
 
@@ -140,11 +141,13 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
                     required
                     placeholder="+91 74200 40241"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-base sm:text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all min-h-[48px]"
                   />
                 </div>
 
@@ -156,7 +159,7 @@ export default function ContactPage() {
                   <select
                     value={form.property}
                     onChange={(e) => setForm({ ...form, property: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] cursor-pointer transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-base sm:text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] cursor-pointer transition-all min-h-[48px]"
                   >
                     <option value="Shubh Gateway (Opp. SLS)">Shubh Gateway (Opp. Symbiosis SLS)</option>
                     <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Sakore Nagar (Near SCMS)</option>

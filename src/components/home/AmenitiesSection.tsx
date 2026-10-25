@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CheckCircle2, Sparkles, Shirt, UtensilsCrossed, ShieldCheck, Heart } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function AmenitiesSection() {
   return (

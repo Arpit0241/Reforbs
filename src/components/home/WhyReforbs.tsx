@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Lock, Sliders, SunMedium, LifeBuoy, Palette, Sparkles, CheckCircle2 } from "lucide-react";
+import { Lock, Sliders, SunMedium, LifeBuoy, Palette, Sparkles } from "lucide-react";
 
 export default function WhyReforbs() {
   return (

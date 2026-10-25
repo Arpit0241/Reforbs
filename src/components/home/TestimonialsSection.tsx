@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Award, Quote, CheckCircle2 } from "lucide-react";
+import { Award, Quote } from "lucide-react";
 
 export default function TestimonialsSection() {
   return (

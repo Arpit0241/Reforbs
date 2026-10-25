@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { 
   Sparkles, 
-  ShieldCheck, 
   Users, 
   Compass, 
-  Coffee, 
   ArrowRight, 
-  Home, 
   HeartHandshake, 
-  Smile, 
-  Zap,
   CheckCircle2
 } from "lucide-react";
 

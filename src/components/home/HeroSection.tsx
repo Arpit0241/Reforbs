@@ -9,7 +9,6 @@ import {
   Building2,
   GraduationCap,
   Compass,
-  ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
 
@@ -51,13 +50,13 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0D1110]">
+    <section className="relative min-h-[100dvh] lg:min-h-[92vh] flex items-center justify-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-[#0D1110]">
       {/* Brand Hero Background Slideshow */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden w-full max-w-full">
         {brandHeroImages.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ease-in-out ${
               currentSlide === idx ? "opacity-45 scale-100" : "opacity-0 scale-105"
             } transform transition-transform duration-7000`}
           >
@@ -79,8 +78,8 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2 sm:pt-6">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-6 shadow-lg">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-5 sm:mb-6 shadow-lg max-w-full">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse shrink-0" />
             <span className="text-white">Reforbs Living</span>
             <span className="text-white/40">•</span>
             <span>Viman Nagar, Pune</span>
@@ -89,7 +88,7 @@ export default function HeroSection() {
           </div>
 
           {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] mb-10 font-heading">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] mb-8 sm:mb-10 font-heading">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
             <span className="relative inline-block text-[#FFDE59]">
@@ -112,14 +111,14 @@ export default function HeroSection() {
         </div>
 
         {/* Stanza Living-Style Modern Search & Quick Filter Component (Centerpiece) */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/70">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-white/70">
           {/* Top Category Tab Pills */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E1E7E6] pb-4 mb-5">
-            <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center justify-between gap-3 border-b border-[#E1E7E6] pb-4 mb-5 overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-2 shrink-0 sm:flex-wrap">
               <button
                 type="button"
                 onClick={() => setActiveCategory("all")}
-                className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all ${
+                className={`min-h-[44px] px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "all"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -131,7 +130,7 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("student")}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all ${
+                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "student"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -139,7 +138,7 @@ export default function HeroSection() {
               >
                 <GraduationCap size={16} className={activeCategory === "student" ? "text-white" : "text-[#007A7A]"} />
                 <span>Student Housing</span>
-                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold">
+                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold hidden sm:inline">
                   Near SLS &amp; SCMS
                 </span>
               </button>
@@ -147,7 +146,7 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("coliving")}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all ${
+                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "coliving"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -155,13 +154,13 @@ export default function HeroSection() {
               >
                 <Building2 size={16} className={activeCategory === "coliving" ? "text-white" : "text-[#007A7A]"} />
                 <span>Co-Living</span>
-                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold">
+                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold hidden sm:inline">
                   Working Pros
                 </span>
               </button>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3.5 py-1.5 rounded-full">
+            <div className="hidden lg:flex items-center gap-2 text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3.5 py-1.5 rounded-full shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#007A7A] animate-ping" />
               <span>Immediate Move-In Ready</span>
             </div>
@@ -179,7 +178,7 @@ export default function HeroSection() {
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="bg-transparent w-full text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
+                  className="bg-transparent w-full text-base sm:text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
                   aria-label="Select micro-market in Pune"
                 >
                   <option value="all">Viman Nagar, Pune (All Hubs)</option>
@@ -201,7 +200,7 @@ export default function HeroSection() {
                 <select
                   value={selectedHub}
                   onChange={(e) => setSelectedHub(e.target.value)}
-                  className="bg-transparent w-full text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
+                  className="bg-transparent w-full text-base sm:text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
                   aria-label="Select college or corporate hub"
                 >
                   <option value="all">Symbiosis Law School (SLS)</option>
@@ -217,7 +216,7 @@ export default function HeroSection() {
             <div className="sm:col-span-3">
               <button
                 type="submit"
-                className="btn-teal w-full py-4 rounded-2xl justify-center font-extrabold text-sm shadow-md"
+                className="btn-teal w-full min-h-[48px] py-3.5 rounded-2xl justify-center font-extrabold text-sm shadow-md active:scale-98"
               >
                 <Search size={16} />
                 <span>Explore Spaces</span>
