@@ -189,12 +189,12 @@ export default function ReforbsChatbot() {
             </div>
           </div>
 
-          {/* Subheader: PDF Ground Truth Status Badge */}
+          {/* Subheader: Concierge Status Badge */}
           <div className="bg-[#F1F4F4] px-4 py-1.5 border-b border-[#E1E7E6] flex items-center justify-between text-[11px] text-[#4A524F]">
             <div className="flex items-center gap-1.5">
-              <FileCheck size={13} className="text-[#007A7A]" />
+              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               <span className="font-semibold text-[#005F5F]">
-                Verified Knowledge Base (PDF)
+                Reforbs Concierge • Online
               </span>
             </div>
             <a
@@ -202,7 +202,7 @@ export default function ReforbsChatbot() {
               className="text-[#007A7A] hover:underline font-bold flex items-center gap-1"
             >
               <Phone size={10} />
-              <span>7420040241</span>
+              <span>Host Arpit: 7420040241</span>
             </a>
           </div>
 
@@ -237,7 +237,7 @@ export default function ReforbsChatbot() {
             {isProcessing && (
               <div className="flex items-center gap-2 text-xs text-gray-500 bg-white border border-[#E1E7E6] px-3.5 py-2 rounded-2xl w-fit shadow-sm">
                 <RefreshCw size={13} className="animate-spin text-[#007A7A]" />
-                <span>Searching PDF knowledge base...</span>
+                <span>Reforbs Concierge is typing...</span>
               </div>
             )}
 
@@ -276,8 +276,8 @@ export default function ReforbsChatbot() {
             </div>
 
             <div className="mt-1.5 flex items-center justify-between text-[10px] text-gray-400 px-1">
-              <span>Ground truth: Reforbs Knowledge PDF</span>
-              <span>No AI / 100% Private</span>
+              <span>Direct Support • Viman Nagar, Pune</span>
+              <span>Fast Host Response</span>
             </div>
           </div>
         </div>

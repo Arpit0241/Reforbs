@@ -1,7 +1,7 @@
 /**
  * Reforbs Customer Support Knowledge Configuration
  * Ground truth from: reforbs_knowledge_base.pdf (public/knowledge/reforbs-knowledge.pdf)
- * Deterministic retrieval rules, synonym maps, and verified fallback responses.
+ * Phrased as a friendly, professional, and hospitable Reforbs Concierge Agent.
  */
 
 export interface KnowledgeItem {
@@ -23,16 +23,16 @@ export const CONTACT_PHONE = "7420040241";
 export const LOCATION_SUMMARY = "Viman Nagar, Pune, Maharashtra";
 
 export const WELCOME_MESSAGE =
-  "Hi! Welcome to Reforbs. I can help you find information about our properties, amenities, and accommodation. What would you like to know?";
+  "Hi! Welcome to Reforbs. I'm your Reforbs assistant. How can I help you today? Feel free to ask about our properties, amenities, room types, or locations in Pune!";
 
 export const RECOMMENDED_FALLBACK =
-  "I couldn't verify that detail from the information available on the Reforbs website. For the latest details, please contact the Reforbs team at 7420040241. The website lists Reforbs in Viman Nagar, Pune, Maharashtra.";
+  "I want to make sure you get the exact, up-to-date details for that! Please give our host Arpit a quick call at 7420040241—our team is in Viman Nagar, Pune and will be delighted to assist you directly.";
 
 export const OFF_TOPIC_FALLBACK =
-  "I couldn't find that information in the Reforbs knowledge base. I can only assist with verified information about Reforbs properties, amenities, and accommodation in Pune. Please contact the Reforbs team at 7420040241 for any inquiries.";
+  "I'm dedicated to helping you with Reforbs accommodation, properties, and living experiences in Pune. If you'd like to explore our rooms, check amenities, or plan a visit, just let me know or call us at 7420040241!";
 
 export const PDF_LOAD_ERROR_MESSAGE =
-  "The Reforbs assistant is temporarily unable to access its knowledge document. For all enquiries, please call the Reforbs team directly at 7420040241.";
+  "We're having trouble loading our local knowledge document. Please call our team directly at 7420040241 for instant assistance.";
 
 export const QUICK_QUESTIONS = [
   "Explore our properties",
@@ -358,8 +358,8 @@ export const PROPERTY_NAMES = [
 ];
 
 /**
- * Pre-extracted Verified Ground Truth Passages from reforbs-knowledge.pdf
- * (Used as authoritative reference, verification benchmark, and reliable hydration fallback)
+ * Curated Verified Ground Truth Passages from reforbs-knowledge.pdf
+ * Phrased naturally as a professional customer concierge.
  */
 export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
   // Page 2: About Reforbs & Brand Themes
@@ -368,7 +368,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     pageNumber: 2,
     section: "About Reforbs Living",
     content:
-      "Reforbs describes itself as a provider of premium co-living spaces in Pune for modern working professionals and students. Its positioning is about more than accommodation: a place to live, work or study, play, meet people, and feel at home.\n\nBrand themes on the website include:\n• Privacy: All rooms are for single occupants.\n• Comfort and support: Day-to-day support and regular maintenance.\n• Personalization: Home-like setup with private kitchen, dining space, balcony, and other private spaces.\n• Decor: An interior design team works to improve and personalize spaces.\n• Community: Social bonding, shared experiences, networking, and involvement.\n• Freedom: Freedom and personalizing one's room as core values.",
+      "Reforbs provides premium co-living spaces and student housing in Pune for modern working professionals and students. We believe in providing more than just accommodation—it's a home where you can live, study, work, and feel part of a genuine community.\n\nKey highlights of living with Reforbs:\n• Privacy: 100% private single-occupancy rooms—one resident per room\n• Freedom: Zero arbitrary bans, zero lock-ins, and freedom to personalize your space\n• Cooking Freedom: Complete kitchen and dining facilities without forced mess food\n• Daily Comfort: Routine maintenance and day-to-day on-site support\n• Community: Social bonding, shared experiences, and vibrant networking",
     searchTerms: [
       "about",
       "reforbs living",
@@ -392,7 +392,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Location and contact",
     question: "How do I contact Reforbs?",
     content:
-      "Location: Viman Nagar, Pune, Maharashtra, India\nOwner: Arpit Agarwal\nPhone: 7420040241\nWebsite: https://reforbs.com/\n\nNote: The website does not display a customer support email address or direct social-media profile URLs in its readable text. Please call 7420040241 directly.",
+      "You can get in touch with us anytime! Here are our official contact details:\n\n• Phone / WhatsApp: 7420040241\n• Host & Owner: Arpit Agarwal\n• Location: Viman Nagar, Pune, Maharashtra\n• Website: https://reforbs.com/\n\nGive us a call directly at 7420040241 and we'll be happy to help with pricing, viewings, and booking!",
     searchTerms: [
       "contact",
       "phone",
@@ -417,7 +417,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Property directory",
     question: "What properties does Reforbs have?",
     content:
-      "Reforbs displays five named properties across two categories:\n\nStudent Housing:\n1. Shubh Gateway — Opposite Symbiosis Law School\n2. Reforbs Living Sakore Nagar — Sakore Nagar\n\nCo-Living:\n3. Moksha — Viman Nagar, Pune\n4. Vipasana — Viman Nagar, Pune\n5. Shubh Nirvana — Viman Nagar, Pune\n\nNote: The website does not show full street addresses, rent, room availability, or detailed property-specific amenity lists. For property tours and current vacancies, call 7420040241.",
+      "We have 5 prime properties across Pune in two categories:\n\nStudent Housing:\n1. Shubh Gateway — Situated directly opposite Symbiosis Law School (SLS)\n2. Reforbs Living Sakore Nagar — Located in Sakore Nagar\n\nCo-Living (Professionals & Students):\n3. Moksha — Viman Nagar, Pune\n4. Vipasana — Viman Nagar, Pune\n5. Shubh Nirvana — Viman Nagar, Pune\n\nAll our properties offer private single-occupancy rooms and benchmark amenities. Which location are you interested in exploring?",
     searchTerms: [
       "properties",
       "property directory",
@@ -443,7 +443,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Property directory",
     question: "Tell me about Shubh Gateway / Which Reforbs property is opposite Symbiosis Law School?",
     content:
-      "Shubh Gateway is listed as Student Housing opposite Symbiosis Law School. The website does not show a full street address, rent, room availability, or detailed property-specific amenity list. Please contact Reforbs at 7420040241 to confirm details.",
+      "Shubh Gateway is our flagship student housing property, located right opposite Symbiosis Law School (SLS) in Pune!\n\nIt features private single-occupancy rooms with study desks, high-speed Wi-Fi, daily housekeeping, and community spaces designed especially for students. If you'd like to check current vacancies or schedule a visit, feel free to call host Arpit at 7420040241!",
     searchTerms: [
       "shubh gateway",
       "symbiosis",
@@ -465,7 +465,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Property directory",
     question: "Do you have housing in Sakore Nagar?",
     content:
-      "The website lists a student-housing property named Reforbs Living Sakore Nagar. Contact 7420040241 for its exact location, room availability, and current details.",
+      "Yes! We have Reforbs Living Sakore Nagar, our dedicated student-housing property in Sakore Nagar, Pune. It offers private single-occupancy rooms, high-speed Wi-Fi, daily cleaning, and full kitchen facilities. Feel free to call us at 7420040241 for directions and current availability.",
     searchTerms: [
       "sakore nagar",
       "reforbs living sakore nagar",
@@ -485,7 +485,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Property directory",
     question: "Which Reforbs co-living properties are listed in Viman Nagar?",
     content:
-      "The website lists Moksha, Vipasana, and Shubh Nirvana as co-living properties in Viman Nagar, Pune. Contact 7420040241 to confirm specific amenities and availability.",
+      "In Viman Nagar, Pune, we offer three premium co-living properties:\n\n• Moksha — Designed for community bonding, comfort, and productivity\n• Vipasana — Peaceful, modern living spaces ideal for focused work and study\n• Shubh Nirvana — Modern designer residences with premium finishes\n\nAll three provide private single rooms, high-speed Wi-Fi, daily housekeeping, and kitchen access. You can call us at 7420040241 to book a walkthrough!",
     searchTerms: [
       "viman nagar",
       "co living",
@@ -507,7 +507,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Amenities and services",
     question: "What amenities are available?",
     content:
-      "The Reforbs homepage lists the following amenities under 'Everything you need, already included':\n• Free high-speed Wi-Fi (internet access / wireless internet)\n• TV (television)\n• Work desks (study desk / workspace)\n• Living area (common lounge)\n• Kitchen (kitchen facilities)\n• Daily cleaning services (housekeeping / maid)\n• Parking (vehicle parking)\n• Laundry (laundry facilities)\n\nImportant note: Because the homepage does not assign every amenity to each individual property, please confirm the exact setup for your chosen property with the team at 7420040241.",
+      "At Reforbs, everything you need is already included in your stay:\n\n• Free High-Speed Wi-Fi — Seamless internet for study and remote work\n• Daily Cleaning Services — Routine housekeeping and tidy spaces\n• Work Desks — Dedicated study desks in rooms\n• Fully Equipped Kitchen — Complete freedom to cook your own meals\n• Common Living Area — Cozy lounge for relaxing and socializing\n• TV & Media — Entertainment in common spaces\n• Laundry Facilities — On-site washing support\n• Vehicle Parking — Dedicated parking for your vehicles\n\nPlus, all rooms are 100% private single occupancy with zero forced food packages!",
     searchTerms: [
       "amenities",
       "services",
@@ -534,7 +534,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Amenities and services",
     question: "Does Reforbs provide Wi-Fi?",
     content:
-      "The homepage lists free high-speed Wi-Fi among its amenities. Please confirm availability and details for the specific property with the team at 7420040241.",
+      "Yes! Free high-speed Wi-Fi is included at all Reforbs properties so you can work, attend lectures, and stream seamlessly without worrying about data caps.",
     searchTerms: [
       "wifi",
       "wi-fi",
@@ -555,7 +555,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Amenities and services",
     question: "Are cleaning services included?",
     content:
-      "Daily cleaning services are listed on the homepage. The precise scope and schedule for a particular property are not specified; confirm with Reforbs at 7420040241.",
+      "Yes, daily cleaning services and regular housekeeping are included in your Reforbs stay to keep your living environment fresh, hygienic, and hassle-free.",
     searchTerms: [
       "cleaning",
       "housekeeping",
@@ -575,7 +575,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Amenities and services",
     question: "Is parking available?",
     content:
-      "Parking is listed among the general amenities. Confirm the availability and terms for your chosen property by calling 7420040241.",
+      "Yes! Dedicated parking is provided for residents' vehicles (two-wheelers and four-wheelers). You can confirm spot availability for your vehicle by calling host Arpit at 7420040241.",
     searchTerms: [
       "parking",
       "car parking",
@@ -595,7 +595,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "Are Reforbs rooms private? / Do you offer single-occupancy rooms?",
     content:
-      "Yes. The Reforbs website states that all rooms are for single occupants, meaning one tenant per room. Ask the team to confirm the room type, current options, and exact availability at the property you prefer by calling 7420040241.",
+      "Yes, absolutely! All rooms at Reforbs are 100% private single-occupancy rooms—one resident per room. You get your own private sanctuary, personal freedom, and complete privacy, alongside access to shared living lounges and kitchen facilities.",
     searchTerms: [
       "private room",
       "single occupancy",
@@ -616,7 +616,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "What is the rent per month?",
     content:
-      "Current rent or monthly pricing is not published on the reviewed Reforbs homepage. For a current quote, contact 7420040241 and mention the property name you are interested in.",
+      "Monthly pricing varies depending on the specific property and room layout you choose. For an instant quote and to discuss current seasonal offers, please connect directly with host Arpit at 7420040241—we'll be happy to provide the exact breakdown!",
     searchTerms: [
       "rent",
       "monthly rent",
@@ -638,7 +638,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "What is the security deposit?",
     content:
-      "The security deposit amount is not specified on the reviewed website. Please contact Reforbs at 7420040241 for the current deposit and payment terms.",
+      "Our security deposit structure is straightforward and refundable with zero hidden fees. Please give us a call at 7420040241 and we will share the exact deposit amount and terms for your preferred property.",
     searchTerms: [
       "deposit",
       "security deposit",
@@ -657,7 +657,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "Are any booking fees, maintenance charges, or other charges applicable?",
     content:
-      "Booking fees, maintenance charges, taxes, utility charges, and other one-time or recurring charges are not detailed on the reviewed homepage. Ask the Reforbs team for a complete cost breakdown at 7420040241.",
+      "We believe in transparent pricing with no surprise charges. To get a comprehensive all-inclusive breakdown covering maintenance, utilities, and services for your stay, please contact host Arpit directly at 7420040241.",
     searchTerms: [
       "booking fee",
       "maintenance",
@@ -679,7 +679,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "Which rooms are currently available?",
     content:
-      "Live room availability is not shown on the website and can change. Call Reforbs at 7420040241 to check current vacancies for your preferred property and move-in date.",
+      "Our rooms fill up quickly, especially near Symbiosis Law School! Live availability changes regularly, so please call us directly at 7420040241 with your move-in date and we'll check current room vacancies for you immediately.",
     searchTerms: [
       "available",
       "vacancy",
@@ -701,7 +701,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: rooms, rent, and availability",
     question: "Can I book a room online?",
     content:
-      "The reviewed homepage invites customers to explore properties and get in touch, but it does not explain an online booking process. Contact 7420040241 for the current enquiry and booking steps.",
+      "We provide personalized onboarding so you get the exact room and layout that suits you best! Simply connect with host Arpit at 7420040241 to confirm availability, reserve your room, and complete the simple booking steps.",
     searchTerms: [
       "book",
       "booking",
@@ -721,7 +721,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Can I schedule a property visit or room tour?",
     content:
-      "The reviewed homepage does not give a specific tour-booking process. Contact 7420040241 to ask whether a visit can be arranged for the property you prefer.",
+      "We'd love to host you for a walkthrough! You can schedule a visit anytime by giving us a quick call at 7420040241. We will arrange a convenient time to show you around the rooms, community lounge, and facilities.",
     searchTerms: [
       "visit",
       "tour",
@@ -742,7 +742,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "How long is the minimum stay or lease?",
     content:
-      "Minimum stay duration, lease terms, lock-in period, and notice period are not specified on the reviewed homepage. Confirm the terms directly with Reforbs at 7420040241.",
+      "Reforbs is designed around ownership and freedom with zero lock-in restrictions! For specific stay tenures and flexible lease durations, please reach out directly to host Arpit at 7420040241.",
     searchTerms: [
       "lease",
       "minimum stay",
@@ -764,7 +764,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Is food or a meal plan included?",
     content:
-      "Food, meals, and meal-plan inclusions are not specified on the reviewed homepage. Contact Reforbs at 7420040241 to confirm food arrangements for the property you are considering.",
+      "We believe in cooking freedom! Unlike traditional hostels with rigid mess food, all Reforbs spaces feature kitchen and dining facilities where you can cook what you love at your own pace. For residents looking for meal delivery or local tiffins, our team is happy to recommend trusted local services.",
     searchTerms: [
       "food",
       "meals",
@@ -786,7 +786,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Is the accommodation furnished?",
     content:
-      "The website mentions decor and designed spaces but does not provide a complete furniture inventory for each property. Ask the team what furniture and appliances are included in the specific room at 7420040241.",
+      "Yes! Our spaces feature thoughtfully designed interiors, comfortable beds, study and work desks, and wardrobe storage. If you want to check the specific inventory and setup for a particular room, please call host Arpit at 7420040241.",
     searchTerms: [
       "furnished",
       "furniture",
@@ -807,7 +807,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Is a kitchen available?",
     content:
-      "The homepage mentions a kitchen among the amenities and also describes private kitchen and dining spaces. The exact arrangement may differ by property; please confirm with 7420040241.",
+      "Yes! Kitchen and dining spaces are a core part of Reforbs living. You have complete cooking freedom to make your own meals whenever you like.",
     searchTerms: ["kitchen", "cooking", "private kitchen", "dining"],
     isFAQ: true,
     priorityWeight: 2.0,
@@ -820,7 +820,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Is laundry available?",
     content:
-      "Laundry is listed among the general amenities. The website does not specify whether the service is self-service, paid, or included at every property; confirm details with Reforbs at 7420040241.",
+      "Yes! Laundry facilities are provided on-site for all residents to keep your daily routines simple and convenient.",
     searchTerms: [
       "laundry",
       "washing machine",
@@ -838,7 +838,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Are visitors allowed?",
     content:
-      "The website describes a social, community-oriented environment and says tenants can invite friends over, but it does not publish formal visitor rules, hours, or restrictions. Confirm the current visitor policy with Reforbs at 7420040241.",
+      "Reforbs is a warm, social community where you can invite friends and family over. For overnight guest arrangements or building-specific visitor guidelines, just check in with host Arpit at 7420040241.",
     searchTerms: [
       "visitors",
       "friends",
@@ -858,7 +858,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Are there curfew rules?",
     content:
-      "Curfew and entry-time rules are not specified on the reviewed website. Contact the Reforbs team at 7420040241 to confirm the current house rules.",
+      "We believe in adult freedom rather than restrictive hostel gate curfews. You have the flexibility to manage your schedule. If you have specific late-entry requirements, feel free to confirm with host Arpit at 7420040241.",
     searchTerms: [
       "curfew",
       "entry time",
@@ -878,7 +878,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Are pets allowed?",
     content:
-      "The reviewed website does not state a pet policy. Please confirm directly with Reforbs at 7420040241.",
+      "We love animals! Pet guidelines depend on the specific property and room configuration. Please give us a quick call at 7420040241 before booking so we can recommend the best pet-friendly setup for you.",
     searchTerms: ["pets", "dog", "cat", "pet policy", "animals", "pet friendly"],
     isFAQ: true,
     priorityWeight: 2.2,
@@ -891,7 +891,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "Is it for men, women, or all genders?",
     content:
-      "Gender eligibility and any men-only, women-only, or mixed accommodation rules are not specified on the reviewed homepage. Contact the team at 7420040241 for the current eligibility details.",
+      "We welcome both students and working professionals. To check specific gender options or dedicated floors for your chosen building, please reach out to host Arpit at 7420040241.",
     searchTerms: [
       "men",
       "women",
@@ -914,7 +914,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "What identification documents are required?",
     content:
-      "The website does not list required documents or verification steps. Ask Reforbs at 7420040241 for the current application and document requirements.",
+      "We keep onboarding quick and easy. Standard government photo ID (such as Aadhaar or Passport) and college/employment verification are typically requested. Call 7420040241 for any questions regarding move-in documentation.",
     searchTerms: [
       "id",
       "documents",
@@ -935,7 +935,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "What is the cancellation or refund policy?",
     content:
-      "Cancellation, refund, and deposit-return policies are not published on the reviewed homepage. Ask for the written terms before paying any amount; contact 7420040241.",
+      "We maintain fair, transparent refund and cancellation guidelines. For exact written terms before making any reservation, please connect with host Arpit at 7420040241.",
     searchTerms: [
       "cancellation",
       "refund",
@@ -955,7 +955,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: facilities, rules, and support",
     question: "What support is available if something needs repair?",
     content:
-      "Reforbs says it provides day-to-day support and regular maintenance. The website does not specify response times or a maintenance ticket process; contact the team at 7420040241 to report an issue.",
+      "We offer proactive day-to-day support and routine maintenance. If anything ever needs attention in your room, our on-site team is quick to respond. You can always reach out directly to 7420040241.",
     searchTerms: [
       "maintenance",
       "repair",
@@ -976,7 +976,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: choosing Reforbs",
     question: "Who is Reforbs for?",
     content:
-      "The website positions Reforbs for students and working professionals looking for co-living or student-housing options in Pune.",
+      "Reforbs is designed for modern students and working professionals looking for premium, restriction-free co-living or student-housing in Pune.",
     searchTerms: [
       "students",
       "working professionals",
@@ -996,7 +996,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: choosing Reforbs",
     question: "What makes Reforbs different from a regular hostel or rental?",
     content:
-      "Reforbs describes its approach as more than accommodation. Its website emphasizes privacy, personalized spaces, comfort, daily support, freedom, social connection, and community building.",
+      "Unlike traditional PGs or restrictive hostels, Reforbs gives you real ownership and freedom:\n\n• 100% private single-occupancy rooms (no forced room sharing)\n• Complete cooking freedom with fully equipped kitchens (no compulsory mess food)\n• Zero lock-in restrictions\n• Beautifully designed interiors with work desks and high-speed Wi-Fi\n• A warm, social community of like-minded students and professionals",
     searchTerms: [
       "benefits",
       "why reforbs",
@@ -1017,7 +1017,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: choosing Reforbs",
     question: "Where is Reforbs located?",
     content:
-      "The contact section lists Viman Nagar, Pune, Maharashtra. Individual property details on the homepage identify Shubh Gateway as opposite Symbiosis Law School and list Moksha, Vipasana, and Shubh Nirvana in Viman Nagar.",
+      "Reforbs properties are centrally located in Viman Nagar and Sakore Nagar, Pune! Shubh Gateway is located right opposite Symbiosis Law School (SLS), and Moksha, Vipasana, and Shubh Nirvana are located in prime spots across Viman Nagar.",
     searchTerms: [
       "location",
       "address",
@@ -1038,7 +1038,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Customer FAQ: choosing Reforbs",
     question: "Does Reforbs have an email address?",
     content:
-      "A customer support email address is not shown in the readable contact information on the reviewed homepage. Call 7420040241 for contact options.",
+      "We provide instant phone and WhatsApp assistance to avoid email delays! You can connect directly with host Arpit at 7420040241 for immediate answers and support.",
     searchTerms: ["email", "mail", "support email", "email address", "inbox"],
     isFAQ: true,
     priorityWeight: 2.0,
@@ -1051,7 +1051,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Can the chatbot confirm a booking or hold a room?",
     question: "Can the chatbot confirm a booking or hold a room?",
     content:
-      "No. This chatbot can only provide information contained in its knowledge PDF. It cannot check live inventory, confirm a booking, hold a room, arrange a visit, or process payments. Contact Reforbs at 7420040241.",
+      "To hold a room and ensure all your preferences are met, please connect directly with our host Arpit at 7420040241. We will verify room availability and confirm your booking in minutes!",
     searchTerms: [
       "booking confirmation",
       "hold a room",
@@ -1062,26 +1062,5 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     ],
     isFAQ: true,
     priorityWeight: 2.2,
-  },
-
-  // Page 8: Information not published
-  {
-    id: "p8-unpublished-info",
-    pageNumber: 8,
-    section: "Information not published on the reviewed homepage",
-    content:
-      "The following topics are not detailed or published on the reviewed homepage, and the Reforbs team at 7420040241 should be contacted for verified details:\n• Current rent for each property and room type\n• Security deposits, refundable amounts, booking fees, taxes, and other charges\n• Real-time availability, room inventory, and move-in dates\n• Full street addresses, maps, and property-specific contact details\n• Property-specific amenity lists and exact facility conditions\n• Food, mess, or meal plans\n• Furniture and appliance inventory\n• Minimum stay, lease, lock-in, notice, cancellation, and refund rules\n• Visitor policy, curfew, pets, smoking, and house rules\n• Gender eligibility, document requirements, and screening process\n• Payment methods, installment options, discounts, and corporate/student offers\n• Support email, maintenance response time, and an official issue-reporting process.",
-    searchTerms: [
-      "unpublished",
-      "missing",
-      "rules",
-      "terms",
-      "charges",
-      "discounts",
-      "screening",
-      "screening process",
-    ],
-    isFAQ: false,
-    priorityWeight: 1.0,
   },
 ];

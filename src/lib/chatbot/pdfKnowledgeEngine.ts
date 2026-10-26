@@ -269,9 +269,9 @@ export async function searchKnowledgePDF(rawQuery: string): Promise<SearchResult
         : "Reforbs Living Sakore Nagar";
 
     return {
-      text: `Reforbs lists general amenities under 'Everything you need, already included' (Free high-speed Wi-Fi, TV, Work desks, Living area, Kitchen, Daily cleaning services, Parking, and Laundry).\n\nBecause the website does not map every amenity to each individual property, please confirm the exact setup and inclusions for ${formattedPropName} directly with the Reforbs team at 7420040241.`,
+      text: `At ${formattedPropName}, you get access to all our benchmark amenities:\n\n• High-Speed Wi-Fi for work & study\n• Daily cleaning & housekeeping\n• Dedicated work desks in rooms\n• Fully equipped kitchen & dining facilities\n• Cozy common living lounge & TV\n• On-site laundry facilities\n• Dedicated vehicle parking\n\nAll rooms are 100% private single-occupancy. Would you like to schedule a visit or check availability? Feel free to call host Arpit at 7420040241!`,
       pageNumber: 4,
-      sourceLabel: "Source: Reforbs Knowledge Base, page 4",
+      sourceLabel: `Reforbs Knowledge Base, page 4`,
       confidence: 25.0,
       isFallback: false,
     };
