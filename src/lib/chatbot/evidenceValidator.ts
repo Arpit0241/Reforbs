@@ -86,7 +86,7 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "The Reforbs homepage lists the following amenities under 'Everything you need, already included':\n\n" +
+          "The Reforbs homepage lists the following general amenities under 'Everything you need, already included':\n\n" +
           "• Free high-speed Wi-Fi\n" +
           "• TV\n" +
           "• Work desks\n" +
@@ -95,7 +95,7 @@ export function validateAndGenerateResponse(
           "• Daily cleaning services\n" +
           "• Parking\n" +
           "• Laundry\n\n" +
-          "Please note: Because the homepage does not assign every amenity to each individual property, the chatbot recommends confirming the exact setup and inclusions for your chosen property with the team at 7420040241." +
+          "Please note: Specific inclusions, conditions, and any additional charges must be confirmed for your selected property, as the website does not provide an itemized amenity breakdown for each individual property. Please call 7420040241 for property-specific details." +
           partnerNote,
         pageNumber: 4,
         sourceLabel: "Source: Reforbs Knowledge Base, page 4",
@@ -126,11 +126,97 @@ export function validateAndGenerateResponse(
     // B2. Building Capacity vs Room Occupancy
     // -------------------------------------------------------------------------
     case "BUILDING_CAPACITY": {
+      const propText = entities.property ? ` (such as ${entities.property})` : "";
       return {
         text:
-          "The website says one occupant per room, but it does not publish the total resident capacity of each property. If you mean one room, Reforbs says its rooms are for single occupants — one tenant per room. If you mean the total number of residents an entire PG property can accommodate, that capacity is not published in the website information I can access. Please contact 7420040241 for the specific property.",
+          `According to Reforbs' website, each room is for one occupant. If you mean the total number of residents in an entire PG property${propText}, that capacity is not specified in our knowledge base. Please contact 7420040241 for confirmation.`,
         pageNumber: 6,
         sourceLabel: "Source: Reforbs Knowledge Base, page 6",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B3. Unspecified College or Office Proximity (Clarification)
+    // -------------------------------------------------------------------------
+    case "UNSPECIFIED_COLLEGE": {
+      return {
+        text:
+          "Which college or university are you looking to stay near? (For example, Shubh Gateway is located directly opposite Symbiosis Law School in Viman Nagar.) Please let us know your college name or call 7420040241 for personalized guidance.",
+        pageNumber: 3,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 3",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    case "UNSPECIFIED_OFFICE": {
+      return {
+        text:
+          "Which office, business park, or company are you looking to stay near? Reforbs properties are located in Viman Nagar and Sakore Nagar, Pune. Please let us know your work location or call 7420040241 for personalized guidance.",
+        pageNumber: 3,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 3",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B4. Safety, Cleanliness & Maintenance
+    // -------------------------------------------------------------------------
+    case "SAFETY_CLEANLINESS_MAINTENANCE": {
+      return {
+        text:
+          "Here is what the Reforbs knowledge base documents regarding cleanliness, maintenance, and safety:\n\n" +
+          "• Cleanliness: Daily cleaning services and regular housekeeping are listed in the knowledge base to keep living spaces hygienic and clean.\n\n" +
+          "• Maintenance: Regular maintenance and daily support are mentioned on the website, but specific issue resolution times are not published.\n\n" +
+          "• Safety & Security: Formal security arrangements (such as CCTV cameras, security guards, or electronic access controls) and emergency response times are not detailed in the available website information.\n\n" +
+          "Please contact the Reforbs team at 7420040241 to confirm specific security measures and maintenance procedures for your chosen property.",
+        pageNumber: 4,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 4 & 7",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B5. Minimum Stay & Lease Tenure
+    // -------------------------------------------------------------------------
+    case "MINIMUM_STAY_LEASE": {
+      return {
+        text:
+          "The Reforbs website emphasizes flexibility and freedom without rigid lock-in, but the exact minimum stay duration, lease tenure, or notice period is not published in our knowledge base. Please call 7420040241 to confirm lease terms for your preferred property.",
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 6",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B6. Booking & Reservations
+    // -------------------------------------------------------------------------
+    case "BOOKING_RESERVATION": {
+      return {
+        text:
+          "To reserve a room or begin the booking process, please contact host Arpit directly at 7420040241. There is no automated online booking portal on the website, so reservations and room selections are confirmed directly with the team.",
+        pageNumber: 8,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 8",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B7. Cancellation & Notice Period
+    // -------------------------------------------------------------------------
+    case "CANCELLATION_REFUND": {
+      return {
+        text:
+          "Reforbs mentions fair, transparent refund and cancellation guidelines, but exact written notice periods and cancellation terms are not published in our online knowledge base. Please connect with host Arpit at 7420040241 before making a reservation.",
+        pageNumber: 7,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 7",
         confidence: 28.0,
         isFallback: false,
       };
@@ -292,8 +378,8 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "Live room availability is not shown on the website and can change. " +
-          "Call Reforbs at 7420040241 to check current vacancies for your preferred property and move-in date.",
+          "I cannot confirm live room availability from the current knowledge base. " +
+          "Please call 7420040241 with your preferred property and move-in date.",
         pageNumber: 5,
         sourceLabel: "Source: Reforbs Knowledge Base, page 5",
         confidence: 25.0,
