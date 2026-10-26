@@ -141,3 +141,32 @@ p {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* Ensure Leaflet popup links are high contrast and never overridden by leaflet blue */
+.custom-property-popup a {
+  text-decoration: none !important;
+}
+
+.custom-property-popup a.btn-gmaps,
+.custom-property-popup .gmaps-badge {
+  background-color: #FFDE59 !important;
+  color: #111827 !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(17, 24, 39, 0.2) !important;
+}
+
+.custom-property-popup a.btn-gmaps:hover {
+  background-color: #FACC15 !important;
+  color: #000000 !important;
+}
+
+.custom-property-popup a.btn-details {
+  background-color: #007A7A !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+.custom-property-popup a.btn-details:hover {
+  background-color: #005F5F !important;
+}
+
+

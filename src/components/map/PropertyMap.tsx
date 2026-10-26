@@ -131,10 +131,10 @@ export default function PropertyMap() {
         alt: `${item.name} - ${item.price}`,
       });
 
-      // Marker popup content with direct Google Maps redirection
+      // Marker popup content with high-contrast, ultra-visible Google Maps button
       const popupContent = `
-        <div class="w-64 p-2 font-sans bg-white rounded-2xl">
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-28 w-full rounded-xl overflow-hidden mb-2 bg-[#111827] group" title="Open ${item.name} in Google Maps">
+        <div class="w-68 p-2.5 font-sans bg-white rounded-2xl">
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-28 w-full rounded-xl overflow-hidden mb-2.5 bg-[#111827] group" title="Open ${item.name} in Google Maps">
             <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white">
               ${item.category}
@@ -142,26 +142,26 @@ export default function PropertyMap() {
             <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[11px] font-black bg-[#FFDE59] text-[#111827]">
               ${item.price}/mo
             </div>
-            <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-[#007A7A] text-white shadow-md flex items-center gap-1">
-              <span>📍 Google Maps ↗</span>
+            <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full text-[10px] font-black gmaps-badge shadow-md flex items-center gap-1" style="background-color: #FFDE59 !important; color: #111827 !important;">
+              <span>📍 Maps ↗</span>
             </div>
           </a>
 
           <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block hover:text-[#007A7A] transition-colors" title="Open ${item.name} in Google Maps">
             <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 line-clamp-1 flex items-center justify-between">
               <span>${item.name}</span>
-              <span class="text-[10px] text-[#007A7A] font-bold">↗</span>
+              <span class="text-xs text-[#007A7A] font-black">↗</span>
             </h4>
           </a>
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-2 font-medium line-clamp-1 block">
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-2.5 font-medium line-clamp-1 block">
             📍 ${item.address || item.subLocation}
           </a>
 
-          <div class="grid grid-cols-2 gap-1.5 pt-2 border-t border-[#E5E7EB]">
-            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-xl bg-[#007A7A] hover:bg-[#005F5F] text-white text-[11px] font-black text-center transition-all shadow-sm">
+          <div class="grid grid-cols-2 gap-2 pt-2.5 border-t border-[#E5E7EB]">
+            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-gmaps flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-black text-center transition-all shadow-md" style="background-color: #FFDE59 !important; color: #111827 !important; border: 1.5px solid #111827 !important;">
               <span>📍 Google Maps</span>
             </a>
-            <a href="${item.link}" class="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-xl bg-[#FAFAFA] hover:bg-[#E6F4F3] text-[#111827] hover:text-[#007A7A] text-[11px] font-black text-center transition-colors border border-[#E5E7EB]">
+            <a href="${item.link}" class="btn-details flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-black text-center transition-colors shadow-md" style="background-color: #007A7A !important; color: #FFFFFF !important;">
               <span>Details →</span>
             </a>
           </div>

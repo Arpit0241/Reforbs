@@ -270,53 +270,53 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
           {/* Mobile Bottom Swipable Listing Card Carousel (Visible only on mobile map view) */}
           {isMobileMapOpen && activeListing && (
             <div className="absolute bottom-6 left-4 right-4 z-[500] animate-fadeIn">
-              <div className="bg-white rounded-3xl p-3.5 shadow-2xl border border-[#E5E7EB] flex items-center gap-3">
+              <div className="bg-gradient-to-r from-[#0D1110] via-[#004A4A] to-[#032323] text-white rounded-3xl p-3.5 shadow-2xl border border-white/20 flex items-center gap-3">
                 {/* Thumbnail */}
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 bg-[#111827]">
+                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 bg-[#111827] border border-white/20">
                   <Image
                     src={activeListing.coverImage}
                     alt={activeListing.name}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase bg-[#007A7A] text-white">
+                  <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase bg-black/60 text-white border border-white/20">
                     {activeListing.category === "Student Housing" ? "Student" : "Co-Living"}
                   </div>
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1 text-[10px] font-bold text-[#007A7A]">
-                    <MapPin size={11} className="shrink-0" />
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-white/80">
+                    <MapPin size={11} className="text-[#FFDE59] shrink-0" />
                     <span className="truncate">{activeListing.subLocation}</span>
                   </div>
-                  <h4 className="font-extrabold text-sm text-[#111827] font-heading truncate">
+                  <h4 className="font-extrabold text-sm text-white font-heading truncate">
                     {activeListing.name}
                   </h4>
-                  <div className="text-xs font-black text-[#111827] mt-0.5">
-                    {activeListing.price} <span className="text-[10px] text-gray-500 font-medium">/mo</span>
+                  <div className="text-xs font-black text-[#FFDE59] mt-0.5">
+                    {activeListing.price} <span className="text-[10px] text-white/70 font-medium">/mo</span>
                   </div>
-                  <div className="flex items-center gap-1.5 mt-1.5">
-                    <Link
-                      href={activeListing.link}
-                      className="px-2.5 py-1 rounded-lg bg-[#007A7A] text-white font-bold text-[11px] text-center"
-                    >
-                      Details
-                    </Link>
+                  <div className="flex items-center gap-1.5 mt-2">
                     <a
                       href={activeListing.googleMapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2 py-1 rounded-lg bg-[#E6F4F3] text-[#007A7A] font-bold text-[11px] text-center border border-[#007A7A]/30 flex items-center gap-0.5"
+                      className="px-2.5 py-1 rounded-lg bg-[#FFDE59] text-[#111827] font-black text-[11px] text-center flex items-center gap-0.5 shadow-sm active:scale-95"
                       title="Open on Google Maps"
                     >
-                      <span>📍 Maps</span>
+                      <span>📍 Maps ↗</span>
                     </a>
+                    <Link
+                      href={activeListing.link}
+                      className="px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white text-white hover:text-[#111827] font-bold text-[11px] text-center border border-white/25 transition-colors"
+                    >
+                      Details
+                    </Link>
                     <a
                       href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(activeListing.name)}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white font-bold text-[11px] text-center"
+                      className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white font-bold text-[11px] text-center shadow-sm"
                     >
                       WhatsApp
                     </a>
