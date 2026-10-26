@@ -9,8 +9,6 @@ import {
   Users,
   Smile,
   Check,
-  MoveLeft,
-  MoveRight,
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -270,28 +268,7 @@ export default function StatsSection() {
         </div>
       </div>
 
-      {/* Decorative Interactive Annotation Header */}
       <div className="relative w-full overflow-hidden select-none">
-        <div className="flex flex-wrap items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 mb-6">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#007A7A] animate-pulse" />
-            <span className="text-xs font-black tracking-widest uppercase text-[#007A7A] font-heading">
-              Cylindrical Curved Experience
-            </span>
-            <span className="text-gray-300 hidden sm:inline">•</span>
-            <span className="text-gray-500 text-xs font-medium hidden sm:inline">
-              Drag, swipe or let it auto-drift
-            </span>
-          </div>
-
-          {/* Drag Hint Pill with arrows */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAFAFA] border border-[#E1E7E6] text-[#111827] text-xs font-extrabold shadow-sm">
-            <MoveLeft size={13} className="text-[#007A7A]" />
-            <span>Drag or Swipe to Fling</span>
-            <MoveRight size={13} className="text-[#007A7A]" />
-          </div>
-        </div>
-
         {/* 3D Cylindrical Curved Carousel Track */}
         <div
           ref={containerRef}
