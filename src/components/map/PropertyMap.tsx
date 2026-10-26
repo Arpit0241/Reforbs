@@ -30,17 +30,17 @@ export default function PropertyMap() {
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
-    // CartoDB Voyager tile layer for crisp, modern, luxury real-estate appearance
-    const tileLayerUrl = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+    // 100% Free OpenStreetMap tiles - zero API key required, crisp and detailed local Pune landmarks
+    const tileLayerUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
     const attribution =
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+      '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
 
     const map = L.map(mapContainerRef.current, {
       center: [VIMAN_NAGAR_CENTER.lat, VIMAN_NAGAR_CENTER.lng],
       zoom: VIMAN_NAGAR_CENTER.defaultZoom,
       zoomControl: false,
       scrollWheelZoom: true,
-      maxZoom: 18,
+      maxZoom: 19,
       minZoom: 11,
     });
 
