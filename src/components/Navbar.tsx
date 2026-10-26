@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap, MapPin } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,14 +89,10 @@ export default function Navbar() {
               onMouseLeave={() => setPropertiesOpen(false)}
             >
               <Link
-                href="/#properties"
-                onClick={() => {
-                  setPropertiesOpen(false);
-                  const el = document.getElementById("properties");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+                href="/properties"
+                onClick={() => setPropertiesOpen(false)}
                 className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
-                  pathname.includes("student-housing") || pathname.includes("coliving")
+                  pathname.startsWith("/properties") || pathname.includes("student-housing") || pathname.includes("coliving")
                     ? "text-[#007A7A]"
                     : scrolled
                     ? "text-[#1B1D1C] hover:text-[#007A7A]"
@@ -108,25 +104,24 @@ export default function Navbar() {
               </Link>
 
               {propertiesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-2 animate-fadeIn z-50">
+                <div className="absolute top-full left-0 mt-2 w-84 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-2 animate-fadeIn z-50">
                   <Link
-                    href="/#properties"
-                    onClick={() => {
-                      setPropertiesOpen(false);
-                      const el = document.getElementById("properties");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }}
+                    href="/properties"
+                    onClick={() => setPropertiesOpen(false)}
                     className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#007A7A] text-white flex items-center justify-center shrink-0">
-                      <Building2 size={20} />
+                    <div className="w-10 h-10 rounded-xl bg-[#007A7A] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <MapPin size={20} />
                     </div>
                     <div>
-                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
-                        All 5 Properties
+                      <div className="flex items-center gap-1.5 text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        <span>All Properties &amp; Map</span>
+                        <span className="text-[10px] font-black bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full">
+                          Sync
+                        </span>
                       </div>
                       <div className="text-xs text-[#4B5563]">
-                        Student housing and co-living spaces in Viman Nagar
+                        Interactive listing-to-map sync in Viman Nagar
                       </div>
                     </div>
                   </Link>
@@ -304,17 +299,16 @@ export default function Navbar() {
 
             <div className="py-2 border-y border-[#E1E7E6] space-y-2">
               <Link
-                href="/#properties"
-                onClick={() => {
-                  setIsOpen(false);
-                  const el = document.getElementById("properties");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+                href="/properties"
+                onClick={() => setIsOpen(false)}
                 className="flex items-center justify-between min-h-[44px] text-base font-extrabold text-[#111827] hover:text-[#007A7A]"
               >
-                <span>All Properties (5 Residences)</span>
-                <span className="text-xs bg-[#E6F4F3] text-[#007A7A] font-extrabold px-3 py-1.5 rounded-full">
-                  View All
+                <div className="flex items-center gap-2">
+                  <MapPin size={18} className="text-[#007A7A]" />
+                  <span>Explore on Map (5 Residences)</span>
+                </div>
+                <span className="text-xs bg-[#FFDE59] text-[#111827] font-black px-2.5 py-1 rounded-full shadow-sm">
+                  Interactive
                 </span>
               </Link>
               <div className="grid gap-1 pl-2">
