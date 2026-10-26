@@ -18,8 +18,8 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <StatsSection />
       <FeaturedProperties />
+      <StatsSection />
       <WhyReforbs />
       <AmenitiesSection />
       <CommunitySection />
