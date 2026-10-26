@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Users, Sparkles, Flame, Film, Sun, Utensils, Check, MoveLeft, MoveRight, type LucideIcon } from "lucide-react";
+import { Users, Sparkles, Flame, Film, Sun, Utensils, Check, type LucideIcon } from "lucide-react";
 
 export interface ActivityCardItem {
   id: string;
@@ -220,27 +220,6 @@ export default function CurvedActivitiesCarousel() {
 
   return (
     <div className="relative w-full overflow-hidden select-none py-6">
-      {/* Hand-Drawn / Studio Decorative Badge & Annotation */}
-      <div className="flex flex-wrap items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 mb-6">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
-          <span className="text-xs font-black tracking-widest uppercase text-[#FFDE59] font-heading">
-            Cylindrical Curved Experience
-          </span>
-          <span className="text-white/30 hidden sm:inline">•</span>
-          <span className="text-white/70 text-xs font-medium hidden sm:inline">
-            Included in every resident&apos;s membership
-          </span>
-        </div>
-
-        {/* Drag Hint Pill with arrows */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs font-bold shadow-sm">
-          <MoveLeft size={13} className="text-[#FFDE59]" />
-          <span>Drag or Swipe to Fling</span>
-          <MoveRight size={13} className="text-[#FFDE59]" />
-        </div>
-      </div>
-
       {/* Main Cylinder Carousel Track */}
       <div
         ref={containerRef}
