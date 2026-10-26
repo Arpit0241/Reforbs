@@ -225,16 +225,28 @@ export default function PropertyMap() {
     if (!map || !activeListingId || !isMapReady) return;
 
     const targetItem = listings.find((p) => p.id === activeListingId);
-    if (!targetItem) return;
+    if (
+      !targetItem ||
+      typeof targetItem.lat !== "number" ||
+      typeof targetItem.lng !== "number" ||
+      !isFinite(targetItem.lat) ||
+      !isFinite(targetItem.lng)
+    )
+      return;
 
     isProgrammaticMoveRef.current = true;
-    const targetZoom = Math.max(map.getZoom(), 15);
+    const currentZoom = typeof map.getZoom === "function" ? map.getZoom() : 15;
+    const targetZoom = isFinite(currentZoom) ? Math.max(currentZoom, 15) : 15;
 
     // Pan smoothly without jarring zoom jumps
-    map.flyTo([targetItem.lat, targetItem.lng], targetZoom, {
-      duration: 0.65,
-      easeLinearity: 0.25,
-    });
+    try {
+      map.flyTo([targetItem.lat, targetItem.lng], targetZoom, {
+        duration: 0.65,
+        easeLinearity: 0.25,
+      });
+    } catch (e) {
+      console.warn("Leaflet flyTo skipped:", e);
+    }
 
     // Open popup for active marker
     const marker = markersRef.current[activeListingId];

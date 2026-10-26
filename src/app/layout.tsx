@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ReforbsChatbot from "@/components/chatbot/ReforbsChatbot";
 import StickyBottomBar from "@/components/StickyBottomBar";
 
 export const viewport: Viewport = {
@@ -43,6 +44,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <ReforbsChatbot />
         <StickyBottomBar />
       </body>
     </html>

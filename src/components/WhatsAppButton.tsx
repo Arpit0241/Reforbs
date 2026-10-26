@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside aria-label="Support chat" className="fixed bottom-24 sm:bottom-6 right-3 sm:right-6 z-50">
+    <aside aria-label="Support chat" className="fixed bottom-36 sm:bottom-6 right-3 sm:right-52 z-50">
       {/* Expandable Stanza Living-Style Popover */}
       {isOpen && (
         <div className="absolute bottom-16 right-0 w-[calc(100vw-2rem)] max-w-sm bg-white rounded-3xl shadow-2xl border border-[#E1E7E6] overflow-hidden animate-fadeIn mb-2 z-50">
