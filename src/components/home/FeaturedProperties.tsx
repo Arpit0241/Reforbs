@@ -596,12 +596,12 @@ export default function FeaturedProperties() {
               return (
                 <div
                   key={i}
-                  className="group flex items-center gap-2.5 p-3 sm:p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 hover:border-white/30 text-xs font-bold text-white transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-sm"
+                  className="group flex items-center gap-2.5 p-2.5 sm:p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 hover:border-white/30 text-xs font-bold text-white transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-sm min-h-[58px]"
                 >
                   <div className={`w-8 h-8 rounded-xl ${facility.bg} ${facility.text} border ${facility.border} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-inner`}>
                     <Icon size={16} />
                   </div>
-                  <span className="line-clamp-1 text-white font-extrabold">{facility.name}</span>
+                  <span className="text-[11px] sm:text-xs leading-snug text-white font-extrabold break-words min-w-0">{facility.name}</span>
                 </div>
               );
             })}

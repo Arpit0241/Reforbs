@@ -47,8 +47,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-safe ${
-        scrolled
-          ? "bg-[#FAFAFA]/95 backdrop-blur-md border-b border-[#E1E7E6] shadow-sm py-2.5 sm:py-3"
+        scrolled || isOpen
+          ? "bg-white/98 backdrop-blur-md border-b border-[#E1E7E6] shadow-sm py-2.5 sm:py-3"
           : "bg-gradient-to-b from-[#0A0D0C]/85 via-[#0A0D0C]/50 to-transparent py-3 sm:py-4"
       }`}
     >
@@ -58,7 +58,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-36 h-9 sm:w-44 sm:h-12">
               <Image
-                src={scrolled ? "/assets/reforbs-official-logo.png" : "/assets/reforbs-logo-white.png"}
+                src={scrolled || isOpen ? "/assets/reforbs-official-logo.png" : "/assets/reforbs-logo-white.png"}
                 alt="Reforbs Living"
                 fill
                 className="object-contain transition-all"
@@ -249,7 +249,7 @@ export default function Navbar() {
             <a
               href="tel:+917420040241"
               className={`w-11 h-11 flex items-center justify-center rounded-full transition-all active:scale-95 ${
-                scrolled ? "bg-[#E6F4F3] text-[#007A7A]" : "bg-white/20 text-white"
+                scrolled || isOpen ? "bg-[#E6F4F3] text-[#007A7A]" : "bg-white/20 text-white"
               }`}
               aria-label="Call host"
             >
@@ -273,7 +273,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors active:scale-95 ${
-                scrolled ? "text-[#111827] bg-[#F1F4F4]" : "text-white bg-white/20"
+                scrolled || isOpen ? "text-[#111827] bg-[#F1F4F4]" : "text-white bg-white/20"
               }`}
               aria-expanded={isOpen}
               aria-controls="mobile-nav-drawer"
@@ -287,7 +287,16 @@ export default function Navbar() {
 
       {/* Mobile Drawer with Backdrop Overlay & Safe Area Spacing */}
       {isOpen && (
-        <div id="mobile-nav-drawer" className="lg:hidden fixed inset-x-0 top-full bg-white border-t border-[#E1E7E6] shadow-2xl animate-fadeIn max-h-[calc(100dvh-4.5rem)] overflow-y-auto">
+        <>
+          <div
+            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-40 animate-fadeIn"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            id="mobile-nav-drawer"
+            className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-[#E1E7E6] shadow-2xl animate-fadeIn max-h-[calc(100dvh-4.5rem)] overflow-y-auto z-50"
+          >
           <div className="px-5 py-6 space-y-4 pb-12">
             <Link
               href="/"
@@ -391,7 +400,8 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      )}
-    </header>
-  );
+      </>
+    )}
+  </header>
+);
 }

@@ -346,26 +346,28 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
         </div>
       </div>
 
-      {/* Floating Mobile Map / List Toggle Button (Phones & Tablets < 1024px) */}
-      <div className="lg:hidden fixed bottom-20 right-5 z-50">
-        <button
-          onClick={toggleMobileMap}
-          className="inline-flex items-center gap-2 min-h-[48px] px-5 py-3 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-2xl font-black text-xs tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-white/40"
-          aria-label={isMobileMapOpen ? "Switch to List View" : "Switch to Map View"}
-        >
-          {isMobileMapOpen ? (
-            <>
-              <List size={16} className="text-[#FFDE59]" />
-              <span>Show List View</span>
-            </>
-          ) : (
-            <>
-              <MapIcon size={16} className="text-[#FFDE59]" />
-              <span>Explore Map ({listings.length})</span>
-            </>
-          )}
-        </button>
-      </div>
+      {/* Floating Mobile Map / List Toggle Button (Only on standalone /properties view, centered at bottom) */}
+      {!isEmbedded && (
+        <div className="lg:hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-40">
+          <button
+            onClick={toggleMobileMap}
+            className="inline-flex items-center gap-2 min-h-[46px] px-5 py-2.5 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-2xl font-black text-xs tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20 whitespace-nowrap"
+            aria-label={isMobileMapOpen ? "Switch to List View" : "Switch to Map View"}
+          >
+            {isMobileMapOpen ? (
+              <>
+                <List size={16} className="text-[#FFDE59]" />
+                <span>Show List View</span>
+              </>
+            ) : (
+              <>
+                <MapIcon size={16} className="text-[#FFDE59]" />
+                <span>Explore Map ({listings.length})</span>
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

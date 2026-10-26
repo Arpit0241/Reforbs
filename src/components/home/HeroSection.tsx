@@ -261,19 +261,19 @@ export default function HeroSection() {
         </div>
 
         {/* Slideshow Selector Strip */}
-        <div className="mt-8 flex items-center justify-center gap-2 sm:gap-3">
+        <div className="mt-8 flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
           {brandHeroImages.map((slide, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => setCurrentSlide(idx)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 transition-all duration-300 min-h-[36px] ${
                 currentSlide === idx
-                  ? "bg-white text-[#1B1D1C] shadow-lg scale-105"
-                  : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+                  ? "bg-white text-[#1B1D1C] shadow-lg ring-2 ring-white/30"
+                  : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white border border-white/10"
               }`}
             >
-              <span className={`w-2 h-2 rounded-full ${currentSlide === idx ? "bg-[#007A7A]" : "bg-white/40"}`} />
+              <span className={`w-2 h-2 rounded-full shrink-0 ${currentSlide === idx ? "bg-[#007A7A]" : "bg-white/40"}`} />
               <span>{slide.tag}</span>
             </button>
           ))}
