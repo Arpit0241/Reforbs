@@ -13,7 +13,10 @@ import {
   Compass,
   Star,
   Sparkles,
+  LayoutGrid,
 } from "lucide-react";
+import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
+import { PropertyMapProvider } from "@/context/PropertyMapContext";
 
 export interface PropertyItem {
   id: string;
@@ -191,6 +194,7 @@ export const propertiesData: PropertyItem[] = [
 ];
 
 export default function FeaturedProperties() {
+  const [viewMode, setViewMode] = useState<"map" | "grid">("map");
   const [activeTab, setActiveTab] = useState<"all" | "student" | "coliving">("all");
   const [activePhotoMap, setActivePhotoMap] = useState<{ [id: string]: string }>({});
 
@@ -255,51 +259,99 @@ export default function FeaturedProperties() {
             className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto my-5"
           />
 
-          {/* Stanza-style Category Switcher */}
+          {/* View Mode Switcher: Interactive Map vs Cards Grid */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "100px" }}
             transition={{ duration: 0.4, delay: 0.35 }}
-            className="inline-flex items-center gap-2 p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm max-w-full overflow-x-auto no-scrollbar"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
           >
-            <button
-              onClick={() => setActiveTab("all")}
-              className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all whitespace-nowrap active:scale-95 ${
-                activeTab === "all"
-                  ? "bg-[#007A7A] text-white shadow-sm"
-                  : "text-[#666B68] hover:text-[#007A7A]"
-              }`}
-            >
-              All Properties ({propertiesData.length})
-            </button>
-            <button
-              onClick={() => setActiveTab("student")}
-              className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
-                activeTab === "student"
-                  ? "bg-[#007A7A] text-white shadow-sm"
-                  : "text-[#666B68] hover:text-[#007A7A]"
-              }`}
-            >
-              <GraduationCap size={15} />
-              <span>Student Housing (2)</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("coliving")}
-              className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
-                activeTab === "coliving"
-                  ? "bg-[#007A7A] text-white shadow-sm"
-                  : "text-[#666B68] hover:text-[#007A7A]"
-              }`}
-            >
-              <Building2 size={15} />
-              <span>Co-Living (3)</span>
-            </button>
+            {/* View Mode Toggle Pill */}
+            <div className="inline-flex items-center p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm">
+              <button
+                onClick={() => setViewMode("map")}
+                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-black flex items-center gap-2 transition-all active:scale-95 ${
+                  viewMode === "map"
+                    ? "bg-[#007A7A] text-white shadow-sm"
+                    : "text-[#666B68] hover:text-[#007A7A]"
+                }`}
+              >
+                <MapPin size={16} className={viewMode === "map" ? "text-[#FFDE59]" : "text-[#007A7A]"} />
+                <span>Interactive Map</span>
+                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#FFDE59] text-[#111827]">
+                  Live Sync
+                </span>
+              </button>
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-black flex items-center gap-2 transition-all active:scale-95 ${
+                  viewMode === "grid"
+                    ? "bg-[#007A7A] text-white shadow-sm"
+                    : "text-[#666B68] hover:text-[#007A7A]"
+                }`}
+              >
+                <LayoutGrid size={16} />
+                <span>Cards Grid</span>
+              </button>
+            </div>
           </motion.div>
+
+          {/* Stanza-style Category Switcher (shown when in grid mode) */}
+          {viewMode === "grid" && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center gap-2 p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm max-w-full overflow-x-auto no-scrollbar mb-4"
+            >
+              <button
+                onClick={() => setActiveTab("all")}
+                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all whitespace-nowrap active:scale-95 ${
+                  activeTab === "all"
+                    ? "bg-[#007A7A] text-white shadow-sm"
+                    : "text-[#666B68] hover:text-[#007A7A]"
+                }`}
+              >
+                All Properties ({propertiesData.length})
+              </button>
+              <button
+                onClick={() => setActiveTab("student")}
+                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                  activeTab === "student"
+                    ? "bg-[#007A7A] text-white shadow-sm"
+                    : "text-[#666B68] hover:text-[#007A7A]"
+                }`}
+              >
+                <GraduationCap size={15} />
+                <span>Student Housing (2)</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("coliving")}
+                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                  activeTab === "coliving"
+                    ? "bg-[#007A7A] text-white shadow-sm"
+                    : "text-[#666B68] hover:text-[#007A7A]"
+                }`}
+              >
+                <Building2 size={15} />
+                <span>Co-Living (3)</span>
+              </button>
+            </motion.div>
+          )}
         </div>
 
-        {/* Property Cards Grid: Elo One-Style Stacked Paper Layer Cards with 120ms Stagger */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        {/* Dynamic View: Interactive Listing-to-Map Sync or Cards Grid */}
+        {viewMode === "map" ? (
+          <div className="w-full">
+            <PropertyMapProvider key={activeTab} initialCategory={activeTab}>
+              <ListingToMapSplitView isEmbedded />
+            </PropertyMapProvider>
+          </div>
+        ) : (
+          <>
+            {/* Property Cards Grid: Elo One-Style Stacked Paper Layer Cards with 120ms Stagger */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {filtered.map((property, idx) => {
             const currentImg = activePhotoMap[property.id] || property.coverImage;
 
@@ -495,6 +547,8 @@ export default function FeaturedProperties() {
             <ArrowRight size={16} />
           </Link>
         </motion.div>
+          </>
+        )}
 
         {/* Amenities Bar from reforbs.com */}
         <div id="amenities" className="mt-20 bg-white rounded-3xl p-8 sm:p-10 border border-[#E1E7E6] shadow-sm">

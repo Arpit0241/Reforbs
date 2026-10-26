@@ -38,7 +38,11 @@ const PropertyMap = dynamic(() => import("./PropertyMap"), {
   ),
 });
 
-export default function ListingToMapSplitView() {
+interface ListingToMapSplitViewProps {
+  isEmbedded?: boolean;
+}
+
+export default function ListingToMapSplitView({ isEmbedded = false }: ListingToMapSplitViewProps) {
   const {
     listings,
     allListings,
@@ -105,7 +109,7 @@ export default function ListingToMapSplitView() {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className={`relative w-full ${isEmbedded ? "py-2" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"}`}>
       {/* Skip to map for screen readers */}
       <a
         href="#map-panel"
