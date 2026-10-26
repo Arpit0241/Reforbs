@@ -210,7 +210,7 @@ export default function FeaturedProperties() {
   };
 
   return (
-    <section id="properties" className="pt-8 sm:pt-12 pb-20 bg-[#FAFAFA] relative overflow-hidden">
+    <section id="properties" className="pt-8 sm:pt-12 pb-20 bg-[#FAFAFA] relative overflow-x-clip">
       <div id="student-housing" className="absolute -top-24 left-0" />
       <div id="co-living" className="absolute -top-24 left-0" />
 

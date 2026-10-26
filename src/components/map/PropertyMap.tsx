@@ -131,24 +131,38 @@ export default function PropertyMap() {
         alt: `${item.name} - ${item.price}`,
       });
 
-      // Marker popup content
+      // Marker popup content with direct Google Maps redirection
       const popupContent = `
-        <div class="w-64 p-1 font-sans">
-          <div class="relative h-28 w-full rounded-xl overflow-hidden mb-2 bg-[#111827]">
-            <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover" />
+        <div class="w-64 p-2 font-sans bg-white rounded-2xl">
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-28 w-full rounded-xl overflow-hidden mb-2 bg-[#111827] group" title="Open ${item.name} in Google Maps">
+            <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white">
               ${item.category}
             </div>
             <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[11px] font-black bg-[#FFDE59] text-[#111827]">
               ${item.price}/mo
             </div>
-          </div>
-          <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 line-clamp-1">${item.name}</h4>
-          <p class="text-[11px] text-[#4B5563] mb-2 font-medium line-clamp-1">${item.subLocation}</p>
-          <div class="flex items-center justify-between gap-2 pt-2 border-t border-[#E5E7EB]">
-            <span class="text-[11px] font-bold text-[#007A7A]">★ ${item.rating} (${item.reviews})</span>
-            <a href="${item.link}" class="px-3 py-1 rounded-lg bg-[#007A7A] hover:bg-[#005F5F] text-white text-[11px] font-bold text-center transition-colors">
-              View Details
+            <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-[#007A7A] text-white shadow-md flex items-center gap-1">
+              <span>📍 Google Maps ↗</span>
+            </div>
+          </a>
+
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block hover:text-[#007A7A] transition-colors" title="Open ${item.name} in Google Maps">
+            <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 line-clamp-1 flex items-center justify-between">
+              <span>${item.name}</span>
+              <span class="text-[10px] text-[#007A7A] font-bold">↗</span>
+            </h4>
+          </a>
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-2 font-medium line-clamp-1 block">
+            📍 ${item.address || item.subLocation}
+          </a>
+
+          <div class="grid grid-cols-2 gap-1.5 pt-2 border-t border-[#E5E7EB]">
+            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-xl bg-[#007A7A] hover:bg-[#005F5F] text-white text-[11px] font-black text-center transition-all shadow-sm">
+              <span>📍 Google Maps</span>
+            </a>
+            <a href="${item.link}" class="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-xl bg-[#FAFAFA] hover:bg-[#E6F4F3] text-[#111827] hover:text-[#007A7A] text-[11px] font-black text-center transition-colors border border-[#E5E7EB]">
+              <span>Details →</span>
             </a>
           </div>
         </div>
@@ -160,12 +174,17 @@ export default function PropertyMap() {
         className: "custom-property-popup",
       });
 
-      // Click on marker: selects listing, scrolls matching card on left into view
+      // Click on marker: selects listing, scrolls matching card on left into view.
+      // If already selected, clicking it redirects directly to Google Maps!
       marker.on("click", () => {
-        setActiveListingId(item.id);
-        const cardEl = document.getElementById(`property-card-${item.id}`);
-        if (cardEl) {
-          cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (activeListingId === item.id) {
+          window.open(item.googleMapsUrl, "_blank", "noopener,noreferrer");
+        } else {
+          setActiveListingId(item.id);
+          const cardEl = document.getElementById(`property-card-${item.id}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
         }
       });
 

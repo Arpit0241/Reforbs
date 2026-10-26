@@ -133,10 +133,19 @@ export default function PropertyMapCard({
           <div>
             {/* Monogram and Locality */}
             <div className="flex items-start justify-between gap-2 mb-2">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#007A7A]">
-                <MapPin size={14} className="text-[#007A7A] shrink-0" />
+              <a
+                href={property.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-xs font-bold text-[#007A7A] hover:underline group/maps"
+                title={`Open ${property.name} on Google Maps`}
+              >
+                <MapPin size={14} className="text-[#007A7A] shrink-0 group-hover/maps:scale-110 transition-transform" />
                 <span className="line-clamp-1">{property.subLocation}</span>
-              </div>
+                <span className="text-[10px] font-black bg-[#E6F4F3] text-[#007A7A] px-1.5 py-0.5 rounded-md hover:bg-[#007A7A] hover:text-white transition-colors">
+                  Maps ↗
+                </span>
+              </a>
               <div className="w-8 h-8 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0">
                 {property.monogram === "grad" ? (
                   <GraduationCap size={16} />

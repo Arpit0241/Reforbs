@@ -259,7 +259,7 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
         {/* Right Sticky Map Column (Desktop: 5 cols ~ 42% width) */}
         <div
           id="map-panel"
-          className={`lg:col-span-5 lg:sticky lg:top-24 h-[calc(100dvh-7rem)] min-h-[500px] ${
+          className={`lg:col-span-5 lg:sticky lg:top-24 h-[calc(100dvh-7.5rem)] min-h-[520px] self-start ${
             isMobileMapOpen
               ? "fixed inset-0 top-16 z-40 bg-white block h-[calc(100dvh-4rem)] rounded-none"
               : "hidden lg:block"
@@ -296,13 +296,22 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                   <div className="text-xs font-black text-[#111827] mt-0.5">
                     {activeListing.price} <span className="text-[10px] text-gray-500 font-medium">/mo</span>
                   </div>
-                  <div className="flex items-center gap-2 mt-1.5">
+                  <div className="flex items-center gap-1.5 mt-1.5">
                     <Link
                       href={activeListing.link}
                       className="px-2.5 py-1 rounded-lg bg-[#007A7A] text-white font-bold text-[11px] text-center"
                     >
                       Details
                     </Link>
+                    <a
+                      href={activeListing.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2 py-1 rounded-lg bg-[#E6F4F3] text-[#007A7A] font-bold text-[11px] text-center border border-[#007A7A]/30 flex items-center gap-0.5"
+                      title="Open on Google Maps"
+                    >
+                      <span>📍 Maps</span>
+                    </a>
                     <a
                       href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(activeListing.name)}.`}
                       target="_blank"

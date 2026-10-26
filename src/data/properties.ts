@@ -14,6 +14,7 @@ export interface PropertyItem {
   address: string;
   lat: number;
   lng: number;
+  googleMapsUrl: string;
   price: string;
   priceNum: number;
   priceDouble: string;
@@ -48,6 +49,7 @@ export const propertiesData: PropertyItem[] = [
     address: "Opp. Symbiosis Law School, VIP Road, Viman Nagar, Pune, Maharashtra 411014",
     lat: 18.5718,
     lng: 73.9149,
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=18.5718,73.9149",
     price: "₹12,500",
     priceNum: 12500,
     priceDouble: "₹12,500",
@@ -87,6 +89,7 @@ export const propertiesData: PropertyItem[] = [
     address: "Lane 2, Sakore Nagar, Viman Nagar, Pune, Maharashtra 411014",
     lat: 18.5645,
     lng: 73.9082,
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=18.5645,73.9082",
     price: "₹12,000",
     priceNum: 12000,
     priceDouble: "₹12,000",
@@ -126,6 +129,7 @@ export const propertiesData: PropertyItem[] = [
     address: "Near Joggers Park, Datta Mandir Chowk, Viman Nagar, Pune, Maharashtra 411014",
     lat: 18.5638,
     lng: 73.9165,
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=18.5638,73.9165",
     price: "₹14,500",
     priceNum: 14500,
     priceDouble: "₹14,500",
@@ -165,6 +169,7 @@ export const propertiesData: PropertyItem[] = [
     address: "Clover Park, near Symbiosis International School, Viman Nagar, Pune, Maharashtra 411014",
     lat: 18.5692,
     lng: 73.9198,
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=18.5692,73.9198",
     price: "₹14,000",
     priceNum: 14000,
     priceDouble: "₹14,000",
@@ -204,6 +209,7 @@ export const propertiesData: PropertyItem[] = [
     address: "Viman Nagar, adjacent to Phoenix Marketcity, Pune, Maharashtra 411014",
     lat: 18.5605,
     lng: 73.9182,
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=18.5605,73.9182",
     price: "₹15,000",
     priceNum: 15000,
     priceDouble: "₹15,000",
