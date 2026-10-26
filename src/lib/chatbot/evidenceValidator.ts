@@ -75,6 +75,15 @@ export function validateAndGenerateResponse(
       }
 
       // General Amenities query: Return strictly the 8 documented amenities from PDF page 4
+      let partnerNote = "";
+      if (
+        analysis.secondaryContext === "partner mentioned" ||
+        /\b(partner|boyfriend|girlfriend|couple)\b/i.test(rawQuery)
+      ) {
+        partnerNote =
+          "\n\nRegarding living with a partner: The Reforbs website states that all rooms are for single occupants (one tenant per room) and does not specify a policy or exceptions for couples. Please call 7420040241 to confirm the rules for your preferred property.";
+      }
+
       return {
         text:
           "The Reforbs homepage lists the following amenities under 'Everything you need, already included':\n\n" +
@@ -86,7 +95,8 @@ export function validateAndGenerateResponse(
           "• Daily cleaning services\n" +
           "• Parking\n" +
           "• Laundry\n\n" +
-          "Please note: Because the homepage does not assign every amenity to each individual property, the chatbot recommends confirming the exact setup and inclusions for your chosen property with the team at 7420040241.",
+          "Please note: Because the homepage does not assign every amenity to each individual property, the chatbot recommends confirming the exact setup and inclusions for your chosen property with the team at 7420040241." +
+          partnerNote,
         pageNumber: 4,
         sourceLabel: "Source: Reforbs Knowledge Base, page 4",
         confidence: 30.0,
@@ -104,12 +114,25 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "Our current knowledge base does not specify Reforbs' policy for couples or shared occupancy. " +
-          "Please contact the Reforbs team at 7420040241 to confirm the rules for your preferred property.",
-        pageNumber: null,
-        sourceLabel: null,
-        confidence: 0,
-        isFallback: true,
+          "The Reforbs website states that all rooms are for single occupants (one tenant per room), but it does not specify the policy for couples or exceptions. Please contact the Reforbs team at 7420040241 to confirm the rules for your preferred property.",
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 6",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // B2. Building Capacity vs Room Occupancy
+    // -------------------------------------------------------------------------
+    case "BUILDING_CAPACITY": {
+      return {
+        text:
+          "The website says one occupant per room, but it does not publish the total resident capacity of each property. If you mean one room, Reforbs says its rooms are for single occupants — one tenant per room. If you mean the total number of residents an entire PG property can accommodate, that capacity is not published in the website information I can access. Please contact 7420040241 for the specific property.",
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 6",
+        confidence: 28.0,
+        isFallback: false,
       };
     }
 
@@ -118,6 +141,18 @@ export function validateAndGenerateResponse(
     // -------------------------------------------------------------------------
     case "NEAREST_LOCATION": {
       const loc = entities.location || "your location";
+
+      // If asking specifically about Pune Airport
+      if (loc.toLowerCase().includes("airport") || /\bairport\b/i.test(rawQuery)) {
+        return {
+          text:
+            "The website lists Moksha, Vipasana, and Shubh Nirvana in Viman Nagar. These are the properties to ask about for airport proximity, but the published information does not let me verify which is closest. Please call 7420040241 for help choosing.",
+          pageNumber: 4,
+          sourceLabel: "Source: Reforbs Knowledge Base, page 4",
+          confidence: 28.0,
+          isFallback: false,
+        };
+      }
 
       // If asking specifically about Symbiosis Law School
       if (entities.college && entities.college.includes("Symbiosis")) {
@@ -187,28 +222,13 @@ export function validateAndGenerateResponse(
         property: entities.property,
       });
 
-      // Special handling if also asking about college proximity
-      if (entities.college || rawQuery.toLowerCase().includes("college")) {
-        return {
-          text:
-            "Shubh Gateway is listed as student housing located directly opposite Symbiosis Law School. " +
-            "However, our knowledge base does not contain verified current prices for all Reforbs properties, " +
-            "so I cannot reliably identify the cheapest PG. Please contact us at 7420040241 to confirm the latest rent.",
-          pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base, page 3 & 5",
-          confidence: 25.0,
-          isFallback: false,
-        };
-      }
-
       return {
         text:
-          "Our knowledge base does not contain verified current prices for all Reforbs properties, " +
-          "so I cannot reliably identify the cheapest PG. Please contact us at 7420040241 to confirm the latest rent.",
-        pageNumber: null,
-        sourceLabel: null,
-        confidence: 0,
-        isFallback: true,
+          "Current property-wise rent is not published in the knowledge base, so I cannot reliably identify the cheapest PG. Please call 7420040241 to confirm current prices.",
+        pageNumber: 5,
+        sourceLabel: "Source: Reforbs Knowledge Base, page 5",
+        confidence: 25.0,
+        isFallback: false,
       };
     }
 
@@ -441,10 +461,10 @@ export function validateAndGenerateResponse(
       return {
         text:
           "The Reforbs website states that all rooms are for single occupants, meaning one tenant per room. " +
-          "Ask the team to confirm the room type and current options at the property you prefer by calling 7420040241.",
+          "Please contact 7420040241 to confirm the room type and current options at a particular property.",
         pageNumber: 5,
         sourceLabel: "Source: Reforbs Knowledge Base, page 5",
-        confidence: 25.0,
+        confidence: 28.0,
         isFallback: false,
       };
     }

@@ -9,6 +9,7 @@
 
 export type CustomerIntent =
   | "COUPLES_POLICY"
+  | "BUILDING_CAPACITY"
   | "NEAREST_LOCATION"
   | "CHEAPEST_PRICE_COMPARISON"
   | "RENT_PRICING"
@@ -196,7 +197,42 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
-  // Stage 3: Couples, Boyfriend, Girlfriend & Partner Cohabitation Policy
+  // Stage 3: Building Capacity vs Room Occupancy
+  // -------------------------------------------------------------
+  const buildingCapacityPatterns = [
+    /\bhow\s+many\s+people\s+(?:can\s+)?live\s+in\s+(?:one\s+|a\s+)?pg\b/,
+    /\bhow\s+many\s+(?:people|students|tenants|residents)\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:a\s+|one\s+|the\s+)?(?:pg|property|building|hostel)\b/,
+    /\b(?:total\s+)?(?:pg|property|building)\s+capacity\b/,
+    /\btotal\s+(?:number\s+of\s+)?residents\s+(?:in\s+)?(?:a\s+|one\s+)?(?:pg|property|building)\b/,
+  ];
+
+  if (buildingCapacityPatterns.some((pattern) => pattern.test(normalized))) {
+    return {
+      intent: "BUILDING_CAPACITY",
+      confidence: 0.99,
+      entities,
+      matchedPattern: "building capacity query pattern",
+    };
+  }
+
+  const roomOccupancyPatterns = [
+    /\bhow\s+many\s+people\s+(?:can\s+)?live\s+in\s+(?:one\s+|a\s+)?room\b/,
+    /\bhow\s+many\s+(?:people|tenants|students)\s+per\s+room\b/,
+    /\boccupancy\s+per\s+room\b/,
+    /\bpeople\s+in\s+(?:one\s+|a\s+)?room\b/,
+  ];
+
+  if (roomOccupancyPatterns.some((pattern) => pattern.test(normalized))) {
+    return {
+      intent: "ROOM_PRIVACY",
+      confidence: 0.99,
+      entities,
+      matchedPattern: "room occupancy query pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // Stage 4: Couples, Boyfriend, Girlfriend & Partner Cohabitation Policy
   // -------------------------------------------------------------
   const couplesPatterns = [
     /\b(?:can\s+i\s+)?(?:live|stay|share)\s+(?:with\s+my\s+)?(?:boyfriend|girlfriend|partner|husband|wife|fianc[eé])\b/,
@@ -252,8 +288,11 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\bclosest\s+(?:to\s+me|to\s+my\s+college|to\s+my\s+location|to\s+my\s+office|property|pg)\b/,
     /\bi\s+live\s+in\s+([a-z\s]+)[,.]?\s*(?:where|which|how)\b/,
     /\bwhich\s+(?:property|pg)\s+is\s+near\s+([a-z\s]+)\b/,
+    /\bwhich\s+(?:property|pg)\s+is\s+opposite\b/,
+    /\bopposite\b/,
     /\bnearest\s+to\s+kondhwa\b/,
     /\bclosest\s+to\s+kondhwa\b/,
+    /\b(near|closest\s+to|opposite)\s+(?:symbiosis|sls|law\s+school|scms)\b/,
   ];
 
   if (nearestPatterns.some((pattern) => pattern.test(normalized))) {
@@ -298,6 +337,7 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   const rentPricingPatterns = [
     /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)monthly\s+rent\b/,
     /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)rent\b/,
+    /\brent\b/,
     /\bmonthly\s+pricing\b/,
     /\bhow\s+much\s+does\s+it\s+cost\b/,
     /\bwhat\s+is\s+the\s+monthly\s+charge\b/,
