@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import ReforbsChatbot from "@/components/chatbot/ReforbsChatbot";
 import StickyBottomBar from "@/components/StickyBottomBar";
 
@@ -43,7 +42,6 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <WhatsAppButton />
         <ReforbsChatbot />
         <StickyBottomBar />
       </body>
