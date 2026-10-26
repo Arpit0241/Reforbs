@@ -13,6 +13,7 @@ import {
   MessageCircle,
   ChevronDown,
 } from "lucide-react";
+import { submitLead } from "@/lib/leads";
 
 const faqs = [
   {
@@ -39,6 +40,8 @@ const faqs = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [form, setForm] = useState({
     name: "",
@@ -46,9 +49,18 @@ export default function ContactPage() {
     property: "Shubh Gateway (Opp. SLS)",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    const res = await submitLead({
+      name: form.name,
+      phone: form.phone,
+      property: form.property,
+      source: "Contact Page Form",
+    });
+    setWhatsappUrl(res.whatsappUrl);
     setSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
@@ -90,9 +102,12 @@ export default function ContactPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-3">
                   <a
-                    href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20my%20name%20is%20${encodeURIComponent(
-                      form.name
-                    )}.%20I%20am%20interested%20in%20${encodeURIComponent(form.property)}.`}
+                    href={
+                      whatsappUrl ||
+                      `https://wa.me/917420040241?text=Hi%20Reforbs%2C%20my%20name%20is%20${encodeURIComponent(
+                        form.name
+                      )}.%20I%20am%20interested%20in%20${encodeURIComponent(form.property)}.`
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-teal text-xs py-3 px-6 font-bold"

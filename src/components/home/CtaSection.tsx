@@ -2,18 +2,30 @@
 
 import { useState } from "react";
 import { Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { submitLead, buildWhatsAppUrl } from "@/lib/leads";
 
 export default function CtaSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
   const [form, setForm] = useState({
     name: "",
     phone: "",
     property: "Shubh Gateway (Opp. SLS Campus)",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    const res = await submitLead({
+      name: form.name,
+      phone: form.phone,
+      property: form.property,
+      source: "Homepage CTA Form",
+    });
+    setWhatsappUrl(res.whatsappUrl);
     setSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
@@ -71,7 +83,7 @@ export default function CtaSection() {
                     Our Viman Nagar property host will message you on WhatsApp with parking directions and schedule confirmation.
                   </p>
                   <a
-                    href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
+                    href={whatsappUrl || "https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3.5 rounded-full font-bold text-sm shadow hover:bg-[#20bd5a] transition"

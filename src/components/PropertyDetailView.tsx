@@ -13,6 +13,7 @@ import {
   Star,
   CheckCheck,
 } from "lucide-react";
+import { submitLead } from "@/lib/leads";
 
 export interface PropertyData {
   id: string;
@@ -41,12 +42,24 @@ export interface PropertyData {
 export default function PropertyDetailView({ property }: { property: PropertyData }) {
   const [selectedOccupancy, setSelectedOccupancy] = useState<"single" | "double">("double");
   const [visitSubmitted, setVisitSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
   const [visitForm, setVisitForm] = useState({ name: "", phone: "", date: "" });
   const [activePhoto, setActivePhoto] = useState(property.heroImage);
 
-  const handleVisitSubmit = (e: React.FormEvent) => {
+  const handleVisitSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    const res = await submitLead({
+      name: visitForm.name,
+      phone: visitForm.phone,
+      property: property.name,
+      visitDate: visitForm.date,
+      source: `Property Detail: ${property.name}`,
+    });
+    setWhatsappUrl(res.whatsappUrl);
     setVisitSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
@@ -360,7 +373,10 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                     Our Viman Nagar property host will message you via WhatsApp with the exact building entry pin.
                   </p>
                   <a
-                    href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
+                    href={
+                      whatsappUrl ||
+                      "https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-teal text-xs py-2.5 px-4 w-full justify-center"
