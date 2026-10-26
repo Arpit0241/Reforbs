@@ -14,6 +14,15 @@ import {
   Star,
   Sparkles,
   LayoutGrid,
+  Wifi,
+  Tv,
+  Laptop,
+  Sofa,
+  Utensils,
+  Car,
+  Smile,
+  Shirt,
+  Zap,
 } from "lucide-react";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
 import { PropertyMapProvider } from "@/context/PropertyMapContext";
@@ -550,39 +559,52 @@ export default function FeaturedProperties() {
           </>
         )}
 
-        {/* Amenities Bar from reforbs.com */}
-        <div id="amenities" className="mt-20 bg-white rounded-3xl p-8 sm:p-10 border border-[#E1E7E6] shadow-sm">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="badge-eyebrow mb-2">Amenities</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-[#111827] font-heading">
-              Everything you need, already included
+        {/* Colorful Luxury All-Inclusive Amenities Card */}
+        <div id="amenities" className="mt-20 relative rounded-3xl p-8 sm:p-12 overflow-hidden shadow-2xl bg-gradient-to-br from-[#0D1F1C] via-[#082E29] to-[#041B18] text-white border border-white/20">
+          {/* Multi-color ambient background glowing orbs */}
+          <div className="absolute -top-24 -left-24 w-80 h-80 bg-[#007A7A]/35 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-[#FFDE59]/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 text-center max-w-2xl mx-auto mb-10">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FFDE59] to-[#FACC15] text-[#111827] font-black text-xs uppercase tracking-wider mb-3 shadow-md font-heading">
+              <Sparkles size={14} className="text-[#111827]" />
+              <span>All-Inclusive Amenities</span>
+            </span>
+            <h3 className="text-3xl sm:text-4xl font-black text-white font-heading tracking-tight">
+              Everything you need, <span className="text-[#FFDE59]">already included</span>
             </h3>
-            <p className="text-xs sm:text-sm text-[#4A524F] mt-2 font-semibold">
-              Zero extra hidden maintenance bills. Everything is transparent and ready on day one.
+            <p className="text-xs sm:text-sm text-white/85 mt-2.5 font-medium leading-relaxed">
+              Zero extra hidden maintenance bills. Everything is transparent, fully serviced, and ready on day one.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
             {[
-              "Free High Speed WiFi",
-              "TV & Streaming",
-              "Work Desks",
-              "Spacious Living Area",
-              "Private Kitchen",
-              "Daily Cleaning Services",
-              "Free Parking",
-              "Freedom (Zero Bans)",
-              "Laundry Care",
-              "Full Power Backup",
-            ].map((facility, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 p-3.5 rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] text-xs font-bold text-[#111827] hover:bg-[#E6F4F3] hover:text-[#007A7A] transition-colors"
-              >
-                <div className="w-2 h-2 rounded-full bg-[#007A7A]" />
-                <span>{facility}</span>
-              </div>
-            ))}
+              { name: "Free High Speed WiFi", icon: Wifi, bg: "bg-[#06B6D4]/20", border: "border-[#06B6D4]/40", text: "text-[#22D3EE]" },
+              { name: "TV & Streaming", icon: Tv, bg: "bg-[#8B5CF6]/20", border: "border-[#8B5CF6]/40", text: "text-[#C084FC]" },
+              { name: "Work Desks", icon: Laptop, bg: "bg-[#10B981]/20", border: "border-[#10B981]/40", text: "text-[#34D399]" },
+              { name: "Spacious Living Area", icon: Sofa, bg: "bg-[#F59E0B]/20", border: "border-[#F59E0B]/40", text: "text-[#FBBF24]" },
+              { name: "Private Kitchen", icon: Utensils, bg: "bg-[#F43F5E]/20", border: "border-[#F43F5E]/40", text: "text-[#FB7185]" },
+              { name: "Daily Cleaning", icon: Sparkles, bg: "bg-[#14B8A6]/20", border: "border-[#14B8A6]/40", text: "text-[#2DD4BF]" },
+              { name: "Free Parking", icon: Car, bg: "bg-[#6366F1]/20", border: "border-[#6366F1]/40", text: "text-[#818CF8]" },
+              { name: "Freedom (Zero Bans)", icon: Smile, bg: "bg-[#FFDE59]/25", border: "border-[#FFDE59]/60", text: "text-[#FFDE59]" },
+              { name: "Laundry Care", icon: Shirt, bg: "bg-[#0EA5E9]/20", border: "border-[#0EA5E9]/40", text: "text-[#38BDF8]" },
+              { name: "Full Power Backup", icon: Zap, bg: "bg-[#EAB308]/20", border: "border-[#EAB308]/40", text: "text-[#FACC15]" },
+            ].map((facility, i) => {
+              const Icon = facility.icon;
+              return (
+                <div
+                  key={i}
+                  className="group flex items-center gap-2.5 p-3 sm:p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 hover:border-white/30 text-xs font-bold text-white transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 shadow-sm"
+                >
+                  <div className={`w-8 h-8 rounded-xl ${facility.bg} ${facility.text} border ${facility.border} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-inner`}>
+                    <Icon size={16} />
+                  </div>
+                  <span className="line-clamp-1 text-white font-extrabold">{facility.name}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

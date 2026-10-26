@@ -1,9 +1,33 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Sparkles, Heart, Users, Smile, Check } from "lucide-react";
+import {
+  Sparkles,
+  Heart,
+  Users,
+  Smile,
+  Check,
+  MoveLeft,
+  MoveRight,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 
-const differenceItems = [
+export interface DifferenceCardItem {
+  id: string;
+  number: string;
+  label: string;
+  icon: LucideIcon;
+  description: string;
+  gradient: string;
+  tag1: string;
+  tag2: string;
+  image: string;
+}
+
+export const differenceItems: DifferenceCardItem[] = [
   {
     id: "freedom",
     number: "01",
@@ -14,6 +38,7 @@ const differenceItems = [
       "Zero forced food packages, zero lock-ins, and no arbitrary bans. Live as if you own the place.",
     tag1: "Zero Lock-ins",
     tag2: "Cooking Freedom",
+    image: "/assets/pdf/extracted/page-7-image-2-X6.jpg",
   },
   {
     id: "community",
@@ -25,6 +50,7 @@ const differenceItems = [
       "A welcoming tribe to cope with stress, overcome loneliness, and build lifelong friendships.",
     tag1: "Zero Loneliness",
     tag2: "Supportive Tribe",
+    image: "/assets/pdf/extracted/page-7-image-6-X10.jpg",
   },
   {
     id: "comfort",
@@ -36,6 +62,7 @@ const differenceItems = [
       "Sustainable design, private setups, high-speed fiber internet, and self-usable amenities.",
     tag1: "Zero Hidden Bills",
     tag2: "Ergonomic Setup",
+    image: "/assets/pdf/extracted/page-4-image-1-X4.jpg",
   },
   {
     id: "vibes",
@@ -47,14 +74,170 @@ const differenceItems = [
       "Inspired by vibrant backpacker culture — cool, artistic, hippie properties you love coming home to.",
     tag1: "Zero Moral Policing",
     tag2: "Pure Good Energy",
+    image: "/assets/pdf/extracted/page-7-image-5-X9.jpg",
+  },
+  {
+    id: "ownership",
+    number: "05",
+    label: "Ownership",
+    icon: ShieldCheck,
+    gradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
+    description:
+      "Total peace of mind with 24/7 dedicated host care, rapid maintenance, and complete resident autonomy.",
+    tag1: "Dedicated Hosts",
+    tag2: "Full Autonomy",
+    image: "/assets/pdf/extracted/page-6-image-1-X4.jpg",
+  },
+  {
+    id: "connection",
+    number: "06",
+    label: "Connection",
+    icon: Users,
+    gradient: "from-[#0D5C5A] via-[#083E3D] to-[#022120]",
+    description:
+      "Bonding through rooftop grills, festive parties, creative jam sessions, and spontaneous weekend road trips.",
+    tag1: "Rooftop Jams",
+    tag2: "Weekend BBQs",
+    image: "/assets/pdf/extracted/page-2-image-2-X6.jpg",
   },
 ];
 
+// Triplicate cards array for seamless infinite looping physics
+const LOOP_CARDS = [...differenceItems, ...differenceItems, ...differenceItems];
+
 export default function StatsSection() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [containerWidth, setContainerWidth] = useState(1200);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Animation & physics state refs for 60fps RAF loop
+  const offsetRef = useRef(0);
+  const velocityRef = useRef(-0.8);
+  const lastPointerXRef = useRef(0);
+  const isPointerDownRef = useRef(false);
+  const rafIdRef = useRef<number | null>(null);
+
+  // Card geometry parameters
+  const isMobile = containerWidth < 768;
+  const cardWidth = isMobile ? 260 : 310;
+  const cardGap = isMobile ? 18 : 26;
+  const pitch = cardWidth + cardGap;
+  const totalItems = LOOP_CARDS.length;
+  const singleSetWidth = differenceItems.length * pitch;
+
+  // Track container width
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  // Main 60fps Physics & Momentum RAF Loop
+  useEffect(() => {
+    let lastTime = performance.now();
+
+    const loop = (time: number) => {
+      const dt = Math.min((time - lastTime) / 1000, 0.1);
+      lastTime = time;
+
+      if (!isPointerDownRef.current) {
+        // Natural target drift speed (slower when hovered)
+        const targetSpeed = isHovered ? -0.2 : -0.8;
+        // Exponential decay towards auto-scroll speed
+        velocityRef.current = velocityRef.current * 0.95 + targetSpeed * 0.05;
+        offsetRef.current += velocityRef.current * (dt * 60);
+      }
+
+      // Seamless modular wrap
+      if (offsetRef.current <= -singleSetWidth) {
+        offsetRef.current += singleSetWidth;
+      } else if (offsetRef.current > 0) {
+        offsetRef.current -= singleSetWidth;
+      }
+
+      // Re-apply cylinder transforms directly to DOM elements for ultra-smooth 60fps performance
+      if (containerRef.current) {
+        const cx = containerWidth / 2;
+        const cards = containerRef.current.querySelectorAll<HTMLDivElement>("[data-card-idx]");
+
+        cards.forEach((card) => {
+          const idx = parseInt(card.dataset.cardIdx || "0", 10);
+          // Position relative to viewport center
+          let cardX = idx * pitch + offsetRef.current;
+
+          // Wrap position so it stays in visible circular track
+          const fullTrackWidth = totalItems * pitch;
+          cardX = ((cardX % fullTrackWidth) + fullTrackWidth) % fullTrackWidth;
+          if (cardX > fullTrackWidth - pitch * 2) {
+            cardX -= fullTrackWidth;
+          }
+
+          const centerDist = cardX + cardWidth / 2 - cx;
+          const normDist = centerDist / (containerWidth * 0.52);
+          const clampedNorm = Math.max(-1.5, Math.min(1.5, normDist));
+
+          // Cylinder curve geometry: Center cards upright, edges curve in 3D
+          const d2 = clampedNorm * clampedNorm;
+          const rotateY = clampedNorm * -24; // Leans inside cylinder
+          const translateZ = -d2 * (isMobile ? 55 : 95); // Deep curve into cylinder
+          const scale = 1 + 0.08 * d2; // Outer cards grow taller
+          const opacity = Math.max(0.25, 1 - Math.pow(Math.abs(clampedNorm) * 0.75, 4));
+
+          card.style.transform = `translate3d(${cardX}px, 0px, 0px) perspective(1100px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+          card.style.opacity = `${opacity}`;
+        });
+      }
+
+      rafIdRef.current = requestAnimationFrame(loop);
+    };
+
+    rafIdRef.current = requestAnimationFrame(loop);
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, [containerWidth, pitch, singleSetWidth, totalItems, cardWidth, isHovered, isMobile]);
+
+  // Pointer & Drag Handlers
+  const handlePointerDown = (e: React.PointerEvent) => {
+    isPointerDownRef.current = true;
+    lastPointerXRef.current = e.clientX;
+    setIsDragging(true);
+    if (containerRef.current) {
+      containerRef.current.setPointerCapture(e.pointerId);
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isPointerDownRef.current) return;
+    const deltaX = e.clientX - lastPointerXRef.current;
+    lastPointerXRef.current = e.clientX;
+    offsetRef.current += deltaX;
+    velocityRef.current = deltaX * 0.85; // Transfer momentum to fling
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    isPointerDownRef.current = false;
+    setIsDragging(false);
+    if (containerRef.current) {
+      try {
+        containerRef.current.releasePointerCapture(e.pointerId);
+      } catch {
+        // Pointer capture was already released
+      }
+    }
+  };
+
   return (
-    <section className="pt-12 sm:pt-16 pb-10 sm:pb-14 bg-white border-b border-[#E1E7E6]">
+    <section className="pt-14 sm:pt-18 pb-14 sm:pb-20 bg-white border-b border-[#E1E7E6] overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +253,7 @@ export default function StatsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "50px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-black text-[#111827] font-heading tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111827] font-heading tracking-tight"
           >
             What makes Reforbs <span className="text-[#007A7A]">different</span>
           </motion.h2>
@@ -80,61 +263,117 @@ export default function StatsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-[#4A524F] text-sm sm:text-base mt-2 font-medium"
+            className="text-[#4A524F] text-sm sm:text-base mt-2.5 font-medium leading-relaxed"
           >
             Where most coliving spaces market security and restrictions, we focus on ownership, freedom, and deep human connection.
           </motion.p>
         </div>
+      </div>
 
-        {/* 4 Luxury Animated Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {differenceItems.map((item, idx) => {
+      {/* Decorative Interactive Annotation Header */}
+      <div className="relative w-full overflow-hidden select-none">
+        <div className="flex flex-wrap items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 mb-6">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#007A7A] animate-pulse" />
+            <span className="text-xs font-black tracking-widest uppercase text-[#007A7A] font-heading">
+              Cylindrical Curved Experience
+            </span>
+            <span className="text-gray-300 hidden sm:inline">•</span>
+            <span className="text-gray-500 text-xs font-medium hidden sm:inline">
+              Drag, swipe or let it auto-drift
+            </span>
+          </div>
+
+          {/* Drag Hint Pill with arrows */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAFAFA] border border-[#E1E7E6] text-[#111827] text-xs font-extrabold shadow-sm">
+            <MoveLeft size={13} className="text-[#007A7A]" />
+            <span>Drag or Swipe to Fling</span>
+            <MoveRight size={13} className="text-[#007A7A]" />
+          </div>
+        </div>
+
+        {/* 3D Cylindrical Curved Carousel Track */}
+        <div
+          ref={containerRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className={`relative w-full ${
+            isMobile ? "h-[450px]" : "h-[490px]"
+          } cursor-grab active:cursor-grabbing overflow-visible touch-pan-y`}
+          style={{ perspective: "1100px" }}
+          aria-label="Cylindrical interactive carousel of The Reforbs Difference"
+        >
+          {LOOP_CARDS.map((item, idx) => {
             const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "50px" }}
-                transition={{
-                  duration: 0.55,
-                  delay: idx * 0.1,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={`group relative rounded-3xl p-7 text-white bg-gradient-to-br ${item.gradient} shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between overflow-hidden border border-white/15`}
-              >
-                {/* Ambient Glow */}
-                <div className="absolute -top-16 -right-16 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-700" />
 
-                <div>
-                  {/* Top Monogram and Number Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#FFDE59] group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 shadow-md">
-                      <Icon size={24} />
+            return (
+              <div
+                key={`${item.id}-${idx}`}
+                data-card-idx={idx}
+                className="absolute top-0 left-0 w-[260px] md:w-[310px] will-change-transform"
+                style={{
+                  transformStyle: "preserve-3d",
+                  backfaceVisibility: "hidden",
+                }}
+              >
+                <div
+                  className={`relative rounded-3xl p-6 text-white bg-gradient-to-br ${item.gradient} shadow-2xl overflow-hidden border border-white/20 select-none flex flex-col justify-between h-[420px] md:h-[450px] transition-shadow duration-300 hover:shadow-glow`}
+                >
+                  {/* Subtle Ambient Radial Glow */}
+                  <div className="absolute -top-20 -right-20 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+
+                  <div>
+                    {/* Top Real Photo Frame (3:2 Ratio) */}
+                    <div className="relative h-40 sm:h-44 w-full rounded-2xl overflow-hidden shadow-lg bg-black/40 border border-white/20 mb-4 shrink-0">
+                      <Image
+                        src={item.image}
+                        alt={item.label}
+                        fill
+                        sizes="310px"
+                        draggable={false}
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+                      {/* Monogram Icon & Number Badges */}
+                      <div className="absolute top-2.5 left-2.5 w-9 h-9 rounded-xl bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#FFDE59] shadow-sm">
+                        <Icon size={18} />
+                      </div>
+
+                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[10px] font-black tracking-wider text-white">
+                        {item.number}
+                      </div>
+
+                      <div className="absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white shadow-sm">
+                        {item.tag1}
+                      </div>
                     </div>
-                    <span className="text-[11px] font-black tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/15 text-white/90 backdrop-blur-sm border border-white/20">
-                      {item.number}
-                    </span>
+
+                    {/* Headline */}
+                    <h3 className="text-xl sm:text-2xl font-black text-white font-heading tracking-tight mb-2">
+                      {item.label}
+                    </h3>
+
+                    {/* Subline */}
+                    <p className="text-xs sm:text-sm text-white/85 leading-relaxed font-medium line-clamp-3">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl font-black text-white font-heading tracking-tight mb-2.5 group-hover:text-[#FFDE59] transition-colors">
-                    {item.label}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
-                    {item.description}
-                  </p>
+                  {/* Highlights tag bar */}
+                  <div className="pt-3.5 border-t border-white/15 flex items-center justify-between text-[11px] font-bold text-white/90">
+                    <span className="text-white/70">{item.tag1}</span>
+                    <span className="text-[#FFDE59] font-extrabold flex items-center gap-1">
+                      <Check size={12} className="text-[#FFDE59]" />
+                      <span>{item.tag2}</span>
+                    </span>
+                  </div>
                 </div>
-
-                {/* Bottom Stats / Highlights Bar */}
-                <div className="pt-4 mt-6 border-t border-white/15 flex items-center justify-between text-[11px] font-bold text-white/90">
-                  <span className="text-white/70">{item.tag1}</span>
-                  <span className="text-[#FFDE59] font-extrabold flex items-center gap-1">
-                    <Check size={12} className="text-[#FFDE59]" />
-                    <span>{item.tag2}</span>
-                  </span>
-                </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
