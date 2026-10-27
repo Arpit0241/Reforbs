@@ -289,16 +289,16 @@ export default function FeaturedProperties() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: "100px" }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto my-5"
+            className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto mt-4 mb-6 md:my-5"
           />
 
-          {/* View Mode Switcher: Interactive Map vs Cards Grid */}
+          {/* View Mode Switcher: Interactive Map vs Cards Grid (Hidden on mobile per prompt; preserved on tablet & desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "100px" }}
             transition={{ duration: 0.4, delay: 0.35 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
+            className="hidden md:flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
           >
             {/* View Mode Toggle Pill */}
             <div className="inline-flex items-center p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm">

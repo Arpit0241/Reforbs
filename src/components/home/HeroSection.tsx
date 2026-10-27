@@ -30,7 +30,7 @@ export default function HeroSection() {
   const [activePill, setActivePill] = useState(0);
 
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[85vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
+    <section className="relative min-h-[580px] sm:min-h-[640px] lg:min-h-[85vh] flex flex-col justify-start lg:justify-center pt-16 sm:pt-20 lg:py-24 pb-8 sm:pb-12 lg:pb-20 overflow-hidden bg-[#0D1110]">
       {/* Mobile-Specific Hero Background Photograph (User-supplied authentic 9:16 portrait image) */}
       <div className="lg:hidden absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
@@ -39,14 +39,14 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center transform scale-[1.01]"
+          className="object-cover object-[center_28%] sm:object-center transform scale-[1.01]"
           quality={92}
         />
 
         {/* Subtle, Fresh Dark Teal Gradient Overlay for Mobile (Keeps daylight, brightness & fresh lifestyle colors) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1110]/60 via-transparent to-[#0D1110]/75 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110]/80 via-[#0A1A18]/25 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.12)_0%,_rgba(13,17,16,0.45)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1110]/70 via-transparent to-[#0D1110]/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110]/85 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.1)_0%,_rgba(13,17,16,0.35)_100%)] pointer-events-none" />
       </div>
 
       {/* Desktop-Specific Full-Width Hero Background Photograph (Preserved exactly as requested) */}
@@ -70,7 +70,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/55 backdrop-blur-md border border-white/25 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-3 sm:mb-5 shadow-lg max-w-full">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/55 backdrop-blur-md border border-white/25 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-2.5 sm:mb-4 shadow-lg max-w-full">
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
             <span className="text-white">Reforbs Living</span>
             <span className="text-white/40">•</span>
@@ -80,7 +80,7 @@ export default function HeroSection() {
           </div>
 
           {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-4 sm:mb-6 font-heading drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
+          <h1 className="text-[26px] sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.15] mb-2 sm:mb-4 font-heading drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
             <span className="relative inline-block text-[#FFDE59]">
@@ -106,16 +106,16 @@ export default function HeroSection() {
             Curated student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
           </p>
 
-          {/* Mobile-Only Explore Spaces CTA Button (~86% width, 56px height) */}
-          <div className="flex items-center justify-center mb-5 sm:mb-6 lg:hidden">
+          {/* Mobile-Only Compact & Lower Explore Spaces CTA Button (~86% width, 60-64px height) */}
+          <div className="mt-6 sm:mt-7 mb-4 flex items-center justify-center lg:hidden">
             <a
               href="#properties"
-              className="w-[86%] max-w-sm h-14 min-h-[56px] px-6 rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-extrabold text-sm shadow-xl hover:shadow-glow active:scale-95 inline-flex items-center justify-center gap-2.5 transition-all duration-200"
+              className="w-[86%] max-w-[420px] min-h-[60px] sm:min-h-[64px] px-6 rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-extrabold text-[17px] sm:text-[18px] shadow-xl hover:shadow-glow active:scale-95 inline-flex items-center justify-center gap-2.5 transition-all duration-200"
               aria-label="Explore Reforbs Spaces"
             >
-              <Search size={16} className="shrink-0" />
-              <span>Explore Spaces (5)</span>
-              <ArrowDown size={14} className="text-[#FFDE59] animate-bounce shrink-0" />
+              <Search size={22} className="shrink-0" />
+              <span className="tracking-tight">Explore Spaces (5)</span>
+              <ArrowDown size={18} className="text-[#FFDE59] animate-bounce shrink-0" />
             </a>
           </div>
 
