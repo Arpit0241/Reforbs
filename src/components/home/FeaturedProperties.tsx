@@ -14,6 +14,9 @@ import {
   Star,
   Sparkles,
   LayoutGrid,
+  Search,
+  X,
+  RotateCcw,
   Wifi,
   Tv,
   Laptop,
@@ -205,14 +208,35 @@ export const propertiesData: PropertyItem[] = [
 export default function FeaturedProperties() {
   const [viewMode, setViewMode] = useState<"map" | "grid">("map");
   const [activeTab, setActiveTab] = useState<"all" | "student" | "coliving">("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [maxPrice, setMaxPrice] = useState(25000);
   const [activePhotoMap, setActivePhotoMap] = useState<{ [id: string]: string }>({});
 
-  const filtered =
-    activeTab === "all"
-      ? propertiesData
-      : activeTab === "student"
-      ? propertiesData.filter((p) => p.category === "Student Housing")
-      : propertiesData.filter((p) => p.category === "Co-Living");
+  const filtered = propertiesData.filter((p) => {
+    // Category filter
+    if (activeTab === "student" && p.category !== "Student Housing") return false;
+    if (activeTab === "coliving" && p.category !== "Co-Living") return false;
+
+    // Search query filter
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      const match =
+        p.name.toLowerCase().includes(q) ||
+        p.subLocation.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.outcome.toLowerCase().includes(q) ||
+        p.highlights.some((h) => h.toLowerCase().includes(q));
+      if (!match) return false;
+    }
+
+    // Price filter
+    if (maxPrice < 25000) {
+      const numeric = parseInt((p.priceDouble || p.stat1Value).replace(/[^0-9]/g, ""), 10) || 0;
+      if (numeric > maxPrice) return false;
+    }
+
+    return true;
+  });
 
   const setPhoto = (propId: string, img: string) => {
     setActivePhotoMap((prev) => ({ ...prev, [propId]: img }));
@@ -306,46 +330,138 @@ export default function FeaturedProperties() {
             </div>
           </motion.div>
 
-          {/* Stanza-style Category Switcher (shown when in grid mode) */}
+          {/* Unified Property Discovery Controls (shown when in grid mode) */}
           {viewMode === "grid" && (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 p-1.5 bg-white rounded-full border border-[#E1E7E6] shadow-sm max-w-full overflow-x-auto no-scrollbar mb-4"
+              className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E1E7E6] shadow-sm mb-6 max-w-4xl mx-auto text-left"
             >
-              <button
-                onClick={() => setActiveTab("all")}
-                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all whitespace-nowrap active:scale-95 ${
-                  activeTab === "all"
-                    ? "bg-[#007A7A] text-white shadow-sm"
-                    : "text-[#666B68] hover:text-[#007A7A]"
-                }`}
-              >
-                All Properties ({propertiesData.length})
-              </button>
-              <button
-                onClick={() => setActiveTab("student")}
-                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
-                  activeTab === "student"
-                    ? "bg-[#007A7A] text-white shadow-sm"
-                    : "text-[#666B68] hover:text-[#007A7A]"
-                }`}
-              >
-                <GraduationCap size={15} />
-                <span>Student Housing (2)</span>
-              </button>
-              <button
-                onClick={() => setActiveTab("coliving")}
-                className={`min-h-[44px] px-5 py-2.5 rounded-full text-xs font-extrabold transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
-                  activeTab === "coliving"
-                    ? "bg-[#007A7A] text-white shadow-sm"
-                    : "text-[#666B68] hover:text-[#007A7A]"
-                }`}
-              >
-                <Building2 size={15} />
-                <span>Co-Living (3)</span>
-              </button>
+              {/* Category Filter Tabs & Search Row */}
+              <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
+                  <button
+                    onClick={() => setActiveTab("all")}
+                    className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all whitespace-nowrap active:scale-95 ${
+                      activeTab === "all"
+                        ? "bg-[#007A7A] text-white shadow-sm"
+                        : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                    }`}
+                  >
+                    All Properties ({propertiesData.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("student")}
+                    className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                      activeTab === "student"
+                        ? "bg-[#007A7A] text-white shadow-sm"
+                        : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                    }`}
+                  >
+                    <GraduationCap size={15} />
+                    <span>Student Housing (2)</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("coliving")}
+                    className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                      activeTab === "coliving"
+                        ? "bg-[#007A7A] text-white shadow-sm"
+                        : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                    }`}
+                  >
+                    <Building2 size={15} />
+                    <span>Co-Living (3)</span>
+                  </button>
+                </div>
+
+                {/* Quick Search & Price Filter */}
+                <div className="flex items-center gap-2">
+                  <div className="relative flex-1 sm:w-64">
+                    <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B7280]" />
+                    <input
+                      type="text"
+                      placeholder="Search SLS, SCMS, park..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full min-h-[44px] pl-9 pr-8 py-2 text-xs font-bold rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] focus:outline-none focus:border-[#007A7A] focus:ring-2 focus:ring-[#007A7A]/20"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        <X size={14} />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <select
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(Number(e.target.value))}
+                      className="min-h-[44px] px-3.5 py-2 text-xs font-black rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] text-[#111827] focus:outline-none focus:border-[#007A7A] cursor-pointer"
+                      aria-label="Filter by maximum price"
+                    >
+                      <option value={25000}>Max Price: Any</option>
+                      <option value={12500}>Under ₹12,500/mo</option>
+                      <option value={14000}>Under ₹14,000/mo</option>
+                      <option value={15000}>Under ₹15,000/mo</option>
+                    </select>
+                  </div>
+
+                  {(activeTab !== "all" || maxPrice < 25000 || searchQuery) && (
+                    <button
+                      onClick={() => {
+                        setActiveTab("all");
+                        setSearchQuery("");
+                        setMaxPrice(25000);
+                      }}
+                      className="min-h-[44px] px-3 py-2 rounded-2xl bg-[#FEE2E2] hover:bg-[#FECACA] text-[#DC2626] font-black text-xs flex items-center gap-1 transition-all"
+                      title="Reset all filters"
+                    >
+                      <RotateCcw size={13} />
+                      <span className="hidden sm:inline">Reset</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Nearby Campus & Micro-Market Chips */}
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-3 mt-3 border-t border-[#F3F4F6]">
+                <span className="text-[10px] font-black uppercase text-[#6B7280] shrink-0 mr-1">Nearby:</span>
+                {[
+                  { label: "All Areas", query: "" },
+                  { label: "Opp. Symbiosis SLS", query: "SLS" },
+                  { label: "Near SCMS Campus", query: "SCMS" },
+                  { label: "Sanjay Park", query: "Sanjay Park" },
+                  { label: "Sakore Nagar", query: "Sakore" },
+                  { label: "Clover Park", query: "Clover" },
+                ].map((chip, idx) => {
+                  const isActive = searchQuery === chip.query || (!searchQuery && chip.query === "");
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSearchQuery(chip.query)}
+                      className={`min-h-[32px] px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-all active:scale-95 ${
+                        isActive
+                          ? "bg-[#007A7A] text-white shadow-xs"
+                          : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                      }`}
+                    >
+                      {chip.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Results count */}
+              <div className="flex items-center justify-between text-xs text-[#6B7280] font-bold pt-2.5 mt-2.5 border-t border-[#F3F4F6]">
+                <span>
+                  Showing <strong className="text-[#111827]">{filtered.length}</strong> of {propertiesData.length} Reforbs Residences in Viman Nagar
+                </span>
+              </div>
             </motion.div>
           )}
         </div>

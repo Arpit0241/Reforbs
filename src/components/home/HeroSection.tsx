@@ -10,6 +10,7 @@ import {
   GraduationCap,
   Compass,
   CheckCircle2,
+  ArrowDown,
 } from "lucide-react";
 
 const communityPills = [
@@ -46,7 +47,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] lg:min-h-[92vh] flex items-center justify-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-[#0D1110]">
+    <section className="relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[92vh] flex items-center justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 lg:py-24 overflow-hidden bg-[#0D1110]">
       {/* Full-Width Hero Background Photograph Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
@@ -64,11 +65,11 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.18)_0%,_rgba(13,17,16,0.65)_100%)] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2 sm:pt-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-5 sm:mb-6 shadow-lg max-w-full">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-4 sm:mb-6 shadow-lg max-w-full">
+            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
             <span className="text-white">Reforbs Living</span>
             <span className="text-white/40">•</span>
             <span>Viman Nagar, Pune</span>
@@ -77,13 +78,13 @@ export default function HeroSection() {
           </div>
 
           {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] mb-8 sm:mb-10 font-heading drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-3 sm:mb-5 font-heading drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
             <span className="relative inline-block text-[#FFDE59]">
               experience
               <svg
-                className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[#007A7A]"
+                className="absolute -bottom-1.5 sm:-bottom-3 left-0 w-full h-2.5 sm:h-4 text-[#007A7A]"
                 viewBox="0 0 250 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,17 +98,47 @@ export default function HeroSection() {
             </span>{" "}
             to cherish.
           </h1>
+
+          {/* Short Supporting Description (Keeps mobile hero airy, legible, and uncrowded) */}
+          <p className="text-xs sm:text-base text-white/85 font-medium max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed drop-shadow-sm">
+            Curated student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
+          </p>
+
+          {/* Mobile-Only Compact Scroll / Explore CTA Button */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 lg:hidden">
+            <a
+              href="#properties"
+              className="btn-teal w-full sm:w-auto min-h-[46px] py-3 px-8 rounded-2xl justify-center font-extrabold text-xs sm:text-sm shadow-xl active:scale-95 inline-flex items-center gap-2"
+            >
+              <Search size={15} />
+              <span>Explore Spaces (5)</span>
+              <ArrowDown size={14} className="text-[#FFDE59] animate-bounce" />
+            </a>
+          </div>
+
+          {/* Mobile-Only Feature Highlights Line */}
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-white/80 font-bold lg:hidden mb-2">
+            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+              ✓ Zero Lock-in
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+              ✓ Private Balconies
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+              ✓ No Mess Fees
+            </span>
+          </div>
         </div>
 
-        {/* Stanza Living-Style Modern Search & Quick Filter Component (Centerpiece) */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-white/80">
+        {/* Desktop-Only Large Search & Quick Filter Component (Preserved intact for desktop) */}
+        <div className="hidden lg:block max-w-4xl mx-auto bg-white rounded-3xl p-7 shadow-2xl border border-white/80 mt-8">
           {/* Top Category Tab Pills */}
           <div className="flex items-center justify-between gap-3 border-b border-[#E1E7E6] pb-4 mb-5 overflow-x-auto no-scrollbar">
-            <div className="flex items-center gap-2 shrink-0 sm:flex-wrap">
+            <div className="flex items-center gap-2 shrink-0 flex-wrap">
               <button
                 type="button"
                 onClick={() => setActiveCategory("all")}
-                className={`min-h-[44px] px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
+                className={`min-h-[44px] px-4 py-2.5 rounded-2xl text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "all"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -119,7 +150,7 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("student")}
-                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
+                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "student"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -127,7 +158,7 @@ export default function HeroSection() {
               >
                 <GraduationCap size={16} className={activeCategory === "student" ? "text-white" : "text-[#007A7A]"} />
                 <span>Student Housing</span>
-                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold hidden sm:inline">
+                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold">
                   Near SLS &amp; SCMS
                 </span>
               </button>
@@ -135,7 +166,7 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("coliving")}
-                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
+                className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-black transition-all whitespace-nowrap active:scale-95 ${
                   activeCategory === "coliving"
                     ? "bg-[#007A7A] text-white shadow-sm"
                     : "text-[#666B68] hover:bg-[#F1F4F4]"
@@ -143,22 +174,22 @@ export default function HeroSection() {
               >
                 <Building2 size={16} className={activeCategory === "coliving" ? "text-white" : "text-[#007A7A]"} />
                 <span>Co-Living</span>
-                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold hidden sm:inline">
+                <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-bold">
                   Working Pros
                 </span>
               </button>
             </div>
 
-            <div className="hidden lg:flex items-center gap-2 text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3.5 py-1.5 rounded-full shrink-0">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3.5 py-1.5 rounded-full shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#007A7A] animate-ping" />
               <span>Immediate Move-In Ready</span>
             </div>
           </div>
 
           {/* Form Filter Row */}
-          <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+          <form onSubmit={handleSearchSubmit} className="grid grid-cols-12 gap-3 items-center">
             {/* Target Locality Dropdown */}
-            <div className="sm:col-span-5 bg-[#F1F4F4] rounded-2xl p-3 px-4 border border-[#E1E7E6]">
+            <div className="col-span-5 bg-[#F1F4F4] rounded-2xl p-3 px-4 border border-[#E1E7E6]">
               <label className="block text-[10px] font-black uppercase tracking-wider text-[#666B68] mb-0.5">
                 City &amp; Micro-Market
               </label>
@@ -167,7 +198,7 @@ export default function HeroSection() {
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="bg-transparent w-full text-base sm:text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
+                  className="bg-transparent w-full text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
                   aria-label="Select micro-market in Pune"
                 >
                   <option value="all">Viman Nagar, Pune (All Hubs)</option>
@@ -180,7 +211,7 @@ export default function HeroSection() {
             </div>
 
             {/* Landmark / College Dropdown */}
-            <div className="sm:col-span-4 bg-[#F1F4F4] rounded-2xl p-3 px-4 border border-[#E1E7E6]">
+            <div className="col-span-4 bg-[#F1F4F4] rounded-2xl p-3 px-4 border border-[#E1E7E6]">
               <label className="block text-[10px] font-black uppercase tracking-wider text-[#666B68] mb-0.5">
                 College or Corporate Hub
               </label>
@@ -189,7 +220,7 @@ export default function HeroSection() {
                 <select
                   value={selectedHub}
                   onChange={(e) => setSelectedHub(e.target.value)}
-                  className="bg-transparent w-full text-base sm:text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
+                  className="bg-transparent w-full text-sm font-bold text-[#1B1D1C] focus:outline-none cursor-pointer"
                   aria-label="Select college or corporate hub"
                 >
                   <option value="all">Symbiosis Law School (SLS)</option>
@@ -202,7 +233,7 @@ export default function HeroSection() {
             </div>
 
             {/* Explore Spaces Button */}
-            <div className="sm:col-span-3">
+            <div className="col-span-3">
               <button
                 type="submit"
                 className="btn-teal w-full min-h-[48px] py-3.5 rounded-2xl justify-center font-extrabold text-sm shadow-md active:scale-98"
@@ -254,8 +285,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Community Highlight Category Pills */}
-        <div className="mt-8 flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
+        {/* Desktop-Only Community Highlight Category Pills */}
+        <div className="hidden lg:flex mt-8 items-center justify-center gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
           {communityPills.map((pill, idx) => (
             <button
               key={idx}

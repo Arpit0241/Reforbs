@@ -206,8 +206,37 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
           </div>
         </div>
 
+        {/* Popular Campus & Micro-Market Quick Filter Chips */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-3 mt-3 border-t border-[#F3F4F6]">
+          <span className="text-[10px] font-black uppercase text-[#6B7280] shrink-0 mr-1">Nearby:</span>
+          {[
+            { label: "All Areas", query: "" },
+            { label: "Opp. Symbiosis SLS", query: "SLS" },
+            { label: "Near SCMS Campus", query: "SCMS" },
+            { label: "Sanjay Park", query: "Sanjay Park" },
+            { label: "Sakore Nagar", query: "Sakore" },
+            { label: "Clover Park", query: "Clover" },
+          ].map((chip, idx) => {
+            const isActive = filters.searchQuery === chip.query || (!filters.searchQuery && chip.query === "");
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setFilter("searchQuery", chip.query)}
+                className={`min-h-[32px] px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-all active:scale-95 ${
+                  isActive
+                    ? "bg-[#007A7A] text-white shadow-xs"
+                    : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                }`}
+              >
+                {chip.label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Results summary line */}
-        <div className="flex items-center justify-between text-xs text-[#6B7280] font-bold pt-3 mt-3 border-t border-[#F3F4F6]">
+        <div className="flex items-center justify-between text-xs text-[#6B7280] font-bold pt-2.5 mt-2.5 border-t border-[#F3F4F6]">
           <span>
             Showing <strong className="text-[#111827]">{listings.length}</strong> of {allListings.length} Reforbs Residences in Viman Nagar
           </span>
