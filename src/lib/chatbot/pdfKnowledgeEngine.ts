@@ -10,8 +10,10 @@ import {
   PDF_WORKER_PATH,
   VERIFIED_PDF_PASSAGES,
   KnowledgeItem,
+  STOP_WORDS,
+  SYNONYM_GROUPS,
 } from "./knowledgeConfig";
-import { detectCustomerIntent } from "./intentDetector";
+import { detectCustomerIntent, cleanInputText } from "./intentDetector";
 import { validateAndGenerateResponse } from "./evidenceValidator";
 
 export interface SearchResult {
@@ -95,12 +97,84 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
 }
 
 /**
+ * Deterministic Semantic Passage Matcher
+ * Scores candidate passages using weighted token overlap, exact phrases, and domain synonyms.
+ */
+export function matchPassageDeterministically(rawQuery: string): SearchResult | null {
+  const normalized = cleanInputText(rawQuery);
+  const words = normalized.split(/\s+/).filter((w) => w.length > 2 && !STOP_WORDS.has(w));
+
+  if (words.length === 0) return null;
+
+  // Expand with synonyms
+  const expandedTerms = new Set<string>(words);
+  for (const word of words) {
+    for (const group of Object.values(SYNONYM_GROUPS)) {
+      if (group.some((term) => term === word || term.includes(word))) {
+        for (const term of group) {
+          if (term.length > 2 && !STOP_WORDS.has(term)) {
+            expandedTerms.add(term);
+          }
+        }
+      }
+    }
+  }
+
+  let bestPassage: KnowledgeItem | null = null;
+  let bestScore = 0;
+
+  for (const passage of VERIFIED_PDF_PASSAGES) {
+    let score = 0;
+    const qLower = (passage.question || "").toLowerCase();
+    const sLower = passage.section.toLowerCase();
+    const cLower = passage.content.toLowerCase();
+
+    // Exact phrase match bonus
+    if (
+      normalized.length > 5 &&
+      (qLower.includes(normalized) ||
+        passage.searchTerms.some((st) => normalized.includes(st) || st.includes(normalized)))
+    ) {
+      score += 25;
+    }
+
+    for (const term of Array.from(expandedTerms)) {
+      if (qLower.includes(term)) score += 8;
+      if (passage.searchTerms.some((st) => st.includes(term))) score += 6;
+      if (sLower.includes(term)) score += 3;
+      if (cLower.includes(term)) score += 1.5;
+    }
+
+    score *= passage.priorityWeight || 1.0;
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestPassage = passage;
+    }
+  }
+
+  // Threshold to avoid false positive matching on single generic word
+  if (bestPassage && bestScore >= 16) {
+    return {
+      text: bestPassage.content,
+      pageNumber: bestPassage.pageNumber,
+      sourceLabel: `Source: Reforbs Knowledge Base v3, page ${bestPassage.pageNumber}`,
+      confidence: Math.min(30, Math.round(bestScore)),
+      isFallback: false,
+    };
+  }
+
+  return null;
+}
+
+/**
  * Core Deterministic Search Function
  * Executes the multi-stage question-processing pipeline:
  * 1. Normalize query
  * 2. Intent detection & entity extraction
  * 3. Evidence validation against knowledge base
- * 4. Intent-specific response generation
+ * 4. Deterministic passage retrieval fallback
+ * 5. Intent-specific response generation
  */
 export async function searchKnowledgePDF(rawQuery: string): Promise<SearchResult> {
   const query = rawQuery.trim();
@@ -120,8 +194,17 @@ export async function searchKnowledgePDF(rawQuery: string): Promise<SearchResult
   // Stage 1 & 2: Intent detection and entity extraction
   const intentAnalysis = detectCustomerIntent(query);
 
-  // Stage 3 & 4: Evidence validation and response generation
-  const result = validateAndGenerateResponse(query, intentAnalysis);
+  // If a specific, recognized intent was detected, use validateAndGenerateResponse
+  if (intentAnalysis.intent !== "GENERAL_INQUIRY") {
+    return validateAndGenerateResponse(query, intentAnalysis);
+  }
 
-  return result;
+  // Stage 3: Deterministic Passage Retrieval for GENERAL_INQUIRY
+  const passageResult = matchPassageDeterministically(query);
+  if (passageResult) {
+    return passageResult;
+  }
+
+  // Stage 4: Honest fallback if no knowledge base passage matched
+  return validateAndGenerateResponse(query, intentAnalysis);
 }

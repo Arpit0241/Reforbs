@@ -125,6 +125,73 @@ export function validateAndGenerateResponse(
     }
 
     // -------------------------------------------------------------------------
+    // 5b. IIHM (International Institute of Hotel Management) Distance
+    // -------------------------------------------------------------------------
+    case "IIHM_DISTANCE": {
+      return {
+        text:
+          `For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to IIHM (near Phoenix Marketcity) is 2.4 km (around a 15-minute drive).\n\n` +
+          `Please note that this is an approximate estimate and travel time depends on traffic. Call ${CONTACT_PHONE} for commute guidance.`,
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 5c. Christ College Wadgaon Sheri Distance
+    // -------------------------------------------------------------------------
+    case "CHRIST_COLLEGE_DISTANCE": {
+      return {
+        text:
+          `For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to Christ College (Wadgaon Sheri) is 6.3 km (around a 20-minute drive).\n\n` +
+          `Route and traffic may vary. For assistance, contact management at ${CONTACT_PHONE}.`,
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 5d. Corporate Hubs & IT Parks
+    // -------------------------------------------------------------------------
+    case "CORPORATE_HUBS": {
+      return {
+        text:
+          `Reforbs properties in Viman Nagar are situated near major business hubs:\n` +
+          `• Weikfield IT Citi Info Park\n` +
+          `• Solitaire Business Hub\n` +
+          `• Sky Vista\n` +
+          `• Nyati Unitree\n\n` +
+          `The supplied notes mention companies such as PTC Software, WNS Global Services, and SA Technologies in relation to these commercial areas. For assistance choosing a property near your workplace, call ${CONTACT_PHONE}.`,
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 5e. Ramwadi Metro & Phoenix Marketcity
+    // -------------------------------------------------------------------------
+    case "METRO_STATION": {
+      return {
+        text:
+          `Nearby transit and landmark references in the knowledge base include:\n` +
+          `• Ramwadi Metro Station for metro connectivity\n` +
+          `• Phoenix Marketcity Pune for shopping and dining\n` +
+          `• Sanjay Park and the Air Force Station area\n\n` +
+          `Please confirm current route and journey times before travel by calling ${CONTACT_PHONE}.`,
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 6. Which ReForbs properties are in Viman Nagar?
     // -------------------------------------------------------------------------
     case "VIMAN_NAGAR_PROPERTIES": {
@@ -169,6 +236,22 @@ export function validateAndGenerateResponse(
         text:
           `A security deposit is required before move-in according to the supplied notes, but the exact amount, refund conditions, deduction rules, and refund timeline were not provided in the knowledge base.\n\n` +
           `Please confirm the current written terms with management at ${CONTACT_PHONE} before paying.`,
+        pageNumber: 4,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 8b. Discounts and Offers
+    // -------------------------------------------------------------------------
+    case "DISCOUNTS_OFFERS": {
+      recordKnowledgeGap("DISCOUNTS_OFFERS", rawQuery);
+      return {
+        text:
+          `No confirmed discount rules or current offers were provided in the knowledge base.\n\n` +
+          `Please ask management at ${CONTACT_PHONE} about any active student, corporate, seasonal, or long-stay offers.`,
         pageNumber: 4,
         sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
         confidence: 30.0,
@@ -318,6 +401,21 @@ export function validateAndGenerateResponse(
     }
 
     // -------------------------------------------------------------------------
+    // 17b. Student PG vs Co-Living
+    // -------------------------------------------------------------------------
+    case "STUDENT_OR_COLIVING": {
+      return {
+        text:
+          `ReForbs offers both a student-PG and co-living proposition for students and working professionals in Pune.\n\n` +
+          `Specific properties cater to each need (e.g., Shubh Gateway and Sakore Nagar for student housing; Moksha, Vipasana, Shubh Nirvana, and Sanjay Park for co-living). Confirm the exact property's category and eligibility by calling ${CONTACT_PHONE}.`,
+        pageNumber: 3,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3 & 5",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 18. CCTV & Security
     // -------------------------------------------------------------------------
     case "CCTV_SECURITY": {
@@ -333,6 +431,21 @@ export function validateAndGenerateResponse(
     }
 
     // -------------------------------------------------------------------------
+    // 18b. Cleanliness and Housekeeping
+    // -------------------------------------------------------------------------
+    case "CLEANLINESS_HOUSEKEEPING": {
+      return {
+        text:
+          `Housekeeping and periodic cleaning of common spaces are mentioned in the knowledge base.\n\n` +
+          `The exact schedule, room-cleaning scope, and standards for each property were not provided; confirm with management at ${CONTACT_PHONE}.`,
+        pageNumber: 8,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 19. Maintenance Resolution Speed
     // -------------------------------------------------------------------------
     case "MAINTENANCE_SPEED": {
@@ -340,6 +453,51 @@ export function validateAndGenerateResponse(
         text:
           `The supplied notes mention regular maintenance and day-to-day support, but no guaranteed response time or ticket resolution timeline was provided in the knowledge base.\n\n` +
           `Please contact the property management team at ${CONTACT_PHONE} to report an issue and confirm response arrangements.`,
+        pageNumber: 8,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 19b. Visitors & Overnight Guests
+    // -------------------------------------------------------------------------
+    case "VISITORS_GUESTS": {
+      return {
+        text:
+          `The public website describes a social/community environment and says residents can invite friends over, but formal visitor hours and overnight-guest rules were not provided in the knowledge base.\n\n` +
+          `Please confirm the current policy for the selected property at ${CONTACT_PHONE}.`,
+        pageNumber: 8,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 19c. Curfew Rules
+    // -------------------------------------------------------------------------
+    case "CURFEW_RULES": {
+      return {
+        text:
+          `No specific curfew or gate-closing entry restrictions were supplied in the notes.\n\n` +
+          `Contact management at ${CONTACT_PHONE} to confirm current house rules for your preferred property.`,
+        pageNumber: 8,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 19d. Pets, Smoking, and Alcohol
+    // -------------------------------------------------------------------------
+    case "PETS_SMOKING_ALCOHOL": {
+      return {
+        text:
+          `The supplied information does not confirm whether pets, smoking, or alcohol are permitted.\n\n` +
+          `Please ask management at ${CONTACT_PHONE} for the current property-specific policy.`,
         pageNumber: 8,
         sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
         confidence: 30.0,
@@ -371,6 +529,21 @@ export function validateAndGenerateResponse(
         text:
           `The supplied notes mention Aadhaar, PAN, and a student ID or employment letter as possible requirements for lease processing and verification.\n\n` +
           `Please confirm exactly which documents apply to you and your chosen property with management at ${CONTACT_PHONE}.`,
+        pageNumber: 7,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 21b. Payment Safety & In-Chat Booking Payments
+    // -------------------------------------------------------------------------
+    case "PAYMENT_SAFETY": {
+      return {
+        text:
+          `Payment safety note: The chatbot must never claim that a payment, reservation, or site visit has been completed, and it cannot process online payments or ask for banking details.\n\n` +
+          `All booking confirmations, visits, and payments are handled securely and directly with property management at ${CONTACT_PHONE}.`,
         pageNumber: 7,
         sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
         confidence: 30.0,
@@ -474,6 +647,51 @@ export function validateAndGenerateResponse(
         pageNumber: 2,
         sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
         confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 27b. AC Amenity
+    // -------------------------------------------------------------------------
+    case "AC_AMENITY": {
+      return {
+        text:
+          `AC is mentioned in the supplied notes as a premium amenity.\n\n` +
+          `Please confirm whether AC is available in your selected room and whether its use is included in the rent or billed separately by contacting management at ${CONTACT_PHONE}.`,
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 27c. TV Amenity
+    // -------------------------------------------------------------------------
+    case "TV_AMENITY": {
+      return {
+        text:
+          `TV and common media setups are mentioned in the knowledge base.\n\n` +
+          `It is not claimed to exist in every individual room; please confirm common vs. private room TV setup for your chosen property with management at ${CONTACT_PHONE}.`,
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 27d. Work Desks & Study Tables
+    // -------------------------------------------------------------------------
+    case "WORK_DESK_AMENITY": {
+      return {
+        text:
+          `Work desks and study workspaces are mentioned in the knowledge base.\n\n` +
+          `Property- and room-specific desk availability should be confirmed with management at ${CONTACT_PHONE}.`,
+        pageNumber: 6,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
+        confidence: 30.0,
         isFallback: false,
       };
     }

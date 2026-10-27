@@ -31,7 +31,7 @@ export const RECOMMENDED_FALLBACK =
   "I want to make sure you get the exact, up-to-date details for that! Please give our team a quick call at 7420040241—our team is in Viman Nagar, Pune and will be delighted to assist you directly.";
 
 export const OFF_TOPIC_FALLBACK =
-  "I'm dedicated to helping you with Reforbs accommodation, properties, and living experiences in Pune. If you'd like to explore our rooms, check amenities, or plan a visit, just let me know or call us at 7420040241!";
+  "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, and living in Pune. If you have any questions about our spaces in Viman Nagar or would like to schedule a visit, feel free to ask or call us at 7420040241!";
 
 export const PDF_LOAD_ERROR_MESSAGE =
   "We're having trouble loading our local knowledge document. Please call our team directly at 7420040241 for instant assistance.";
@@ -40,7 +40,7 @@ export const QUICK_QUESTIONS = [
   "Explore our properties",
   "What amenities are provided?",
   "How far is Pune Airport?",
-  "How can I contact Reforbs?",
+  "Google Maps location link",
 ];
 
 /**
@@ -179,6 +179,7 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "hygiene",
     "maintenance",
     "room cleaning",
+    "cleanliness",
   ],
   laundry: [
     "laundry",
@@ -264,6 +265,7 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "near me",
     "map",
     "google maps",
+    "maps link",
   ],
   airport: [
     "airport",
@@ -444,7 +446,7 @@ export const PROPERTY_NAMES = [
 
 /**
  * Curated Verified Ground Truth Passages from reforbs_knowledge_base_v3.pdf
- * Exactly maps each section, page number, and FAQ from Pages 1-8.
+ * Completely models all 10 pages and every FAQ / table entry.
  */
 export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
   // Page 1: Overview & Primary Address
@@ -468,6 +470,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "phone",
       "7420040241",
       "google maps",
+      "map link",
     ],
     isFAQ: true,
     priorityWeight: 2.5,
@@ -497,9 +500,94 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "nyati unitree",
       "drive time",
       "distance",
+      "ptc software",
+      "wns global services",
+      "sa technologies",
+      "air force station",
     ],
     isFAQ: false,
     priorityWeight: 2.2,
+  },
+
+  // Page 2: IIHM Specific
+  {
+    id: "p2-iihm-commute",
+    pageNumber: 2,
+    section: "Location and nearby landmarks",
+    question: "How far is IIHM (International Institute of Hotel Management)?",
+    content:
+      "For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to IIHM (near Phoenix Marketcity) is 2.4 km (around a 15-minute drive). Please note that this is an approximate estimate and travel time depends on traffic. Call 7420040241 for commute guidance.",
+    searchTerms: [
+      "iihm",
+      "hotel management",
+      "international institute of hotel management",
+      "how far is iihm",
+      "distance to iihm",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.2,
+  },
+
+  // Page 2: Christ College Specific
+  {
+    id: "p2-christ-college-commute",
+    pageNumber: 2,
+    section: "Location and nearby landmarks",
+    question: "How far is Christ College, Wadgaon Sheri?",
+    content:
+      "For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to Christ College (Wadgaon Sheri) is 6.3 km (around a 20-minute drive). Route and traffic may vary. For assistance, contact management at 7420040241.",
+    searchTerms: [
+      "christ college",
+      "wadgaon sheri",
+      "how far is christ college",
+      "distance to christ college",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.2,
+  },
+
+  // Page 2: Corporate Hubs Specific
+  {
+    id: "p2-corporate-hubs",
+    pageNumber: 2,
+    section: "Location and nearby landmarks",
+    question: "What corporate offices and IT parks are near ReForbs?",
+    content:
+      "Reforbs properties in Viman Nagar are situated near major business hubs:\n• Weikfield IT Citi Info Park\n• Solitaire Business Hub\n• Sky Vista\n• Nyati Unitree\n\nThe supplied notes mention companies such as PTC Software, WNS Global Services, and SA Technologies in relation to these commercial areas. For assistance choosing a property near your workplace, call 7420040241.",
+    searchTerms: [
+      "corporate",
+      "it park",
+      "weikfield",
+      "solitaire",
+      "sky vista",
+      "nyati unitree",
+      "ptc software",
+      "wns",
+      "sa technologies",
+      "offices nearby",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.1,
+  },
+
+  // Page 2: Ramwadi Metro & Phoenix Marketcity
+  {
+    id: "p2-metro-landmarks",
+    pageNumber: 2,
+    section: "Location and nearby landmarks",
+    question: "Where is the nearest metro station and shopping mall?",
+    content:
+      "Nearby transit and landmark references in the knowledge base include:\n• Ramwadi Metro Station for metro connectivity\n• Phoenix Marketcity Pune for shopping and dining\n• Sanjay Park and the Air Force Station area\n\nPlease confirm the best route and journey times before travel by calling 7420040241.",
+    searchTerms: [
+      "metro",
+      "ramwadi metro",
+      "ramwadi metro station",
+      "phoenix marketcity",
+      "mall",
+      "shopping mall",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.1,
   },
 
   // Page 3: Property Directory & Accommodation Type
@@ -613,16 +701,17 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Rent, deposit and other charges",
     question: "Are discounts available?",
     content:
-      "No confirmed discount rules or current offers were provided. Ask management about any active student, corporate, seasonal, or long-stay offers.",
+      "No confirmed discount rules or current offers were provided. Ask management at 7420040241 about any active student, corporate, seasonal, or long-stay offers.",
     searchTerms: [
       "discount",
       "offer",
       "student discount",
       "corporate offer",
       "promotion",
+      "are discounts available",
     ],
     isFAQ: true,
-    priorityWeight: 1.8,
+    priorityWeight: 2.0,
   },
 
   // Page 5: Room Types, Occupancy and Eligibility FAQs
@@ -638,9 +727,10 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "student accommodation",
       "coliving",
       "working professionals",
+      "is it a student pg or co-living",
     ],
     isFAQ: true,
-    priorityWeight: 1.9,
+    priorityWeight: 2.0,
   },
   {
     id: "p5-faq-single-double",
@@ -756,7 +846,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "what furniture is provided",
     ],
     isFAQ: true,
-    priorityWeight: 1.9,
+    priorityWeight: 2.1,
   },
 
   // Page 6: Amenities, Utilities and Food FAQs
@@ -800,6 +890,51 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     isFAQ: true,
     priorityWeight: 2.5,
   },
+  {
+    id: "p6-ac-guidance",
+    pageNumber: 6,
+    section: "Amenities, utilities and food",
+    question: "Is AC available?",
+    content:
+      "AC is mentioned in the supplied notes as a premium amenity. Confirm whether AC is available in the selected room and whether its use is included in the rent or billed separately by contacting management at 7420040241.",
+    searchTerms: [
+      "ac",
+      "air conditioning",
+      "air conditioner",
+      "cooling",
+      "is ac available",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.2,
+  },
+  {
+    id: "p6-tv-guidance",
+    pageNumber: 6,
+    section: "Amenities, utilities and food",
+    question: "Is TV provided?",
+    content:
+      "TV and common media setups are mentioned in the knowledge base. It is not claimed to exist in every individual room; confirm common vs. private setup for your room with management at 7420040241.",
+    searchTerms: ["tv", "television", "media", "screen", "is tv provided"],
+    isFAQ: true,
+    priorityWeight: 2.1,
+  },
+  {
+    id: "p6-workdesk-guidance",
+    pageNumber: 6,
+    section: "Amenities, utilities and food",
+    question: "Are work desks provided?",
+    content:
+      "Work desks and study workspaces are mentioned in the knowledge base. Property- and room-specific availability should be confirmed with management at 7420040241.",
+    searchTerms: [
+      "work desk",
+      "study desk",
+      "study table",
+      "workspace",
+      "are work desks provided",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.1,
+  },
 
   // Page 7: Booking, Documents and Stay Terms FAQs
   {
@@ -833,9 +968,10 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "reserve",
       "reservation",
       "how to book",
+      "how can i book a room",
     ],
     isFAQ: true,
-    priorityWeight: 2.1,
+    priorityWeight: 2.2,
   },
   {
     id: "p7-faq-documents",
@@ -843,7 +979,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, documents and stay terms",
     question: "What documents are required?",
     content:
-      "The supplied notes mention Aadhaar, PAN, and a student ID or employment letter as possible requirements for lease processing. Confirm exactly which documents apply to the customer and chosen property with management.",
+      "The supplied notes mention Aadhaar, PAN, and a student ID or employment letter as possible requirements for lease processing. Confirm exactly which documents apply to the customer and chosen property with management at 7420040241.",
     searchTerms: [
       "documents",
       "id",
@@ -889,9 +1025,10 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "refund",
       "early exit",
       "deposit refund",
+      "what is the cancellation policy",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.2,
   },
   {
     id: "p7-faq-move-in-immediately",
@@ -910,6 +1047,23 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     ],
     isFAQ: true,
     priorityWeight: 2.4,
+  },
+  {
+    id: "p7-payment-safety",
+    pageNumber: 7,
+    section: "Booking, documents and stay terms",
+    question: "Can I make a payment or book directly through this chat?",
+    content:
+      "Payment safety note: The chatbot must never claim that a payment, reservation, or site visit has been completed. It should not ask customers to send payment details into the chat. All booking confirmations and payments are handled securely and directly with management at 7420040241.",
+    searchTerms: [
+      "payment safety",
+      "pay online",
+      "payment in chat",
+      "pay deposit",
+      "send money",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.1,
   },
 
   // Page 8: Safety, House Rules, Maintenance & Contact FAQs
@@ -937,15 +1091,16 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Safety, house rules and maintenance",
     question: "Is the property clean?",
     content:
-      "Housekeeping and periodic cleaning of common spaces are mentioned. The exact schedule, room-cleaning scope, and standards for each property were not provided; confirm with management.",
+      "Housekeeping and periodic cleaning of common spaces are mentioned. The exact schedule, room-cleaning scope, and standards for each property were not provided; confirm with management at 7420040241.",
     searchTerms: [
       "clean",
       "cleanliness",
       "housekeeping",
       "bathroom cleaning",
+      "is the property clean",
     ],
     isFAQ: true,
-    priorityWeight: 1.9,
+    priorityWeight: 2.0,
   },
   {
     id: "p8-faq-maintenance",
@@ -972,16 +1127,17 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Safety, house rules and maintenance",
     question: "Are visitors and overnight guests allowed?",
     content:
-      "The public website describes a social/community environment and says residents can invite friends over, but formal visitor hours and overnight-guest rules were not provided. Confirm the current policy for the selected property.",
+      "The public website describes a social/community environment and says residents can invite friends over, but formal visitor hours and overnight-guest rules were not provided. Confirm the current policy for the selected property at 7420040241.",
     searchTerms: [
       "visitors",
       "guests",
       "friends",
       "overnight",
       "visiting hours",
+      "are visitors allowed",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.1,
   },
   {
     id: "p8-faq-curfew",
@@ -989,15 +1145,16 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Safety, house rules and maintenance",
     question: "Are there curfew rules?",
     content:
-      "No specific curfew or entry-time restrictions were supplied. Contact management to confirm current house rules.",
+      "No specific curfew or entry-time restrictions were supplied in the notes. Contact management at 7420040241 to confirm current house rules.",
     searchTerms: [
       "curfew",
       "gate closing",
       "entry time",
       "late night",
+      "are there curfew rules",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.1,
   },
   {
     id: "p8-faq-pets-smoking",
@@ -1005,7 +1162,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Safety, house rules and maintenance",
     question: "Are pets, smoking, or alcohol allowed?",
     content:
-      "The supplied information does not confirm these rules. Ask management for the current property-specific policy.",
+      "The supplied information does not confirm these rules. Ask management at 7420040241 for the current property-specific policy.",
     searchTerms: [
       "pets",
       "dog",
@@ -1013,9 +1170,10 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
       "smoking",
       "alcohol",
       "house rules",
+      "are pets allowed",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.1,
   },
   {
     id: "p8-faq-contact",

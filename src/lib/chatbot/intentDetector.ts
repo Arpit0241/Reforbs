@@ -13,6 +13,10 @@ export type CustomerIntent =
   | "AIRPORT_DISTANCE"
   | "NEAREST_AIRPORT"
   | "SLS_DISTANCE"
+  | "IIHM_DISTANCE"
+  | "CHRIST_COLLEGE_DISTANCE"
+  | "CORPORATE_HUBS"
+  | "METRO_STATION"
   | "VIMAN_NAGAR_PROPERTIES"
   | "NEAREST_LOCATION"
   | "UNSPECIFIED_COLLEGE"
@@ -20,23 +24,33 @@ export type CustomerIntent =
   | "CHEAPEST_PRICE_COMPARISON"
   | "RENT_PRICING"
   | "SECURITY_DEPOSIT"
+  | "DISCOUNTS_OFFERS"
   | "RENT_INCLUSIONS_WIFI_WATER"
   | "ELECTRICITY_INCLUSION"
   | "FOOD_INCLUSIONS"
   | "COOK_FOOD"
+  | "STUDENT_OR_COLIVING"
   | "OCCUPANCY_SINGLE_DOUBLE"
   | "PEOPLE_PER_ROOM"
   | "PEOPLE_PER_PG"
   | "COUPLES_POLICY"
   | "CO_ED_POLICY"
   | "CCTV_SECURITY"
+  | "CLEANLINESS_HOUSEKEEPING"
   | "MAINTENANCE_SPEED"
+  | "VISITORS_GUESTS"
+  | "CURFEW_RULES"
+  | "PETS_SMOKING_ALCOHOL"
   | "VISIT_BEFORE_BOOKING"
   | "DOCUMENTS_REQUIRED"
   | "AVAILABILITY_VACANCIES"
   | "MINIMUM_STAY_LEASE"
   | "CANCELLATION_REFUND"
+  | "PAYMENT_SAFETY"
   | "AMENITIES"
+  | "AC_AMENITY"
+  | "TV_AMENITY"
+  | "WORK_DESK_AMENITY"
   | "FURNITURE_INVENTORY"
   | "RULES_RESTRICTIONS"
   | "PROPERTY_SPECIFIC"
@@ -283,6 +297,71 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
+  // 4b. IIHM (International Institute of Hotel Management) Distance
+  // e.g. "How far is IIHM?"
+  // -------------------------------------------------------------
+  if (
+    /\biihm\b/.test(normalized) ||
+    /\bhotel\s+management\b/.test(normalized) ||
+    /\binternational\s+institute\s+of\s+hotel\s+management\b/.test(normalized)
+  ) {
+    return {
+      intent: "IIHM_DISTANCE",
+      confidence: 0.99,
+      entities,
+      matchedPattern: "iihm distance pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 4c. Christ College Wadgaon Sheri Distance
+  // e.g. "How far is Christ College?"
+  // -------------------------------------------------------------
+  if (
+    /\bchrist\s+college\b/.test(normalized) ||
+    /\bwadgaon\s+sheri\b/.test(normalized)
+  ) {
+    return {
+      intent: "CHRIST_COLLEGE_DISTANCE",
+      confidence: 0.99,
+      entities,
+      matchedPattern: "christ college distance pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 4d. Corporate Hubs & IT Parks
+  // e.g. "What IT parks are nearby?" / "Weikfield" / "Solitaire" / "Sky Vista" / "Nyati Unitree"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:weikfield|solitaire|sky\s+vista|nyati\s+unitree|ptc\s+software|wns|sa\s+technologies)\b/.test(normalized) ||
+    /\b(?:it\s+parks?|corporate\s+(?:hubs?|offices?|parks?)|tech\s+parks?)\b/.test(normalized)
+  ) {
+    return {
+      intent: "CORPORATE_HUBS",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "corporate hubs pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 4e. Metro & Landmarks (Ramwadi Metro / Phoenix Marketcity)
+  // e.g. "Where is the nearest metro station?" / "Ramwadi metro"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:ramwadi|metro\s+station|phoenix\s+marketcity|phoenix\s+mall)\b/.test(normalized) ||
+    (/\bmetro\b/.test(normalized) && /\b(?:station|connectivity|stop|line)\b/.test(normalized))
+  ) {
+    return {
+      intent: "METRO_STATION",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "metro and landmark transit pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
   // 5. Which ReForbs properties are in Viman Nagar?
   // -------------------------------------------------------------
   if (
@@ -308,13 +387,10 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\b(?:are|do\s+you\s+allow)\s+couples?\b/,
     /\bunmarried\s+couples?\b/,
     /\bcouples?\s+(?:allowed|stay|policy|accommodation)\b/,
-    /\b(?:can|do)\s+(?:two|2)\s+(?:people|persons|students)\s+(?:live|stay|share)\s+(?:(?:in\s+)?(?:one|a)\s+room|together)\b/,
-    /\b(?:can\s+)?(?:two|2)\s+(?:people|persons)\s+share\b/,
-    /\bshare\s+(?:one|a)\s+room\b/,
-    /\bsharing\s+a\s+room\b/,
     /\bcohabitation\b/,
     /\blive\s+with\s+my\s+boyfriend\b/,
     /\blive\s+with\s+my\s+girlfriend\b/,
+    /\bstay\s+with\s+(?:my\s+)?(?:boyfriend|girlfriend|partner)\b/,
   ];
 
   if (couplesPatterns.some((pattern) => pattern.test(normalized))) {
@@ -354,6 +430,10 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\boccupancy\s+per\s+room\b/,
     /\bpeople\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:one\s+|a\s+)?room\b/,
     /\bhow\s+many\s+persons?\s+in\s+(?:one|a)\s+room\b/,
+    /\b(?:can|do)\s+(?:two|2)\s+(?:people|persons|students)\s+(?:live|stay|share)\s+(?:(?:in\s+)?(?:one|a)\s+room)\b/,
+    /\b(?:can\s+)?(?:two|2)\s+(?:people|persons)\s+share\s+(?:a\s+|one\s+)?room\b/,
+    /\bshare\s+(?:one|a)\s+room\b/,
+    /\bsharing\s+a\s+room\b/,
   ];
 
   if (roomCapacityPatterns.some((pattern) => pattern.test(normalized))) {
@@ -399,6 +479,24 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
+  // 8b. Student PG vs Co-Living
+  // e.g. "Is it a student PG or co-living?"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:student\s+pg\s+or\s+co-?living|co-?living\s+or\s+student\s+pg)\b/.test(normalized) ||
+    /\bis\s+(?:it|reforbs)\s+a\s+student\s+pg\b/.test(normalized) ||
+    /\bwho\s+can\s+stay\b/.test(normalized) ||
+    /\bworking\s+professionals\s+or\s+students\b/.test(normalized)
+  ) {
+    return {
+      intent: "STUDENT_OR_COLIVING",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "student pg or coliving pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
   // 9. CCTV / Security Arrangements
   // e.g. "Is CCTV available?"
   // -------------------------------------------------------------
@@ -417,6 +515,25 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
+  // 9b. Cleanliness and Housekeeping
+  // e.g. "Is the property clean?" / "housekeeping schedule"
+  // -------------------------------------------------------------
+  if (
+    /\bis\s+(?:the\s+)?(?:property|room|pg)\s+clean\b/.test(normalized) ||
+    /\bcleanliness\b/.test(normalized) ||
+    /\bhow\s+often\s+is\s+cleaning\b/.test(normalized) ||
+    /\bcleaning\s+(?:schedule|frequency)\b/.test(normalized) ||
+    /\bhousekeeping\b/.test(normalized)
+  ) {
+    return {
+      intent: "CLEANLINESS_HOUSEKEEPING",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "cleanliness and housekeeping pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
   // 10. Maintenance Speed / Issue Resolution
   // e.g. "How quickly are maintenance issues resolved?"
   // -------------------------------------------------------------
@@ -430,6 +547,64 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
       confidence: 0.98,
       entities,
       matchedPattern: "maintenance speed pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 10b. Visitors and Overnight Guests
+  // e.g. "Are visitors allowed?" / "can my friends visit"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:are\s+)?(?:visitors?|guests?|friends?)\s+allowed\b/.test(normalized) ||
+    /\bcan\s+(?:my\s+)?friends?\s+visit\b/.test(normalized) ||
+    /\bovernight\s+guests?\b/.test(normalized) ||
+    /\bvisiting\s+hours\b/.test(normalized) ||
+    /\bcan\s+(?:family|parents)\s+visit\b/.test(normalized)
+  ) {
+    return {
+      intent: "VISITORS_GUESTS",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "visitors and overnight guests pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 10c. Curfew and Gate Closing Rules
+  // e.g. "Are there curfew rules?" / "gate closing time"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:is\s+there\s+(?:a\s+)?)?curfew\b/.test(normalized) ||
+    /\bgate\s+clos(?:e|ing|es)\b/.test(normalized) ||
+    /\btime\s+does\s+the\s+gate\s+close\b/.test(normalized) ||
+    /\bentry\s+time\b/.test(normalized) ||
+    /\blate\s+(?:night\s+)?entry\b/.test(normalized)
+  ) {
+    return {
+      intent: "CURFEW_RULES",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "curfew rules pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 10d. Pets, Smoking, and Alcohol Rules
+  // e.g. "Are pets allowed?" / "is smoking allowed"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:are\s+)?pets?\s+allowed\b/.test(normalized) ||
+    /\b(?:dogs?|cats?|puppy|kitten)\b/.test(normalized) ||
+    /\b(?:is\s+|can\s+i\s+)?smok(?:e|ing)\b/.test(normalized) ||
+    /\b(?:is\s+|can\s+i\s+)?(?:drink\s+)?alcohol\b/.test(normalized) ||
+    /\bdrinking\b/.test(normalized) ||
+    /\bliquor\b/.test(normalized)
+  ) {
+    return {
+      intent: "PETS_SMOKING_ALCOHOL",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "pets smoking alcohol pattern",
     };
   }
 
@@ -464,6 +639,25 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
       confidence: 0.98,
       entities,
       matchedPattern: "documents required pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 12b. Payment Safety & Online Payments in Chat
+  // e.g. "Can I pay in chat?" / "Can I make a payment online?"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:can\s+i\s+)?(?:make\s+a\s+)?pay(?:ment)?\s+(?:in\s+(?:this\s+)?chat|here|online|through\s+(?:this\s+)?chat)\b/.test(normalized) ||
+    /\bpay(?:ment)?\s+(?:in|through)\s+(?:this\s+)?chat\b/.test(normalized) ||
+    /\bmake\s+a\s+payment\b/.test(normalized) ||
+    /\bpay\s+(?:online|deposit|rent\s+online)\b/.test(normalized) ||
+    /\bsend\s+money\b/.test(normalized)
+  ) {
+    return {
+      intent: "PAYMENT_SAFETY",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "payment safety in chat pattern",
     };
   }
 
@@ -519,16 +713,34 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
 
   // "Is electricity included?"
   if (
-    /\bis\s+electricity\s+included\b/.test(normalized) ||
-    /\belectricity\s+charges?\b/.test(normalized) ||
+    /\belectric(?:ity)?\s+(?:bill|charges?|included)\b/.test(normalized) ||
+    /\b(?:is\s+)?electricity\s+included\b/.test(normalized) ||
+    /\bpay\s+electricity\b/.test(normalized) ||
     /\belectric\s+bill\b/.test(normalized) ||
-    /\bis\s+power\s+bill\s+included\b/.test(normalized)
+    /\bpower\s+bill\b/.test(normalized) ||
+    /\bsub-?metered\b/.test(normalized)
   ) {
     return {
       intent: "ELECTRICITY_INCLUSION",
       confidence: 0.98,
       entities,
       matchedPattern: "electricity inclusion pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 14b. Discounts and Offers
+  // e.g. "Are discounts available?" / "student discount"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:discounts?|offers?|promotions?|deals?)\b/.test(normalized) ||
+    /\bany\s+discount\b/.test(normalized)
+  ) {
+    return {
+      intent: "DISCOUNTS_OFFERS",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "discounts and offers pattern",
     };
   }
 
@@ -696,6 +908,58 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
+  // 21b. AC Amenity
+  // e.g. "Is AC available?" / "air conditioner"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:is\s+)?ac\s+(?:available|provided|included)\b/.test(normalized) ||
+    /\bair\s+condition(?:er|ing)?\b/.test(normalized) ||
+    /\bdo\s+rooms\s+have\s+ac\b/.test(normalized)
+  ) {
+    return {
+      intent: "AC_AMENITY",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "ac amenity pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 21c. TV / Media Amenity
+  // e.g. "Is TV provided?" / "television"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:is\s+)?tv\s+(?:available|provided|included)\b/.test(normalized) ||
+    /\btelevision\b/.test(normalized) ||
+    /\bdo\s+rooms\s+have\s+(?:a\s+)?tv\b/.test(normalized)
+  ) {
+    return {
+      intent: "TV_AMENITY",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "tv amenity pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 21d. Work Desks & Study Tables
+  // e.g. "Are work desks provided?" / "study tables"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:are\s+)?work\s+desks?\b/.test(normalized) ||
+    /\bstudy\s+(?:tables?|desks?)\b/.test(normalized) ||
+    /\bworkspace\b/.test(normalized) ||
+    /\bdesk\s+and\s+chair\b/.test(normalized)
+  ) {
+    return {
+      intent: "WORK_DESK_AMENITY",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "work desk amenity pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
   // 22. General Amenities Inquiry
   // e.g. "What amenities are provided?"
   // -------------------------------------------------------------
@@ -792,6 +1056,24 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
       confidence: 0.92,
       entities,
       matchedPattern: "properties directory pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 28b. Difference from Hostel / Traditional PG
+  // e.g. "How is Reforbs different from a hostel?"
+  // -------------------------------------------------------------
+  if (
+    /\b(?:how\s+is\s+reforbs\s+)?different\s+(?:from|than)\s+(?:a\s+)?(?:hostel|pg|standard\s+hostel|traditional\s+pg)\b/.test(normalized) ||
+    /\bwhy\s+(?:choose\s+)?reforbs\s+(?:over|instead\s+of)\s+(?:a\s+)?(?:hostel|pg)\b/.test(normalized) ||
+    /\bdifference\s+between\s+reforbs\s+and\s+(?:a\s+)?(?:hostel|pg)\b/.test(normalized) ||
+    /\bdifferent\s+from\s+(?:a\s+)?hostel\b/.test(normalized)
+  ) {
+    return {
+      intent: "DIFFERENCE_FROM_HOSTEL",
+      confidence: 0.98,
+      entities,
+      matchedPattern: "difference from hostel pattern",
     };
   }
 
