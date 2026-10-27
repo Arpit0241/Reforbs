@@ -1,7 +1,7 @@
 /**
  * Reforbs Customer Support Knowledge Configuration
- * Ground truth from: reforbs_knowledge_base.pdf (public/knowledge/reforbs-knowledge.pdf)
- * Phrased as a friendly, professional, and hospitable Reforbs Concierge Agent.
+ * Ground truth from: reforbs_knowledge_base_v3.pdf (public/knowledge/reforbs-knowledge.pdf)
+ * Deterministic Browser-Only Retrieval Configuration (v3.0 - Owner information update)
  */
 
 export interface KnowledgeItem {
@@ -16,17 +16,19 @@ export interface KnowledgeItem {
   priorityWeight?: number;
 }
 
-export const KNOWLEDGE_PDF_PATH = "/knowledge/reforbs-knowledge.pdf";
+export const KNOWLEDGE_PDF_PATH = "/knowledge/reforbs-knowledge.pdf?v=3.0";
 export const PDF_WORKER_PATH = "/pdf.worker.min.js";
 
 export const CONTACT_PHONE = "7420040241";
+export const PRIMARY_ADDRESS = "Sanjay Park, Lane 3, Viman Nagar, Pune, Maharashtra 411032";
+export const GOOGLE_MAPS_LINK = "https://share.google/UomLxgr596c1a1TVf";
 export const LOCATION_SUMMARY = "Viman Nagar, Pune, Maharashtra";
 
 export const WELCOME_MESSAGE =
   "Hi! Welcome to Reforbs. I'm your Reforbs assistant. How can I help you today? Feel free to ask about our properties, amenities, room types, or locations in Pune!";
 
 export const RECOMMENDED_FALLBACK =
-  "I want to make sure you get the exact, up-to-date details for that! Please give our host Arpit a quick call at 7420040241—our team is in Viman Nagar, Pune and will be delighted to assist you directly.";
+  "I want to make sure you get the exact, up-to-date details for that! Please give our team a quick call at 7420040241—our team is in Viman Nagar, Pune and will be delighted to assist you directly.";
 
 export const OFF_TOPIC_FALLBACK =
   "I'm dedicated to helping you with Reforbs accommodation, properties, and living experiences in Pune. If you'd like to explore our rooms, check amenities, or plan a visit, just let me know or call us at 7420040241!";
@@ -37,7 +39,7 @@ export const PDF_LOAD_ERROR_MESSAGE =
 export const QUICK_QUESTIONS = [
   "Explore our properties",
   "What amenities are provided?",
-  "Tell me about Shubh Gateway",
+  "How far is Pune Airport?",
   "How can I contact Reforbs?",
 ];
 
@@ -176,7 +178,7 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "sweeper",
     "hygiene",
     "maintenance",
-    "room service",
+    "room cleaning",
   ],
   laundry: [
     "laundry",
@@ -190,15 +192,22 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
   kitchen: [
     "kitchen",
     "cooking",
-    "private kitchen",
     "cook",
+    "cook my own food",
+    "private kitchen",
+    "shared kitchen",
+    "cooking food",
+  ],
+  food: [
     "food",
     "meals",
     "mess",
+    "meal plan",
     "breakfast",
     "dinner",
     "lunch",
-    "dining",
+    "catered",
+    "tiffin",
   ],
   parking: [
     "parking",
@@ -208,6 +217,22 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "two-wheeler",
     "four-wheeler",
     "garage",
+  ],
+  electricity: [
+    "electricity",
+    "power",
+    "electric bill",
+    "sub-metered",
+    "meter",
+    "power bill",
+    "current",
+    "light bill",
+  ],
+  ac: [
+    "ac",
+    "air conditioner",
+    "air conditioning",
+    "cooling",
   ],
   contact: [
     "contact",
@@ -223,7 +248,6 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "helpline",
     "help desk",
   ],
-  email: ["email", "mail", "email address", "support email", "inbox"],
   location: [
     "location",
     "address",
@@ -233,9 +257,21 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "directions",
     "pune",
     "viman nagar",
+    "sanjay park",
+    "lane 3",
     "area",
     "place",
     "near me",
+    "map",
+    "google maps",
+  ],
+  airport: [
+    "airport",
+    "pune airport",
+    "pune international airport",
+    "flight",
+    "terminal",
+    "pnq",
   ],
   availability: [
     "available",
@@ -251,104 +287,153 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
     "reservation",
     "move in",
     "move-in",
-    "hold room",
+    "tomorrow",
+    "immediately",
   ],
-  single: [
+  occupancy: [
     "single",
-    "single room",
+    "double",
     "single occupancy",
-    "private room",
-    "one person",
-    "room for one",
-    "individual",
-    "privacy",
-    "room sharing",
+    "double occupancy",
     "sharing",
+    "private room",
+    "shared room",
+    "one person",
+    "two people",
+    "roommate",
+    "people in one room",
+    "people can live in one room",
+    "people can live in one pg",
+    "residents per floor",
+    "2bhk",
+    "capacity",
+  ],
+  couples: [
+    "boyfriend",
+    "girlfriend",
+    "couple",
+    "couples",
+    "unmarried couple",
+    "unmarried couples",
+    "partner",
+    "live with my boyfriend",
+    "live with my girlfriend",
+    "live together",
+    "stay with partner",
+  ],
+  gender: [
+    "coed",
+    "co-ed",
+    "unisex",
+    "gender",
+    "men",
+    "women",
+    "male",
+    "female",
+    "mixed",
+  ],
+  security: [
+    "cctv",
+    "security",
+    "safe",
+    "safety",
+    "controlled access",
+    "guards",
+    "surveillance",
+  ],
+  maintenance: [
+    "maintenance",
+    "repair",
+    "complaint",
+    "issue",
+    "broken",
+    "response time",
+    "how quickly",
   ],
   visit: [
     "visit",
     "tour",
     "site visit",
     "viewing",
-    "inspection",
-    "schedule visit",
+    "inspect",
     "see room",
     "walkthrough",
+    "visit before booking",
   ],
   rules: [
     "rules",
     "policy",
-    "restrictions",
     "curfew",
     "gate closing",
     "entry time",
-    "night out",
+    "late night",
     "visitors",
     "guests",
-    "friends",
+    "overnight guests",
     "pets",
     "dog",
     "cat",
     "smoking",
-  ],
-  gender: [
-    "gender",
-    "men",
-    "women",
-    "girls",
-    "boys",
-    "female",
-    "male",
-    "mixed",
-    "coed",
-    "ladies",
-    "gents",
-    "eligibility",
+    "alcohol",
   ],
   documents: [
     "documents",
     "id",
     "aadhaar",
-    "verification",
+    "pan",
+    "student id",
+    "employment letter",
     "kyc",
-    "proof",
-    "passport",
-    "identification",
+    "paperwork",
+    "verification",
   ],
-  difference: [
-    "difference",
-    "unique",
-    "why reforbs",
-    "better",
-    "regular hostel",
-    "standard pg",
-    "special",
-    "hostel comparison",
+  stay_terms: [
+    "minimum stay",
+    "lock in",
+    "lock-in",
+    "notice period",
+    "lease",
+    "contract",
+    "agreement",
+    "tenure",
+    "cancellation",
+    "refund",
   ],
-  student: [
-    "student",
-    "students",
-    "student housing",
+  college: [
     "college",
+    "university",
+    "campus",
     "symbiosis",
     "law school",
     "sls",
     "scms",
+    "sid",
+    "iihm",
+    "christ college",
   ],
-  professional: [
-    "professional",
-    "professionals",
-    "working",
-    "working professional",
-    "corporate",
+  office: [
     "office",
+    "company",
+    "workplace",
+    "it park",
+    "weikfield",
+    "solitaire",
+    "sky vista",
+    "nyati unitree",
+    "ptc",
+    "wns",
+    "sa technologies",
   ],
 };
 
 /**
- * Recognized Named Properties in Reforbs Knowledge Base
+ * Recognized Named Properties in Reforbs Knowledge Base v3
  */
 export const PROPERTY_NAMES = [
+  "reforbs co-living - sanjay park",
+  "reforbs co-living sanjay park",
+  "reforbs co-living",
+  "sanjay park",
   "shubh gateway",
   "reforbs living sakore nagar",
   "sakore nagar",
@@ -358,709 +443,598 @@ export const PROPERTY_NAMES = [
 ];
 
 /**
- * Curated Verified Ground Truth Passages from reforbs-knowledge.pdf
- * Phrased naturally as a professional customer concierge.
+ * Curated Verified Ground Truth Passages from reforbs_knowledge_base_v3.pdf
+ * Exactly maps each section, page number, and FAQ from Pages 1-8.
  */
 export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
-  // Page 2: About Reforbs & Brand Themes
+  // Page 1: Overview & Primary Address
   {
-    id: "p2-about-reforbs",
-    pageNumber: 2,
-    section: "About Reforbs Living",
+    id: "p1-overview-contact",
+    pageNumber: 1,
+    section: "Primary Contact & Overview",
+    question: "What is the primary address and contact for ReForbs?",
     content:
-      "Reforbs provides premium co-living spaces and student housing in Pune for modern working professionals and students. We believe in providing more than just accommodation—it's a home where you can live, study, work, and feel part of a genuine community.\n\nKey highlights of living with Reforbs:\n• Privacy: 100% private single-occupancy rooms—one resident per room\n• Freedom: Zero arbitrary bans, zero lock-ins, and freedom to personalize your space\n• Cooking Freedom: Complete kitchen and dining facilities without forced mess food\n• Daily Comfort: Routine maintenance and day-to-day on-site support\n• Community: Social bonding, shared experiences, and vibrant networking",
+      "Primary address supplied: ReForbs Co-Living, Sanjay Park, Lane 3, Viman Nagar, Pune, Maharashtra 411032.\nGoogle Maps link: https://share.google/UomLxgr596c1a1TVf\nCustomer enquiries: 7420040241.\n\nNote: Details that are explicitly variable, unspecified, or unclear in scope are handled transparently. Do not treat a statement about one property as universal across every ReForbs property.",
     searchTerms: [
-      "about",
-      "reforbs living",
-      "pune",
-      "co-living",
-      "students",
-      "working professionals",
-      "brand themes",
-      "privacy",
-      "freedom",
-      "single occupants",
-    ],
-    isFAQ: false,
-    priorityWeight: 1.2,
-  },
-
-  // Page 3: Location and Contact
-  {
-    id: "p3-contact",
-    pageNumber: 3,
-    section: "Location and contact",
-    question: "How do I contact Reforbs?",
-    content:
-      "You can get in touch with us anytime! Here are our official contact details:\n\n• Phone / WhatsApp: 7420040241\n• Host & Owner: Arpit Agarwal\n• Location: Viman Nagar, Pune, Maharashtra\n• Website: https://reforbs.com/\n\nGive us a call directly at 7420040241 and we'll be happy to help with pricing, viewings, and booking!",
-    searchTerms: [
-      "contact",
-      "phone",
-      "call",
-      "number",
-      "owner",
-      "arpit agarwal",
-      "location",
       "address",
+      "full address",
+      "reforbs co-living",
+      "primary address",
+      "sanjay park",
+      "lane 3",
       "viman nagar",
       "pune",
-      "helpline",
+      "contact",
+      "phone",
+      "7420040241",
+      "google maps",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.5,
   },
 
-  // Page 3: Property Directory
+  // Page 2: Location and Nearby Landmarks (Drive Estimates)
   {
-    id: "p3-properties-overview",
-    pageNumber: 3,
-    section: "Property directory",
-    question: "What properties does Reforbs have?",
+    id: "p2-location-landmarks",
+    pageNumber: 2,
+    section: "Location and nearby landmarks",
+    question: "How far is ReForbs from Pune Airport, Symbiosis, and nearby hubs?",
     content:
-      "We have 5 prime properties across Pune in two categories:\n\nStudent Housing:\n1. Shubh Gateway — Situated directly opposite Symbiosis Law School (SLS)\n2. Reforbs Living Sakore Nagar — Located in Sakore Nagar\n\nCo-Living (Professionals & Students):\n3. Moksha — Viman Nagar, Pune\n4. Vipasana — Viman Nagar, Pune\n5. Shubh Nirvana — Viman Nagar, Pune\n\nAll our properties offer private single-occupancy rooms and benchmark amenities. Which location are you interested in exploring?",
+      "Primary property location supplied: ReForbs Co-Living, Sanjay Park, Lane 3, Viman Nagar, Pune, Maharashtra 411032. Google Maps: https://share.google/UomLxgr596c1a1TVf\n\nApproximate drive estimates supplied with owner answers (for Sanjay Park property):\n• Pune International Airport: ~2.1 km (approx. 11 minutes via New Airport Road / Symbiosis Road; traffic-dependent)\n• Symbiosis Law School, Viman Nagar: ~1.8 km (approx. 10 minutes; route and traffic may vary)\n• International Institute of Hotel Management (IIHM): ~2.4 km (approx. 15 minutes; near Phoenix Marketcity)\n• Christ College, Wadgaon Sheri: ~6.3 km (approx. 20 minutes drive estimate)\n\nOther nearby places & commute references:\n• Education: Symbiosis campuses (SLS, SID, SCMC), Christ College, IIHM Pune\n• Corporate hubs: Weikfield IT Citi Info Park, Solitaire Business Hub, Sky Vista, Nyati Unitree (PTC Software, WNS Global Services, SA Technologies)\n• Transport: Pune International Airport and Ramwadi Metro Station\n• Landmarks: Phoenix Marketcity Pune, Sanjay Park, Air Force Station area\n\nLocation-response rule: For 'Which PG is nearest to Pune Airport?', the approximate 2.1 km / 11-min drive applies to the Sanjay Park property. It must not claim this proves it is the nearest among all ReForbs properties unless comparable verified locations for every property are available. Times are estimates, not guarantees.",
+    searchTerms: [
+      "airport",
+      "pune airport",
+      "how far is reforbs from pune airport",
+      "nearest pg to airport",
+      "symbiosis law school distance",
+      "iihm",
+      "christ college",
+      "ramwadi metro",
+      "phoenix marketcity",
+      "weikfield",
+      "solitaire",
+      "sky vista",
+      "nyati unitree",
+      "drive time",
+      "distance",
+    ],
+    isFAQ: false,
+    priorityWeight: 2.2,
+  },
+
+  // Page 3: Property Directory & Accommodation Type
+  {
+    id: "p3-property-directory",
+    pageNumber: 3,
+    section: "Property directory and accommodation type",
+    question: "What properties does ReForbs have in Pune?",
+    content:
+      "ReForbs is presented as both a student PG option and a premium co-living option for students and working professionals in Pune.\n\nKnown named properties:\n1. Shubh Gateway: Student housing; located opposite Symbiosis Law School (SLS). Full address, property-specific prices, and availability need confirmation.\n2. Reforbs Living Sakore Nagar: Student housing; references Sakore Nagar. Exact street address and current pricing not supplied.\n3. Moksha: Co-living in Viman Nagar. Notes mention a 7-room configuration; scope to be confirmed.\n4. Vipasana: Co-living in Viman Nagar.\n5. Shubh Nirvana: Co-living in Viman Nagar.\n6. ReForbs Co-Living - Sanjay Park: Sanjay Park, Lane 3, Viman Nagar, Pune 411032. Complete address and map link supplied. (Do not automatically treat this address as the address of every named property above).\n\nLayout and capacity details supplied:\n• 2BHK apartment format on each floor\n• Maximum of 3 residents per 2BHK floor (Important: this is not the total capacity of an entire building)\n• Single-occupancy and double-occupancy layouts, depending on room and property\n• Private or shared bathrooms, standard bedding, shared kitchens, common living/dining areas",
     searchTerms: [
       "properties",
       "property directory",
-      "what properties",
-      "all properties",
-      "list of properties",
-      "student housing",
-      "co-living",
+      "which reforbs properties are in viman nagar",
       "shubh gateway",
       "sakore nagar",
       "moksha",
       "vipasana",
       "shubh nirvana",
+      "sanjay park",
+      "2bhk floor",
+      "3 residents per 2bhk floor",
+      "capacity",
+      "total capacity",
     ],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 3: Shubh Gateway
-  {
-    id: "p3-shubh-gateway",
-    pageNumber: 3,
-    section: "Property directory",
-    question: "Tell me about Shubh Gateway / Which Reforbs property is opposite Symbiosis Law School?",
-    content:
-      "Shubh Gateway is our flagship student housing property, located right opposite Symbiosis Law School (SLS) in Pune!\n\nIt features private single-occupancy rooms with study desks, high-speed Wi-Fi, daily housekeeping, and community spaces designed especially for students. If you'd like to check current vacancies or schedule a visit, feel free to call host Arpit at 7420040241!",
-    searchTerms: [
-      "shubh gateway",
-      "symbiosis",
-      "symbiosis law school",
-      "sls",
-      "college",
-      "near college",
-      "student housing",
-    ],
-    propertyNames: ["shubh gateway"],
-    isFAQ: true,
-    priorityWeight: 2.5,
-  },
-
-  // Page 3: Reforbs Living Sakore Nagar
-  {
-    id: "p3-sakore-nagar",
-    pageNumber: 3,
-    section: "Property directory",
-    question: "Do you have housing in Sakore Nagar?",
-    content:
-      "Yes! We have Reforbs Living Sakore Nagar, our dedicated student-housing property in Sakore Nagar, Pune. It offers private single-occupancy rooms, high-speed Wi-Fi, daily cleaning, and full kitchen facilities. Feel free to call us at 7420040241 for directions and current availability.",
-    searchTerms: [
-      "sakore nagar",
-      "reforbs living sakore nagar",
-      "student accommodation",
-      "location",
-      "address",
-    ],
-    propertyNames: ["reforbs living sakore nagar", "sakore nagar"],
-    isFAQ: true,
-    priorityWeight: 2.5,
-  },
-
-  // Page 4: Viman Nagar Co-Living Properties
-  {
-    id: "p4-viman-nagar-coliving",
-    pageNumber: 4,
-    section: "Property directory",
-    question: "Which Reforbs co-living properties are listed in Viman Nagar?",
-    content:
-      "In Viman Nagar, Pune, we offer three premium co-living properties:\n\n• Moksha — Designed for community bonding, comfort, and productivity\n• Vipasana — Peaceful, modern living spaces ideal for focused work and study\n• Shubh Nirvana — Modern designer residences with premium finishes\n\nAll three provide private single rooms, high-speed Wi-Fi, daily housekeeping, and kitchen access. You can call us at 7420040241 to book a walkthrough!",
-    searchTerms: [
-      "viman nagar",
-      "co living",
-      "coliving",
-      "moksha",
-      "vipasana",
-      "shubh nirvana",
-      "pune",
-    ],
-    propertyNames: ["moksha", "vipasana", "shubh nirvana"],
-    isFAQ: true,
+    isFAQ: false,
     priorityWeight: 2.0,
   },
 
-  // Page 4: Amenities and services
+  // Page 4: Rent, Deposit and Charges FAQs
   {
-    id: "p4-amenities-general",
+    id: "p4-faq-rent",
     pageNumber: 4,
-    section: "Amenities and services",
-    question: "What amenities are available?",
+    section: "Rent, deposit and other charges",
+    question: "What is the monthly rent?",
     content:
-      "At Reforbs, everything you need is already included in your stay:\n\n• Free High-Speed Wi-Fi — Seamless internet for study and remote work\n• Daily Cleaning Services — Routine housekeeping and tidy spaces\n• Work Desks — Dedicated study desks in rooms\n• Fully Equipped Kitchen — Complete freedom to cook your own meals\n• Common Living Area — Cozy lounge for relaxing and socializing\n• TV & Media — Entertainment in common spaces\n• Laundry Facilities — On-site washing support\n• Vehicle Parking — Dedicated parking for your vehicles\n\nPlus, all rooms are 100% private single occupancy with zero forced food packages!",
-    searchTerms: [
-      "amenities",
-      "services",
-      "facilities",
-      "features",
-      "included",
-      "wifi",
-      "tv",
-      "work desks",
-      "living area",
-      "kitchen",
-      "daily cleaning",
-      "parking",
-      "laundry",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.5,
-  },
-
-  // Page 4: Wi-Fi FAQ
-  {
-    id: "p4-wifi-faq",
-    pageNumber: 4,
-    section: "Amenities and services",
-    question: "Does Reforbs provide Wi-Fi?",
-    content:
-      "Yes! Free high-speed Wi-Fi is included at all Reforbs properties so you can work, attend lectures, and stream seamlessly without worrying about data caps.",
-    searchTerms: [
-      "wifi",
-      "wi-fi",
-      "internet",
-      "broadband",
-      "wireless",
-      "high-speed",
-      "connectivity",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 4: Cleaning Services FAQ
-  {
-    id: "p4-cleaning-faq",
-    pageNumber: 4,
-    section: "Amenities and services",
-    question: "Are cleaning services included?",
-    content:
-      "Yes, daily cleaning services and regular housekeeping are included in your Reforbs stay to keep your living environment fresh, hygienic, and hassle-free.",
-    searchTerms: [
-      "cleaning",
-      "housekeeping",
-      "maid",
-      "daily cleaning",
-      "sweeping",
-      "hygiene",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 5: Parking FAQ
-  {
-    id: "p5-parking-faq",
-    pageNumber: 5,
-    section: "Amenities and services",
-    question: "Is parking available?",
-    content:
-      "Yes! Dedicated parking is provided for residents' vehicles (two-wheelers and four-wheelers). You can confirm spot availability for your vehicle by calling host Arpit at 7420040241.",
-    searchTerms: [
-      "parking",
-      "car parking",
-      "bike parking",
-      "vehicle",
-      "two wheeler",
-      "four wheeler",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 5: Room Privacy FAQ
-  {
-    id: "p5-rooms-private",
-    pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "Are Reforbs rooms private? / Do you offer single-occupancy rooms?",
-    content:
-      "Yes, absolutely! All rooms at Reforbs are 100% private single-occupancy rooms—one resident per room. You get your own private sanctuary, personal freedom, and complete privacy, alongside access to shared living lounges and kitchen facilities.",
-    searchTerms: [
-      "private room",
-      "single occupancy",
-      "single room",
-      "room sharing",
-      "privacy",
-      "one person",
-      "room for one",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 5: Rent FAQ
-  {
-    id: "p5-rent-faq",
-    pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "What is the rent per month?",
-    content:
-      "Monthly pricing varies depending on the specific property and room layout you choose. For an instant quote and to discuss current seasonal offers, please connect directly with host Arpit at 7420040241—we'll be happy to provide the exact breakdown!",
+      "Rent varies by property/wing and by single- or double-occupancy room type. Exact current prices must be confirmed with the management team at 7420040241.",
     searchTerms: [
       "rent",
       "monthly rent",
-      "price",
-      "pricing",
       "cost",
-      "budget",
-      "charges",
-      "how much",
+      "pricing",
+      "room rate",
+      "single room price",
+      "double occupancy price",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.2,
+  },
+  {
+    id: "p4-faq-cheapest",
+    pageNumber: 4,
+    section: "Rent, deposit and other charges",
+    question: "Which is the cheapest ReForbs PG?",
+    content:
+      "The knowledge base does not contain comparable current prices for all properties, so it cannot reliably identify the cheapest PG. Call 7420040241 and ask for current property-wise rates.",
+    searchTerms: [
+      "cheapest",
+      "lowest rent",
+      "affordable",
+      "budget pg",
+      "under budget",
+      "which is the cheapest pg",
     ],
     isFAQ: true,
     priorityWeight: 2.5,
   },
-
-  // Page 5: Security Deposit FAQ
   {
-    id: "p5-deposit-faq",
-    pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "What is the security deposit?",
+    id: "p4-faq-deposit",
+    pageNumber: 4,
+    section: "Rent, deposit and other charges",
+    question: "How much is the security deposit and is it refundable?",
     content:
-      "Our security deposit structure is straightforward and refundable with zero hidden fees. Please give us a call at 7420040241 and we will share the exact deposit amount and terms for your preferred property.",
+      "A security deposit is required before move-in according to the supplied notes, but the exact amount, refund conditions, deduction rules and timeline were not provided. Confirm the current written terms with management before paying.",
     searchTerms: [
       "deposit",
       "security deposit",
+      "refundable",
       "advance",
-      "refundable deposit",
-      "security amount",
+      "deduction",
+      "refund",
+      "how much is the security deposit",
     ],
     isFAQ: true,
-    priorityWeight: 2.5,
+    priorityWeight: 2.2,
   },
-
-  // Page 5: Booking fees / extra charges
   {
-    id: "p5-charges-faq",
-    pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "Are any booking fees, maintenance charges, or other charges applicable?",
+    id: "p4-faq-extra-charges",
+    pageNumber: 4,
+    section: "Rent, deposit and other charges",
+    question: "Are there extra charges? Are Wi-Fi, water, and electricity included?",
     content:
-      "We believe in transparent pricing with no surprise charges. To get a comprehensive all-inclusive breakdown covering maintenance, utilities, and services for your stay, please contact host Arpit directly at 7420040241.",
+      "The supplied notes say Wi-Fi, water and maintenance are bundled in standard packages, while electricity may be variable or sub-metered. Confirm the precise package, utilities, maintenance, taxes, and any other charges for the chosen room before payment.",
     searchTerms: [
-      "booking fee",
-      "maintenance",
       "extra charges",
       "electricity",
+      "utilities",
       "water",
+      "maintenance",
       "taxes",
-      "utility",
-      "hidden charges",
+      "fees",
+      "wifi and water included",
+      "is electricity included",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.3,
+  },
+  {
+    id: "p4-faq-discounts",
+    pageNumber: 4,
+    section: "Rent, deposit and other charges",
+    question: "Are discounts available?",
+    content:
+      "No confirmed discount rules or current offers were provided. Ask management about any active student, corporate, seasonal, or long-stay offers.",
+    searchTerms: [
+      "discount",
+      "offer",
+      "student discount",
+      "corporate offer",
+      "promotion",
+    ],
+    isFAQ: true,
+    priorityWeight: 1.8,
   },
 
-  // Page 5: Room availability
+  // Page 5: Room Types, Occupancy and Eligibility FAQs
   {
-    id: "p5-availability-faq",
+    id: "p5-faq-student-or-coliving",
     pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "Which rooms are currently available?",
+    section: "Room types, occupancy and eligibility",
+    question: "Is it a student PG or co-living?",
     content:
-      "Our rooms fill up quickly, especially near Symbiosis Law School! Live availability changes regularly, so please call us directly at 7420040241 with your move-in date and we'll check current room vacancies for you immediately.",
+      "ReForbs offers both a student-PG and co-living proposition for students and working professionals. Confirm the exact property's category and eligibility when needed.",
     searchTerms: [
-      "available",
-      "vacancy",
-      "vacant room",
-      "room availability",
-      "move in",
-      "open rooms",
-      "today",
-      "now",
+      "student pg",
+      "student accommodation",
+      "coliving",
+      "working professionals",
+    ],
+    isFAQ: true,
+    priorityWeight: 1.9,
+  },
+  {
+    id: "p5-faq-single-double",
+    pageNumber: 5,
+    section: "Room types, occupancy and eligibility",
+    question: "Are single and double-occupancy rooms available?",
+    content:
+      "The supplied owner information describes both single- and double-occupancy layouts. Options depend on the room and property, so current availability and price must be confirmed.",
+    searchTerms: [
+      "single occupancy",
+      "double occupancy",
+      "sharing",
+      "private room",
+      "shared room",
+      "single or double occupancy",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.4,
+  },
+  {
+    id: "p5-faq-people-per-room",
+    pageNumber: 5,
+    section: "Room types, occupancy and eligibility",
+    question: "How many people can live in one room?",
+    content:
+      "Room capacity depends on the selected room type. The supplied information says single-occupancy and designated double-occupancy options may exist. Confirm the room being discussed before giving a number.",
+    searchTerms: [
+      "one person",
+      "two people",
+      "roommate",
+      "room capacity",
+      "room sharing",
+      "how many people can live in one room",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.4,
+  },
+  {
+    id: "p5-faq-people-per-pg",
+    pageNumber: 5,
+    section: "Room types, occupancy and eligibility",
+    question: "How many people can live in one PG?",
+    content:
+      "The supplied notes describe a maximum of 3 residents per 2BHK floor. This is not the total capacity of an entire property. Ask which property or floor the customer means; if the total building capacity is needed, confirm it with management at 7420040241.",
+    searchTerms: [
+      "pg capacity",
+      "total residents",
+      "number of residents",
+      "people in one pg",
+      "2bhk floor",
+      "how many people can live in one pg",
     ],
     isFAQ: true,
     priorityWeight: 2.5,
   },
-
-  // Page 5: Can I book online?
   {
-    id: "p5-book-online-faq",
+    id: "p5-faq-couples",
     pageNumber: 5,
-    section: "Customer FAQ: rooms, rent, and availability",
-    question: "Can I book a room online?",
+    section: "Room types, occupancy and eligibility",
+    question: "Can I live with my boyfriend/girlfriend? Are unmarried couples allowed?",
     content:
-      "We provide personalized onboarding so you get the exact room and layout that suits you best! Simply connect with host Arpit at 7420040241 to confirm availability, reserve your room, and complete the simple booking steps.",
+      "The supplied information says designated double-occupancy rooms may be available, but it does not confirm the policy for unmarried couples or partner stays. Contact 7420040241 for the current property-specific rule. Do not assume couples are automatically allowed or prohibited.",
     searchTerms: [
-      "book",
-      "booking",
-      "reserve",
-      "reservation",
-      "online booking",
-      "website booking",
+      "boyfriend",
+      "girlfriend",
+      "partner",
+      "couple",
+      "couples",
+      "unmarried couple",
+      "unmarried couples",
+      "overnight guest",
+      "can i live with my boyfriend",
+      "are couples allowed",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.8,
   },
-
-  // Page 6: Schedule a visit
   {
-    id: "p6-visit-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Can I schedule a property visit or room tour?",
+    id: "p5-faq-coed",
+    pageNumber: 5,
+    section: "Room types, occupancy and eligibility",
+    question: "Is the accommodation co-ed/unisex?",
     content:
-      "We'd love to host you for a walkthrough! You can schedule a visit anytime by giving us a quick call at 7420040241. We will arrange a convenient time to show you around the rooms, community lounge, and facilities.",
+      "The supplied notes describe a co-ed/unisex arrangement with segregated apartment wings or flat-sharing configurations intended to support privacy. Confirm the current arrangement and eligibility rules for the specific property.",
     searchTerms: [
-      "visit",
-      "tour",
-      "site visit",
-      "viewing",
-      "inspection",
-      "schedule visit",
-      "see property",
+      "co-ed",
+      "unisex",
+      "men",
+      "women",
+      "male",
+      "female",
+      "gender policy",
+      "is the property co-ed",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.2,
   },
-
-  // Page 6: Minimum stay / lease duration
   {
-    id: "p6-lease-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "How long is the minimum stay or lease?",
+    id: "p5-faq-furniture",
+    pageNumber: 5,
+    section: "Room types, occupancy and eligibility",
+    question: "What furniture is provided?",
     content:
-      "Reforbs is designed around ownership and freedom with zero lock-in restrictions! For specific stay tenures and flexible lease durations, please reach out directly to host Arpit at 7420040241.",
+      "The supplied notes mention standard bedding, furnished apartment-style layouts, common living/dining areas, and kitchens. A complete room-by-room furniture and appliance inventory was not supplied; confirm the selected property.",
     searchTerms: [
-      "lease",
-      "minimum stay",
-      "lock in",
-      "tenure",
-      "notice period",
-      "long stay",
-      "short stay",
-      "duration",
+      "bed",
+      "mattress",
+      "wardrobe",
+      "furnished",
+      "furniture",
+      "appliances",
+      "bathroom",
+      "what furniture is provided",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 1.9,
   },
 
-  // Page 6: Food / meal plan
+  // Page 6: Amenities, Utilities and Food FAQs
   {
-    id: "p6-food-faq",
+    id: "p6-faq-food",
     pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Is food or a meal plan included?",
+    section: "Amenities, utilities and food",
+    question: "Is food included in rent? Can I cook my own food?",
     content:
-      "We believe in cooking freedom! Unlike traditional hostels with rigid mess food, all Reforbs spaces feature kitchen and dining facilities where you can cook what you love at your own pace. For residents looking for meal delivery or local tiffins, our team is happy to recommend trusted local services.",
+      "The supplied owner information says standard rent does not include fully catered daily meals. Kitchen facilities are available for residents to cook. Confirm any optional meal plan or food arrangement with management at 7420040241.",
     searchTerms: [
       "food",
       "meals",
       "mess",
       "meal plan",
+      "cooking",
       "breakfast",
       "lunch",
       "dinner",
-      "cooking",
+      "is food included",
+      "can i cook my own food",
     ],
     isFAQ: true,
-    priorityWeight: 2.2,
+    priorityWeight: 2.5,
   },
-
-  // Page 6: Furnished accommodation
   {
-    id: "p6-furnished-faq",
+    id: "p6-faq-amenities-included",
     pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Is the accommodation furnished?",
+    section: "Amenities, utilities and food",
+    question: "What amenities are included in the rent?",
     content:
-      "Yes! Our spaces feature thoughtfully designed interiors, comfortable beds, study and work desks, and wardrobe storage. If you want to check the specific inventory and setup for a particular room, please call host Arpit at 7420040241.",
+      "The general amenity list includes high-speed Wi-Fi, TV/media, work desks, living area, kitchen, housekeeping, parking and laundry. The supplied notes say Wi-Fi, water and maintenance are bundled in standard packages, but exact inclusions and other charges must be confirmed for the selected property.",
     searchTerms: [
-      "furnished",
-      "furniture",
-      "bed",
-      "wardrobe",
-      "appliances",
-      "inventory",
-      "cupboard",
+      "included in rent",
+      "amenities",
+      "facilities",
+      "what do i get",
+      "included services",
+      "what amenities are provided",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.5,
   },
 
-  // Page 6: Kitchen available
+  // Page 7: Booking, Documents and Stay Terms FAQs
   {
-    id: "p6-kitchen-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Is a kitchen available?",
-    content:
-      "Yes! Kitchen and dining spaces are a core part of Reforbs living. You have complete cooking freedom to make your own meals whenever you like.",
-    searchTerms: ["kitchen", "cooking", "private kitchen", "dining"],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 6: Laundry available
-  {
-    id: "p6-laundry-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Is laundry available?",
-    content:
-      "Yes! Laundry facilities are provided on-site for all residents to keep your daily routines simple and convenient.",
-    searchTerms: [
-      "laundry",
-      "washing machine",
-      "washing clothes",
-      "laundry charges",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 6: Visitors allowed
-  {
-    id: "p6-visitors-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Are visitors allowed?",
-    content:
-      "Reforbs is a warm, social community where you can invite friends and family over. For overnight guest arrangements or building-specific visitor guidelines, just check in with host Arpit at 7420040241.",
-    searchTerms: [
-      "visitors",
-      "friends",
-      "guests",
-      "guest policy",
-      "visiting hours",
-      "parents",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 6: Curfew rules
-  {
-    id: "p6-curfew-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Are there curfew rules?",
-    content:
-      "We believe in adult freedom rather than restrictive hostel gate curfews. You have the flexibility to manage your schedule. If you have specific late-entry requirements, feel free to confirm with host Arpit at 7420040241.",
-    searchTerms: [
-      "curfew",
-      "entry time",
-      "gate closing",
-      "house rules",
-      "night out",
-      "timing",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 6: Pets allowed
-  {
-    id: "p6-pets-faq",
-    pageNumber: 6,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Are pets allowed?",
-    content:
-      "We love animals! Pet guidelines depend on the specific property and room configuration. Please give us a quick call at 7420040241 before booking so we can recommend the best pet-friendly setup for you.",
-    searchTerms: ["pets", "dog", "cat", "pet policy", "animals", "pet friendly"],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 7: Gender eligibility
-  {
-    id: "p7-gender-faq",
+    id: "p7-faq-visit",
     pageNumber: 7,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "Is it for men, women, or all genders?",
+    section: "Booking, documents and stay terms",
+    question: "Can I visit the property before booking?",
     content:
-      "We welcome both students and working professionals. To check specific gender options or dedicated floors for your chosen building, please reach out to host Arpit at 7420040241.",
+      "The supplied notes recommend scheduling a physical property visit before paying a booking amount. Contact 7420040241 to arrange a visit and confirm the process.",
     searchTerms: [
-      "men",
-      "women",
-      "girls",
-      "boys",
-      "gender",
-      "eligibility",
-      "female",
-      "male",
-      "mixed",
+      "visit",
+      "tour",
+      "viewing",
+      "site visit",
+      "inspect property",
+      "can i visit before booking",
     ],
     isFAQ: true,
-    priorityWeight: 2.2,
+    priorityWeight: 2.3,
   },
-
-  // Page 7: Documents required
   {
-    id: "p7-documents-faq",
+    id: "p7-faq-booking",
     pageNumber: 7,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "What identification documents are required?",
+    section: "Booking, documents and stay terms",
+    question: "How can I book a room?",
     content:
-      "We keep onboarding quick and easy. Standard government photo ID (such as Aadhaar or Passport) and college/employment verification are typically requested. Call 7420040241 for any questions regarding move-in documentation.",
+      "Contact the management team at 7420040241 to confirm current availability, arrange a visit, receive a current quote, and understand the booking/payment process. The supplied information does not confirm a fully self-service online booking flow.",
     searchTerms: [
-      "id",
+      "book",
+      "booking",
+      "reserve",
+      "reservation",
+      "how to book",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.1,
+  },
+  {
+    id: "p7-faq-documents",
+    pageNumber: 7,
+    section: "Booking, documents and stay terms",
+    question: "What documents are required?",
+    content:
+      "The supplied notes mention Aadhaar, PAN, and a student ID or employment letter as possible requirements for lease processing. Confirm exactly which documents apply to the customer and chosen property with management.",
+    searchTerms: [
       "documents",
+      "id",
       "aadhaar",
-      "verification",
+      "pan",
+      "student id",
+      "employment letter",
       "kyc",
-      "proof",
-      "passport",
+      "what documents do i need",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.3,
   },
-
-  // Page 7: Cancellation / refund policy
   {
-    id: "p7-cancellation-faq",
+    id: "p7-faq-minimum-stay",
     pageNumber: 7,
-    section: "Customer FAQ: facilities, rules, and support",
+    section: "Booking, documents and stay terms",
+    question: "What is the minimum stay, lock-in period, or notice period?",
+    content:
+      "These terms are described as being set out in the individual rent agreement. The exact durations were not provided in the knowledge base. Ask for the agreement applicable to the selected property and review it before paying.",
+    searchTerms: [
+      "minimum stay",
+      "lease",
+      "lock in",
+      "notice period",
+      "move out",
+      "long stay",
+      "what is the minimum stay",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.3,
+  },
+  {
+    id: "p7-faq-cancellation",
+    pageNumber: 7,
+    section: "Booking, documents and stay terms",
     question: "What is the cancellation or refund policy?",
     content:
-      "We maintain fair, transparent refund and cancellation guidelines. For exact written terms before making any reservation, please connect with host Arpit at 7420040241.",
+      "The current cancellation/refund terms were not provided. Ask for the written policy, including deposit deductions and refund timelines, before paying.",
     searchTerms: [
+      "cancel",
       "cancellation",
       "refund",
-      "deposit refund",
-      "notice",
       "early exit",
-      "money back",
+      "deposit refund",
     ],
     isFAQ: true,
-    priorityWeight: 2.2,
+    priorityWeight: 2.0,
+  },
+  {
+    id: "p7-faq-move-in-immediately",
+    pageNumber: 7,
+    section: "Booking, documents and stay terms",
+    question: "Can I move in immediately? / Is a room available tomorrow?",
+    content:
+      "The chatbot does not have live room inventory or confirmed move-in dates. Call 7420040241 with the preferred property and move-in date to check availability.",
+    searchTerms: [
+      "move in",
+      "immediate",
+      "available today",
+      "vacancy",
+      "room available",
+      "is a room available tomorrow",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.4,
   },
 
-  // Page 7: Repairs / maintenance support
+  // Page 8: Safety, House Rules, Maintenance & Contact FAQs
   {
-    id: "p7-repairs-faq",
-    pageNumber: 7,
-    section: "Customer FAQ: facilities, rules, and support",
-    question: "What support is available if something needs repair?",
+    id: "p8-faq-cctv",
+    pageNumber: 8,
+    section: "Safety, house rules and maintenance",
+    question: "What security arrangements are available? Is CCTV available?",
     content:
-      "We offer proactive day-to-day support and routine maintenance. If anything ever needs attention in your room, our on-site team is quick to respond. You can always reach out directly to 7420040241.",
+      "The supplied notes mention CCTV monitoring at common entries and controlled access points. The exact setup at each property should be confirmed. Do not promise complete safety or invent guards, emergency systems, or room-level CCTV.",
+    searchTerms: [
+      "cctv",
+      "security",
+      "controlled access",
+      "safe pg",
+      "safety",
+      "is cctv available",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.4,
+  },
+  {
+    id: "p8-faq-clean",
+    pageNumber: 8,
+    section: "Safety, house rules and maintenance",
+    question: "Is the property clean?",
+    content:
+      "Housekeeping and periodic cleaning of common spaces are mentioned. The exact schedule, room-cleaning scope, and standards for each property were not provided; confirm with management.",
+    searchTerms: [
+      "clean",
+      "cleanliness",
+      "housekeeping",
+      "bathroom cleaning",
+    ],
+    isFAQ: true,
+    priorityWeight: 1.9,
+  },
+  {
+    id: "p8-faq-maintenance",
+    pageNumber: 8,
+    section: "Safety, house rules and maintenance",
+    question: "How quickly are maintenance problems resolved?",
+    content:
+      "The supplied notes mention regular maintenance and day-to-day support, but no guaranteed response time or ticket process was provided. Contact the property team to report an issue and confirm the response arrangements.",
     searchTerms: [
       "maintenance",
       "repair",
-      "support",
       "complaint",
+      "response time",
+      "broken",
       "issue",
-      "breakdown",
-      "fix",
+      "how quickly are maintenance issues resolved",
     ],
     isFAQ: true,
-    priorityWeight: 2.0,
+    priorityWeight: 2.4,
   },
-
-  // Page 7: Who is Reforbs for?
   {
-    id: "p7-who-for-faq",
-    pageNumber: 7,
-    section: "Customer FAQ: choosing Reforbs",
-    question: "Who is Reforbs for?",
-    content:
-      "Reforbs is designed for modern students and working professionals looking for premium, restriction-free co-living or student-housing in Pune.",
-    searchTerms: [
-      "students",
-      "working professionals",
-      "young professionals",
-      "student accommodation",
-      "coliving",
-      "who is it for",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 7: What makes Reforbs different?
-  {
-    id: "p7-difference-faq",
-    pageNumber: 7,
-    section: "Customer FAQ: choosing Reforbs",
-    question: "What makes Reforbs different from a regular hostel or rental?",
-    content:
-      "Unlike traditional PGs or restrictive hostels, Reforbs gives you real ownership and freedom:\n\n• 100% private single-occupancy rooms (no forced room sharing)\n• Complete cooking freedom with fully equipped kitchens (no compulsory mess food)\n• Zero lock-in restrictions\n• Beautifully designed interiors with work desks and high-speed Wi-Fi\n• A warm, social community of like-minded students and professionals",
-    searchTerms: [
-      "benefits",
-      "why reforbs",
-      "difference",
-      "hostel",
-      "rental",
-      "community",
-      "special",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 7: Where is Reforbs located?
-  {
-    id: "p7-where-located-faq",
-    pageNumber: 7,
-    section: "Customer FAQ: choosing Reforbs",
-    question: "Where is Reforbs located?",
-    content:
-      "Reforbs properties are centrally located in Viman Nagar and Sakore Nagar, Pune! Shubh Gateway is located right opposite Symbiosis Law School (SLS), and Moksha, Vipasana, and Shubh Nirvana are located in prime spots across Viman Nagar.",
-    searchTerms: [
-      "location",
-      "address",
-      "pune",
-      "viman nagar",
-      "near me",
-      "where located",
-      "symbiosis",
-    ],
-    isFAQ: true,
-    priorityWeight: 2.2,
-  },
-
-  // Page 7: Email address FAQ
-  {
-    id: "p7-email-faq",
-    pageNumber: 7,
-    section: "Customer FAQ: choosing Reforbs",
-    question: "Does Reforbs have an email address?",
-    content:
-      "We provide instant phone and WhatsApp assistance to avoid email delays! You can connect directly with host Arpit at 7420040241 for immediate answers and support.",
-    searchTerms: ["email", "mail", "support email", "email address", "inbox"],
-    isFAQ: true,
-    priorityWeight: 2.0,
-  },
-
-  // Page 8: Booking confirmation / hold room
-  {
-    id: "p8-hold-room-faq",
+    id: "p8-faq-visitors",
     pageNumber: 8,
-    section: "Can the chatbot confirm a booking or hold a room?",
-    question: "Can the chatbot confirm a booking or hold a room?",
+    section: "Safety, house rules and maintenance",
+    question: "Are visitors and overnight guests allowed?",
     content:
-      "To hold a room and ensure all your preferences are met, please connect directly with our host Arpit at 7420040241. We will verify room availability and confirm your booking in minutes!",
+      "The public website describes a social/community environment and says residents can invite friends over, but formal visitor hours and overnight-guest rules were not provided. Confirm the current policy for the selected property.",
     searchTerms: [
-      "booking confirmation",
-      "hold a room",
-      "payment",
-      "availability",
-      "reserve",
-      "hold room",
+      "visitors",
+      "guests",
+      "friends",
+      "overnight",
+      "visiting hours",
     ],
     isFAQ: true,
-    priorityWeight: 2.2,
+    priorityWeight: 2.0,
+  },
+  {
+    id: "p8-faq-curfew",
+    pageNumber: 8,
+    section: "Safety, house rules and maintenance",
+    question: "Are there curfew rules?",
+    content:
+      "No specific curfew or entry-time restrictions were supplied. Contact management to confirm current house rules.",
+    searchTerms: [
+      "curfew",
+      "gate closing",
+      "entry time",
+      "late night",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.0,
+  },
+  {
+    id: "p8-faq-pets-smoking",
+    pageNumber: 8,
+    section: "Safety, house rules and maintenance",
+    question: "Are pets, smoking, or alcohol allowed?",
+    content:
+      "The supplied information does not confirm these rules. Ask management for the current property-specific policy.",
+    searchTerms: [
+      "pets",
+      "dog",
+      "cat",
+      "smoking",
+      "alcohol",
+      "house rules",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.0,
+  },
+  {
+    id: "p8-faq-contact",
+    pageNumber: 8,
+    section: "Contact and escalation",
+    question: "How do I contact ReForbs?",
+    content:
+      "Call 7420040241 for property enquiries, current rent, availability, visits, and policy questions. The supplied primary address is Sanjay Park, Lane 3, Viman Nagar, Pune, Maharashtra 411032. Google Maps: https://share.google/UomLxgr596c1a1TVf",
+    searchTerms: [
+      "contact",
+      "phone",
+      "call",
+      "number",
+      "location",
+      "enquiry",
+      "visit",
+      "how do i contact reforbs",
+    ],
+    isFAQ: true,
+    priorityWeight: 2.5,
   },
 ];

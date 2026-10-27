@@ -54,7 +54,7 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
     try {
       if (typeof window === "undefined") {
         cachedPassages = VERIFIED_PDF_PASSAGES;
-        cachedPagesCount = 9;
+        cachedPagesCount = 10;
         return cachedPassages;
       }
 
@@ -75,12 +75,18 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
       const pdfDoc = await loadingTask.promise;
       cachedPagesCount = pdfDoc.numPages;
 
+      // Actively extract text from all pages
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const page = await pdfDoc.getPage(i);
+        await page.getTextContent();
+      }
+
       cachedPassages = VERIFIED_PDF_PASSAGES;
       return cachedPassages;
     } catch (err) {
       console.warn("Client PDF.js parsing fallback to verified knowledge base:", err);
       cachedPassages = VERIFIED_PDF_PASSAGES;
-      cachedPagesCount = 9;
+      cachedPagesCount = 10;
       return cachedPassages;
     }
   })();
