@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Award, Quote } from "lucide-react";
+import SpotlightMarquee from "./SpotlightMarquee";
 
 export default function TestimonialsSection() {
   return (
@@ -52,15 +53,9 @@ export default function TestimonialsSection() {
             We don&apos;t just make second homes in Pune. We make headlines as well.
           </p>
 
-          {/* Media Logos Image below text */}
-          <div className="w-full max-w-4xl mx-auto mb-8 bg-white rounded-2xl p-4 sm:p-6 border border-[#EBEFEF] shadow-sm">
-            <Image
-              src="/images/media-spotlight.png"
-              alt="Reforbs featured in VCCIRCLE, Forbes, Entrepreneur, YourStory, LiveMint, Fortune"
-              width={1200}
-              height={200}
-              className="w-full h-auto object-contain mx-auto"
-            />
+          {/* Stanza Living Style Auto-Scrolling Media Brand Cards */}
+          <div className="w-full mb-8">
+            <SpotlightMarquee />
           </div>
 
           {/* ReForbs Cult Text below image */}
