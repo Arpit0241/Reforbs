@@ -8,6 +8,7 @@
  */
 
 export type CustomerIntent =
+  | "GOOGLE_MAPS_LINK"
   | "FULL_ADDRESS"
   | "AIRPORT_DISTANCE"
   | "NEAREST_AIRPORT"
@@ -189,6 +190,31 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
       confidence: 1.0,
       entities,
       matchedPattern: "off-topic keyword pattern",
+    };
+  }
+
+  // -------------------------------------------------------------
+  // 1b. Google Maps Link & Location Link
+  // e.g. "What is the Google Maps location link?" / "map link" / "google maps"
+  // -------------------------------------------------------------
+  const googleMapsPatterns = [
+    /\bgoogle\s+maps?\b/,
+    /\b(?:location|map|directions?)\s+link\b/,
+    /\blink\s+(?:for\s+|to\s+)?(?:google\s+)?maps?\b/,
+    /\blink\s+(?:for\s+|to\s+)?location\b/,
+    /\bshare\.google\b/,
+    /\bopen\s+(?:reforbs\s+)?(?:location|map)\b/,
+    /\bwhere\s+can\s+i\s+find\s+the\s+map\b/,
+    /\bmap\s+location\b/,
+    /\bgmaps?\b/,
+  ];
+
+  if (googleMapsPatterns.some((pattern) => pattern.test(normalized))) {
+    return {
+      intent: "GOOGLE_MAPS_LINK",
+      confidence: 0.99,
+      entities,
+      matchedPattern: "google maps location link pattern",
     };
   }
 

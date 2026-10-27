@@ -45,6 +45,23 @@ export function validateAndGenerateResponse(
     }
 
     // -------------------------------------------------------------------------
+    // 1b. Google Maps Location Link
+    // -------------------------------------------------------------------------
+    case "GOOGLE_MAPS_LINK": {
+      return {
+        text:
+          `Here is the verified Google Maps location link for ReForbs Co-Living:\n\n` +
+          `• Google Maps Link: ${GOOGLE_MAPS_LINK}\n` +
+          `• Primary Address: ${PRIMARY_ADDRESS}\n\n` +
+          `Important scope note: This Google Maps link corresponds directly to ReForbs Co-Living at Sanjay Park, Lane 3, Viman Nagar. Individual map links for other properties (such as Shubh Gateway, Reforbs Living Sakore Nagar, Moksha, Vipasana, and Shubh Nirvana) are not detailed in the knowledge base; please contact management at ${CONTACT_PHONE} for property-specific directions.`,
+        pageNumber: 1,
+        sourceLabel: "Source: Reforbs Knowledge Base v3, page 1 & 2",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 2. Full Address of ReForbs Co-Living / Sanjay Park
     // -------------------------------------------------------------------------
     case "FULL_ADDRESS": {

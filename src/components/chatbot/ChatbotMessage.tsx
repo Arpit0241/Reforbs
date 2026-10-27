@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Phone, Bot, User } from "lucide-react";
+import { Phone, Bot, User, MapPin } from "lucide-react";
 import { SearchResult } from "@/lib/chatbot/pdfKnowledgeEngine";
 
 export interface Message {
@@ -20,10 +20,28 @@ interface ChatbotMessageProps {
 export default function ChatbotMessage({ message }: ChatbotMessageProps) {
   const isUser = message.sender === "user";
 
-  // Formatter for bold text markdown (**text**)
-  const formatInlineBold = (text: string) => {
-    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  // Formatter for bold text markdown (**text**) and clickable URLs
+  const formatContent = (text: string) => {
+    const tokenRegex = /(https?:\/\/[^\s)]+|\*\*[^*]+\*\*)/g;
+    const parts = text.split(tokenRegex);
     return parts.map((part, i) => {
+      if (part.startsWith("http://") || part.startsWith("https://")) {
+        return (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={
+              isUser
+                ? "underline font-bold text-white hover:text-white/80 break-all"
+                : "underline font-bold text-[#007A7A] hover:text-[#005F5F] break-all"
+            }
+          >
+            {part}
+          </a>
+        );
+      }
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
           <strong key={i} className={isUser ? "font-bold text-white" : "font-bold text-[#005F5F]"}>
@@ -50,7 +68,7 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
         return (
           <div key={idx} className="flex items-start gap-2 my-1 text-xs sm:text-[13px] leading-relaxed">
             <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isUser ? "bg-white" : "bg-[#007A7A]"}`} />
-            <span>{formatInlineBold(bulletText)}</span>
+            <span>{formatContent(bulletText)}</span>
           </div>
         );
       }
@@ -63,14 +81,14 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
             <span className={`font-bold shrink-0 ${isUser ? "text-white" : "text-[#007A7A]"}`}>
               {numberedMatch[1]}.
             </span>
-            <span>{formatInlineBold(numberedMatch[2])}</span>
+            <span>{formatContent(numberedMatch[2])}</span>
           </div>
         );
       }
 
       return (
         <p key={idx} className="my-1 text-xs sm:text-[13px] leading-relaxed">
-          {formatInlineBold(trimmed)}
+          {formatContent(trimmed)}
         </p>
       );
     });
@@ -105,18 +123,34 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
         {/* Message Text Content */}
         <div className="font-sans break-words">{renderFormattedText(message.text)}</div>
 
-        {/* Action Button: Direct Call Hotline (when contact or booking is referenced) */}
-        {!isUser && message.text.includes("7420040241") && (
-          <div className="mt-2.5 pt-2 border-t border-[#F1F4F4] flex items-center justify-between">
-            <a
-              href="tel:+917420040241"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white text-xs font-bold transition-all shadow-sm active:scale-95"
-              aria-label="Call host directly"
-            >
-              <Phone size={12} />
-              <span>Call Arpit (7420040241)</span>
-            </a>
-            <span className="text-[10px] text-gray-400 font-medium">Host Helpline</span>
+        {/* Action Button: Direct Call Hotline & Google Maps Pill */}
+        {!isUser && (message.text.includes("7420040241") || message.text.includes("share.google")) && (
+          <div className="mt-2.5 pt-2 border-t border-[#F1F4F4] flex flex-wrap items-center gap-2 justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              {message.text.includes("share.google") && (
+                <a
+                  href="https://share.google/UomLxgr596c1a1TVf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#007A7A] hover:bg-[#005F5F] text-white text-xs font-bold transition-all shadow-sm active:scale-95"
+                  aria-label="Open Google Maps location"
+                >
+                  <MapPin size={12} className="text-[#FFDE59]" />
+                  <span>Open Google Maps</span>
+                </a>
+              )}
+              {message.text.includes("7420040241") && (
+                <a
+                  href="tel:+917420040241"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white text-xs font-bold transition-all shadow-sm active:scale-95"
+                  aria-label="Call host directly"
+                >
+                  <Phone size={12} />
+                  <span>Call Arpit (7420040241)</span>
+                </a>
+              )}
+            </div>
+            <span className="text-[10px] text-gray-400 font-medium">Reforbs Concierge</span>
           </div>
         )}
 
