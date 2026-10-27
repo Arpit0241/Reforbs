@@ -47,7 +47,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[92vh] flex items-center justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 lg:py-24 overflow-hidden bg-[#0D1110]">
+    <section className="relative min-h-[65vh] sm:min-h-[70vh] lg:min-h-[92vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
       {/* Full-Width Hero Background Photograph Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
@@ -68,7 +68,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-4 sm:mb-6 shadow-lg max-w-full">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-3 sm:mb-5 shadow-lg max-w-full">
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
             <span className="text-white">Reforbs Living</span>
             <span className="text-white/40">•</span>
@@ -78,7 +78,7 @@ export default function HeroSection() {
           </div>
 
           {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-3 sm:mb-5 font-heading drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-4 sm:mb-6 font-heading drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
             <span className="relative inline-block text-[#FFDE59]">
@@ -99,32 +99,33 @@ export default function HeroSection() {
             to cherish.
           </h1>
 
-          {/* Short Supporting Description (Keeps mobile hero airy, legible, and uncrowded) */}
-          <p className="text-xs sm:text-base text-white/85 font-medium max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed drop-shadow-sm">
+          {/* Supporting Description (Hidden completely on mobile per prompt; preserved on desktop) */}
+          <p className="hidden lg:block text-base text-white/85 font-medium max-w-xl mx-auto mb-8 leading-relaxed drop-shadow-sm">
             Curated student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
           </p>
 
-          {/* Mobile-Only Compact Scroll / Explore CTA Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 lg:hidden">
+          {/* Mobile-Only Compact Sized Explore Spaces CTA Button (~86% width, 56px height) */}
+          <div className="flex items-center justify-center mb-5 sm:mb-6 lg:hidden">
             <a
               href="#properties"
-              className="btn-teal w-full sm:w-auto min-h-[46px] py-3 px-8 rounded-2xl justify-center font-extrabold text-xs sm:text-sm shadow-xl active:scale-95 inline-flex items-center gap-2"
+              className="w-[86%] max-w-sm h-14 min-h-[56px] px-6 rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-extrabold text-sm shadow-xl hover:shadow-glow active:scale-95 inline-flex items-center justify-center gap-2.5 transition-all duration-200"
+              aria-label="Explore Reforbs Spaces"
             >
-              <Search size={15} />
+              <Search size={16} className="shrink-0" />
               <span>Explore Spaces (5)</span>
-              <ArrowDown size={14} className="text-[#FFDE59] animate-bounce" />
+              <ArrowDown size={14} className="text-[#FFDE59] animate-bounce shrink-0" />
             </a>
           </div>
 
           {/* Mobile-Only Feature Highlights Line */}
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-white/80 font-bold lg:hidden mb-2">
-            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-white/85 font-bold lg:hidden px-2 mb-2">
+            <span className="px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
               ✓ Zero Lock-in
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+            <span className="px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
               ✓ Private Balconies
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15">
+            <span className="px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
               ✓ No Mess Fees
             </span>
           </div>
