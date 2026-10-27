@@ -12,31 +12,27 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const brandHeroImages = [
+const communityPills = [
   {
-    image: "/images/hero-community.webp",
-    tag: "Vibrant Community",
+    label: "Vibrant Community",
     caption: "Young adult Indian professionals enjoying together in a modern co-living lounge",
   },
   {
-    image: "/images/hero-recreation.webp",
-    tag: "Recreation & Lounge",
+    label: "Recreation & Lounge",
     caption: "Residents enjoying pool and games in our shared recreation lounge",
   },
   {
-    image: "/images/hero-dining.webp",
-    tag: "Dining & Kitchen",
+    label: "Dining & Kitchen",
     caption: "Students and young professionals sharing meals in a welcoming modern dining space",
   },
   {
-    image: "/images/hero-shared-living.webp",
-    tag: "Shared Living Spaces",
+    label: "Shared Living Spaces",
     caption: "Cozy, stylish shared living rooms built for comfort and connection",
   },
 ];
 
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activePill, setActivePill] = useState(0);
   const [activeCategory, setActiveCategory] = useState<"all" | "student" | "coliving">("all");
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedHub, setSelectedHub] = useState("all");
@@ -51,34 +47,27 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-[100dvh] lg:min-h-[92vh] flex items-center justify-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-[#0D1110]">
-      {/* Brand Hero Background Slideshow */}
-      <div className="absolute inset-0 z-0 overflow-hidden w-full max-w-full">
-        {brandHeroImages.map((slide, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ease-in-out ${
-              currentSlide === idx ? "opacity-45 scale-100" : "opacity-0 scale-105"
-            } transform transition-transform duration-7000`}
-          >
-            <Image
-              src={slide.image}
-              alt={slide.caption}
-              fill
-              className="object-cover"
-              priority={idx === 0}
-            />
-          </div>
-        ))}
+      {/* Full-Width Hero Background Photograph Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
+        <Image
+          src="/images/reforbs-hero-community.webp"
+          alt="Reforbs Community Lifestyle - Young adult residents connecting in our Viman Nagar co-living lounge"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_30%] sm:object-[center_35%] transform scale-[1.01]"
+          quality={90}
+        />
 
-        {/* Sophisticated Dual Gradient & Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110] via-[#0D1110]/60 to-[#0D1110]/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#004D4D]/15 to-[#0D1110]/85 pointer-events-none" />
+        {/* Sophisticated Dark Teal-to-Black Gradient Overlay for High Contrast & Warmth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1110]/85 via-[#002B2B]/45 to-[#0D1110]/92 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.18)_0%,_rgba(13,17,16,0.65)_100%)] pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2 sm:pt-6">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Live Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-5 sm:mb-6 shadow-lg max-w-full">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#FFDE59] text-xs sm:text-sm font-extrabold mb-5 sm:mb-6 shadow-lg max-w-full">
             <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse shrink-0" />
             <span className="text-white">Reforbs Living</span>
             <span className="text-white/40">•</span>
@@ -88,9 +77,12 @@ export default function HeroSection() {
           </div>
 
           {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] mb-8 sm:mb-10 font-heading">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] mb-8 sm:mb-10 font-heading drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
             Not just an accommodation, <br className="hidden sm:block" />
-            but an <span className="relative inline-block text-[#FFDE59]">experience<svg
+            but an{" "}
+            <span className="relative inline-block text-[#FFDE59]">
+              experience
+              <svg
                 className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[#007A7A]"
                 viewBox="0 0 250 20"
                 fill="none"
@@ -101,12 +93,14 @@ export default function HeroSection() {
                   d="M3 14C60 4 170 3 247 10C170 17 80 18 3 14Z"
                   fill="currentColor"
                 />
-              </svg></span> to cherish.
+              </svg>
+            </span>{" "}
+            to cherish.
           </h1>
         </div>
 
         {/* Stanza Living-Style Modern Search & Quick Filter Component (Centerpiece) */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-white/70">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-white/80">
           {/* Top Category Tab Pills */}
           <div className="flex items-center justify-between gap-3 border-b border-[#E1E7E6] pb-4 mb-5 overflow-x-auto no-scrollbar">
             <div className="flex items-center gap-2 shrink-0 sm:flex-wrap">
@@ -260,21 +254,21 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Slideshow Selector Strip */}
+        {/* Community Highlight Category Pills */}
         <div className="mt-8 flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
-          {brandHeroImages.map((slide, idx) => (
+          {communityPills.map((pill, idx) => (
             <button
               key={idx}
               type="button"
-              onClick={() => setCurrentSlide(idx)}
+              onClick={() => setActivePill(idx)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 transition-all duration-300 min-h-[36px] ${
-                currentSlide === idx
-                  ? "bg-white text-[#1B1D1C] shadow-lg ring-2 ring-white/30"
-                  : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white border border-white/10"
+                activePill === idx
+                  ? "bg-white text-[#1B1D1C] shadow-lg ring-2 ring-[#007A7A]/30"
+                  : "bg-black/40 backdrop-blur-md text-white/90 hover:bg-black/60 hover:text-white border border-white/20"
               }`}
             >
-              <span className={`w-2 h-2 rounded-full shrink-0 ${currentSlide === idx ? "bg-[#007A7A]" : "bg-white/40"}`} />
-              <span>{slide.tag}</span>
+              <span className={`w-2 h-2 rounded-full shrink-0 ${activePill === idx ? "bg-[#007A7A]" : "bg-[#FFDE59]"}`} />
+              <span>{pill.label}</span>
             </button>
           ))}
         </div>
