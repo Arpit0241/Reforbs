@@ -30,7 +30,7 @@ export default function HeroSection() {
   const [activePill, setActivePill] = useState(0);
 
   return (
-    <section className="relative min-h-[580px] sm:min-h-[640px] lg:min-h-[85vh] flex flex-col justify-start lg:justify-center pt-16 sm:pt-20 lg:py-24 pb-8 sm:pb-12 lg:pb-20 overflow-hidden bg-[#0D1110]">
+    <section className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[85vh] flex flex-col justify-between lg:justify-center pt-14 sm:pt-16 pb-6 sm:pb-8 lg:py-24 overflow-hidden bg-[#0D1110]">
       {/* Mobile-Specific Hero Background Photograph (User-supplied authentic 9:16 portrait image) */}
       <div className="lg:hidden absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
@@ -67,8 +67,8 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.12)_0%,_rgba(13,17,16,0.45)_100%)] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-4">
-        <div className="text-center max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between lg:justify-center">
+        <div className="text-center max-w-4xl mx-auto w-full pt-1 sm:pt-3">
           {/* Eyebrow Live Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/55 backdrop-blur-md border border-white/25 text-[#FFDE59] text-[11px] sm:text-xs font-extrabold mb-2.5 sm:mb-4 shadow-lg max-w-full">
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
@@ -105,32 +105,6 @@ export default function HeroSection() {
           <p className="hidden lg:block text-base sm:text-lg text-white/90 font-medium max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Curated student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
           </p>
-
-          {/* Mobile-Only Compact & Lower Explore Spaces CTA Button (~86% width, 60-64px height) */}
-          <div className="mt-6 sm:mt-7 mb-4 flex items-center justify-center lg:hidden">
-            <a
-              href="#properties"
-              className="w-[86%] max-w-[420px] min-h-[60px] sm:min-h-[64px] px-6 rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-extrabold text-[17px] sm:text-[18px] shadow-xl hover:shadow-glow active:scale-95 inline-flex items-center justify-center gap-2.5 transition-all duration-200"
-              aria-label="Explore Reforbs Spaces"
-            >
-              <Search size={22} className="shrink-0" />
-              <span className="tracking-tight">Explore Spaces (5)</span>
-              <ArrowDown size={18} className="text-[#FFDE59] animate-bounce shrink-0" />
-            </a>
-          </div>
-
-          {/* Mobile-Only Feature Highlights Line */}
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-white/90 font-bold lg:hidden px-2 mb-2">
-            <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ Zero Lock-in
-            </span>
-            <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ Private Balconies
-            </span>
-            <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ No Mess Fees
-            </span>
-          </div>
 
           {/* Desktop-Only Centered Explore Spaces Button */}
           <div className="hidden lg:flex items-center justify-center mt-2 mb-6">
@@ -178,6 +152,33 @@ export default function HeroSection() {
               <span>{pill.label}</span>
             </button>
           ))}
+        </div>
+
+        {/* Mobile-Only Bottom CTA & Badges Group (Positioned at bottom over coffee table area) */}
+        <div className="lg:hidden w-full flex flex-col items-center justify-center mt-auto pt-6 sm:pt-8 pb-1 z-10">
+          {/* Sleek, Smaller Explore Spaces CTA Button (styled per reference image) */}
+          <div className="mb-2.5 flex items-center justify-center">
+            <a
+              href="#properties"
+              className="px-6 py-2.5 sm:px-7 sm:py-3 rounded-xl sm:rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-bold text-sm sm:text-[15px] shadow-lg hover:shadow-glow active:scale-95 inline-flex items-center justify-center transition-all duration-200"
+              aria-label="Explore Reforbs Spaces"
+            >
+              <span>Explore Spaces</span>
+            </a>
+          </div>
+
+          {/* Mobile-Only Feature Highlights Line */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-[11px] text-white/90 font-bold px-2">
+            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
+              ✓ Zero Lock-in
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
+              ✓ Private Balconies
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
+              ✓ No Mess Fees
+            </span>
+          </div>
         </div>
       </div>
     </section>
