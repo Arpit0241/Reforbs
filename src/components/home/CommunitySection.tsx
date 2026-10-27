@@ -10,12 +10,12 @@ export default function CommunitySection() {
   return (
     <section id="community" className="py-24 bg-[#111312] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Feature Banner with image7.png */}
+        {/* Top Feature Banner */}
         <div className="relative rounded-3xl overflow-hidden border border-[#272B29] mb-16 shadow-2xl bg-[#1B1D1C]">
           <div className="relative h-72 sm:h-96 md:h-[460px] w-full">
             <Image
-              src="/images/image7.png"
-              alt="Never a dull moment at Reforbs Community"
+              src="/images/community-lifestyle.webp"
+              alt="Never a dull moment at Reforbs Community - Social bonding and vibrant atmosphere"
               fill
               className="object-cover"
             />

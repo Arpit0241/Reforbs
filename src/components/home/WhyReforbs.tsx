@@ -150,12 +150,12 @@ export default function WhyReforbs() {
           </div>
         </div>
 
-        {/* Living The Reforbs Way (Slide 6 & image3.png) */}
+        {/* Living The Reforbs Way */}
         <div className="bg-[#111312] text-white rounded-3xl overflow-hidden shadow-2xl border border-[#272B29]">
           <div className="relative h-72 sm:h-96 md:h-[420px] w-full">
             <Image
-              src="/images/image3.png"
-              alt="Living The Reforbs Way"
+              src="/images/living-reforbs-way.webp"
+              alt="Living The Reforbs Way - Unique spaces full of personality"
               fill
               className="object-cover"
             />

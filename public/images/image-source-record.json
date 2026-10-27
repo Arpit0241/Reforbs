@@ -1,0 +1,57 @@
+[
+  {
+    "id": "student-housing-room",
+    "path": "public/images/student-housing-room.webp",
+    "size": [
+      1200,
+      801
+    ],
+    "bytes": 101212,
+    "license": "Unsplash License (Free commercial/non-commercial use, no attribution required)",
+    "desc": "Bright, comfortable student room with study workspace and bedding"
+  },
+  {
+    "id": "coliving-bedroom",
+    "path": "public/images/coliving-bedroom.webp",
+    "size": [
+      1200,
+      675
+    ],
+    "bytes": 87600,
+    "license": "Unsplash License (Free commercial/non-commercial use, no attribution required)",
+    "desc": "Modern furnished co-living bedroom with ample storage and workspace"
+  },
+  {
+    "id": "housekeeping-lifestyle",
+    "path": "public/images/housekeeping-lifestyle.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 78996,
+    "license": "Unsplash License (Free commercial/non-commercial use, no attribution required)",
+    "desc": "Pristine, clean, freshly maintained room and folded towels showcasing housekeeping convenience"
+  },
+  {
+    "id": "community-lifestyle",
+    "path": "public/images/community-lifestyle.webp",
+    "size": [
+      1400,
+      788
+    ],
+    "bytes": 113074,
+    "license": "Unsplash License (Free commercial/non-commercial use, no attribution required)",
+    "desc": "Group of vibrant young adult friends smiling and enjoying together in community setting"
+  },
+  {
+    "id": "living-reforbs-way",
+    "path": "public/images/living-reforbs-way.webp",
+    "size": [
+      1200,
+      801
+    ],
+    "bytes": 59210,
+    "license": "Unsplash License (Free commercial/non-commercial use, no attribution required)",
+    "desc": "Cozy, stylish interior full of personality, comfort, and emotional connection"
+  }
+]

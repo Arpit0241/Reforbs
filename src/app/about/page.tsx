@@ -87,7 +87,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative h-96 sm:h-[480px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
               <Image
-                src="/images/image3.png"
+                src="/images/living-reforbs-way.webp"
                 alt="Reforbs Spaces and Living Culture"
                 fill
                 className="object-cover"
@@ -294,32 +294,32 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/image4.png"
-                alt="Reforbs Living Space"
+                src="/images/student-housing-room.webp"
+                alt="Reforbs Living Space - Modern Student Suite"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
               />
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/image5.png"
-                alt="Reforbs Social Vibes"
+                src="/images/coliving-bedroom.webp"
+                alt="Reforbs Private Room - Ample Storage & Comfort"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
               />
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/image6.png"
-                alt="Reforbs Study Lounge"
+                src="/images/housekeeping-lifestyle.webp"
+                alt="Reforbs Clean Living - Serviced Spaces"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
               />
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/image7.png"
-                alt="Reforbs Balcony & Common Area"
+                src="/images/community-lifestyle.webp"
+                alt="Reforbs Social Vibes - Community Bonding"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
               />

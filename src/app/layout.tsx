@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "Experience the future of shared living in Pune. Curated spaces built for comfort, freedom, and emotional connect.",
     url: "https://reforbs.com",
     siteName: "Reforbs Living",
-    images: [{ url: "/images/image4.png", width: 1200, height: 630 }],
+    images: [{ url: "/images/hero-community.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };

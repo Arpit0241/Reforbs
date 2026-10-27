@@ -14,24 +14,24 @@ import {
 
 const brandHeroImages = [
   {
-    image: "/images/image4.png",
-    tag: "Reforbs Living Spaces",
-    caption: "Modern, customized private spaces in Viman Nagar",
-  },
-  {
-    image: "/assets/543f61a0a_generated_0051b70d.png",
+    image: "/images/hero-community.webp",
     tag: "Vibrant Community",
-    caption: "Young professionals enjoying together at Reforbs",
+    caption: "Young adult Indian professionals enjoying together in a modern co-living lounge",
   },
   {
-    image: "/images/image3.png",
-    tag: "The Reforbs Way",
-    caption: "Ecosystem built for comfort, freedom & emotional connect",
-  },
-  {
-    image: "/assets/e74b3f267_generated_c9a9b56e.png",
+    image: "/images/hero-recreation.webp",
     tag: "Recreation & Lounge",
-    caption: "Chilling and unwinding in our shared game lounges",
+    caption: "Residents enjoying pool and games in our shared recreation lounge",
+  },
+  {
+    image: "/images/hero-dining.webp",
+    tag: "Dining & Kitchen",
+    caption: "Students and young professionals sharing meals in a welcoming modern dining space",
+  },
+  {
+    image: "/images/hero-shared-living.webp",
+    tag: "Shared Living Spaces",
+    caption: "Cozy, stylish shared living rooms built for comfort and connection",
   },
 ];
 

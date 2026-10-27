@@ -5,12 +5,12 @@ export default function AmenitiesSection() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-        {/* Block 1: Slide 9 - Start living your best life from day one */}
+        {/* Block 1: Move-in Ready - Start living your best life from day one */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/image4.png"
-              alt="Start living your best life from day one"
+              src="/images/student-housing-room.webp"
+              alt="Start living your best life from day one - Fully furnished modern room"
               fill
               className="object-cover"
             />
@@ -61,20 +61,20 @@ export default function AmenitiesSection() {
 
           <div className="lg:col-span-6 order-1 lg:order-2 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/image5.png"
-              alt="Room that has room for everything"
+              src="/images/coliving-bedroom.webp"
+              alt="Room that has room for everything - Spacious layout with ample storage"
               fill
               className="object-cover"
             />
           </div>
         </div>
 
-        {/* Block 3: Slide 11 - Take your daily list of chores and tear it up */}
+        {/* Block 3: Zero Daily Hassle - Take your daily list of chores and tear it up */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/image6.png"
-              alt="Housekeeping and chores taken care of"
+              src="/images/housekeeping-lifestyle.webp"
+              alt="Housekeeping and chores taken care of - Clean serviced living spaces"
               fill
               className="object-cover"
             />
