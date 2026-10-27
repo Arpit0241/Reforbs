@@ -30,8 +30,8 @@ export default function HeroSection() {
   const [activePill, setActivePill] = useState(0);
 
   return (
-    <section className="relative min-h-[560px] sm:min-h-[620px] lg:min-h-[85vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
-      {/* Mobile-Specific Hero Background Photograph (Optimized portrait composition for mobile screens) */}
+    <section className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[85vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
+      {/* Mobile-Specific Hero Background Photograph (User-supplied authentic 9:16 portrait image) */}
       <div className="lg:hidden absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
           src="/images/reforbs-hero-community-mobile.webp"
