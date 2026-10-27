@@ -221,6 +221,7 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\bwhere\s+can\s+i\s+find\s+the\s+map\b/,
     /\bmap\s+location\b/,
     /\bgmaps?\b/,
+    /^maps?$/i,
   ];
 
   if (googleMapsPatterns.some((pattern) => pattern.test(normalized))) {
@@ -233,20 +234,33 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   }
 
   // -------------------------------------------------------------
-  // 2. Full Address of ReForbs Co-Living / Sanjay Park
-  // e.g. "What is the full address of ReForbs Co-Living?"
+  // 2. Full Address and Location of ReForbs
+  // e.g. "location", "address", "where is reforbs located", "what is your location"
   // -------------------------------------------------------------
+  const isNearestCheck = /\b(?:nearest|closest|near|closer)\b/.test(normalized);
+  const isAirportCheck = /\b(?:airport|flight|terminal)\b/.test(normalized);
+
   if (
-    /\b(?:full\s+)?address\s+(?:of\s+)?(?:reforbs|the\s+property|reforbs\s+co-?living)\b/.test(normalized) ||
-    /\bwhat\s+is\s+(?:the\s+)?(?:full\s+)?address\b/.test(normalized) ||
-    /\bwhere\s+is\s+reforbs\s+co-?living\s+(?:located|situated)\b/.test(normalized) ||
-    /\bexact\s+(?:street\s+)?address\b/.test(normalized)
+    !isNearestCheck &&
+    !isAirportCheck &&
+    (
+      normalized === "location" ||
+      normalized === "locations" ||
+      normalized === "address" ||
+      normalized === "addresses" ||
+      normalized === "where" ||
+      /\b(?:full\s+)?address\b/.test(normalized) ||
+      /\b(?:reforbs\s+)?locations?\b/.test(normalized) ||
+      /\bwhere\s+(?:is|are)\s+(?:reforbs|the\s+pg|the\s+property|you|it)\b/.test(normalized) ||
+      /\bwhere\s+(?:is\s+it|are\s+you)\s+(?:located|situated)\b/.test(normalized) ||
+      /\bexact\s+(?:street\s+)?address\b/.test(normalized)
+    )
   ) {
     return {
       intent: "FULL_ADDRESS",
       confidence: 0.99,
       entities,
-      matchedPattern: "full address pattern",
+      matchedPattern: "full address and location pattern",
     };
   }
 
@@ -268,8 +282,9 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
 
   // "How far is ReForbs from Pune Airport?" / "Distance to Pune Airport"
   if (
-    /\b(?:how\s+far|distance)\b/.test(normalized) &&
-    /\b(?:pune\s+)?airport\b/.test(normalized)
+    (/\b(?:how\s+far|distance)\b/.test(normalized) &&
+      /\b(?:pune\s+)?airport\b/.test(normalized)) ||
+    /^(?:pune\s+)?airport$/.test(normalized)
   ) {
     return {
       intent: "AIRPORT_DISTANCE",
@@ -286,7 +301,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   if (
     (/\b(?:how\s+far|distance)\b/.test(normalized) &&
       /\b(?:symbiosis|sls|law\s+school)\b/.test(normalized)) ||
-    /\bhow\s+far\s+is\s+symbiosis\b/.test(normalized)
+    /\bhow\s+far\s+is\s+symbiosis\b/.test(normalized) ||
+    /^(?:symbiosis|sls|law\s+school)$/.test(normalized)
   ) {
     return {
       intent: "SLS_DISTANCE",
@@ -351,7 +367,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   // -------------------------------------------------------------
   if (
     /\b(?:ramwadi|metro\s+station|phoenix\s+marketcity|phoenix\s+mall)\b/.test(normalized) ||
-    (/\bmetro\b/.test(normalized) && /\b(?:station|connectivity|stop|line)\b/.test(normalized))
+    (/\bmetro\b/.test(normalized) && /\b(?:station|connectivity|stop|line)\b/.test(normalized)) ||
+    /^metro$/.test(normalized)
   ) {
     return {
       intent: "METRO_STATION",
@@ -450,7 +467,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\b(?:do\s+you\s+have|is\s+there)\s+(?:single\s+or\s+double|double\s+or\s+single)\s+occupancy\b/.test(normalized) ||
     /\b(?:single\s+and\s+double|single\s+or\s+double)\s+occupancy\b/.test(normalized) ||
     /\bdo\s+you\s+have\s+single\s+or\s+double\b/.test(normalized) ||
-    /\bsingle\s+or\s+double\b/.test(normalized)
+    /\bsingle\s+or\s+double\b/.test(normalized) ||
+    /^(?:rooms?|occupancy)$/.test(normalized)
   ) {
     return {
       intent: "OCCUPANCY_SINGLE_DOUBLE",
@@ -615,7 +633,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   if (
     /\bcan\s+i\s+visit\s+(?:the\s+property\s+)?before\s+booking\b/.test(normalized) ||
     /\bvisit\s+before\s+(?:booking|paying|move\s+in)\b/.test(normalized) ||
-    /\bsee\s+(?:the\s+)?room\s+before\s+booking\b/.test(normalized)
+    /\bsee\s+(?:the\s+)?room\s+before\s+booking\b/.test(normalized) ||
+    /^(?:booking|how\s+to\s+book)$/.test(normalized)
   ) {
     return {
       intent: "VISIT_BEFORE_BOOKING",
@@ -684,7 +703,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\b(?:is\s+)?food\s+(?:or\s+a\s+meal\s+plan\s+)?included\b/.test(normalized) ||
     /\bare\s+meals?\s+included\b/.test(normalized) ||
     /\bmeal\s+plans?\b/.test(normalized) ||
-    /\bmess\s+(?:facility|food)\b/.test(normalized)
+    /\bmess\s+(?:facility|food)\b/.test(normalized) ||
+    /^(?:food|meals?|mess)$/.test(normalized)
   ) {
     return {
       intent: "FOOD_INCLUSIONS",
@@ -775,6 +795,7 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   const depositPatterns = [
     /\bsecurity\s+deposit\b/,
     /\bdeposit\s+amount\b/,
+    /\bdeposit\b/,
     /\bhow\s+much\s+(?:is\s+the\s+)?deposit\b/,
     /\brefundable\s+deposit\b/,
     /\badvance\s+payment\b/,
@@ -895,6 +916,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)monthly\s+rent\b/,
     /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)rent\b/,
     /\brent\b/,
+    /\bprices?\b/,
+    /\bpricing\b/,
     /\bhow\s+much\s+does\s+it\s+cost\b/,
   ];
 
@@ -1008,7 +1031,8 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   // 25. House Rules, Curfew, Visitors, Pets, Smoking
   // -------------------------------------------------------------
   if (
-    /\b(?:curfew|gate\s+closing|visitors?|guests?|overnight\s+guests?|pets?|smoking|alcohol)\b/.test(normalized)
+    /\b(?:curfew|gate\s+closing|visitors?|guests?|overnight\s+guests?|pets?|smoking|alcohol)\b/.test(normalized) ||
+    /^(?:rules|restrictions|regulations|house\s+rules)$/.test(normalized)
   ) {
     return {
       intent: "RULES_RESTRICTIONS",
