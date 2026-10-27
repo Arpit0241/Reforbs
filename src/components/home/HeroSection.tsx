@@ -30,20 +30,38 @@ export default function HeroSection() {
   const [activePill, setActivePill] = useState(0);
 
   return (
-    <section className="relative min-h-[65vh] sm:min-h-[70vh] lg:min-h-[85vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
-      {/* Full-Width Edge-to-Edge Hero Background Photograph Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
+    <section className="relative min-h-[560px] sm:min-h-[620px] lg:min-h-[85vh] flex items-center justify-center pt-20 sm:pt-24 pb-8 sm:pb-12 lg:py-24 overflow-hidden bg-[#0D1110]">
+      {/* Mobile-Specific Hero Background Photograph (Optimized portrait composition for mobile screens) */}
+      <div className="lg:hidden absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
+        <Image
+          src="/images/reforbs-hero-community-mobile.webp"
+          alt="Reforbs Community Lifestyle - Fresh vibrant student and professional co-living in Viman Nagar, Pune"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center transform scale-[1.01]"
+          quality={92}
+        />
+
+        {/* Subtle, Fresh Dark Teal Gradient Overlay for Mobile (Keeps daylight, brightness & fresh lifestyle colors) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1110]/60 via-transparent to-[#0D1110]/75 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110]/80 via-[#0A1A18]/25 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.12)_0%,_rgba(13,17,16,0.45)_100%)] pointer-events-none" />
+      </div>
+
+      {/* Desktop-Specific Full-Width Hero Background Photograph (Preserved exactly as requested) */}
+      <div className="hidden lg:block absolute inset-0 z-0 overflow-hidden w-full h-full pointer-events-none select-none">
         <Image
           src="/images/reforbs-hero-community.webp"
           alt="Reforbs Community Lifestyle - Fresh vibrant student and professional co-living in Viman Nagar, Pune"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[52%_center] sm:object-center transform scale-[1.01]"
+          className="object-cover object-center transform scale-[1.01]"
           quality={92}
         />
 
-        {/* Subtle, Fresh Dark Teal Gradient Overlay (Preserves natural daylight, brightness & fresh lifestyle colors) */}
+        {/* Subtle, Fresh Dark Teal Gradient Overlay for Desktop */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D1110]/65 via-transparent to-[#0D1110]/75 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0D1110]/80 via-[#0A1A18]/25 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,122,122,0.12)_0%,_rgba(13,17,16,0.45)_100%)] pointer-events-none" />
