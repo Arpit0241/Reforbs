@@ -37,6 +37,20 @@ export default function ReforbsChatbot() {
     },
   ]);
 
+  const [isMobileMapOpen, setIsMobileMapOpen] = useState(false);
+
+  // Monitor mobile map open state via body attribute to prevent mobile UI collisions
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const checkState = () => {
+      setIsMobileMapOpen(document.body.getAttribute("data-mobile-map-open") === "true");
+    };
+    checkState();
+    const observer = new MutationObserver(checkState);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-mobile-map-open"] });
+    return () => observer.disconnect();
+  }, []);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -144,7 +158,11 @@ export default function ReforbsChatbot() {
   return (
     <aside
       aria-label="Reforbs Customer Support Assistant"
-      className="fixed bottom-20 sm:bottom-6 right-3 sm:right-6 z-50 pointer-events-auto"
+      className={`fixed transition-all duration-300 z-50 pointer-events-auto ${
+        isMobileMapOpen
+          ? "top-20 right-3"
+          : "bottom-20 sm:bottom-6 right-3 sm:right-6"
+      }`}
     >
       {/* Chat Window Panel */}
       {isOpen && (
@@ -152,7 +170,11 @@ export default function ReforbsChatbot() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="chatbot-title"
-          className="absolute bottom-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[550px] max-h-[82vh] bg-white rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.22)] border border-[#E1E7E6] flex flex-col overflow-hidden animate-fadeIn z-50 font-sans"
+          className={`absolute ${
+            isMobileMapOpen
+              ? "top-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[calc(100dvh-6rem)] max-h-[580px]"
+              : "bottom-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[550px] max-h-[82vh]"
+          } bg-white rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.22)] border border-[#E1E7E6] flex flex-col overflow-hidden animate-fadeIn z-50 font-sans`}
         >
           {/* Header */}
           <div className="bg-[#007A7A] text-white px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between shadow-sm">
@@ -287,15 +309,23 @@ export default function ReforbsChatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2.5 bg-[#007A7A] hover:bg-[#005F5F] active:scale-95 text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-[0_4px_22px_rgba(0,122,122,0.4)] hover:shadow-[0_6px_28px_rgba(0,122,122,0.5)] transition-all duration-300 min-h-[46px]"
+          className={`flex items-center justify-center bg-[#007A7A] hover:bg-[#005F5F] active:scale-95 text-white rounded-full shadow-[0_4px_22px_rgba(0,122,122,0.4)] hover:shadow-[0_6px_28px_rgba(0,122,122,0.5)] transition-all duration-300 border-2 border-[#FFDE59]/70 ${
+            isMobileMapOpen
+              ? "w-11 h-11 p-0"
+              : "w-11 h-11 sm:w-auto p-0 sm:pl-3.5 sm:pr-4 sm:py-2.5 min-h-[44px] sm:min-h-[46px]"
+          }`}
           aria-label="Open Reforbs Support Assistant"
           aria-expanded={isOpen}
         >
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <MessageSquare size={19} className="text-[#FFDE59]" />
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFDE59] rounded-full animate-ping" />
           </div>
-          <span className="text-xs font-black tracking-wide font-heading">
+          <span
+            className={`text-xs font-black tracking-wide font-heading ml-2.5 ${
+              isMobileMapOpen ? "hidden" : "hidden sm:inline"
+            }`}
+          >
             Reforbs Assistant
           </span>
         </button>

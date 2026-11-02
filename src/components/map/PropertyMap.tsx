@@ -31,10 +31,19 @@ export default function PropertyMap() {
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
-    // Fast, production-grade Carto Voyager tiles (OpenStreetMap-derived, Cloudflare CDN cached, zero API key required)
-    const tileLayerUrl = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-    const attribution =
-      '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>';
+    // 1. CARTO Basemaps API Key from Vercel/browser environment variable
+    const cartoApiKey = process.env.NEXT_PUBLIC_CARTO_API_KEY?.trim();
+    const hasCartoKey = Boolean(cartoApiKey && cartoApiKey !== "YOUR_KEY");
+
+    // 2. Tile URL: If CARTO key is provided, use CARTO Voyager with key;
+    // otherwise use reliable OpenStreetMap standard HTTPS tiles (zero watermark, zero key required)
+    const tileLayerUrl = hasCartoKey
+      ? `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${cartoApiKey}`
+      : "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+    const attribution = hasCartoKey
+      ? '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
+      : '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
 
     const map = L.map(mapContainerRef.current, {
       center: [VIMAN_NAGAR_CENTER.lat, VIMAN_NAGAR_CENTER.lng],
@@ -48,11 +57,22 @@ export default function PropertyMap() {
 
     const tileLayer = L.tileLayer(tileLayerUrl, {
       attribution,
-      subdomains: "abcd",
+      subdomains: hasCartoKey ? "abcd" : "abc",
       maxZoom: 19,
       minZoom: 11,
       crossOrigin: true,
     });
+
+    // Fallback if CARTO tile error / invalid key occurs
+    let switchedToOsm = false;
+    tileLayer.on("tileerror", () => {
+      if (hasCartoKey && !switchedToOsm) {
+        switchedToOsm = true;
+        console.warn("CARTO tile error detected. Falling back to OpenStreetMap standard tiles.");
+        tileLayer.setUrl("https://tile.openstreetmap.org/{z}/{x}/{y}.png");
+      }
+    });
+
     tileLayer.addTo(map);
 
     // Track user drag/pan to offer "Search this area"

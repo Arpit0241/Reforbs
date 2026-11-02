@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from "react";
 import { PropertyItem, propertiesData } from "@/data/properties";
 
 export interface FilterState {
@@ -58,6 +58,22 @@ export function PropertyMapProvider({
   const [isMobileMapOpen, setIsMobileMapOpen] = useState(false);
   const [fitBoundsTrigger, setFitBoundsTrigger] = useState(0);
   const [searchThisAreaVisible, setSearchThisAreaVisible] = useState(false);
+
+  // Sync mobile map open state to body attribute for global UI collision prevention
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (isMobileMapOpen) {
+        document.body.setAttribute("data-mobile-map-open", "true");
+      } else {
+        document.body.removeAttribute("data-mobile-map-open");
+      }
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.removeAttribute("data-mobile-map-open");
+      }
+    };
+  }, [isMobileMapOpen]);
 
   const markAsVisited = useCallback((id: string) => {
     setVisitedListingIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
