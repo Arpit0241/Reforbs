@@ -29,181 +29,8 @@ import {
 } from "lucide-react";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
 import { PropertyMapProvider } from "@/context/PropertyMapContext";
-
-export interface PropertyItem {
-  id: string;
-  name: string;
-  category: "Student Housing" | "Co-Living";
-  tag: string;
-  outcome: string;
-  monogram: "grad" | "building" | "compass";
-  stat1Value: string;
-  stat1Label: string;
-  stat2Value: string;
-  stat2Label: string;
-  location: string;
-  subLocation: string;
-  priceDouble: string;
-  priceSingle: string;
-  cardGradient: string;
-  coverImage: string;
-  gallery: string[];
-  description: string;
-  highlights: string[];
-  link: string;
-}
-
-export const propertiesData: PropertyItem[] = [
-  // 1. Shubh Gateway
-  {
-    id: "shubh-gateway",
-    name: "Shubh Gateway",
-    category: "Student Housing",
-    tag: "Opposite Symbiosis Law School",
-    outcome: "Zero-commute legal sanctuary • Opp. SLS Gate",
-    monogram: "grad",
-    stat1Value: "₹12,500",
-    stat1Label: "Starting Rent /mo",
-    stat2Value: "1 Min",
-    stat2Label: "Walk to SLS Campus",
-    location: "Viman Nagar, Pune",
-    subLocation: "Directly opposite SLS Campus Gate",
-    priceDouble: "₹12,500",
-    priceSingle: "₹18,000",
-    cardGradient: "from-[#006E6E] via-[#004A4A] to-[#032323]",
-    coverImage: "/assets/pdf/extracted/page-7-image-1-X4.jpg",
-    gallery: [
-      "/assets/pdf/extracted/page-7-image-1-X4.jpg",
-      "/assets/pdf/extracted/page-7-image-2-X6.jpg",
-      "/assets/pdf/extracted/page-7-image-3-X7.jpg",
-      "/assets/pdf/extracted/page-7-image-4-X8.jpg",
-    ],
-    description:
-      "Directly opposite Symbiosis Law School. Purpose-built for law students needing quiet study sanctuaries, zero daily commute, high-speed fiber, and round-the-clock supportive hosts.",
-    highlights: ["Opposite SLS Campus", "Quiet Study Zone", "Zero Commute", "Private Kitchens"],
-    link: "/student-housing/shubh-gateway",
-  },
-
-  // 2. Sakore Nagar
-  {
-    id: "sakore-nagar",
-    name: "Reforbs Living Sakore Nagar",
-    category: "Student Housing",
-    tag: "Near SCMS & Symbiosis Hub",
-    outcome: "Balcony bedrooms • Daily housekeeping included",
-    monogram: "grad",
-    stat1Value: "₹12,000",
-    stat1Label: "Starting Rent /mo",
-    stat2Value: "3 Mins",
-    stat2Label: "Walk to SCMS Campus",
-    location: "Sakore Nagar, Viman Nagar, Pune",
-    subLocation: "3 mins walk to SCMS campus",
-    priceDouble: "₹12,000",
-    priceSingle: "₹17,500",
-    cardGradient: "from-[#0F766E] via-[#115E59] to-[#042F2C]",
-    coverImage: "/assets/pdf/extracted/page-6-image-1-X4.jpg",
-    gallery: [
-      "/assets/pdf/extracted/page-6-image-1-X4.jpg",
-      "/assets/pdf/extracted/page-6-image-2-X6.jpg",
-      "/assets/pdf/extracted/page-6-image-3-X7.jpg",
-      "/assets/pdf/extracted/page-6-image-4-X8.jpg",
-    ],
-    description:
-      "Modern student residence nestled in peaceful Sakore Nagar, Viman Nagar. Features spacious balconies, daily housekeeping, high-speed fiber, and full cooking freedom.",
-    highlights: ["3 Mins to SCMS", "Balcony Bedrooms", "Daily Housekeeping", "Laundry Care"],
-    link: "/student-housing/sakore-nagar",
-  },
-
-  // 3. Moksha
-  {
-    id: "moksha",
-    name: "Moksha",
-    category: "Co-Living",
-    tag: "Bohemian Terraces & Patios",
-    outcome: "Fairy-lit rooftop gardens • Work lounges",
-    monogram: "compass",
-    stat1Value: "₹14,500",
-    stat1Label: "Starting Rent /mo",
-    stat2Value: "100%",
-    stat2Label: "Cooking Freedom",
-    location: "Viman Nagar, Pune",
-    subLocation: "Near Joggers Park & Cafes",
-    priceDouble: "₹14,500",
-    priceSingle: "₹22,000",
-    cardGradient: "from-[#047857] via-[#064E3B] to-[#02241B]",
-    coverImage: "/assets/pdf/extracted/page-3-image-1-X4.jpg",
-    gallery: [
-      "/assets/pdf/extracted/page-3-image-1-X4.jpg",
-      "/assets/pdf/extracted/page-3-image-2-X6.jpg",
-      "/assets/pdf/extracted/page-3-image-3-X7.jpg",
-      "/assets/pdf/extracted/page-3-image-4-X8.jpg",
-    ],
-    description:
-      "Curated co-living spaces with bohemian green patios, serene ambiance, and private workstations for creators, consultants, and IT pros in Pune.",
-    highlights: ["Zen Terrace Garden", "Private Work Desks", "Full Power Backup", "Freedom to Cook"],
-    link: "/coliving/moksha",
-  },
-
-  // 4. Vipasana
-  {
-    id: "vipasana",
-    name: "Vipasana",
-    category: "Co-Living",
-    tag: "Mindful Urban Sanctuary",
-    outcome: "High-focus work suites • Gigabit optical fiber",
-    monogram: "building",
-    stat1Value: "₹14,000",
-    stat1Label: "Starting Rent /mo",
-    stat2Value: "4.9 ★",
-    stat2Label: "Resident Rating (152)",
-    location: "Viman Nagar, Pune",
-    subLocation: "Clover Park, Viman Nagar",
-    priceDouble: "₹14,000",
-    priceSingle: "₹21,000",
-    cardGradient: "from-[#0E7490] via-[#155E75] to-[#082F3B]",
-    coverImage: "/assets/pdf/extracted/page-4-image-1-X4.jpg",
-    gallery: [
-      "/assets/pdf/extracted/page-4-image-1-X4.jpg",
-      "/assets/pdf/extracted/page-4-image-2-X6.jpg",
-      "/assets/pdf/extracted/page-4-image-3-X7.jpg",
-      "/assets/pdf/extracted/page-2-image-1-X4.jpg",
-    ],
-    description:
-      "Vipasana balances high-energy career growth with calming, mindful living. Spotless rooms, ergonomic work suites, high-speed fiber, and relaxed social lounges.",
-    highlights: ["High-Focus Work Suites", "Daily Cleaning", "Zero Moral Policing", "24/7 Security"],
-    link: "/coliving/vipasana",
-  },
-
-  // 5. Shubh Nirvana
-  {
-    id: "shubh-nirvana",
-    name: "Shubh Nirvana",
-    category: "Co-Living",
-    tag: "Flagship Hippie & Backpacker Lounge",
-    outcome: "UV neon chill lounge • Pool table & BBQs",
-    monogram: "building",
-    stat1Value: "₹15,000",
-    stat1Label: "Starting Rent /mo",
-    stat2Value: "Zero",
-    stat2Label: "Rigid Curfews / Bans",
-    location: "Viman Nagar, Pune",
-    subLocation: "Near Phoenix Marketcity & IT Corridor",
-    priceDouble: "₹15,000",
-    priceSingle: "₹22,500",
-    cardGradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
-    coverImage: "/assets/pdf/extracted/page-7-image-5-X9.jpg",
-    gallery: [
-      "/assets/pdf/extracted/page-7-image-5-X9.jpg",
-      "/assets/pdf/extracted/page-7-image-6-X10.jpg",
-      "/assets/pdf/extracted/page-2-image-2-X6.jpg",
-      "/assets/pdf/extracted/page-2-image-3-X7.jpg",
-    ],
-    description:
-      "Our most vibrant co-living property inspired by the backpacker hostel cult. Glow lounges, rooftop gatherings, community BBQs, pool table, and friends welcome anytime.",
-    highlights: ["UV Neon Chill Lounge", "Pool Table & Games", "Community Dinners", "No Bans or Curfews"],
-    link: "/coliving/shubh-nirvana",
-  },
-];
+import { PropertyItem, propertiesData } from "@/data/properties";
+import { Palmtree } from "lucide-react";
 
 export default function FeaturedProperties() {
   const [viewMode, setViewMode] = useState<"map" | "grid">("map");
@@ -283,13 +110,43 @@ export default function FeaturedProperties() {
             Explore handcrafted student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, and real community.
           </motion.p>
 
+          {/* Top-Level City Selector: Pune (Active), Goa (Coming Soon), Bangalore (Coming Soon) */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 max-w-full">
+            <span className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#007A7A] text-white font-extrabold text-xs sm:text-sm shadow-md">
+              <MapPin size={15} className="text-[#FFDE59]" />
+              <span>Pune (10 Active Spaces)</span>
+            </span>
+
+            <Link
+              href="/goa"
+              className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white hover:bg-[#E6F4F3] text-[#111827] hover:text-[#007A7A] border border-[#E1E7E6] font-bold text-xs sm:text-sm shadow-sm transition-all group active:scale-95"
+            >
+              <Palmtree size={15} className="text-[#007A7A]" />
+              <span>Goa</span>
+              <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#FFF9D4] text-[#1B1D1C] group-hover:bg-[#FFDE59]">
+                Coming Soon
+              </span>
+            </Link>
+
+            <Link
+              href="/bangalore"
+              className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white hover:bg-[#E6F4F3] text-[#111827] hover:text-[#007A7A] border border-[#E1E7E6] font-bold text-xs sm:text-sm shadow-sm transition-all group active:scale-95"
+            >
+              <Building2 size={15} className="text-[#007A7A]" />
+              <span>Bangalore</span>
+              <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#FFF9D4] text-[#1B1D1C] group-hover:bg-[#FFDE59]">
+                Coming Soon
+              </span>
+            </Link>
+          </div>
+
           {/* Animated Accent Divider Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: "100px" }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto mt-4 mb-6 md:my-5"
+            className="h-1 w-20 bg-[#007A7A] rounded-full mx-auto mt-2 mb-6 md:my-5"
           />
 
           {/* View Mode Switcher: Interactive Map vs Cards Grid (Hidden on mobile per prompt; preserved on tablet & desktop) */}
@@ -360,7 +217,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <GraduationCap size={15} />
-                    <span>Student Housing (2)</span>
+                    <span>Student Housing ({propertiesData.filter((p) => p.category === "Student Housing").length})</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("coliving")}
@@ -371,7 +228,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <Building2 size={15} />
-                    <span>Co-Living (3)</span>
+                    <span>Co-Living ({propertiesData.filter((p) => p.category === "Co-Living").length})</span>
                   </button>
                 </div>
 

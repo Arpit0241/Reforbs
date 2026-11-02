@@ -165,30 +165,33 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* About & Philosophy */}
+          {/* Destinations & Cities */}
           <div>
             <h4 className="font-black text-white text-sm mb-4 font-heading">
-              The Reforbs Way
+              Destinations
             </h4>
             <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About Us &amp; Our Vision
+                <Link href="/properties" className="hover:text-white transition-colors flex items-center justify-between">
+                  <span>Pune (Viman Nagar)</span>
+                  <span className="text-[10px] bg-[#007A7A] text-white px-2 py-0.5 rounded-full font-bold">Active</span>
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  The 3P &amp; 3D Standard
+                <Link href="/goa" className="hover:text-white transition-colors flex items-center justify-between">
+                  <span>Goa (Hostels &amp; Hotels)</span>
+                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full font-extrabold">Coming Soon</span>
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Zero Follow-Up Call Guarantee
+                <Link href="/bangalore" className="hover:text-white transition-colors flex items-center justify-between">
+                  <span>Bangalore (Co-Living)</span>
+                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full font-extrabold">Coming Soon</span>
                 </Link>
               </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Frequently Asked Questions
+              <li className="pt-2">
+                <Link href="/about" className="text-white/80 hover:text-white transition-colors block">
+                  About Us &amp; 3P/3D Standard
                 </Link>
               </li>
             </ul>

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap, MapPin } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap, MapPin, Palmtree } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,24 +104,28 @@ export default function Navbar() {
               </Link>
 
               {propertiesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-84 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-2 animate-fadeIn z-50">
+                <div className="absolute top-full left-0 mt-2 w-96 bg-white rounded-3xl shadow-stanza border border-[#E1E7E6] p-3 grid gap-1.5 animate-fadeIn z-50">
+                  <div className="px-3 pt-1 pb-1 text-[11px] font-black uppercase text-[#6B7280] tracking-wider">
+                    Pune Residences (Active)
+                  </div>
+
                   <Link
                     href="/properties"
                     onClick={() => setPropertiesOpen(false)}
-                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#007A7A] text-white flex items-center justify-center shrink-0 shadow-sm">
-                      <MapPin size={20} />
+                    <div className="w-9 h-9 rounded-xl bg-[#007A7A] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <MapPin size={18} />
                     </div>
                     <div>
-                      <div className="flex items-center gap-1.5 text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
-                        <span>All Properties &amp; Map</span>
+                      <div className="flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        <span>All 10 Properties &amp; Map</span>
                         <span className="text-[10px] font-black bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full">
-                          Sync
+                          Pune
                         </span>
                       </div>
-                      <div className="text-xs text-[#4B5563]">
-                        Interactive listing-to-map sync in Viman Nagar
+                      <div className="text-[11px] text-[#4B5563]">
+                        Student sanctuaries &amp; co-living in Viman Nagar
                       </div>
                     </div>
                   </Link>
@@ -129,17 +133,17 @@ export default function Navbar() {
                   <Link
                     href="/student-housing"
                     onClick={() => setPropertiesOpen(false)}
-                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
-                      <GraduationCap size={20} />
+                    <div className="w-9 h-9 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
+                      <GraduationCap size={18} />
                     </div>
                     <div>
-                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
-                        Student Housing
+                      <div className="text-xs sm:text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        Student Housing (3 Spaces)
                       </div>
-                      <div className="text-xs text-[#4B5563]">
-                        Shubh Gateway (Opp. SLS) &amp; Sakore Nagar (Near SCMS)
+                      <div className="text-[11px] text-[#4B5563]">
+                        SLS, SCMC/SID &amp; Vairagya
                       </div>
                     </div>
                   </Link>
@@ -147,17 +151,68 @@ export default function Navbar() {
                   <Link
                     href="/coliving"
                     onClick={() => setPropertiesOpen(false)}
-                    className="flex items-start gap-3 p-3 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 group-hover:bg-[#FFDE59] transition-colors">
-                      <Building2 size={20} />
+                    <div className="w-9 h-9 rounded-xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 group-hover:bg-[#FFDE59] transition-colors">
+                      <Building2 size={18} />
                     </div>
                     <div>
-                      <div className="text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
-                        Co-Living for Professionals
+                      <div className="text-xs sm:text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        Co-Living for Professionals (7 Spaces)
                       </div>
-                      <div className="text-xs text-[#4B5563]">
-                        Moksha, Vipasana &amp; Shubh Nirvana in Viman Nagar
+                      <div className="text-[11px] text-[#4B5563]">
+                        Moksha, Nirvana, Vipasana, Suyog &amp; more
+                      </div>
+                    </div>
+                  </Link>
+
+                  <div className="my-1 border-t border-[#F0F2F2]" />
+
+                  <div className="px-3 pt-1 pb-1 text-[11px] font-black uppercase text-[#6B7280] tracking-wider flex items-center justify-between">
+                    <span>Upcoming Cities</span>
+                    <span className="text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-bold">
+                      Coming Soon
+                    </span>
+                  </div>
+
+                  <Link
+                    href="/goa"
+                    onClick={() => setPropertiesOpen(false)}
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-[#FFF9D4] transition-colors group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#FFF9D4] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#FFDE59] transition-colors">
+                      <Palmtree size={18} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between text-xs sm:text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        <span>Goa</span>
+                        <span className="text-[10px] font-bold bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-[#4B5563]">
+                        Backpackers hostels &amp; boutique workations
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/bangalore"
+                    onClick={() => setPropertiesOpen(false)}
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-[#E6F4F3] transition-colors group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center shrink-0 group-hover:bg-[#007A7A] group-hover:text-white transition-colors">
+                      <Building2 size={18} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between text-xs sm:text-sm font-extrabold text-[#1B1D1C] group-hover:text-[#007A7A]">
+                        <span>Bangalore</span>
+                        <span className="text-[10px] font-bold bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-[#4B5563]">
+                        Modern tech co-living in Koramangala &amp; Indiranagar
                       </div>
                     </div>
                   </Link>
@@ -307,6 +362,9 @@ export default function Navbar() {
             </Link>
 
             <div className="py-2 border-y border-[#E1E7E6] space-y-2">
+              <div className="text-[11px] font-black uppercase text-[#6B7280] tracking-wider px-1">
+                Pune Residences (10 Spaces)
+              </div>
               <Link
                 href="/properties"
                 onClick={() => setIsOpen(false)}
@@ -314,10 +372,10 @@ export default function Navbar() {
               >
                 <div className="flex items-center gap-2">
                   <MapPin size={18} className="text-[#007A7A]" />
-                  <span>Explore on Map (5 Residences)</span>
+                  <span>All Properties &amp; Map Sync</span>
                 </div>
                 <span className="text-xs bg-[#FFDE59] text-[#111827] font-black px-2.5 py-1 rounded-full shadow-sm">
-                  Interactive
+                  10 Units
                 </span>
               </Link>
               <div className="grid gap-1 pl-2">
@@ -326,9 +384,9 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-between min-h-[44px] text-sm font-bold text-[#374151] hover:text-[#007A7A]"
                 >
-                  <span>Student Housing (SLS &amp; SCMS)</span>
+                  <span>Student Housing (SLS, SCMC, Vairagya)</span>
                   <span className="text-xs bg-[#E6F4F3] text-[#007A7A] font-extrabold px-2.5 py-1 rounded-full">
-                    2 Units
+                    3 Spaces
                   </span>
                 </Link>
                 <Link
@@ -336,11 +394,47 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-between min-h-[44px] text-sm font-bold text-[#374151] hover:text-[#007A7A]"
                 >
-                  <span>Co-Living (Moksha, Vipasana, Nirvana)</span>
+                  <span>Co-Living (Moksha, Nirvana, Vipasna...)</span>
                   <span className="text-xs bg-[#FFF9D4] text-[#111827] font-extrabold px-2.5 py-1 rounded-full">
-                    3 Units
+                    7 Spaces
                   </span>
                 </Link>
+              </div>
+
+              {/* Upcoming Cities (Coming Soon) */}
+              <div className="pt-2 border-t border-[#F0F2F2]">
+                <div className="text-[11px] font-black uppercase text-[#6B7280] tracking-wider px-1 mb-1">
+                  Upcoming Cities
+                </div>
+                <div className="grid gap-1">
+                  <Link
+                    href="/goa"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between min-h-[44px] text-sm font-bold text-[#111827] hover:text-[#007A7A]"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Palmtree size={16} className="text-[#007A7A]" />
+                      <span>Goa (Backpackers &amp; Hotels)</span>
+                    </div>
+                    <span className="text-[10px] font-bold bg-[#FFDE59] text-[#111827] px-2.5 py-0.5 rounded-full">
+                      Coming Soon
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/bangalore"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between min-h-[44px] text-sm font-bold text-[#111827] hover:text-[#007A7A]"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Building2 size={16} className="text-[#007A7A]" />
+                      <span>Bangalore (Co-Living Hubs)</span>
+                    </div>
+                    <span className="text-[10px] font-bold bg-[#FFDE59] text-[#111827] px-2.5 py-0.5 rounded-full">
+                      Coming Soon
+                    </span>
+                  </Link>
+                </div>
               </div>
             </div>
 

@@ -10,10 +10,10 @@ export const metadata = {
 
 const studentProperties = [
   {
-    name: "Shubh Gateway",
+    name: "Shubh Gateway (Opp. SLS)",
     sub: "Directly opposite Symbiosis Law School (SLS)",
     price: "₹12,500",
-    image: "/assets/pdf/extracted/page-7-image-1-X4.jpg",
+    image: "/images/properties/sls/image-1.jpg",
     link: "/student-housing/shubh-gateway",
     rating: "4.9",
     reviews: 148,
@@ -25,18 +25,33 @@ const studentProperties = [
     ],
   },
   {
-    name: "Reforbs Living Sakore Nagar",
-    sub: "Walking distance to Symbiosis Centre for Mgmt Studies",
+    name: "Reforbs Living Sakore Nagar (SCMC/SID)",
+    sub: "Walking distance to SCMS, SCMC & Symbiosis Hub",
     price: "₹12,000",
-    image: "/assets/pdf/extracted/page-6-image-1-X4.jpg",
+    image: "/images/properties/scmc-sid/image-1.jpg",
     link: "/student-housing/sakore-nagar",
     rating: "4.8",
     reviews: 134,
     features: [
-      "3 mins walk to SCMS campus",
+      "3 mins walk to SCMC & SCMS campus",
       "Single & double rooms with study desks",
       "Daily housekeeping & laundry care included",
       "Private kitchen freedom (no forced food fees)",
+    ],
+  },
+  {
+    name: "Reforbs Vairagya",
+    sub: "Quiet study sanctuary near Symbiosis campuses",
+    price: "₹13,000",
+    image: "/images/properties/vairagya/image-1.jpg",
+    link: "/student-housing/vairagya",
+    rating: "4.9",
+    reviews: 128,
+    features: [
+      "Distraction-free environment for serious students",
+      "Attached balconies & sunlit study areas",
+      "High-speed fiber internet and power backup",
+      "100% freedom from rigid curfews",
     ],
   },
 ];
@@ -63,7 +78,7 @@ export default function StudentHousingIndex() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {studentProperties.map((prop, i) => (
             <div
               key={i}
