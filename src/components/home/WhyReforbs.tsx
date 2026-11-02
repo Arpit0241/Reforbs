@@ -154,7 +154,7 @@ export default function WhyReforbs() {
         <div className="bg-[#111312] text-white rounded-3xl overflow-hidden shadow-2xl border border-[#272B29]">
           <div className="relative h-72 sm:h-96 md:h-[420px] w-full">
             <Image
-              src="/images/living-reforbs-way.webp"
+              src="/images/properties/pillar-homes/image-1.jpg"
               alt="Living The Reforbs Way - Unique spaces full of personality"
               fill
               className="object-cover"

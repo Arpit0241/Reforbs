@@ -9,7 +9,7 @@ export default function AmenitiesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/student-housing-room.webp"
+              src="/images/properties/pillar-homes/image-4.jpg"
               alt="Start living your best life from day one - Fully furnished modern room"
               fill
               className="object-cover"
@@ -61,7 +61,7 @@ export default function AmenitiesSection() {
 
           <div className="lg:col-span-6 order-1 lg:order-2 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/coliving-bedroom.webp"
+              src="/images/properties/park-island/image-2.jpg"
               alt="Room that has room for everything - Spacious layout with ample storage"
               fill
               className="object-cover"
@@ -73,7 +73,7 @@ export default function AmenitiesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/housekeeping-lifestyle.webp"
+              src="/images/properties/pillar-homes/image-5.jpg"
               alt="Housekeeping and chores taken care of - Clean serviced living spaces"
               fill
               className="object-cover"

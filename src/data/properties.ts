@@ -107,7 +107,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 134,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#0F766E] via-[#115E59] to-[#042F2C]",
+    cardGradient: "from-[#006E6E] via-[#004A4A] to-[#032323]",
     coverImage: "/images/properties/scmc-sid/image-1.jpg",
     gallery: [
       "/images/properties/scmc-sid/image-1.jpg",
@@ -150,7 +150,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 128,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#115E59] via-[#044E46] to-[#022D28]",
+    cardGradient: "from-[#005F5F] via-[#004242] to-[#022421]",
     coverImage: "/images/properties/vairagya/image-1.jpg",
     gallery: [
       "/images/properties/vairagya/image-1.jpg",
@@ -283,7 +283,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 152,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#0E7490] via-[#155E75] to-[#082F3B]",
+    cardGradient: "from-[#006E6E] via-[#004A4A] to-[#032323]",
     coverImage: "/images/properties/vipasna/image-1.jpg",
     gallery: [
       "/images/properties/vipasna/image-1.jpg",
@@ -326,7 +326,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 119,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#0F766E] via-[#0D5F58] to-[#032926]",
+    cardGradient: "from-[#005F5F] via-[#004242] to-[#022421]",
     coverImage: "/images/properties/suyog/image-1.jpg",
     gallery: [
       "/images/properties/suyog/image-1.jpg",
@@ -369,7 +369,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 142,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#047857] via-[#065F46] to-[#022D21]",
+    cardGradient: "from-[#047857] via-[#064E3B] to-[#02241B]",
     coverImage: "/images/properties/park-island/image-1.jpg",
     gallery: [
       "/images/properties/park-island/image-1.jpg",
@@ -412,7 +412,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 136,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#0284C7] via-[#0369A1] to-[#082F49]",
+    cardGradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
     coverImage: "/images/properties/pillar-homes/image-1.jpg",
     gallery: [
       "/images/properties/pillar-homes/image-1.jpg",
@@ -455,7 +455,7 @@ export const propertiesData: PropertyItem[] = [
     reviews: 177,
     gender: "Co-Ed",
     roomTypes: ["Single", "Double"],
-    cardGradient: "from-[#0F766E] via-[#115E59] to-[#042F2C]",
+    cardGradient: "from-[#006E6E] via-[#004A4A] to-[#032323]",
     coverImage: "/images/properties/langston-downtown/image-1.jpg",
     gallery: [
       "/images/properties/langston-downtown/image-1.jpg",

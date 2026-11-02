@@ -63,7 +63,7 @@ export default function PropertyMapCard({
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}
       tabIndex={0}
-      className={`group relative rounded-3xl overflow-hidden transition-all duration-300 focus:outline-none bg-gradient-to-br ${property.cardGradient} text-white border border-white/20 shadow-xl hover:shadow-2xl ${
+      className={`group relative rounded-3xl overflow-hidden transition-all duration-300 focus:outline-none bg-[#0D2826] bg-gradient-to-br ${property.cardGradient || "from-[#006E6E] via-[#004A4A] to-[#032323]"} text-white border border-white/20 shadow-xl hover:shadow-2xl ${
         isActive || isHovered
           ? "ring-4 ring-[#FFDE59] shadow-2xl scale-[1.01] -translate-y-1 border-white/40"
           : "hover:-translate-y-0.5 hover:border-white/30"
@@ -132,7 +132,7 @@ export default function PropertyMapCard({
         </div>
 
         {/* Right Info Section (7 cols) */}
-        <div className="sm:col-span-7 p-5 sm:p-6 flex flex-col justify-between">
+        <div className="sm:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-black/20">
           <div>
             {/* Monogram and Locality */}
             <div className="flex items-start justify-between gap-2 mb-2.5">

@@ -348,7 +348,7 @@ export default function FeaturedProperties() {
                   delay: idx * 0.12,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`group relative rounded-3xl p-6 sm:p-7 text-white bg-gradient-to-br ${property.cardGradient} shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2.5 flex flex-col justify-between overflow-hidden border border-white/15`}
+                className={`group relative rounded-3xl p-6 sm:p-7 text-white bg-[#0D2826] bg-gradient-to-br ${property.cardGradient || "from-[#006E6E] via-[#004A4A] to-[#032323]"} shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2.5 flex flex-col justify-between overflow-hidden border border-white/15`}
               >
                 {/* Subtle Glow Overlay */}
                 <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/10 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
