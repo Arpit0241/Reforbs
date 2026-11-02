@@ -313,16 +313,16 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
           {/* Mobile Bottom Swipable Listing Card Carousel (Visible only on mobile map view) */}
           {isMobileMapOpen && activeListing && (
             <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-4 z-[450] animate-fadeIn">
-              <div className="bg-gradient-to-r from-[#0D1110] via-[#004A4A] to-[#032323] text-white rounded-3xl p-3.5 shadow-2xl border border-white/20 flex items-center gap-3">
+              <div className="bg-gradient-to-r from-[#0D1110] via-[#004A4A] to-[#032323] text-white rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-2xl border border-white/20 flex items-center gap-2.5 sm:gap-3">
                 {/* Thumbnail */}
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 bg-[#111827] border border-white/20">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-[#111827] border border-white/20">
                   <Image
                     src={activeListing.coverImage}
                     alt={activeListing.name}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase bg-black/60 text-white border border-white/20">
+                  <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[8px] sm:text-[9px] font-black uppercase bg-black/60 text-white border border-white/20">
                     {activeListing.category === "Student Housing" ? "Student" : "Co-Living"}
                   </div>
                 </div>
@@ -333,25 +333,25 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                     <MapPin size={11} className="text-[#FFDE59] shrink-0" />
                     <span className="truncate">{activeListing.subLocation}</span>
                   </div>
-                  <h4 className="font-extrabold text-sm text-white font-heading truncate">
+                  <h4 className="font-extrabold text-xs sm:text-sm text-white font-heading truncate">
                     {activeListing.name}
                   </h4>
                   <div className="text-xs font-black text-[#FFDE59] mt-0.5">
                     {activeListing.price} <span className="text-[10px] text-white/70 font-medium">/mo</span>
                   </div>
-                  <div className="flex items-center gap-1.5 mt-2">
+                  <div className="grid grid-cols-3 gap-1 sm:gap-1.5 mt-1.5">
                     <a
                       href={activeListing.googleMapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2.5 py-1 rounded-lg bg-[#FFDE59] text-[#111827] font-black text-[11px] text-center flex items-center gap-0.5 shadow-sm active:scale-95"
+                      className="px-1 py-1 sm:px-2 sm:py-1 rounded-md sm:rounded-lg bg-[#FFDE59] text-[#111827] font-black text-[10px] sm:text-[11px] text-center flex items-center justify-center gap-0.5 shadow-xs active:scale-95 whitespace-nowrap"
                       title="Open on Google Maps"
                     >
-                      <span>📍 Maps ↗</span>
+                      <span>📍 Maps</span>
                     </a>
                     <Link
                       href={activeListing.link}
-                      className="px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white text-white hover:text-[#111827] font-bold text-[11px] text-center border border-white/25 transition-colors"
+                      className="px-1 py-1 sm:px-2 sm:py-1 rounded-md sm:rounded-lg bg-white/20 hover:bg-white text-white hover:text-[#111827] font-bold text-[10px] sm:text-[11px] text-center flex items-center justify-center border border-white/25 transition-colors whitespace-nowrap"
                     >
                       Details
                     </Link>
@@ -359,7 +359,7 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                       href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(activeListing.name)}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white font-bold text-[11px] text-center shadow-sm"
+                      className="px-1 py-1 sm:px-2 sm:py-1 rounded-md sm:rounded-lg bg-[#25D366] text-white font-bold text-[10px] sm:text-[11px] text-center flex items-center justify-center shadow-xs whitespace-nowrap"
                     >
                       WhatsApp
                     </a>
@@ -370,17 +370,17 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                 <div className="flex flex-col gap-1 shrink-0">
                   <button
                     onClick={handlePrevListing}
-                    className="w-8 h-8 rounded-full bg-[#FAFAFA] border border-gray-200 flex items-center justify-center text-gray-700 active:scale-95"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FAFAFA] border border-gray-200 flex items-center justify-center text-gray-700 active:scale-95"
                     aria-label="Previous listing"
                   >
-                    <ChevronLeft size={16} />
+                    <ChevronLeft size={14} />
                   </button>
                   <button
                     onClick={handleNextListing}
-                    className="w-8 h-8 rounded-full bg-[#FAFAFA] border border-gray-200 flex items-center justify-center text-gray-700 active:scale-95"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FAFAFA] border border-gray-200 flex items-center justify-center text-gray-700 active:scale-95"
                     aria-label="Next listing"
                   >
-                    <ChevronRight size={16} />
+                    <ChevronRight size={14} />
                   </button>
                 </div>
               </div>

@@ -196,25 +196,25 @@ export default function PropertyMap() {
       const isHovered = item.id === hoveredListingId;
       const isVisited = visitedListingIds.includes(item.id);
 
-      // Custom divIcon Marker styled with Reforbs design tokens
-      let badgeClasses = "bg-[#007A7A] text-white border-2 border-white shadow-md";
-      let zIndex = 100;
+      // Custom divIcon Marker styled with Reforbs design tokens - Compact, legible, non-overlapping
+      let badgeClasses = "bg-[#007A7A] text-white border-[1.5px] border-white shadow-sm";
+      let zIndex = 100 + Math.round((item.lat - 18.5) * 10000);
 
       if (isActive || isHovered) {
         badgeClasses =
-          "bg-[#FFDE59] text-[#111827] border-2 border-[#111827] shadow-xl scale-110 ring-4 ring-[#007A7A]/30";
-        zIndex = 999;
+          "bg-[#FFDE59] text-[#111827] border-2 border-[#111827] shadow-xl scale-110 ring-4 ring-[#007A7A]/30 font-black";
+        zIndex = 1000;
       } else if (isVisited) {
-        badgeClasses = "bg-[#005555] text-white/95 border-2 border-white/80 shadow-sm";
+        badgeClasses = "bg-[#005555] text-white/90 border-[1.5px] border-white/80 shadow-xs";
       }
 
       const customHtml = `
         <div class="relative group cursor-pointer transition-transform duration-200" style="transform: translate(-50%, -100%);">
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-black text-xs whitespace-nowrap transition-all ${badgeClasses}">
-            <span class="w-2 h-2 rounded-full ${isActive || isHovered ? "bg-[#007A7A]" : "bg-[#FFDE59]"}"></span>
+          <div class="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-extrabold whitespace-nowrap transition-all ${badgeClasses}">
+            <span class="w-1.5 h-1.5 rounded-full ${isActive || isHovered ? "bg-[#007A7A]" : "bg-[#FFDE59]"}"></span>
             <span>${item.price}</span>
           </div>
-          <div class="w-2.5 h-2.5 bg-inherit rotate-45 mx-auto -mt-1.5 border-r border-b ${
+          <div class="w-2 h-2 bg-inherit rotate-45 mx-auto -mt-1 border-r border-b ${
             isActive || isHovered ? "bg-[#FFDE59] border-[#111827]" : "bg-[#007A7A] border-white"
           }"></div>
         </div>
@@ -223,8 +223,8 @@ export default function PropertyMap() {
       const icon = L.divIcon({
         html: customHtml,
         className: "custom-property-pin",
-        iconSize: [80, 40],
-        iconAnchor: [40, 40],
+        iconSize: [68, 32],
+        iconAnchor: [34, 32],
       });
 
       const marker = L.marker([item.lat, item.lng], {
@@ -234,37 +234,37 @@ export default function PropertyMap() {
         alt: `${item.name} - ${item.price}`,
       });
 
-      // Marker popup content with high-contrast, ultra-visible Google Maps button
+      // Marker popup content: 265px responsive width, clean word wrapping, high contrast
       const popupContent = `
-        <div class="w-68 p-2.5 font-sans bg-white rounded-2xl">
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-28 w-full rounded-xl overflow-hidden mb-2.5 bg-[#111827] group" title="Open ${item.name} in Google Maps">
+        <div class="w-[265px] min-w-[250px] max-w-[calc(100vw-36px)] p-3 font-sans bg-white rounded-2xl box-border">
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-32 w-full rounded-xl overflow-hidden mb-2.5 bg-[#111827] group" title="Open ${item.name} in Google Maps">
             <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white">
+            <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white shadow-xs">
               ${item.category}
             </div>
-            <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[11px] font-black bg-[#FFDE59] text-[#111827]">
-              ${item.price}/mo
+            <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded-xl text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm">
+              ${item.price}<span class="text-[10px] font-bold text-gray-800">/mo</span>
             </div>
-            <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full text-[10px] font-black gmaps-badge shadow-md flex items-center gap-1" style="background-color: #FFDE59 !important; color: #111827 !important;">
+            <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[10px] font-black bg-black/60 backdrop-blur-xs text-white border border-white/20 shadow-sm flex items-center gap-1">
               <span>📍 Maps ↗</span>
             </div>
           </a>
 
           <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block hover:text-[#007A7A] transition-colors" title="Open ${item.name} in Google Maps">
-            <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 line-clamp-1 flex items-center justify-between">
-              <span>${item.name}</span>
-              <span class="text-xs text-[#007A7A] font-black">↗</span>
+            <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 truncate flex items-center justify-between">
+              <span class="truncate">${item.name}</span>
+              <span class="text-xs text-[#007A7A] font-black shrink-0 ml-1">↗</span>
             </h4>
           </a>
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-2.5 font-medium line-clamp-1 block">
+          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-3 font-medium truncate block">
             📍 ${item.address || item.subLocation}
           </a>
 
           <div class="grid grid-cols-2 gap-2 pt-2.5 border-t border-[#E5E7EB]">
-            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-gmaps flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-black text-center transition-all shadow-md" style="background-color: #FFDE59 !important; color: #111827 !important; border: 1.5px solid #111827 !important;">
+            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-gmaps flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-all shadow-xs" style="background-color: #FFDE59 !important; color: #111827 !important; border: 1.5px solid #111827 !important;">
               <span>📍 Google Maps</span>
             </a>
-            <a href="${item.link}" class="btn-details flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-black text-center transition-colors shadow-md" style="background-color: #007A7A !important; color: #FFFFFF !important;">
+            <a href="${item.link}" class="btn-details flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-colors shadow-xs" style="background-color: #007A7A !important; color: #FFFFFF !important;">
               <span>Details →</span>
             </a>
           </div>
@@ -272,8 +272,12 @@ export default function PropertyMap() {
       `;
 
       marker.bindPopup(popupContent, {
-        closeButton: false,
-        offset: [0, -32],
+        closeButton: true,
+        offset: [0, -28],
+        minWidth: 250,
+        maxWidth: 280,
+        autoPan: true,
+        autoPanPadding: [20, 70],
         className: "custom-property-popup",
       });
 

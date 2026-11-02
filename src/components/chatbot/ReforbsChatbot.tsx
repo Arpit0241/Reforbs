@@ -160,7 +160,7 @@ export default function ReforbsChatbot() {
       aria-label="Reforbs Customer Support Assistant"
       className={`fixed transition-all duration-300 z-50 pointer-events-auto ${
         isMobileMapOpen
-          ? "top-20 right-3"
+          ? "bottom-[155px] right-3.5"
           : "bottom-20 sm:bottom-6 right-3 sm:right-6"
       }`}
     >
@@ -170,11 +170,7 @@ export default function ReforbsChatbot() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="chatbot-title"
-          className={`absolute ${
-            isMobileMapOpen
-              ? "top-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[calc(100dvh-6rem)] max-h-[580px]"
-              : "bottom-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[550px] max-h-[82vh]"
-          } bg-white rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.22)] border border-[#E1E7E6] flex flex-col overflow-hidden animate-fadeIn z-50 font-sans`}
+          className="absolute bottom-0 right-0 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[520px] max-h-[75vh] bg-white rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.22)] border border-[#E1E7E6] flex flex-col overflow-hidden animate-fadeIn z-50 font-sans"
         >
           {/* Header */}
           <div className="bg-[#007A7A] text-white px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between shadow-sm">
