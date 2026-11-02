@@ -87,7 +87,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative h-96 sm:h-[480px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
               <Image
-                src="/images/living-reforbs-way.webp"
+                src="/images/properties/pillar-homes/image-1.jpg"
                 alt="Reforbs Spaces and Living Culture"
                 fill
                 className="object-cover"
@@ -294,7 +294,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/student-housing-room.webp"
+                src="/images/properties/pillar-homes/image-4.jpg"
                 alt="Reforbs Living Space - Modern Student Suite"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
@@ -302,7 +302,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/coliving-bedroom.webp"
+                src="/images/properties/park-island/image-2.jpg"
                 alt="Reforbs Private Room - Ample Storage & Comfort"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
@@ -310,7 +310,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/housekeeping-lifestyle.webp"
+                src="/images/properties/pillar-homes/image-5.jpg"
                 alt="Reforbs Clean Living - Serviced Spaces"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"
@@ -318,7 +318,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-56 rounded-2xl overflow-hidden shadow-sm border border-gray-200 group">
               <Image
-                src="/images/community-lifestyle.webp"
+                src="/images/properties/park-island/image-1.jpg"
                 alt="Reforbs Social Vibes - Community Bonding"
                 fill
                 className="object-cover group-hover:scale-105 transition duration-300"

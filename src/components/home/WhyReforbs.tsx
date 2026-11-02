@@ -14,7 +14,7 @@ export default function WhyReforbs() {
             The Unique <span className="text-[#007A7A]">3P</span> &amp;{" "}
             <span className="text-[#B8860B]">3D</span> Living Standard
           </h2>
-          <p className="text-[#4A524F] text-sm sm:text-base mt-4 font-medium leading-relaxed">
+          <p className="text-gray-700 text-sm sm:text-base mt-4 font-medium leading-relaxed">
             Where most coliving companies conventionally market comfort and security, we at Reforbs focus on vibes, ownership, freedom, and emotional connection.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function WhyReforbs() {
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     PRIVACY
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     It&apos;s safe to say that you get all the privacy you need when you stay with us, since all our rooms are for single occupants and you&apos;re the only tenant who will be staying in one room.
                   </p>
                 </div>
@@ -55,14 +55,14 @@ export default function WhyReforbs() {
 
               {/* Personalization */}
               <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-11 h-11 rounded-2xl bg-[#FFF9D4] text-[#B8860B] flex items-center justify-center shrink-0 mt-0.5">
                   <Sliders size={20} />
                 </div>
                 <div>
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     PERSONALIZATION
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     We have a private setup and create a home-like atmosphere that makes our tenants feel welcome. Our space has everything you need – you&apos;ll have your private kitchen, dining space, balcony, and other private spaces.
                   </p>
                 </div>
@@ -77,7 +77,7 @@ export default function WhyReforbs() {
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     POSITIVITY
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     You get to live in a very positive environment that nurtures your lives. The fresh and light vibe of the place and social bonding through Reforbs community helps unite people and hold them together on a day to day basis.
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function WhyReforbs() {
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     DAILY SUPPORT
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     We provide day to day support, and give our tenants the help they need to focus on what&apos;s important. We make it easy for you to manage by providing regular maintenance, so everything is taken care of quickly and efficiently.
                   </p>
                 </div>
@@ -119,14 +119,14 @@ export default function WhyReforbs() {
 
               {/* Decor */}
               <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-[#FFF9D4] text-[#1B1D1C] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-11 h-11 rounded-2xl bg-[#FFF9D4] text-[#B8860B] flex items-center justify-center shrink-0 mt-0.5">
                   <Palette size={20} />
                 </div>
                 <div>
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     DECOR
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     We have a team of talented and dedicated interior designers to beautify the space and make it just right for your needs, whether that&apos;s gearing you up for a productive day or helping you find peace at the end of one.
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function WhyReforbs() {
                   <h4 className="text-base font-extrabold text-[#1B1D1C] mb-1 font-heading">
                     DETAILS
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
                     From personal utilities to decor, every detail that enhances your life is the cornerstone of everything we do at Reforbs Coliving.
                   </p>
                 </div>

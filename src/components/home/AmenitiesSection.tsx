@@ -21,7 +21,7 @@ export default function AmenitiesSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1B1D1C] font-heading leading-tight">
               Start living your best life from <span className="text-[#007A7A]">day one</span>.
             </h2>
-            <p className="text-[#4A524F] text-base leading-relaxed font-medium">
+            <p className="text-gray-800 text-base leading-relaxed font-medium">
               Bring a box full of hopes, dreams, ambitions... and of course, your personal belongings. Everything else — furniture, appliances, food — has already been taken care of.
             </p>
             <div className="pt-2 space-y-3 text-xs sm:text-sm text-[#1B1D1C] font-bold">
@@ -48,12 +48,12 @@ export default function AmenitiesSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1B1D1C] font-heading leading-tight">
               Step into a room that has <span className="text-[#007A7A]">room for everything</span>.
             </h2>
-            <p className="text-[#4A524F] text-base leading-relaxed font-medium">
+            <p className="text-gray-800 text-base leading-relaxed font-medium">
               Your clothes and bag will not be fighting for space on the same chair. At Reforbs Living, there&apos;s ample room for all your possessions. Even a framed photo of your family, for the rare occasions you miss home.
             </p>
             <div className="bg-[#FAF6E8] p-5 rounded-2xl border border-[#E6D7A8] text-xs sm:text-sm text-[#1B1D1C]">
               <p className="font-extrabold mb-1">Single &amp; Double Privacy Guaranteed:</p>
-              <p className="text-[#666B68]">
+              <p className="text-gray-800 font-medium">
                 All single rooms are for single occupants only. You get your private sanctuary without feeling cramped.
               </p>
             </div>
@@ -88,14 +88,14 @@ export default function AmenitiesSection() {
                 And tear it up.
               </span>
             </h2>
-            <p className="text-[#4A524F] text-base leading-relaxed font-medium">
+            <p className="text-gray-800 text-base leading-relaxed font-medium">
               You have better things to do than wash your clothes, clean up your room and cook your meals. So our team of pros will do them all for you.
             </p>
             <div className="p-5 rounded-2xl bg-[#E6F4F3] border border-[#BDE3DF]">
               <h4 className="text-sm font-extrabold text-[#007A7A] mb-1">
                 Making your life remarkably easy in Pune:
               </h4>
-              <p className="text-xs sm:text-sm text-[#1B1D1C]">
+              <p className="text-xs sm:text-sm text-gray-800 font-medium">
                 We go a step further than just solving your day-to-day issues. During your entire stay, we don&apos;t shy away from solving any issue that we can. In our premise or outside of it.
               </p>
             </div>

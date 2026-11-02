@@ -84,7 +84,7 @@ export default function CommunityPage() {
           <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-xl mb-16">
             <div className="relative h-72 sm:h-96 md:h-[460px] w-full bg-gray-100">
               <Image
-                src="/images/community-lifestyle.webp"
+                src="/images/properties/park-island/image-1.jpg"
                 alt="Never a dull moment at Reforbs Community"
                 fill
                 className="object-cover"
