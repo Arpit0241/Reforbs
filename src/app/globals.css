@@ -117,6 +117,35 @@ p {
 }
 
 /* Custom Leaflet Map & Marker Pin Styling */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 10;
+  background-color: #e5e3df !important;
+  font-family: inherit !important;
+  touch-action: pan-x pan-y !important;
+}
+
+/* CRITICAL FIX: Prevent Tailwind Preflight reset (img { max-width: 100%; height: auto; }) from distorting or breaking Leaflet tiles */
+.leaflet-container img.leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+  width: 256px !important;
+  height: 256px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.leaflet-container .leaflet-tile-container {
+  pointer-events: none;
+}
+
+.leaflet-container .leaflet-tile-loaded {
+  opacity: 1 !important;
+}
+
 .custom-property-pin {
   background: transparent !important;
   border: none !important;

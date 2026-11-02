@@ -19,6 +19,7 @@ export default function PropertyMap() {
     hoveredListingId,
     visitedListingIds,
     fitBoundsTrigger,
+    isMobileMapOpen,
     setActiveListingId,
     setHoveredListingId,
   } = usePropertyMap();
@@ -30,10 +31,10 @@ export default function PropertyMap() {
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
-    // 100% Free OpenStreetMap tiles - zero API key required, crisp and detailed local Pune landmarks
-    const tileLayerUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+    // Fast, production-grade Carto Voyager tiles (OpenStreetMap-derived, Cloudflare CDN cached, zero API key required)
+    const tileLayerUrl = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
     const attribution =
-      '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
+      '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>';
 
     const map = L.map(mapContainerRef.current, {
       center: [VIMAN_NAGAR_CENTER.lat, VIMAN_NAGAR_CENTER.lng],
@@ -42,12 +43,17 @@ export default function PropertyMap() {
       scrollWheelZoom: true,
       maxZoom: 19,
       minZoom: 11,
+      trackResize: true,
     });
 
-    L.tileLayer(tileLayerUrl, {
+    const tileLayer = L.tileLayer(tileLayerUrl, {
       attribution,
+      subdomains: "abcd",
       maxZoom: 19,
-    }).addTo(map);
+      minZoom: 11,
+      crossOrigin: true,
+    });
+    tileLayer.addTo(map);
 
     // Track user drag/pan to offer "Search this area"
     map.on("dragstart", () => {
@@ -63,11 +69,88 @@ export default function PropertyMap() {
     mapInstanceRef.current = map;
     setIsMapReady(true);
 
+    // Initial resize trigger after DOM attaches
+    const initTimer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+
     return () => {
+      clearTimeout(initTimer);
       map.remove();
       mapInstanceRef.current = null;
     };
   }, []);
+
+  // ResizeObserver: Automatically recalculate map size whenever container changes dimensions
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    const map = mapInstanceRef.current;
+    if (!container || !map || !isMapReady) return;
+
+    let resizeTimer: any;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize({ pan: false });
+        }
+      }, 50);
+    });
+
+    ro.observe(container);
+
+    return () => {
+      clearTimeout(resizeTimer);
+      ro.disconnect();
+    };
+  }, [isMapReady]);
+
+  // Window resize & device orientation change listener
+  useEffect(() => {
+    const handleResize = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize({ pan: false });
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
+    };
+  }, []);
+
+  // Re-invalidate map size when mobile full-screen map modal opens or closes
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (!map || !isMapReady) return;
+
+    // Trigger invalidateSize in quick stages to ensure mobile viewport animation/transition finishes cleanly
+    const t1 = setTimeout(() => map.invalidateSize(), 50);
+    const t2 = setTimeout(() => {
+      map.invalidateSize();
+      if (activeListingId) {
+        const target = listings.find((p) => p.id === activeListingId);
+        if (target) {
+          map.panTo([target.lat, target.lng], { animate: true });
+        }
+      } else if (listings.length > 0) {
+        const bounds = L.latLngBounds(listings.map((p) => [p.lat, p.lng]));
+        if (bounds.isValid()) {
+          map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+        }
+      }
+    }, 200);
+    const t3 = setTimeout(() => map.invalidateSize(), 450);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [isMobileMapOpen, isMapReady, activeListingId, listings]);
 
   // Update Markers whenever listings, activeListingId, hoveredListingId, or visited change
   useEffect(() => {

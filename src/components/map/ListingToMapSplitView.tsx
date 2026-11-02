@@ -290,15 +290,29 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
           id="map-panel"
           className={`lg:col-span-5 lg:sticky lg:top-24 h-[calc(100dvh-7.5rem)] min-h-[520px] self-start ${
             isMobileMapOpen
-              ? "fixed inset-0 top-16 z-40 bg-white block h-[calc(100dvh-4rem)] rounded-none"
+              ? "fixed inset-0 top-16 bottom-[68px] z-40 bg-white block rounded-none overflow-hidden"
               : "hidden lg:block"
           }`}
         >
           <PropertyMap />
 
+          {/* Mobile Back / Show List Button inside Map */}
+          {isMobileMapOpen && (
+            <div className="absolute top-4 left-4 z-[450] animate-fadeIn">
+              <button
+                onClick={toggleMobileMap}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-xl font-black text-xs border border-white/20 transition-all active:scale-95"
+                aria-label="Back to List View"
+              >
+                <List size={14} className="text-[#FFDE59]" />
+                <span>Show List</span>
+              </button>
+            </div>
+          )}
+
           {/* Mobile Bottom Swipable Listing Card Carousel (Visible only on mobile map view) */}
           {isMobileMapOpen && activeListing && (
-            <div className="absolute bottom-6 left-4 right-4 z-[500] animate-fadeIn">
+            <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-4 z-[450] animate-fadeIn">
               <div className="bg-gradient-to-r from-[#0D1110] via-[#004A4A] to-[#032323] text-white rounded-3xl p-3.5 shadow-2xl border border-white/20 flex items-center gap-3">
                 {/* Thumbnail */}
                 <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 bg-[#111827] border border-white/20">
@@ -375,25 +389,16 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
         </div>
       </div>
 
-      {/* Floating Mobile Map / List Toggle Button (Only on standalone /properties view, centered at bottom) */}
-      {!isEmbedded && (
+      {/* Floating Mobile Map / List Toggle Button (Centered at bottom, visible when on list view) */}
+      {!isMobileMapOpen && (
         <div className="lg:hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-40">
           <button
             onClick={toggleMobileMap}
             className="inline-flex items-center gap-2 min-h-[46px] px-5 py-2.5 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-2xl font-black text-xs tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20 whitespace-nowrap"
-            aria-label={isMobileMapOpen ? "Switch to List View" : "Switch to Map View"}
+            aria-label="Switch to Map View"
           >
-            {isMobileMapOpen ? (
-              <>
-                <List size={16} className="text-[#FFDE59]" />
-                <span>Show List View</span>
-              </>
-            ) : (
-              <>
-                <MapIcon size={16} className="text-[#FFDE59]" />
-                <span>Explore Map ({listings.length})</span>
-              </>
-            )}
+            <MapIcon size={16} className="text-[#FFDE59]" />
+            <span>Explore Map ({listings.length})</span>
           </button>
         </div>
       )}
