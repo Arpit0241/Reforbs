@@ -1,5 +1,6 @@
 /**
  * Deterministic Intent Detection and Entity Extraction
+ * Based on Reforbs Knowledge Base v4.0 (reforbs_expanded_knowledge_base_v4.pdf)
  *
  * Implements a strict, multi-stage question analyzer using explicit regex patterns,
  * word boundaries, entity extraction, and question structure analysis.
@@ -8,56 +9,31 @@
  */
 
 export type CustomerIntent =
-  | "GOOGLE_MAPS_LINK"
-  | "FULL_ADDRESS"
-  | "AIRPORT_DISTANCE"
-  | "NEAREST_AIRPORT"
-  | "SLS_DISTANCE"
-  | "IIHM_DISTANCE"
-  | "CHRIST_COLLEGE_DISTANCE"
-  | "CORPORATE_HUBS"
-  | "METRO_STATION"
-  | "VIMAN_NAGAR_PROPERTIES"
-  | "NEAREST_LOCATION"
-  | "UNSPECIFIED_COLLEGE"
-  | "UNSPECIFIED_OFFICE"
+  | "PROPERTY_DIRECTORY"
   | "CHEAPEST_PRICE_COMPARISON"
   | "RENT_PRICING"
-  | "SECURITY_DEPOSIT"
-  | "DISCOUNTS_OFFERS"
-  | "RENT_INCLUSIONS_WIFI_WATER"
-  | "ELECTRICITY_INCLUSION"
-  | "FOOD_INCLUSIONS"
-  | "COOK_FOOD"
-  | "STUDENT_OR_COLIVING"
   | "OCCUPANCY_SINGLE_DOUBLE"
-  | "PEOPLE_PER_ROOM"
-  | "PEOPLE_PER_PG"
-  | "COUPLES_POLICY"
-  | "CO_ED_POLICY"
-  | "CCTV_SECURITY"
-  | "CLEANLINESS_HOUSEKEEPING"
-  | "MAINTENANCE_SPEED"
-  | "VISITORS_GUESTS"
+  | "SECURITY_DEPOSIT"
+  | "BROKERAGE_POLICY"
+  | "AMENITY_SPECIFIC"
+  | "AIRPORT_DISTANCE"
+  | "NEAREST_AIRPORT"
+  | "COLLEGE_OFFICE_DISTANCE"
+  | "UNSPECIFIED_COLLEGE_OFFICE"
+  | "FOOD_MESS"
+  | "LOCK_IN_POLICY"
   | "CURFEW_RULES"
-  | "PETS_SMOKING_ALCOHOL"
-  | "VISIT_BEFORE_BOOKING"
-  | "DOCUMENTS_REQUIRED"
-  | "AVAILABILITY_VACANCIES"
-  | "MINIMUM_STAY_LEASE"
-  | "CANCELLATION_REFUND"
-  | "PAYMENT_SAFETY"
-  | "AMENITIES"
-  | "AC_AMENITY"
-  | "TV_AMENITY"
-  | "WORK_DESK_AMENITY"
-  | "FURNITURE_INVENTORY"
-  | "RULES_RESTRICTIONS"
-  | "PROPERTY_SPECIFIC"
-  | "PROPERTY_DIRECTORY"
-  | "CONTACT_SUPPORT"
+  | "VISITORS_GUESTS"
+  | "COUPLES_POLICY"
+  | "CCTV_SECURITY"
+  | "COMMUNITY_ACTIVITIES"
   | "VISIT_TOUR"
-  | "DIFFERENCE_FROM_HOSTEL"
+  | "LIVE_AVAILABILITY"
+  | "CONTACT_SUPPORT"
+  | "DESTINATION_COMING_SOON"
+  | "BUILDING_CAPACITY"
+  | "REVIEWS_RATINGS"
+  | "PROPERTY_PROFILE"
   | "OFF_TOPIC"
   | "GENERAL_INQUIRY";
 
@@ -65,7 +41,8 @@ export interface ExtractedEntities {
   property?: string;
   location?: string;
   college?: string;
-  targetAmenity?: string;
+  targetAmenities: string[];
+  occupancyType?: "single" | "double";
 }
 
 export interface IntentDetectionResult {
@@ -88,47 +65,36 @@ export function cleanInputText(text: string): string {
 }
 
 /**
- * Extract named properties recognized by Reforbs
+ * Extract named properties recognized by Reforbs v4
  */
 export function extractPropertyEntity(normalized: string): string | undefined {
-  if (/\b(?:reforbs\s+co-?living\s*-\s*)?sanjay\s+park\b/.test(normalized))
-    return "ReForbs Co-Living - Sanjay Park";
-  if (/\bshubh\s+gateway\b/.test(normalized)) return "Shubh Gateway";
-  if (/\b(reforbs\s+living\s+)?sakore\s+nagar\b/.test(normalized))
-    return "Reforbs Living Sakore Nagar";
+  if (/\b(?:shubh\s+gateway|gateway)\b/.test(normalized)) return "Shubh Gateway";
+  if (/\b(?:reforbs\s+living\s+)?sakore\s+nagar\b/.test(normalized)) return "Reforbs Living Sakore Nagar";
+  if (/\b(?:reforbs\s+)?vairagya\b/.test(normalized)) return "Reforbs Vairagya";
   if (/\bmoksha\b/.test(normalized)) return "Moksha";
-  if (/\bvipasana\b/.test(normalized)) return "Vipasana";
-  if (/\bshubh\s+nirvana\b/.test(normalized)) return "Shubh Nirvana";
-  if (/\breforbs\s+co-?living\b/.test(normalized)) return "ReForbs Co-Living";
+  if (/\b(?:shubh\s+)?nirvana\b/.test(normalized)) return "Shubh Nirvana";
+  if (/\bvipasana\b|\bvipasna\b/.test(normalized)) return "Vipasana";
+  if (/\bsuyog(?:\s+co-?living)?\b/.test(normalized)) return "Suyog Co-Living";
+  if (/\b(?:reforbs\s+)?park\s+island\b/.test(normalized)) return "Reforbs Park Island";
+  if (/\bpillar\s+homes(?:\s+co-?living)?\b/.test(normalized)) return "Pillar Homes Co-Living";
+  if (/\blangston(?:\s+downtown)?\b/.test(normalized)) return "Langston Downtown";
+  if (/\bsanjay\s+park\b/.test(normalized)) return "Sanjay Park";
   return undefined;
 }
 
 /**
- * Extract external or local locations mentioned in question
+ * Extract external or local locations / landmarks mentioned in question
  */
 export function extractLocationEntity(normalized: string): string | undefined {
-  if (/\bkondhwa\b/.test(normalized)) return "Kondhwa";
-  if (/\bhinjewadi\b/.test(normalized)) return "Hinjewadi";
+  if (/\b(?:pune\s+)?airport\b/.test(normalized)) return "Pune Airport";
+  if (/\bphoenix(?:\s+marketcity|\s+mall)?\b/.test(normalized)) return "Phoenix Marketcity";
+  if (/\bjoggers\s+park\b/.test(normalized)) return "Joggers Park";
+  if (/\bdutta\s+mandir\b/.test(normalized)) return "Dutta Mandir";
+  if (/\bhyatt(?:\s+regency)?\b/.test(normalized)) return "Hyatt Regency";
+  if (/\bcafe\s+peter\b/.test(normalized)) return "Cafe Peter";
+  if (/\b(?:eon\s+it|kharadi)\b/.test(normalized)) return "Kharadi / EON IT";
+  if (/\bwework\b/.test(normalized)) return "WeWork";
   if (/\bviman\s+nagar\b/.test(normalized)) return "Viman Nagar";
-  if (/\bsakore\s+nagar\b/.test(normalized)) return "Sakore Nagar";
-  if (/\bsanjay\s+park\b/.test(normalized)) return "Sanjay Park";
-  if (/\bwakad\b/.test(normalized)) return "Wakad";
-  if (/\bkothrud\b/.test(normalized)) return "Kothrud";
-  if (/\bbaner\b/.test(normalized)) return "Baner";
-  if (/\b(pune\s+)?airport\b/.test(normalized)) return "Pune Airport";
-  if (/\b(pune\s+)?station\b/.test(normalized)) return "Pune Railway Station";
-
-  const generalNear = normalized.match(/\b(?:near|close\s+to|around)\s+([a-z]+(?:\s+[a-z]+)?)\b/);
-  if (generalNear) {
-    const candidate = generalNear[1].trim();
-    if (
-      /\b(?:me|here|my|college|office|campus|workplace|university|school)\b/.test(candidate)
-    ) {
-      return undefined;
-    }
-    return candidate.charAt(0).toUpperCase() + candidate.slice(1);
-  }
-
   return undefined;
 }
 
@@ -136,32 +102,34 @@ export function extractLocationEntity(normalized: string): string | undefined {
  * Extract college entities mentioned in question
  */
 export function extractCollegeEntity(normalized: string): string | undefined {
-  if (/\b(symbiosis\s+law\s+school|sls)\b/.test(normalized))
+  if (/\b(?:symbiosis\s+law\s+school|sls|law\s+school)\b/.test(normalized))
     return "Symbiosis Law School (SLS)";
-  if (/\bscms\b/.test(normalized)) return "SCMS Pune";
-  if (/\biihm\b/.test(normalized)) return "IIHM Pune";
-  if (/\bchrist\s+college\b/.test(normalized)) return "Christ College";
-  if (/\bsymbiosis\b/.test(normalized)) return "Symbiosis";
-  if (/\b(college|campus|university)\b/.test(normalized)) return "College";
+  if (/\b(?:scms|symbiosis\s+centre\s+for\s+management)\b/.test(normalized))
+    return "SCMS Pune";
+  if (/\b(?:symbiosis\s+international\s+school|sis)\b/.test(normalized))
+    return "Symbiosis International School";
+  if (/\bsymbiosis\b/.test(normalized))
+    return "Symbiosis Campuses";
   return undefined;
 }
 
 /**
- * Extract specific amenity mentioned in question
+ * Extract specific amenities queried in question
  */
-export function extractAmenityEntity(normalized: string): string | undefined {
-  if (/\b(wi-?fi|internet|broadband|wireless)\b/.test(normalized)) return "Wi-Fi";
-  if (/\b(laundry|washing\s+machine|washing\s+clothes)\b/.test(normalized)) return "Laundry";
-  if (/\b(parking|car\s+parking|bike\s+parking|vehicle)\b/.test(normalized)) return "Parking";
-  if (/\b(cleaning|clean|housekeeping|maid|sweeper)\b/.test(normalized)) return "Daily Cleaning";
-  if (/\b(kitchen|private\s+kitchen|cooking)\b/.test(normalized)) return "Kitchen";
-  if (/\b(tv|television|media)\b/.test(normalized)) return "TV";
-  if (/\b(work\s+desks?|study\s+desks?|workspace)\b/.test(normalized)) return "Work Desks";
-  if (/\b(living\s+area|lounge)\b/.test(normalized)) return "Living Area";
-  if (/\b(ac|air\s+condition(?:er|ing)?)\b/.test(normalized)) return "AC";
-  if (/\b(electricity|power|sub-?metered)\b/.test(normalized)) return "Electricity";
-  if (/\b(water)\b/.test(normalized)) return "Water";
-  return undefined;
+export function extractAmenityEntities(normalized: string): string[] {
+  const found: string[] = [];
+  if (/\b(?:wi-?fi|internet|broadband|optical\s+fibre|gigabit)\b/.test(normalized)) found.push("Wi-Fi");
+  if (/\b(?:laundry|washing\s+machine|washing\s+clothes)\b/.test(normalized)) found.push("Laundry");
+  if (/\b(?:parking|car\s+parking|bike\s+parking|vehicle)\b/.test(normalized)) found.push("Parking");
+  if (/\b(?:cleaning|housekeeping|maid|clean)\b/.test(normalized)) found.push("Cleaning");
+  if (/\b(?:kitchen|cooking|kitchenette|cook)\b/.test(normalized)) found.push("Kitchen");
+  if (/\b(?:gym|fitness|workout)\b/.test(normalized)) found.push("Gym");
+  if (/\b(?:pool|swimming\s+pool)\b/.test(normalized)) found.push("Swimming Pool");
+  if (/\b(?:soundproof|phone\s+booth|call\s+booths?|work\s+booths?)\b/.test(normalized)) found.push("Soundproof Call Booths");
+  if (/\b(?:cctv|surveillance|security\s+camera|digital\s+entry)\b/.test(normalized)) found.push("CCTV / Security");
+  if (/\b(?:ac|air\s+condition(?:er|ing)?)\b/.test(normalized)) found.push("AC");
+  if (/\b(?:power\s+backup|generator|inverter)\b/.test(normalized)) found.push("Power Backup");
+  return found;
 }
 
 /**
@@ -169,945 +137,261 @@ export function extractAmenityEntity(normalized: string): string | undefined {
  */
 export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   const normalized = cleanInputText(rawQuery);
+  const property = extractPropertyEntity(normalized);
+  const location = extractLocationEntity(normalized);
+  const college = extractCollegeEntity(normalized);
+  const targetAmenities = extractAmenityEntities(normalized);
+
+  const occupancyType = /\b(?:single|private\s+room|one\s+person|single\s+occupan(?:cy|t))\b/.test(normalized)
+    ? "single"
+    : /\b(?:double|twin|sharing|two\s+people|double\s+occupan(?:cy|t))\b/.test(normalized)
+    ? "double"
+    : undefined;
+
   const entities: ExtractedEntities = {
-    property: extractPropertyEntity(normalized),
-    location: extractLocationEntity(normalized),
-    college: extractCollegeEntity(normalized),
-    targetAmenity: extractAmenityEntity(normalized),
+    property,
+    location,
+    college,
+    targetAmenities,
+    occupancyType,
   };
 
-  // -------------------------------------------------------------
-  // 1. Explicit Off-Topic Queries
-  // -------------------------------------------------------------
-  const offTopicPatterns = [
-    /\bweather\b/,
-    /\btemperature\b/,
-    /\brecipe\b/,
-    /\bmovie\b/,
-    /\bsong\b/,
-    /\bcricket\b/,
-    /\bfootball\b/,
-    /\bbitcoin\b/,
-    /\bcrypto\b/,
-    /\bstock\s+market\b/,
-    /\bpresident\b/,
-    /\bcapital\s+of\b/,
-    /\btell\s+me\s+a\s+joke\b/,
-    /\bwho\s+won\b/,
-    /\bunrelated\s+to\s+accommodation\b/,
-    /\blondon\b/,
-  ];
-
-  if (offTopicPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "OFF_TOPIC",
-      confidence: 1.0,
-      entities,
-      matchedPattern: "off-topic keyword pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 1b. Google Maps Link & Location Link
-  // e.g. "What is the Google Maps location link?" / "map link" / "google maps"
-  // -------------------------------------------------------------
-  const googleMapsPatterns = [
-    /\bgoogle\s+maps?\b/,
-    /\b(?:location|map|directions?)\s+link\b/,
-    /\blink\s+(?:for\s+|to\s+)?(?:google\s+)?maps?\b/,
-    /\blink\s+(?:for\s+|to\s+)?location\b/,
-    /\bshare\.google\b/,
-    /\bopen\s+(?:reforbs\s+)?(?:location|map)\b/,
-    /\bwhere\s+can\s+i\s+find\s+the\s+map\b/,
-    /\bmap\s+location\b/,
-    /\bgmaps?\b/,
-    /^maps?$/i,
-  ];
-
-  if (googleMapsPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "GOOGLE_MAPS_LINK",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "google maps location link pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 2. Full Address and Location of ReForbs
-  // e.g. "location", "address", "where is reforbs located", "what is your location"
-  // -------------------------------------------------------------
-  const isNearestCheck = /\b(?:nearest|closest|near|closer)\b/.test(normalized);
-  const isAirportCheck = /\b(?:airport|flight|terminal)\b/.test(normalized);
-
+  // 1. Off-Topic Queries
   if (
-    !isNearestCheck &&
-    !isAirportCheck &&
-    (
-      normalized === "location" ||
-      normalized === "locations" ||
-      normalized === "address" ||
-      normalized === "addresses" ||
-      normalized === "where" ||
-      /\b(?:full\s+)?address\b/.test(normalized) ||
-      /\b(?:reforbs\s+)?locations?\b/.test(normalized) ||
-      /\bwhere\s+(?:is|are)\s+(?:reforbs|the\s+pg|the\s+property|you|it)\b/.test(normalized) ||
-      /\bwhere\s+(?:is\s+it|are\s+you)\s+(?:located|situated)\b/.test(normalized) ||
-      /\bexact\s+(?:street\s+)?address\b/.test(normalized)
+    /\b(?:weather|stock|crypto|bitcoin|cricket|ipl|recipe|horoscope|flight|train\s+ticket|movie\s+ticket)\b/.test(
+      normalized
+    ) &&
+    !/\b(?:reforbs|pg|room|stay|flat|hostel|viman\s+nagar)\b/.test(normalized)
+  ) {
+    return { intent: "OFF_TOPIC", confidence: 30, entities };
+  }
+
+  // 1b. Property Directory / List Properties
+  if (
+    /\b(?:list\s+.*properties|all\s+(?:reforbs\s+)?properties|properties\s+in\s+pune|property\s+directory|list\s+(?:all\s+)?(?:reforbs\s+)?pgs|all\s+pgs|how\s+many\s+properties|where\s+are\s+properties\s+located|what\s+properties\s+do\s+you\s+have|show\s+(?:all\s+)?properties)\b/.test(
+      normalized
     )
   ) {
-    return {
-      intent: "FULL_ADDRESS",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "full address and location pattern",
-    };
+    return { intent: "PROPERTY_DIRECTORY", confidence: 30, entities, matchedPattern: "property_directory" };
   }
 
-  // -------------------------------------------------------------
-  // 3. Airport Queries: Distance vs Nearest PG
-  // -------------------------------------------------------------
-  // "Which PG is nearest to Pune Airport?"
+  // 2. Unmarried Couples / Live with Boyfriend / Partner
+  // IMPORTANT: Must match BEFORE live availability so "live with my boyfriend" never triggers "availability"!
   if (
-    /\bwhich\s+(?:pg|property|hostel)\s+is\s+(?:nearest|closest)\s+(?:to\s+)?(?:pune\s+)?airport\b/.test(normalized) ||
-    /\bnearest\s+(?:pg|property|hostel)\s+(?:to\s+)?(?:pune\s+)?airport\b/.test(normalized)
+    /\b(?:couple|couples|unmarried|boyfriend|girlfriend|partner|live\s+with\s+(?:my\s+)?(?:boyfriend|girlfriend|partner|fiance|fiancee)|stay\s+with\s+(?:my\s+)?(?:boyfriend|girlfriend|partner))\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "NEAREST_AIRPORT",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "nearest pg to airport pattern",
-    };
+    return { intent: "COUPLES_POLICY", confidence: 30, entities, matchedPattern: "couples_policy" };
   }
 
-  // "How far is ReForbs from Pune Airport?" / "Distance to Pune Airport"
+  // 3. Live Availability / Vacancy / Move-in date
+  // Context-aware: only if checking immediate/future vacancy
   if (
-    (/\b(?:how\s+far|distance)\b/.test(normalized) &&
-      /\b(?:pune\s+)?airport\b/.test(normalized)) ||
-    /^(?:pune\s+)?airport$/.test(normalized)
+    /\b(?:available\s+tomorrow|what\s+is\s+available|live\s+availabilit(?:y|ies)|vacanc(?:y|ies)|room\s+available|move-?in\s+date|immediate\s+possession|check\s+availability|current\s+availability)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "AIRPORT_DISTANCE",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "airport distance pattern",
-    };
+    return { intent: "LIVE_AVAILABILITY", confidence: 30, entities, matchedPattern: "live_availability" };
   }
 
-  // -------------------------------------------------------------
-  // 4. Symbiosis Law School (SLS) Distance / Proximity
-  // e.g. "How far is Symbiosis Law School?"
-  // -------------------------------------------------------------
+  // 4. Building Capacity / Unknown property detail
   if (
-    (/\b(?:how\s+far|distance)\b/.test(normalized) &&
-      /\b(?:symbiosis|sls|law\s+school)\b/.test(normalized)) ||
-    /\bhow\s+far\s+is\s+symbiosis\b/.test(normalized) ||
-    /^(?:symbiosis|sls|law\s+school)$/.test(normalized)
+    /\b(?:total\s+(?:building\s+)?capacity|how\s+many\s+beds\s+in\s+building|building\s+capacity|total\s+rooms\s+in\s+building)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "SLS_DISTANCE",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "symbiosis law school distance pattern",
-    };
+    return { intent: "BUILDING_CAPACITY", confidence: 30, entities, matchedPattern: "building_capacity" };
   }
 
-  // -------------------------------------------------------------
-  // 4b. IIHM (International Institute of Hotel Management) Distance
-  // e.g. "How far is IIHM?"
-  // -------------------------------------------------------------
+  // 5. Goa / Bangalore Coming Soon
+  if (/\b(?:goa|bangalore|bengaluru)\b/.test(normalized)) {
+    return { intent: "DESTINATION_COMING_SOON", confidence: 30, entities, matchedPattern: "destination_coming_soon" };
+  }
+
+  // 6. Contact / Phone / Email / Support
   if (
-    /\biihm\b/.test(normalized) ||
-    /\bhotel\s+management\b/.test(normalized) ||
-    /\binternational\s+institute\s+of\s+hotel\s+management\b/.test(normalized)
+    /\b(?:email\s+(?:and\s+)?phone|phone\s+(?:number|no)?|contact\s+(?:number|no|details|us|support)?|call\s+(?:reforbs|arpit|host)?|support\s+email|helpline|whatsapp\s+number)\b/.test(
+      normalized
+    ) ||
+    (normalized.includes("email") && normalized.includes("phone"))
   ) {
-    return {
-      intent: "IIHM_DISTANCE",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "iihm distance pattern",
-    };
+    return { intent: "CONTACT_SUPPORT", confidence: 30, entities, matchedPattern: "contact_support" };
   }
 
-  // -------------------------------------------------------------
-  // 4c. Christ College Wadgaon Sheri Distance
-  // e.g. "How far is Christ College?"
-  // -------------------------------------------------------------
+  // 7. Site Visit / Walkthrough / Tour Timings
   if (
-    /\bchrist\s+college\b/.test(normalized) ||
-    /\bwadgaon\s+sheri\b/.test(normalized)
+    /\b(?:book\s+(?:a\s+)?(?:free\s+)?visit|schedule\s+(?:a\s+)?(?:visit|walkthrough|tour)|tour\s+timings?|visiting\s+hours?|free\s+visit\s+today|can\s+i\s+visit|see\s+the\s+property|walkthrough\s+request)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CHRIST_COLLEGE_DISTANCE",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "christ college distance pattern",
-    };
+    return { intent: "VISIT_TOUR", confidence: 30, entities, matchedPattern: "visit_tour" };
   }
 
-  // -------------------------------------------------------------
-  // 4d. Corporate Hubs & IT Parks
-  // e.g. "What IT parks are nearby?" / "Weikfield" / "Solitaire" / "Sky Vista" / "Nyati Unitree"
-  // -------------------------------------------------------------
+  // 8. Friends / Visitors / Guests
   if (
-    /\b(?:weikfield|solitaire|sky\s+vista|nyati\s+unitree|ptc\s+software|wns|sa\s+technologies)\b/.test(normalized) ||
-    /\b(?:it\s+parks?|corporate\s+(?:hubs?|offices?|parks?)|tech\s+parks?)\b/.test(normalized)
+    /\b(?:friends?\s+(?:allowed|visit|come\s+over|bring)|bring\s+friends?|guest\s+policy|overnight\s+guest|visitors?\s+allowed)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CORPORATE_HUBS",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "corporate hubs pattern",
-    };
+    return { intent: "VISITORS_GUESTS", confidence: 30, entities, matchedPattern: "visitors_guests" };
   }
 
-  // -------------------------------------------------------------
-  // 4e. Metro & Landmarks (Ramwadi Metro / Phoenix Marketcity)
-  // e.g. "Where is the nearest metro station?" / "Ramwadi metro"
-  // -------------------------------------------------------------
+  // 9. Food / Mess / Meal Plans
   if (
-    /\b(?:ramwadi|metro\s+station|phoenix\s+marketcity|phoenix\s+mall)\b/.test(normalized) ||
-    (/\bmetro\b/.test(normalized) && /\b(?:station|connectivity|stop|line)\b/.test(normalized)) ||
-    /^metro$/.test(normalized)
+    /\b(?:food|mess|meal\s*plan|meals?|cooking|compulsory\s+food|forced\s+food|no\s+mess\s+lock|tiffin|catered)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "METRO_STATION",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "metro and landmark transit pattern",
-    };
+    return { intent: "FOOD_MESS", confidence: 30, entities, matchedPattern: "food_mess" };
   }
 
-  // -------------------------------------------------------------
-  // 5. Which ReForbs properties are in Viman Nagar?
-  // -------------------------------------------------------------
+  // 10. Lock-in Period / Minimum Stay
+  if (/\b(?:lock-?in\s*(?:period)?|zero\s+lock-?in|minimum\s+stay|lease\s+period)\b/.test(normalized)) {
+    return { intent: "LOCK_IN_POLICY", confidence: 30, entities, matchedPattern: "lock_in_policy" };
+  }
+
+  // 11. Curfew / Entry Rules / Moral Policing
+  if (/\b(?:curfew|curfews|bans|gate\s+closing|entry\s+tim(?:e|ing)|moral\s+policing)\b/.test(normalized)) {
+    return { intent: "CURFEW_RULES", confidence: 30, entities, matchedPattern: "curfew_rules" };
+  }
+
+  // 12. Security Deposit
   if (
-    /\bwhich\s+(?:reforbs\s+)?properties\s+(?:are\s+)?(?:in|located\s+in)\s+viman\s+nagar\b/.test(normalized) ||
-    /\bproperties\s+in\s+viman\s+nagar\b/.test(normalized) ||
-    /\blist\s+(?:of\s+)?(?:reforbs\s+)?properties\s+in\s+viman\s+nagar\b/.test(normalized)
+    /\b(?:security\s+deposit|deposit|advance\s+amount|caution\s+deposit|refundable\s+deposit)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "VIMAN_NAGAR_PROPERTIES",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "viman nagar properties directory pattern",
-    };
+    return { intent: "SECURITY_DEPOSIT", confidence: 30, entities, matchedPattern: "security_deposit" };
   }
 
-  // -------------------------------------------------------------
-  // 6. Couples, Boyfriend, Girlfriend & Partner Stay Policy
-  // e.g. "Can I live with my boyfriend?" / "Are couples allowed?"
-  // -------------------------------------------------------------
-  const couplesPatterns = [
-    /\b(?:can\s+i\s+)?(?:live|stay|share)\s+(?:with\s+my\s+)?(?:boyfriend|girlfriend|partner|husband|wife|fianc[eé])\b/,
-    /\b(?:can\s+my\s+)?(?:boyfriend|girlfriend|partner)\s+(?:live|stay)\s+(?:with\s+me)?\b/,
-    /\b(?:are|do\s+you\s+allow)\s+couples?\b/,
-    /\bunmarried\s+couples?\b/,
-    /\bcouples?\s+(?:allowed|stay|policy|accommodation)\b/,
-    /\bcohabitation\b/,
-    /\blive\s+with\s+my\s+boyfriend\b/,
-    /\blive\s+with\s+my\s+girlfriend\b/,
-    /\bstay\s+with\s+(?:my\s+)?(?:boyfriend|girlfriend|partner)\b/,
-  ];
-
-  if (couplesPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "COUPLES_POLICY",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "couples / partner cohabitation pattern",
-    };
+  // 13. Brokerage
+  if (/\b(?:brokerage|broker\s+fees?|commission)\b/.test(normalized)) {
+    return { intent: "BROKERAGE_POLICY", confidence: 30, entities, matchedPattern: "brokerage_policy" };
   }
 
-  // -------------------------------------------------------------
-  // 7. Building Capacity vs Room Occupancy vs Single/Double
-  // -------------------------------------------------------------
-  // "How many people can live in one PG?"
-  const pgCapacityPatterns = [
-    /\bhow\s+many\s+people\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:one\s+|a\s+)?pg\b/,
-    /\bhow\s+many\s+(?:people|students|tenants|residents)\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:a\s+|one\s+|the\s+)?(?:pg|property|building|hostel)\b/,
-    /\b(?:total\s+)?(?:pg|property|building)\s+capacity\b/,
-    /\btotal\s+capacity\b/,
-    /\btotal\s+(?:number\s+of\s+)?residents\s+(?:in\s+)?(?:a\s+|one\s+)?(?:pg|property|building)\b/,
-  ];
-
-  if (pgCapacityPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "PEOPLE_PER_PG",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "people per pg / building capacity pattern",
-    };
-  }
-
-  // "How many people can live in one room?"
-  const roomCapacityPatterns = [
-    /\bhow\s+many\s+people\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:one\s+|a\s+)?room\b/,
-    /\bhow\s+many\s+(?:people|tenants|students)\s+per\s+room\b/,
-    /\boccupancy\s+per\s+room\b/,
-    /\bpeople\s+(?:can\s+)?(?:live|stay)\s+in\s+(?:one\s+|a\s+)?room\b/,
-    /\bhow\s+many\s+persons?\s+in\s+(?:one|a)\s+room\b/,
-    /\b(?:can|do)\s+(?:two|2)\s+(?:people|persons|students)\s+(?:live|stay|share)\s+(?:(?:in\s+)?(?:one|a)\s+room)\b/,
-    /\b(?:can\s+)?(?:two|2)\s+(?:people|persons)\s+share\s+(?:a\s+|one\s+)?room\b/,
-    /\bshare\s+(?:one|a)\s+room\b/,
-    /\bsharing\s+a\s+room\b/,
-  ];
-
-  if (roomCapacityPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "PEOPLE_PER_ROOM",
-      confidence: 0.99,
-      entities,
-      matchedPattern: "people per room capacity pattern",
-    };
-  }
-
-  // "Do you have single or double occupancy?"
+  // 14. CCTV / Security
   if (
-    /\b(?:do\s+you\s+have|is\s+there)\s+(?:single\s+or\s+double|double\s+or\s+single)\s+occupancy\b/.test(normalized) ||
-    /\b(?:single\s+and\s+double|single\s+or\s+double)\s+occupancy\b/.test(normalized) ||
-    /\bdo\s+you\s+have\s+single\s+or\s+double\b/.test(normalized) ||
-    /\bsingle\s+or\s+double\b/.test(normalized) ||
-    /^(?:rooms?|occupancy)$/.test(normalized)
+    /\b(?:cctv|surveillance|security\s+camera|24\s*[\/-]?\s*7\s*security)\b/.test(normalized)
   ) {
-    return {
-      intent: "OCCUPANCY_SINGLE_DOUBLE",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "single or double occupancy pattern",
-    };
+    return { intent: "CCTV_SECURITY", confidence: 30, entities, matchedPattern: "cctv_security" };
   }
 
-  // -------------------------------------------------------------
-  // 8. Co-Ed / Unisex Accommodation Policy
-  // e.g. "Is the property co-ed?"
-  // -------------------------------------------------------------
+  // 15. Cheapest / Lowest Rent Comparison
   if (
-    /\b(?:is\s+(?:the\s+)?(?:property|pg|accommodation|hostel)\s+)?co-?ed\b/.test(normalized) ||
-    /\bunisex\b/.test(normalized) ||
-    /\b(?:is\s+it\s+)?for\s+(?:boys\s+or\s+girls|girls\s+or\s+boys|men\s+or\s+women)\b/.test(normalized) ||
-    /\bgender\s+policy\b/.test(normalized)
+    /\b(?:cheapest|lowest\s+rent|lowest\s+rate|most\s+affordable|minimum\s+rent|lowest\s+monthly\s+rate|budget\s+pg)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CO_ED_POLICY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "co-ed / unisex policy pattern",
-    };
+    return { intent: "CHEAPEST_PRICE_COMPARISON", confidence: 30, entities, matchedPattern: "cheapest_price_comparison" };
   }
 
-  // -------------------------------------------------------------
-  // 8b. Student PG vs Co-Living
-  // e.g. "Is it a student PG or co-living?"
-  // -------------------------------------------------------------
+  // 16. Proximity: Airport
   if (
-    /\b(?:student\s+pg\s+or\s+co-?living|co-?living\s+or\s+student\s+pg)\b/.test(normalized) ||
-    /\bis\s+(?:it|reforbs)\s+a\s+student\s+pg\b/.test(normalized) ||
-    /\bwho\s+can\s+stay\b/.test(normalized) ||
-    /\bworking\s+professionals\s+or\s+students\b/.test(normalized)
+    /\b(?:closest\s+to\s+(?:pune\s+)?airport|nearest\s+(?:to\s+)?(?:pune\s+)?airport|airport\s+distance|how\s+far\s+is\s+(?:pune\s+)?airport)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "STUDENT_OR_COLIVING",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "student pg or coliving pattern",
-    };
+    return { intent: "NEAREST_AIRPORT", confidence: 30, entities, matchedPattern: "nearest_airport" };
   }
 
-  // -------------------------------------------------------------
-  // 9. CCTV / Security Arrangements
-  // e.g. "Is CCTV available?"
-  // -------------------------------------------------------------
+  // 17. Proximity: SLS / Symbiosis Law School
   if (
-    /\bcctv\b/.test(normalized) ||
-    /\bsecurity\s+arrangements?\b/.test(normalized) ||
-    /\bsecurity\s+cameras?\b/.test(normalized) ||
-    /\bcontrolled\s+access\b/.test(normalized)
+    /\b(?:closest\s+to\s+sls|nearest\s+to\s+sls|closest\s+to\s+symbiosis\s+law\s+school|opposite\s+sls|sls\s+distance)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CCTV_SECURITY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "cctv and security pattern",
-    };
+    return { intent: "COLLEGE_OFFICE_DISTANCE", confidence: 30, entities, matchedPattern: "sls_proximity" };
   }
 
-  // -------------------------------------------------------------
-  // 9b. Cleanliness and Housekeeping
-  // e.g. "Is the property clean?" / "housekeeping schedule"
-  // -------------------------------------------------------------
+  // 18. Proximity: SCMS
   if (
-    /\bis\s+(?:the\s+)?(?:property|room|pg)\s+clean\b/.test(normalized) ||
-    /\bcleanliness\b/.test(normalized) ||
-    /\bhow\s+often\s+is\s+cleaning\b/.test(normalized) ||
-    /\bcleaning\s+(?:schedule|frequency)\b/.test(normalized) ||
-    /\bhousekeeping\b/.test(normalized)
+    /\b(?:closest\s+to\s+scms|nearest\s+to\s+scms|near\s+scms|scms\s+distance)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CLEANLINESS_HOUSEKEEPING",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "cleanliness and housekeeping pattern",
-    };
+    return { intent: "COLLEGE_OFFICE_DISTANCE", confidence: 30, entities, matchedPattern: "scms_proximity" };
   }
 
-  // -------------------------------------------------------------
-  // 10. Maintenance Speed / Issue Resolution
-  // e.g. "How quickly are maintenance issues resolved?"
-  // -------------------------------------------------------------
+  // 19. Unspecified College or Office ("closest to my college", "nearest to my office")
   if (
-    /\bhow\s+quickly\s+are\s+maintenance\s+(?:issues|problems)\s+resolved\b/.test(normalized) ||
-    /\bmaintenance\s+(?:response|resolution)\s+time\b/.test(normalized) ||
-    /\bhow\s+fast\s+(?:is|are)\s+maintenance\b/.test(normalized)
+    /\b(?:closest|nearest|near)\s+to\s+(?:my\s+)?(?:college|campus|university|office|workplace)\b/.test(
+      normalized
+    ) &&
+    !college &&
+    !location
   ) {
-    return {
-      intent: "MAINTENANCE_SPEED",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "maintenance speed pattern",
-    };
+    return { intent: "UNSPECIFIED_COLLEGE_OFFICE", confidence: 30, entities, matchedPattern: "unspecified_college_office" };
   }
 
-  // -------------------------------------------------------------
-  // 10b. Visitors and Overnight Guests
-  // e.g. "Are visitors allowed?" / "can my friends visit"
-  // -------------------------------------------------------------
+  // 20. Other College / Landmark Proximity
   if (
-    /\b(?:are\s+)?(?:visitors?|guests?|friends?)\s+allowed\b/.test(normalized) ||
-    /\bcan\s+(?:my\s+)?friends?\s+visit\b/.test(normalized) ||
-    /\bovernight\s+guests?\b/.test(normalized) ||
-    /\bvisiting\s+hours\b/.test(normalized) ||
-    /\bcan\s+(?:family|parents)\s+visit\b/.test(normalized)
+    college ||
+    (location && /\b(?:closest|nearest|near|distance|how\s+far)\b/.test(normalized))
   ) {
-    return {
-      intent: "VISITORS_GUESTS",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "visitors and overnight guests pattern",
-    };
+    return { intent: "COLLEGE_OFFICE_DISTANCE", confidence: 25, entities, matchedPattern: "college_office_distance" };
   }
 
-  // -------------------------------------------------------------
-  // 10c. Curfew and Gate Closing Rules
-  // e.g. "Are there curfew rules?" / "gate closing time"
-  // -------------------------------------------------------------
+  // 21. Specific Amenity Query (e.g. "Does Vipasana have parking and laundry?", "Does Park Island have a swimming pool and gym?")
+  if (targetAmenities.length > 0 && property) {
+    return { intent: "AMENITY_SPECIFIC", confidence: 30, entities, matchedPattern: "amenity_specific" };
+  }
+
+  // 22. General Amenities Query
   if (
-    /\b(?:is\s+there\s+(?:a\s+)?)?curfew\b/.test(normalized) ||
-    /\bgate\s+clos(?:e|ing|es)\b/.test(normalized) ||
-    /\btime\s+does\s+the\s+gate\s+close\b/.test(normalized) ||
-    /\bentry\s+time\b/.test(normalized) ||
-    /\blate\s+(?:night\s+)?entry\b/.test(normalized)
+    /\b(?:amenit(?:y|ies)|facilit(?:y|ies)|what\s+is\s+included|inclusions|services\s+included)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "CURFEW_RULES",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "curfew rules pattern",
-    };
+    return { intent: "AMENITY_SPECIFIC", confidence: 25, entities, matchedPattern: "amenity_general" };
   }
 
-  // -------------------------------------------------------------
-  // 10d. Pets, Smoking, and Alcohol Rules
-  // e.g. "Are pets allowed?" / "is smoking allowed"
-  // -------------------------------------------------------------
+  // 23. Room Types / Single vs Double Occupancy
   if (
-    /\b(?:are\s+)?pets?\s+allowed\b/.test(normalized) ||
-    /\b(?:dogs?|cats?|puppy|kitten)\b/.test(normalized) ||
-    /\b(?:is\s+|can\s+i\s+)?smok(?:e|ing)\b/.test(normalized) ||
-    /\b(?:is\s+|can\s+i\s+)?(?:drink\s+)?alcohol\b/.test(normalized) ||
-    /\bdrinking\b/.test(normalized) ||
-    /\bliquor\b/.test(normalized)
+    /\b(?:single\s+(?:and|vs|or)\s+double|room\s+types?|room\s+options?|single\s+occupancy|double\s+occupancy|private\s+room|sharing\s+room)\b/.test(
+      normalized
+    ) &&
+    !/\b(?:rent|cost|price|rate)\b/.test(normalized)
   ) {
-    return {
-      intent: "PETS_SMOKING_ALCOHOL",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "pets smoking alcohol pattern",
-    };
+    return { intent: "OCCUPANCY_SINGLE_DOUBLE", confidence: 25, entities, matchedPattern: "occupancy_single_double" };
   }
 
-  // -------------------------------------------------------------
-  // 11. Visit Before Booking
-  // e.g. "Can I visit before booking?"
-  // -------------------------------------------------------------
+  // 24. Rent / Pricing Query (property-specific or general)
   if (
-    /\bcan\s+i\s+visit\s+(?:the\s+property\s+)?before\s+booking\b/.test(normalized) ||
-    /\bvisit\s+before\s+(?:booking|paying|move\s+in)\b/.test(normalized) ||
-    /\bsee\s+(?:the\s+)?room\s+before\s+booking\b/.test(normalized) ||
-    /^(?:booking|how\s+to\s+book)$/.test(normalized)
+    /\b(?:rent|cost|price|pricing|rate|charges|monthly\s+cost|how\s+much\s+is\s+rent)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "VISIT_BEFORE_BOOKING",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "visit before booking pattern",
-    };
+    return { intent: "RENT_PRICING", confidence: 28, entities, matchedPattern: "rent_pricing" };
   }
 
-  // -------------------------------------------------------------
-  // 12. Documents Required for Lease
-  // e.g. "What documents do I need?"
-  // -------------------------------------------------------------
+  // 25. Community / Lifestyle Activities
   if (
-    /\bwhat\s+documents\s+(?:do\s+i\s+need|are\s+required)\b/.test(normalized) ||
-    /\bdocuments?\s+(?:needed|required|list)\b/.test(normalized) ||
-    /\b(?:aadhaar|pan\s+card|kyc)\b/.test(normalized)
+    /\b(?:community|events|activities|yoga|bbq|barbecue|movie\s+nights?|tournaments?|glow\s+neon|diy\s+nights?|networking|mentorship)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "DOCUMENTS_REQUIRED",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "documents required pattern",
-    };
+    return { intent: "COMMUNITY_ACTIVITIES", confidence: 28, entities, matchedPattern: "community_activities" };
   }
 
-  // -------------------------------------------------------------
-  // 12b. Payment Safety & Online Payments in Chat
-  // e.g. "Can I pay in chat?" / "Can I make a payment online?"
-  // -------------------------------------------------------------
+  // 26. Property Directory / List Properties
   if (
-    /\b(?:can\s+i\s+)?(?:make\s+a\s+)?pay(?:ment)?\s+(?:in\s+(?:this\s+)?chat|here|online|through\s+(?:this\s+)?chat)\b/.test(normalized) ||
-    /\bpay(?:ment)?\s+(?:in|through)\s+(?:this\s+)?chat\b/.test(normalized) ||
-    /\bmake\s+a\s+payment\b/.test(normalized) ||
-    /\bpay\s+(?:online|deposit|rent\s+online)\b/.test(normalized) ||
-    /\bsend\s+money\b/.test(normalized)
+    /\b(?:list\s+(?:all\s+)?properties|all\s+properties|property\s+directory|all\s+pgs|how\s+many\s+properties|where\s+are\s+properties\s+located|what\s+properties\s+do\s+you\s+have)\b/.test(
+      normalized
+    )
   ) {
-    return {
-      intent: "PAYMENT_SAFETY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "payment safety in chat pattern",
-    };
+    return { intent: "PROPERTY_DIRECTORY", confidence: 30, entities, matchedPattern: "property_directory" };
   }
 
-  // -------------------------------------------------------------
-  // 13. Cook My Own Food vs Food Inclusions
-  // -------------------------------------------------------------
-  // "Can I cook my own food?"
-  if (
-    /\bcan\s+i\s+cook\s+(?:my\s+own\s+)?food\b/.test(normalized) ||
-    /\bcan\s+we\s+cook\b/.test(normalized) ||
-    /\bcooking\s+allowed\b/.test(normalized) ||
-    /\bself\s+cooking\b/.test(normalized)
-  ) {
-    return {
-      intent: "COOK_FOOD",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "cook own food pattern",
-    };
+  // 27. Named Property Profile ("Tell me about Shubh Nirvana", "About Moksha")
+  if (property && /\b(?:tell\s+me\s+about|about|details\s+of|profile)\b/.test(normalized)) {
+    return { intent: "PROPERTY_PROFILE", confidence: 30, entities, matchedPattern: "property_profile" };
   }
 
-  // "Is food included?"
-  if (
-    /\b(?:is\s+)?food\s+(?:or\s+a\s+meal\s+plan\s+)?included\b/.test(normalized) ||
-    /\bare\s+meals?\s+included\b/.test(normalized) ||
-    /\bmeal\s+plans?\b/.test(normalized) ||
-    /\bmess\s+(?:facility|food)\b/.test(normalized) ||
-    /^(?:food|meals?|mess)$/.test(normalized)
-  ) {
-    return {
-      intent: "FOOD_INCLUSIONS",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "food included pattern",
-    };
+  // If a property was mentioned with any general query
+  if (property) {
+    return { intent: "PROPERTY_PROFILE", confidence: 20, entities, matchedPattern: "property_name_detected" };
   }
 
-  // -------------------------------------------------------------
-  // 14. Utilities Included: Wi-Fi, Water, Electricity
-  // -------------------------------------------------------------
-  // "Are Wi-Fi and water included in rent?"
-  if (
-    /\b(?:are\s+)?wi-?fi\s+and\s+water\s+included\b/.test(normalized) ||
-    /\bwater\s+and\s+wi-?fi\s+included\b/.test(normalized) ||
-    /\bis\s+water\s+included\b/.test(normalized)
-  ) {
-    return {
-      intent: "RENT_INCLUSIONS_WIFI_WATER",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "wifi and water inclusion pattern",
-    };
-  }
-
-  // "Is electricity included?"
-  if (
-    /\belectric(?:ity)?\s+(?:bill|charges?|included)\b/.test(normalized) ||
-    /\b(?:is\s+)?electricity\s+included\b/.test(normalized) ||
-    /\bpay\s+electricity\b/.test(normalized) ||
-    /\belectric\s+bill\b/.test(normalized) ||
-    /\bpower\s+bill\b/.test(normalized) ||
-    /\bsub-?metered\b/.test(normalized)
-  ) {
-    return {
-      intent: "ELECTRICITY_INCLUSION",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "electricity inclusion pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 14b. Discounts and Offers
-  // e.g. "Are discounts available?" / "student discount"
-  // -------------------------------------------------------------
-  if (
-    /\b(?:discounts?|offers?|promotions?|deals?)\b/.test(normalized) ||
-    /\bany\s+discount\b/.test(normalized)
-  ) {
-    return {
-      intent: "DISCOUNTS_OFFERS",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "discounts and offers pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 15. Cheapest PG / Rent Comparison
-  // e.g. "Which is the cheapest PG?"
-  // -------------------------------------------------------------
-  const cheapestPatterns = [
-    /\bcheapest\b/,
-    /\bcheap\b/,
-    /\blowest\s+(?:rent|price|pricing|cost|tariff|charges?)\b/,
-    /\bmost\s+affordable\b/,
-    /\bbudget\s+(?:pg|hostel|room|accommodation|stay)\b/,
-    /\bwhich\s+(?:pg|property|hostel|room)\s+is\s+(?:the\s+)?cheapest\b/,
-    /\bwhich\s+is\s+the\s+cheapest\s+pg\b/,
-    /\bcheapest\s+pg\s+you\s+have\b/,
-  ];
-
-  if (cheapestPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "CHEAPEST_PRICE_COMPARISON",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "cheapest pg comparison pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 16. Security Deposit
-  // e.g. "How much is the security deposit?"
-  // -------------------------------------------------------------
-  const depositPatterns = [
-    /\bsecurity\s+deposit\b/,
-    /\bdeposit\s+amount\b/,
-    /\bdeposit\b/,
-    /\bhow\s+much\s+(?:is\s+the\s+)?deposit\b/,
-    /\brefundable\s+deposit\b/,
-    /\badvance\s+payment\b/,
-    /\bcaution\s+money\b/,
-  ];
-
-  if (depositPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "SECURITY_DEPOSIT",
-      confidence: 0.97,
-      entities,
-      matchedPattern: "security deposit pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 17. Live Availability / Immediate Move-In
-  // e.g. "Is a room available tomorrow?" / "Can I move in immediately?"
-  // -------------------------------------------------------------
-  const availabilityPatterns = [
-    /\bis\s+a\s+room\s+available\s+tomorrow\b/,
-    /\bis\s+a\s+room\s+available(?:\s+today|\s+now)?\b/,
-    /\bcan\s+i\s+move\s+in\s+(?:immediately|today|tomorrow|now)\b/,
-    /\bvacanc(?:y|ies)\b/,
-    /\blive\s+availability\b/,
-    /\bavailable\s+(?:tomorrow|today|now)\b/,
-  ];
-
-  if (availabilityPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "AVAILABILITY_VACANCIES",
-      confidence: 0.97,
-      entities,
-      matchedPattern: "availability / move in query pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 18. Minimum Stay & Lease Tenure
-  // e.g. "What is the minimum stay?"
-  // -------------------------------------------------------------
-  const leasePatterns = [
-    /\bwhat\s+is\s+(?:the\s+)?minimum\s+stay\b/,
-    /\bminimum\s+stay\b/,
-    /\block-?in\s*(?:period)?\b/,
-    /\bhow\s+long\s+(?:is\s+the\s+)?(?:minimum\s+)?(?:stay|lease)\b/,
-  ];
-
-  if (leasePatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "MINIMUM_STAY_LEASE",
-      confidence: 0.96,
-      entities,
-      matchedPattern: "minimum stay pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 19. Unspecified College or Office Proximity (Clarification)
-  // e.g. "Which PG is closest to my college?"
-  // -------------------------------------------------------------
-  const asksNearCollege =
-    /\b(?:near|closest\s+to|closer\s+to|around)\s+(?:my\s+)?(?:college|university|campus)\b/.test(normalized) ||
-    /\b(?:pg|hostel|accommodation|room)\s+near\s+(?:my\s+)?(?:college|university|campus)\b/.test(normalized) ||
-    /\bwhich\s+(?:pg|property)\s+is\s+(?:closest|nearest)\s+to\s+(?:my\s+)?(?:college|university|campus)\b/.test(normalized);
-
-  const hasSpecificCollege = entities.college && (entities.college.includes("Symbiosis") || entities.college.includes("IIHM") || entities.college.includes("Christ"));
-
-  if (asksNearCollege && !hasSpecificCollege && !entities.location) {
-    return {
-      intent: "UNSPECIFIED_COLLEGE",
-      confidence: 0.97,
-      entities,
-      matchedPattern: "unspecified college proximity pattern",
-    };
-  }
-
-  const asksNearOffice =
-    /\b(?:near|closest\s+to|closer\s+to|around)\s+(?:my\s+)?office\b/.test(normalized) ||
-    /\b(?:pg|hostel|accommodation|room)\s+near\s+(?:my\s+)?office\b/.test(normalized) ||
-    /\bwhich\s+(?:pg|property)\s+is\s+(?:closest|nearest)\s+to\s+(?:my\s+)?office\b/.test(normalized);
-
-  if (asksNearOffice && !entities.location) {
-    return {
-      intent: "UNSPECIFIED_OFFICE",
-      confidence: 0.97,
-      entities,
-      matchedPattern: "unspecified office proximity pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 20. Nearest Property / Location Relative Comparison
-  // e.g. "I live in Kondhwa where is your nearest PG"
-  // -------------------------------------------------------------
-  const nearestPatterns = [
-    /\b(?:which\s+(?:pg|property|hostel|room|accommodation)\s+is\s+)?(?:nearest|closest|closer)\b/,
-    /\bwhere\s+is\s+(?:your\s+)?nearest\b/,
-    /\bnearest\s+(?:to\s+me|pg|property|hostel|accommodation|student\s+accommodation)\b/,
-    /\bi\s+live\s+in\s+([a-z\s]+)[,.]?\s*(?:where|which|how)\b/,
-    /\bnearest\s+to\s+kondhwa\b/,
-    /\bclosest\s+to\s+kondhwa\b/,
-  ];
-
-  if (nearestPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "NEAREST_LOCATION",
-      confidence: 0.95,
-      entities,
-      matchedPattern: "nearest location comparison pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 21. Rent Pricing General Inquiry
-  // -------------------------------------------------------------
-  const rentPricingPatterns = [
-    /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)monthly\s+rent\b/,
-    /\b(?:what\s+is\s+(?:the\s+)?|how\s+much\s+(?:is\s+)?)rent\b/,
-    /\brent\b/,
-    /\bprices?\b/,
-    /\bpricing\b/,
-    /\bhow\s+much\s+does\s+it\s+cost\b/,
-  ];
-
-  if (rentPricingPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "RENT_PRICING",
-      confidence: 0.92,
-      entities,
-      matchedPattern: "rent pricing query pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 21b. AC Amenity
-  // e.g. "Is AC available?" / "air conditioner"
-  // -------------------------------------------------------------
-  if (
-    /\b(?:is\s+)?ac\s+(?:available|provided|included)\b/.test(normalized) ||
-    /\bair\s+condition(?:er|ing)?\b/.test(normalized) ||
-    /\bdo\s+rooms\s+have\s+ac\b/.test(normalized)
-  ) {
-    return {
-      intent: "AC_AMENITY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "ac amenity pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 21c. TV / Media Amenity
-  // e.g. "Is TV provided?" / "television"
-  // -------------------------------------------------------------
-  if (
-    /\b(?:is\s+)?tv\s+(?:available|provided|included)\b/.test(normalized) ||
-    /\btelevision\b/.test(normalized) ||
-    /\bdo\s+rooms\s+have\s+(?:a\s+)?tv\b/.test(normalized)
-  ) {
-    return {
-      intent: "TV_AMENITY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "tv amenity pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 21d. Work Desks & Study Tables
-  // e.g. "Are work desks provided?" / "study tables"
-  // -------------------------------------------------------------
-  if (
-    /\b(?:are\s+)?work\s+desks?\b/.test(normalized) ||
-    /\bstudy\s+(?:tables?|desks?)\b/.test(normalized) ||
-    /\bworkspace\b/.test(normalized) ||
-    /\bdesk\s+and\s+chair\b/.test(normalized)
-  ) {
-    return {
-      intent: "WORK_DESK_AMENITY",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "work desk amenity pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 22. General Amenities Inquiry
-  // e.g. "What amenities are provided?"
-  // -------------------------------------------------------------
-  const amenitiesPatterns = [
-    /\bwhat\s+amenities\b/,
-    /\bamenit(?:y|ies)\b/,
-    /\bfacilit(?:y|ies)\b/,
-    /\beverything\s+you\s+need\s+already\s+included\b/,
-    /\bwhat\s+is\s+included\b/,
-  ];
-
-  if (entities.targetAmenity || amenitiesPatterns.some((pattern) => pattern.test(normalized))) {
-    return {
-      intent: "AMENITIES",
-      confidence: 0.94,
-      entities,
-      matchedPattern: "amenities / facilities pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 23. Furniture Inventory
-  // -------------------------------------------------------------
-  if (/\b(?:what\s+)?furniture\s+(?:is\s+)?provided\b/.test(normalized) || /\bfurniture\b/.test(normalized)) {
-    return {
-      intent: "FURNITURE_INVENTORY",
-      confidence: 0.95,
-      entities,
-      matchedPattern: "furniture inventory pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 24. Cancellation & Refund Policy
-  // -------------------------------------------------------------
-  if (/\bcancellation\b/.test(normalized) || /\brefund\s+policy\b/.test(normalized)) {
-    return {
-      intent: "CANCELLATION_REFUND",
-      confidence: 0.95,
-      entities,
-      matchedPattern: "cancellation policy pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 25. House Rules, Curfew, Visitors, Pets, Smoking
-  // -------------------------------------------------------------
-  if (
-    /\b(?:curfew|gate\s+closing|visitors?|guests?|overnight\s+guests?|pets?|smoking|alcohol)\b/.test(normalized) ||
-    /^(?:rules|restrictions|regulations|house\s+rules)$/.test(normalized)
-  ) {
-    return {
-      intent: "RULES_RESTRICTIONS",
-      confidence: 0.93,
-      entities,
-      matchedPattern: "rules / curfew / visitors pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 26. Property Specific Query
-  // -------------------------------------------------------------
-  if (entities.property) {
-    return {
-      intent: "PROPERTY_SPECIFIC",
-      confidence: 0.92,
-      entities,
-      matchedPattern: "named property detected pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 27. Contact Details & Support
-  // -------------------------------------------------------------
-  if (
-    /\b(?:how\s+do\s+i\s+)?contact\s+reforbs\b/.test(normalized) ||
-    /\bcontact\b/.test(normalized) ||
-    /\bphone\s+number\b/.test(normalized) ||
-    /\bcall\b/.test(normalized)
-  ) {
-    return {
-      intent: "CONTACT_SUPPORT",
-      confidence: 0.92,
-      entities,
-      matchedPattern: "contact support pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 28. General Property Directory
-  // -------------------------------------------------------------
-  if (/\b(?:what|which|all)\s+properties\b/.test(normalized)) {
-    return {
-      intent: "PROPERTY_DIRECTORY",
-      confidence: 0.92,
-      entities,
-      matchedPattern: "properties directory pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 28b. Difference from Hostel / Traditional PG
-  // e.g. "How is Reforbs different from a hostel?"
-  // -------------------------------------------------------------
-  if (
-    /\b(?:how\s+is\s+reforbs\s+)?different\s+(?:from|than)\s+(?:a\s+)?(?:hostel|pg|standard\s+hostel|traditional\s+pg)\b/.test(normalized) ||
-    /\bwhy\s+(?:choose\s+)?reforbs\s+(?:over|instead\s+of)\s+(?:a\s+)?(?:hostel|pg)\b/.test(normalized) ||
-    /\bdifference\s+between\s+reforbs\s+and\s+(?:a\s+)?(?:hostel|pg)\b/.test(normalized) ||
-    /\bdifferent\s+from\s+(?:a\s+)?hostel\b/.test(normalized)
-  ) {
-    return {
-      intent: "DIFFERENCE_FROM_HOSTEL",
-      confidence: 0.98,
-      entities,
-      matchedPattern: "difference from hostel pattern",
-    };
-  }
-
-  // -------------------------------------------------------------
-  // 29. Default General Inquiry
-  // -------------------------------------------------------------
-  return {
-    intent: "GENERAL_INQUIRY",
-    confidence: 0.5,
-    entities,
-    matchedPattern: "general inquiry fallback",
-  };
+  return { intent: "GENERAL_INQUIRY", confidence: 10, entities };
 }

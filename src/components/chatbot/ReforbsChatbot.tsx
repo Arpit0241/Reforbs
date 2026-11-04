@@ -136,7 +136,7 @@ export default function ReforbsChatbot() {
         {
           id: `error-${Date.now()}`,
           sender: "assistant",
-          text: "I encountered a problem reading the Reforbs knowledge base. Please call the Reforbs team directly at 7420040241 for assistance.",
+          text: "I encountered a problem reading the Reforbs knowledge base. Please call the Reforbs team directly at +91 74200 40241 or email hello@reforbs.com for assistance.",
           timestamp: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -220,7 +220,7 @@ export default function ReforbsChatbot() {
               className="text-[#007A7A] hover:underline font-bold flex items-center gap-1"
             >
               <Phone size={10} />
-              <span>Host Arpit: 7420040241</span>
+              <span>Host Arpit: +91 74200 40241</span>
             </a>
           </div>
 

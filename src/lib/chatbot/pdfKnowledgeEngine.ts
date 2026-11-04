@@ -7,6 +7,7 @@
 
 import {
   KNOWLEDGE_PDF_PATH,
+  KNOWLEDGE_VERSION,
   PDF_WORKER_PATH,
   VERIFIED_PDF_PASSAGES,
   KnowledgeItem,
@@ -56,8 +57,18 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
     try {
       if (typeof window === "undefined") {
         cachedPassages = VERIFIED_PDF_PASSAGES;
-        cachedPagesCount = 10;
+        cachedPagesCount = 21;
         return cachedPassages;
+      }
+
+      // Check client-side storage cache key to invalidate old extracted text
+      try {
+        const storedVersion = window.sessionStorage.getItem("reforbs_kb_version");
+        if (storedVersion !== KNOWLEDGE_VERSION) {
+          window.sessionStorage.setItem("reforbs_kb_version", KNOWLEDGE_VERSION);
+        }
+      } catch {
+        // Ignore session storage error in private browsing
       }
 
       // Import pdfjs-dist dynamically in browser
@@ -77,7 +88,7 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
       const pdfDoc = await loadingTask.promise;
       cachedPagesCount = pdfDoc.numPages;
 
-      // Actively extract text from all pages
+      // Actively extract text from all 21 pages
       for (let i = 1; i <= pdfDoc.numPages; i++) {
         const page = await pdfDoc.getPage(i);
         await page.getTextContent();
@@ -86,9 +97,9 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
       cachedPassages = VERIFIED_PDF_PASSAGES;
       return cachedPassages;
     } catch (err) {
-      console.warn("Client PDF.js parsing fallback to verified knowledge base:", err);
+      console.warn("Client PDF.js parsing fallback to verified knowledge base v4:", err);
       cachedPassages = VERIFIED_PDF_PASSAGES;
-      cachedPagesCount = 10;
+      cachedPagesCount = 21;
       return cachedPassages;
     }
   })();
@@ -158,7 +169,7 @@ export function matchPassageDeterministically(rawQuery: string): SearchResult | 
     return {
       text: bestPassage.content,
       pageNumber: bestPassage.pageNumber,
-      sourceLabel: `Source: Reforbs Knowledge Base v3, page ${bestPassage.pageNumber}`,
+      sourceLabel: `Source: Reforbs Knowledge Base v4, page ${bestPassage.pageNumber}`,
       confidence: Math.min(30, Math.round(bestScore)),
       isFallback: false,
     };
@@ -172,7 +183,7 @@ export function matchPassageDeterministically(rawQuery: string): SearchResult | 
  * Executes the multi-stage question-processing pipeline:
  * 1. Normalize query
  * 2. Intent detection & entity extraction
- * 3. Evidence validation against knowledge base
+ * 3. Evidence validation against knowledge base v4
  * 4. Deterministic passage retrieval fallback
  * 5. Intent-specific response generation
  */
@@ -180,7 +191,7 @@ export async function searchKnowledgePDF(rawQuery: string): Promise<SearchResult
   const query = rawQuery.trim();
   if (!query) {
     return {
-      text: "Please type a question about Reforbs properties, amenities, or accommodation.",
+      text: "Please type a question about Reforbs properties, amenities, room options, or locations in Pune.",
       pageNumber: null,
       sourceLabel: null,
       confidence: 0,

@@ -2,28 +2,45 @@
  * Evidence Validation Layer
  *
  * Validates retrieved facts against the customer's detected intent based on
- * reforbs_knowledge_base_v3.pdf.
+ * Reforbs Knowledge Base v4.0 (reforbs_expanded_knowledge_base_v4.pdf).
  *
- * If evidence is missing, ambiguous, or unconfirmed in the PDF, returns an
- * honest, intent-specific response rather than a misleading or generic fallback.
- *
- * Records knowledge gaps in local diagnostics.
+ * Strictly follows the Conflict Register, Intent-Specific Fallbacks, and
+ * Rate Comparison Rules from v4.0:
+ * - No hallucinations or invented facts.
+ * - Compares double occupancy only against double, single only against single.
+ * - Formats currencies as ₹X/month.
+ * - Distinguishes website-published estimates from guaranteed quotes or live traffic.
  */
 
 import { IntentDetectionResult } from "./intentDetector";
 import { recordKnowledgeGap } from "./knowledgeGaps";
 import { SearchResult } from "./pdfKnowledgeEngine";
 import {
+  PROPERTIES_V4,
+  PropertyKnowledge,
   CONTACT_PHONE,
-  PRIMARY_ADDRESS,
-  GOOGLE_MAPS_LINK,
+  HOST_NAME,
+  CONTACT_EMAIL,
+  TOUR_HOURS,
+  PRIMARY_LOCATION,
 } from "./knowledgeConfig";
+
+function findProperty(nameOrAlias?: string): PropertyKnowledge | undefined {
+  if (!nameOrAlias) return undefined;
+  const lower = nameOrAlias.toLowerCase().trim();
+  return PROPERTIES_V4.find(
+    (p) =>
+      p.name.toLowerCase() === lower ||
+      p.aliases.some((a) => lower.includes(a) || a.includes(lower))
+  );
+}
 
 export function validateAndGenerateResponse(
   rawQuery: string,
   analysis: IntentDetectionResult
 ): SearchResult {
   const { intent, entities } = analysis;
+  const matchedProp = findProperty(entities.property);
 
   switch (intent) {
     // -------------------------------------------------------------------------
@@ -33,7 +50,7 @@ export function validateAndGenerateResponse(
       recordKnowledgeGap("OFF_TOPIC_QUERY", rawQuery);
       return {
         text:
-          "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, and living in Pune. If you have any questions about our spaces in Viman Nagar or would like to schedule a visit, feel free to ask or call us at " +
+          "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, room options, and living in Pune. If you have any questions about our spaces in Viman Nagar or would like to schedule a visit, feel free to ask or call us at " +
           CONTACT_PHONE +
           "!",
         pageNumber: null,
@@ -45,966 +62,639 @@ export function validateAndGenerateResponse(
     }
 
     // -------------------------------------------------------------------------
-    // 1b. Google Maps Location Link
-    // -------------------------------------------------------------------------
-    case "GOOGLE_MAPS_LINK": {
-      return {
-        text:
-          `Here is the verified Google Maps location link for ReForbs Co-Living:\n\n` +
-          `• Google Maps Link: ${GOOGLE_MAPS_LINK}\n` +
-          `• Primary Address: ${PRIMARY_ADDRESS}\n\n` +
-          `Important scope note: This Google Maps link corresponds directly to ReForbs Co-Living at Sanjay Park, Lane 3, Viman Nagar. Individual map links for other properties (such as Shubh Gateway, Reforbs Living Sakore Nagar, Moksha, Vipasana, and Shubh Nirvana) are not detailed in the knowledge base; please contact management at ${CONTACT_PHONE} for property-specific directions.`,
-        pageNumber: 1,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 1 & 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 2. Full Address of ReForbs Co-Living / Sanjay Park
-    // -------------------------------------------------------------------------
-    case "FULL_ADDRESS": {
-      return {
-        text:
-          `The primary address supplied for ReForbs Co-Living is: ${PRIMARY_ADDRESS}.\n\n` +
-          `Google Maps location: ${GOOGLE_MAPS_LINK}\n\n` +
-          `Important scope note: This complete address is specifically provided for the Sanjay Park property. Full street addresses and individual map links for other named properties (such as Shubh Gateway, Reforbs Living Sakore Nagar, Moksha, Vipasana, and Shubh Nirvana) are not detailed in the current knowledge base. For property-specific directions, please contact management at ${CONTACT_PHONE}.`,
-        pageNumber: 1,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 1 & 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 3. Airport Distance
-    // -------------------------------------------------------------------------
-    case "AIRPORT_DISTANCE": {
-      return {
-        text:
-          `According to the owner-supplied estimates in the knowledge base, ReForbs Co-Living (Sanjay Park, Lane 3, Viman Nagar) is approximately 2.1 km (around an 11-minute drive via New Airport Road / Symbiosis Road) from Pune International Airport.\n\n` +
-          `Please note that this is an approximate owner-supplied estimate and actual journey time is traffic-dependent. For assistance or directions, call ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 4. Nearest PG to Pune Airport
-    // -------------------------------------------------------------------------
-    case "NEAREST_AIRPORT": {
-      return {
-        text:
-          `For the Sanjay Park property (Lane 3, Viman Nagar), the knowledge base states an approximate road distance of 2.1 km (around an 11-minute drive) to Pune International Airport. Additionally, Moksha, Vipasana, and Shubh Nirvana are located in Viman Nagar.\n\n` +
-          `However, the knowledge base does not contain comparable verified location data or distance rankings for every property, so it cannot definitively claim that Sanjay Park is the nearest among all ReForbs properties. Times are estimates, not guarantees. Please contact ${CONTACT_PHONE} for route and property guidance.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 5. Symbiosis Law School (SLS) Distance
-    // -------------------------------------------------------------------------
-    case "SLS_DISTANCE": {
-      return {
-        text:
-          `The knowledge base provides two verified references for Symbiosis Law School (SLS) in Viman Nagar:\n\n` +
-          `1. Shubh Gateway student housing is located directly opposite Symbiosis Law School.\n` +
-          `2. For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate is 1.8 km (around a 10-minute drive), though route and traffic may vary.\n\n` +
-          `To check current room vacancies or schedule a visit, call ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 5b. IIHM (International Institute of Hotel Management) Distance
-    // -------------------------------------------------------------------------
-    case "IIHM_DISTANCE": {
-      return {
-        text:
-          `For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to IIHM (near Phoenix Marketcity) is 2.4 km (around a 15-minute drive).\n\n` +
-          `Please note that this is an approximate estimate and travel time depends on traffic. Call ${CONTACT_PHONE} for commute guidance.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 5c. Christ College Wadgaon Sheri Distance
-    // -------------------------------------------------------------------------
-    case "CHRIST_COLLEGE_DISTANCE": {
-      return {
-        text:
-          `For ReForbs Co-Living at Sanjay Park, the approximate owner-supplied drive estimate to Christ College (Wadgaon Sheri) is 6.3 km (around a 20-minute drive).\n\n` +
-          `Route and traffic may vary. For assistance, contact management at ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 5d. Corporate Hubs & IT Parks
-    // -------------------------------------------------------------------------
-    case "CORPORATE_HUBS": {
-      return {
-        text:
-          `Reforbs properties in Viman Nagar are situated near major business hubs:\n` +
-          `• Weikfield IT Citi Info Park\n` +
-          `• Solitaire Business Hub\n` +
-          `• Sky Vista\n` +
-          `• Nyati Unitree\n\n` +
-          `The supplied notes mention companies such as PTC Software, WNS Global Services, and SA Technologies in relation to these commercial areas. For assistance choosing a property near your workplace, call ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 5e. Ramwadi Metro & Phoenix Marketcity
-    // -------------------------------------------------------------------------
-    case "METRO_STATION": {
-      return {
-        text:
-          `Nearby transit and landmark references in the knowledge base include:\n` +
-          `• Ramwadi Metro Station for metro connectivity\n` +
-          `• Phoenix Marketcity Pune for shopping and dining\n` +
-          `• Sanjay Park and the Air Force Station area\n\n` +
-          `Please confirm current route and journey times before travel by calling ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 6. Which ReForbs properties are in Viman Nagar?
-    // -------------------------------------------------------------------------
-    case "VIMAN_NAGAR_PROPERTIES": {
-      return {
-        text:
-          `The v3 property directory lists the following co-living properties in Viman Nagar:\n` +
-          `• Moksha (Viman Nagar)\n` +
-          `• Vipasana (Viman Nagar)\n` +
-          `• Shubh Nirvana (Viman Nagar)\n` +
-          `• ReForbs Co-Living - Sanjay Park (Sanjay Park, Lane 3, Viman Nagar, Pune 411032)\n\n` +
-          `In addition, Shubh Gateway student housing is located opposite Symbiosis Law School in Viman Nagar, and Reforbs Living Sakore Nagar is nearby.\n\n` +
-          `Please note: Being listed in Viman Nagar does not establish a comparative distance ranking between them. For property-specific details, please call ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 7. Cheapest PG Comparison
-    // -------------------------------------------------------------------------
-    case "CHEAPEST_PRICE_COMPARISON": {
-      recordKnowledgeGap("CHEAPEST_RENT_COMPARISON", rawQuery);
-      return {
-        text:
-          `The knowledge base does not contain comparable current prices for all properties, so it cannot reliably identify the cheapest PG. Rent varies by property, wing, and by single- or double-occupancy room type.\n\n` +
-          `Please call ${CONTACT_PHONE} and ask the management team for current property-wise rates.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 8. Security Deposit
-    // -------------------------------------------------------------------------
-    case "SECURITY_DEPOSIT": {
-      recordKnowledgeGap("SECURITY_DEPOSIT_AMOUNT", rawQuery);
-      return {
-        text:
-          `A security deposit is required before move-in according to the supplied notes, but the exact amount, refund conditions, deduction rules, and refund timeline were not provided in the knowledge base.\n\n` +
-          `Please confirm the current written terms with management at ${CONTACT_PHONE} before paying.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 8b. Discounts and Offers
-    // -------------------------------------------------------------------------
-    case "DISCOUNTS_OFFERS": {
-      recordKnowledgeGap("DISCOUNTS_OFFERS", rawQuery);
-      return {
-        text:
-          `No confirmed discount rules or current offers were provided in the knowledge base.\n\n` +
-          `Please ask management at ${CONTACT_PHONE} about any active student, corporate, seasonal, or long-stay offers.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 9. Rent Inclusions: Wi-Fi and Water
-    // -------------------------------------------------------------------------
-    case "RENT_INCLUSIONS_WIFI_WATER": {
-      return {
-        text:
-          `Yes, the supplied owner notes state that high-speed Wi-Fi, water, and regular maintenance are bundled in standard packages.\n\n` +
-          `However, electricity may be variable or sub-metered, and exact inclusions can vary depending on the chosen room and package. Confirm the precise package details for your selected room with management at ${CONTACT_PHONE} before payment.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4 & 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 10. Electricity Inclusion
-    // -------------------------------------------------------------------------
-    case "ELECTRICITY_INCLUSION": {
-      return {
-        text:
-          `According to the supplied notes, electricity is not automatically bundled in standard rent and may be variable or sub-metered based on consumption.\n\n` +
-          `Please confirm the precise package, utility arrangement, and electricity charges for your chosen room with management at ${CONTACT_PHONE} before payment.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4 & 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 11. Food Inclusions
-    // -------------------------------------------------------------------------
-    case "FOOD_INCLUSIONS": {
-      recordKnowledgeGap("FOOD_MEAL_PLAN_INCLUSIONS", rawQuery);
-      return {
-        text:
-          `The supplied owner information states that standard rent does not include fully catered daily meals. Instead, functional kitchen facilities are available for residents to cook their own food.\n\n` +
-          `Please confirm any optional meal plans or local food arrangements with management at ${CONTACT_PHONE}.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 12. Cook My Own Food
-    // -------------------------------------------------------------------------
-    case "COOK_FOOD": {
-      return {
-        text:
-          `Yes! Functional kitchen spaces are described in the knowledge base so residents can cook their own meals. Standard rent does not force daily meal packages on you.\n\n` +
-          `Please confirm whether the kitchen is private or shared for your selected property and room by contacting management at ${CONTACT_PHONE}.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 13. Single or Double Occupancy
-    // -------------------------------------------------------------------------
-    case "OCCUPANCY_SINGLE_DOUBLE": {
-      return {
-        text:
-          `Yes. The supplied owner information describes both single-occupancy and designated double-occupancy room options, depending on the property and room type.\n\n` +
-          `Because options, layout availability, and pricing vary by property, please confirm current availability and rates with management at ${CONTACT_PHONE}.`,
-        pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3 & 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 14. People per Room
-    // -------------------------------------------------------------------------
-    case "PEOPLE_PER_ROOM": {
-      return {
-        text:
-          `Room capacity depends on the selected room type. The supplied information states that single-occupancy (1 resident) and designated double-occupancy (2 residents) options may exist depending on the room and property.\n\n` +
-          `Please confirm the specific room configuration being discussed with management at ${CONTACT_PHONE} before finalizing.`,
-        pageNumber: 5,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 15. People per PG / Building Capacity
-    // -------------------------------------------------------------------------
-    case "PEOPLE_PER_PG": {
-      return {
-        text:
-          `The supplied notes describe a maximum of 3 residents per 2BHK floor. However, this is not the total capacity of an entire building or PG property.\n\n` +
-          `The knowledge base does not specify the overall building capacity for each property (though a 7-room configuration is mentioned for the Moksha wing). Please ask which property or floor you are interested in, and contact management at ${CONTACT_PHONE} to confirm total building capacity.`,
-        pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3 & 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 16. Couples & Partner Cohabitation Policy
-    // -------------------------------------------------------------------------
-    case "COUPLES_POLICY": {
-      recordKnowledgeGap("COUPLES_SHARED_OCCUPANCY_POLICY", rawQuery, {
-        property: entities.property,
-      });
-
-      return {
-        text:
-          `The supplied information states that designated double-occupancy rooms may be available, but it does not confirm the policy for unmarried couples or partner stays.\n\n` +
-          `Do not assume couples are automatically allowed or prohibited. Please contact management at ${CONTACT_PHONE} for the current property-specific rule.`,
-        pageNumber: 5,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 17. Co-Ed / Unisex Policy
-    // -------------------------------------------------------------------------
-    case "CO_ED_POLICY": {
-      recordKnowledgeGap("GENDER_ELIGIBILITY_RULES", rawQuery);
-      return {
-        text:
-          `The supplied notes describe a co-ed/unisex arrangement with segregated apartment wings or flat-sharing configurations intended to support privacy.\n\n` +
-          `Please confirm the current arrangement and eligibility rules for your specific property with management at ${CONTACT_PHONE}.`,
-        pageNumber: 5,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 17b. Student PG vs Co-Living
-    // -------------------------------------------------------------------------
-    case "STUDENT_OR_COLIVING": {
-      return {
-        text:
-          `ReForbs offers both a student-PG and co-living proposition for students and working professionals in Pune.\n\n` +
-          `Specific properties cater to each need (e.g., Shubh Gateway and Sakore Nagar for student housing; Moksha, Vipasana, Shubh Nirvana, and Sanjay Park for co-living). Confirm the exact property's category and eligibility by calling ${CONTACT_PHONE}.`,
-        pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3 & 5",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 18. CCTV & Security
-    // -------------------------------------------------------------------------
-    case "CCTV_SECURITY": {
-      return {
-        text:
-          `The supplied notes mention CCTV monitoring at common entries and controlled access points. The exact setup at each property should be confirmed.\n\n` +
-          `Please note: The knowledge base does not promise complete safety or mention security guards, emergency response systems, or room-level CCTV. Contact ${CONTACT_PHONE} for property-specific security details.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 18b. Cleanliness and Housekeeping
-    // -------------------------------------------------------------------------
-    case "CLEANLINESS_HOUSEKEEPING": {
-      return {
-        text:
-          `Housekeeping and periodic cleaning of common spaces are mentioned in the knowledge base.\n\n` +
-          `The exact schedule, room-cleaning scope, and standards for each property were not provided; confirm with management at ${CONTACT_PHONE}.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 19. Maintenance Resolution Speed
-    // -------------------------------------------------------------------------
-    case "MAINTENANCE_SPEED": {
-      return {
-        text:
-          `The supplied notes mention regular maintenance and day-to-day support, but no guaranteed response time or ticket resolution timeline was provided in the knowledge base.\n\n` +
-          `Please contact the property management team at ${CONTACT_PHONE} to report an issue and confirm response arrangements.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 19b. Visitors & Overnight Guests
-    // -------------------------------------------------------------------------
-    case "VISITORS_GUESTS": {
-      return {
-        text:
-          `The public website describes a social/community environment and says residents can invite friends over, but formal visitor hours and overnight-guest rules were not provided in the knowledge base.\n\n` +
-          `Please confirm the current policy for the selected property at ${CONTACT_PHONE}.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 19c. Curfew Rules
-    // -------------------------------------------------------------------------
-    case "CURFEW_RULES": {
-      return {
-        text:
-          `No specific curfew or gate-closing entry restrictions were supplied in the notes.\n\n` +
-          `Contact management at ${CONTACT_PHONE} to confirm current house rules for your preferred property.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 19d. Pets, Smoking, and Alcohol
-    // -------------------------------------------------------------------------
-    case "PETS_SMOKING_ALCOHOL": {
-      return {
-        text:
-          `The supplied information does not confirm whether pets, smoking, or alcohol are permitted.\n\n` +
-          `Please ask management at ${CONTACT_PHONE} for the current property-specific policy.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 20. Visit Before Booking
-    // -------------------------------------------------------------------------
-    case "VISIT_BEFORE_BOOKING": {
-      return {
-        text:
-          `Yes. The supplied notes recommend scheduling a physical property visit before paying any booking amount.\n\n` +
-          `Please contact ${CONTACT_PHONE} to arrange a walkthrough and confirm the booking process.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 21. Documents Required
-    // -------------------------------------------------------------------------
-    case "DOCUMENTS_REQUIRED": {
-      recordKnowledgeGap("DOCUMENT_VERIFICATION_LIST", rawQuery);
-      return {
-        text:
-          `The supplied notes mention Aadhaar, PAN, and a student ID or employment letter as possible requirements for lease processing and verification.\n\n` +
-          `Please confirm exactly which documents apply to you and your chosen property with management at ${CONTACT_PHONE}.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 21b. Payment Safety & In-Chat Booking Payments
-    // -------------------------------------------------------------------------
-    case "PAYMENT_SAFETY": {
-      return {
-        text:
-          `Payment safety note: The chatbot must never claim that a payment, reservation, or site visit has been completed, and it cannot process online payments or ask for banking details.\n\n` +
-          `All booking confirmations, visits, and payments are handled securely and directly with property management at ${CONTACT_PHONE}.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 22. Live Availability & Immediate Move-In
-    // -------------------------------------------------------------------------
-    case "AVAILABILITY_VACANCIES": {
-      recordKnowledgeGap("LIVE_ROOM_AVAILABILITY", rawQuery, {
-        property: entities.property,
-      });
-
-      return {
-        text:
-          `The chatbot does not have access to live room inventory or confirmed move-in dates from this static knowledge base.\n\n` +
-          `Please call ${CONTACT_PHONE} with your preferred property, room type, and move-in date to check real-time availability.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 23. Minimum Stay & Lease Tenure
-    // -------------------------------------------------------------------------
-    case "MINIMUM_STAY_LEASE": {
-      return {
-        text:
-          `These terms are described as being set out in the individual rent agreement. The exact minimum stay duration, lock-in period, or notice period were not provided in the knowledge base.\n\n` +
-          `Please ask management at ${CONTACT_PHONE} for the agreement applicable to the selected property and review it before paying.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 24. Cancellation & Refund Policy
-    // -------------------------------------------------------------------------
-    case "CANCELLATION_REFUND": {
-      recordKnowledgeGap("CANCELLATION_REFUND_POLICY", rawQuery);
-      return {
-        text:
-          `The current cancellation and refund terms were not provided in the knowledge base.\n\n` +
-          `Please ask management at ${CONTACT_PHONE} for the written policy, including deposit deductions and refund timelines, before paying.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 25. Unspecified College Proximity (Clarification)
-    // -------------------------------------------------------------------------
-    case "UNSPECIFIED_COLLEGE": {
-      return {
-        text:
-          `Which college or university are you looking to stay near? (For example, Shubh Gateway is located directly opposite Symbiosis Law School in Viman Nagar.)\n\n` +
-          `Please let us know your college name or call ${CONTACT_PHONE} for personalized guidance.`,
-        pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 26. Unspecified Office Proximity (Clarification)
-    // -------------------------------------------------------------------------
-    case "UNSPECIFIED_OFFICE": {
-      return {
-        text:
-          `Which office, business park, or company are you looking to stay near? Reforbs properties are located in Viman Nagar and Sakore Nagar, Pune (near Weikfield IT Citi Info Park, Solitaire Business Hub, Sky Vista, and Nyati Unitree).\n\n` +
-          `Please let us know your work location or call ${CONTACT_PHONE} for personalized guidance.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 27. Nearest Location Comparison (e.g. Kondhwa)
-    // -------------------------------------------------------------------------
-    case "NEAREST_LOCATION": {
-      const loc = entities.location || "your location";
-      recordKnowledgeGap("NEAREST_LOCATION_DISTANCE", rawQuery, {
-        location: entities.location,
-      });
-
-      return {
-        text:
-          `Reforbs properties are located in Viman Nagar and Sakore Nagar in East Pune. The knowledge base does not contain verified travel distance calculations from ${loc} to each specific property, nor does Reforbs have a property in ${loc}.\n\n` +
-          `For commute recommendations from ${loc} to our Viman Nagar residences, please call ${CONTACT_PHONE}.`,
-        pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 27b. AC Amenity
-    // -------------------------------------------------------------------------
-    case "AC_AMENITY": {
-      return {
-        text:
-          `AC is mentioned in the supplied notes as a premium amenity.\n\n` +
-          `Please confirm whether AC is available in your selected room and whether its use is included in the rent or billed separately by contacting management at ${CONTACT_PHONE}.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 27c. TV Amenity
-    // -------------------------------------------------------------------------
-    case "TV_AMENITY": {
-      return {
-        text:
-          `TV and common media setups are mentioned in the knowledge base.\n\n` +
-          `It is not claimed to exist in every individual room; please confirm common vs. private room TV setup for your chosen property with management at ${CONTACT_PHONE}.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 27d. Work Desks & Study Tables
-    // -------------------------------------------------------------------------
-    case "WORK_DESK_AMENITY": {
-      return {
-        text:
-          `Work desks and study workspaces are mentioned in the knowledge base.\n\n` +
-          `Property- and room-specific desk availability should be confirmed with management at ${CONTACT_PHONE}.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 28. General Amenities or Target Amenity
-    // -------------------------------------------------------------------------
-    case "AMENITIES": {
-      if (entities.targetAmenity === "Wi-Fi") {
-        return {
-          text:
-            `High-speed Wi-Fi is advertised across Reforbs properties. The supplied notes say Wi-Fi is bundled with standard packages; please confirm the setup for your selected room and package with management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (entities.targetAmenity === "Laundry") {
-        return {
-          text:
-            `Laundry facilities are mentioned in the knowledge base. Pricing, self-service vs. service arrangements, and availability at each property need confirmation with management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (entities.targetAmenity === "Parking") {
-        return {
-          text:
-            `Parking is listed among general amenities in the knowledge base. Please confirm vehicle type (two-wheeler / four-wheeler), availability, and any parking charges with management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (entities.targetAmenity === "Daily Cleaning") {
-        return {
-          text:
-            `Periodic housekeeping for common spaces and regular housekeeping are mentioned in the knowledge base. Please note: Frequency and room-cleaning scope are not fixed, and daily in-room cleaning is not promised. Confirm housekeeping details with management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (entities.targetAmenity === "Kitchen") {
-        return {
-          text:
-            `Functional kitchen spaces are described in the knowledge base, and residents can cook their own meals. Confirm whether the kitchen is private or shared at your selected property with management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (entities.targetAmenity === "AC") {
-        return {
-          text:
-            `AC is mentioned in the supplied notes as a premium amenity. Please confirm whether AC is available in your selected room and whether its use is included in the rent or billed separately by contacting management at ${CONTACT_PHONE}.`,
-          pageNumber: 6,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      return {
-        text:
-          `The general amenity list in the Reforbs knowledge base includes:\n\n` +
-          `• High-speed Wi-Fi\n` +
-          `• TV / media setup\n` +
-          `• Work desks / study spaces\n` +
-          `• Living and dining areas\n` +
-          `• Kitchen facilities (residents can cook)\n` +
-          `• Housekeeping and periodic common-space cleaning\n` +
-          `• Parking facilities\n` +
-          `• Laundry facilities\n` +
-          `• AC (mentioned as a premium amenity)\n\n` +
-          `The supplied notes say Wi-Fi, water, and maintenance are bundled in standard packages, but exact inclusions, conditions, and other charges must be confirmed for the selected property and room package. Please call ${CONTACT_PHONE} for details.`,
-        pageNumber: 6,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 6",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 29. Furniture Inventory
-    // -------------------------------------------------------------------------
-    case "FURNITURE_INVENTORY": {
-      recordKnowledgeGap("FURNITURE_INVENTORY", rawQuery);
-      return {
-        text:
-          `The supplied notes mention standard bedding, furnished apartment-style layouts, common living/dining areas, and kitchens.\n\n` +
-          `A complete room-by-room furniture and appliance inventory was not supplied in the knowledge base; please confirm the exact setup for your chosen property with management at ${CONTACT_PHONE}.`,
-        pageNumber: 5,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 5",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 30. House Rules, Curfew, Visitors, Pets, Smoking
-    // -------------------------------------------------------------------------
-    case "RULES_RESTRICTIONS": {
-      recordKnowledgeGap("CURFEW_HOUSE_RULES", rawQuery);
-      return {
-        text:
-          `Here are the house rules and guidelines noted in the knowledge base:\n\n` +
-          `• Visitors & Overnight Guests: The public website describes a social/community environment and says residents can invite friends, but formal visitor hours and overnight-guest rules were not provided.\n` +
-          `• Curfew: No specific curfew or gate-closing entry restrictions were supplied in the notes.\n` +
-          `• Pets, Smoking & Alcohol: The supplied information does not confirm whether pets, smoking, or alcohol are permitted.\n\n` +
-          `Please contact management at ${CONTACT_PHONE} to confirm the current property-specific house rules.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 31. Rent Pricing General
-    // -------------------------------------------------------------------------
-    case "RENT_PRICING": {
-      recordKnowledgeGap("PROPERTY_SPECIFIC_RENT", rawQuery);
-      return {
-        text:
-          `Rent varies by property/wing and by single- or double-occupancy room type. Exact current prices must be confirmed with the management team at ${CONTACT_PHONE}.\n\n` +
-          `The supplied notes mention that Wi-Fi, water, and maintenance are bundled in standard packages, while electricity may be variable or sub-metered. Please call for current rate cards.`,
-        pageNumber: 4,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 4",
-        confidence: 28.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 32. Contact Details & Support
-    // -------------------------------------------------------------------------
-    case "CONTACT_SUPPORT": {
-      return {
-        text:
-          `You can reach Reforbs directly:\n\n` +
-          `• Phone / WhatsApp: ${CONTACT_PHONE}\n` +
-          `• Primary Address: ${PRIMARY_ADDRESS}\n` +
-          `• Google Maps: ${GOOGLE_MAPS_LINK}\n\n` +
-          `Call ${CONTACT_PHONE} for property enquiries, current rent, room availability, site visits, and policy questions.`,
-        pageNumber: 1,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 1 & 8",
-        confidence: 30.0,
-        isFallback: false,
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 33. Property Directory
+    // 2. Property Directory / List Properties
     // -------------------------------------------------------------------------
     case "PROPERTY_DIRECTORY": {
       return {
         text:
-          `ReForbs offers accommodation for students and working professionals in Pune:\n\n` +
-          `Student Housing:\n` +
-          `1. Shubh Gateway — Situated directly opposite Symbiosis Law School (SLS)\n` +
-          `2. Reforbs Living Sakore Nagar — Located in Sakore Nagar\n\n` +
-          `Co-Living (Professionals & Students):\n` +
-          `3. Moksha — Viman Nagar (notes mention a 7-room configuration)\n` +
-          `4. Vipasana — Viman Nagar\n` +
-          `5. Shubh Nirvana — Viman Nagar\n` +
-          `6. ReForbs Co-Living - Sanjay Park — Sanjay Park, Lane 3, Viman Nagar, Pune 411032\n\n` +
-          `Single- and double-occupancy options may exist depending on property and room. Which property would you like to explore? Call ${CONTACT_PHONE} to check availability!`,
+          "The homepage currently shows 10 active Pune spaces in Viman Nagar:\n\n" +
+          "• Shubh Gateway (Student Housing) — Double: ₹12,500/month | Single: ₹18,000/month\n" +
+          "• Reforbs Living Sakore Nagar (Student Housing) — Double: ₹12,000/month | Single: ₹17,500/month\n" +
+          "• Reforbs Vairagya (Student Housing) — Double: ₹13,000/month | Single: ₹19,000/month\n" +
+          "• Moksha (Co-Living) — Double: ₹14,500/month | Single: ₹22,000/month\n" +
+          "• Shubh Nirvana (Co-Living) — Double: ₹15,000/month | Single: ₹22,500/month\n" +
+          "• Vipasana (Co-Living) — Double: ₹14,000/month | Single: ₹21,000/month\n" +
+          "• Suyog Co-Living (Co-Living) — Double: ₹14,500/month | Single: ₹21,500/month\n" +
+          "• Reforbs Park Island (Co-Living) — Double: ₹15,500/month | Single: ₹23,000/month\n" +
+          "• Pillar Homes Co-Living (Co-Living) — Double: ₹15,000/month | Single: ₹22,000/month\n" +
+          "• Langston Downtown (Co-Living) — Double: ₹16,000/month | Single: ₹24,000/month\n\n" +
+          "All listed rates are website-published monthly rates reviewed on 3 November 2026. Please confirm current availability and final quote with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
         pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3",
         confidence: 30.0,
         isFallback: false,
       };
     }
 
     // -------------------------------------------------------------------------
-    // 34. Property-Specific Query
+    // 3. Cheapest / Budget Comparison
     // -------------------------------------------------------------------------
-    case "PROPERTY_SPECIFIC": {
-      const prop = entities.property || "Reforbs property";
-
-      if (prop.includes("Sanjay Park") || prop.includes("ReForbs Co-Living")) {
+    case "CHEAPEST_PRICE_COMPARISON": {
+      if (entities.occupancyType === "single") {
         return {
           text:
-            `ReForbs Co-Living (Sanjay Park) is located at ${PRIMARY_ADDRESS} (Google Maps: ${GOOGLE_MAPS_LINK}).\n\n` +
-            `Drive estimates supplied with owner answers:\n` +
-            `• Pune International Airport: ~2.1 km (approx. 11 min)\n` +
-            `• Symbiosis Law School: ~1.8 km (approx. 10 min)\n` +
-            `• IIHM Pune: ~2.4 km (approx. 15 min)\n` +
-            `• Christ College: ~6.3 km (approx. 20 min)\n\n` +
-            `Layouts feature 2BHK apartment floors (maximum 3 residents per 2BHK floor). To check vacancies or schedule a visit, call ${CONTACT_PHONE}.`,
-          pageNumber: 2,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 3",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (prop.includes("Shubh Gateway")) {
-        return {
-          text:
-            `Shubh Gateway is student housing located directly opposite Symbiosis Law School (SLS) in Viman Nagar.\n\n` +
-            `Full street address, property-specific prices, and live availability were not detailed in the knowledge base. Please call ${CONTACT_PHONE} to confirm current rates and schedule a walkthrough.`,
+            "Reforbs Living Sakore Nagar is listed at ₹17,500/month for single occupancy, which is the lowest single-occupancy rate among the ten property pages reviewed.\n\n" +
+            "Please note that these rates are website-displayed prices reviewed on 3 November 2026, not a final guarantee of current vacancy. Please confirm latest vacancy and pricing with host Arpit Agarwal at " +
+            CONTACT_PHONE +
+            ".",
           pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
-          confidence: 28.0,
+          sourceLabel: "Source: Reforbs Knowledge Base v4, page 3 & 17",
+          confidence: 30.0,
           isFallback: false,
         };
       }
 
-      if (prop.includes("Sakore Nagar")) {
-        return {
-          text:
-            `Reforbs Living Sakore Nagar provides student housing referencing Sakore Nagar, Pune.\n\n` +
-            `Exact street address and current pricing are not supplied in the knowledge base. Please contact management at ${CONTACT_PHONE} for detailed location and rate information.`,
-          pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (prop.includes("Moksha")) {
-        return {
-          text:
-            `Moksha is a co-living property in Viman Nagar. Notes mention a 7-room configuration, though the exact scope and capacity should be confirmed.\n\n` +
-          `Detailed property-specific inclusions and current rent need confirmation from management. Please call ${CONTACT_PHONE} for current details.`,
-          pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
-      if (prop.includes("Vipasana") || prop.includes("Shubh Nirvana")) {
-        return {
-          text:
-            `${prop} is a co-living residence located in Viman Nagar, Pune.\n\n` +
-            `Detailed property-specific inclusions, exact street addresses, and current pricing need confirmation from management. Please call ${CONTACT_PHONE} to check availability and schedule a visit.`,
-          pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
-          confidence: 28.0,
-          isFallback: false,
-        };
-      }
-
+      // Default or double occupancy cheapest
       return {
         text:
-          `${prop} is part of the Reforbs portfolio in Pune. For current property-specific inclusions, address details, and pricing, please contact management at ${CONTACT_PHONE}.`,
+          "The lowest monthly rate currently shown on the property pages is Reforbs Living Sakore Nagar at ₹12,000/month for double occupancy. Its listed single-occupancy rate is ₹17,500/month.\n\n" +
+          "For double sharing:\n" +
+          "• Reforbs Living Sakore Nagar: ₹12,000/month (lowest double rate)\n" +
+          "• Shubh Gateway: ₹12,500/month\n" +
+          "• Reforbs Vairagya: ₹13,000/month\n\n" +
+          "These are website-published monthly rates reviewed on 3 November 2026. Please confirm current availability and final pricing with the host at " +
+          CONTACT_PHONE +
+          ".",
         pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 3",
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3 & 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. Rent / Pricing for a specific property or general
+    // -------------------------------------------------------------------------
+    case "RENT_PRICING": {
+      if (matchedProp) {
+        return {
+          text:
+            `The website-listed monthly rates for ${matchedProp.name} are:\n\n` +
+            `• Double occupancy: ${matchedProp.doubleRateStr}\n` +
+            `• Single occupancy: ${matchedProp.singleRateStr}\n` +
+            `• Refundable security deposit: ${matchedProp.securityDeposit}\n\n` +
+            `Rates are as published on the website on 3 November 2026. Please confirm current vacancy and final quote with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+          pageNumber: matchedProp.pageNumber,
+          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      // General pricing inquiry
+      return {
+        text:
+          "Website-listed monthly rates across Reforbs residences in Viman Nagar start at ₹12,000/month for double occupancy and ₹17,500/month for single occupancy (at Reforbs Living Sakore Nagar).\n\n" +
+          "Rates range from ₹12,000/month to ₹16,000/month for double sharing, and ₹17,500/month to ₹24,000/month for single private suites, depending on the property and amenities. For a specific quote, contact host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 3,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3",
         confidence: 25.0,
         isFallback: false,
       };
     }
 
     // -------------------------------------------------------------------------
-    // 35. Visit / Tour
+    // 5. Occupancy / Single vs Double Options
+    // -------------------------------------------------------------------------
+    case "OCCUPANCY_SINGLE_DOUBLE": {
+      if (matchedProp) {
+        return {
+          text:
+            `${matchedProp.name} detail page lists both Single Occupancy and Double Occupancy options:\n\n` +
+            `• Double Occupancy (${matchedProp.doubleRateStr}):\n  - ${matchedProp.doubleDetails.join("\n  - ")}\n\n` +
+            `• Single Occupancy (${matchedProp.singleRateStr}):\n  - ${matchedProp.singleDetails.join("\n  - ")}\n\n` +
+            `Please confirm actual room inventory and available dates with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+          pageNumber: matchedProp.pageNumber,
+          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      return {
+        text:
+          "The individual property detail pages list both single- and double-occupancy room options for all ten residences. Confirm the actual room inventory for your preferred property and dates with the host at " +
+          CONTACT_PHONE +
+          ". (Note: The site also contains general privacy copy stating rooms are single-occupant; however, each property page explicitly provides both single and double options with separate pricing).",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        confidence: 28.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. Security Deposit
+    // -------------------------------------------------------------------------
+    case "SECURITY_DEPOSIT": {
+      if (matchedProp) {
+        return {
+          text:
+            `At ${matchedProp.name}, the refundable security deposit is 1 month rent for each listed room option:\n\n` +
+            `• Double occupancy deposit: ${matchedProp.doubleRateStr} (1 month)\n` +
+            `• Single occupancy deposit: ${matchedProp.singleRateStr} (1 month)\n\n` +
+            `Please confirm the exact payable amount and written refund conditions with the host at ${CONTACT_PHONE} before paying.`,
+          pageNumber: matchedProp.pageNumber,
+          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber} & 17`,
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      return {
+        text:
+          "Each property room-option section states a refundable security deposit equal to one month’s rent. Confirm the exact payable amount and written refund conditions with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          " before paying.",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. Brokerage
+    // -------------------------------------------------------------------------
+    case "BROKERAGE_POLICY": {
+      return {
+        text:
+          "Each individual property page labels the offer “Zero Brokerage”. You deal directly with the Reforbs team with zero broker fees.",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 8. Specific Amenity Queries (e.g. Vipasana parking, Park Island pool, Langston booths, etc.)
+    // -------------------------------------------------------------------------
+    case "AMENITY_SPECIFIC": {
+      // Named property queries
+      if (matchedProp) {
+        const queryLower = rawQuery.toLowerCase();
+
+        // Specific sub-checks:
+        if (matchedProp.id === "vipasana" && (queryLower.includes("parking") || queryLower.includes("laundry"))) {
+          return {
+            text:
+              "Yes. Vipasana specifically includes Free vehicle parking and a Laundry facility among its listed amenities.\n\n" +
+              "• Full amenities at Vipasana: " +
+              matchedProp.amenities.join(" • ") +
+              "\n\nFor parking slot confirmation or walkthrough, contact " +
+              CONTACT_PHONE +
+              ".",
+            pageNumber: 9,
+            sourceLabel: "Source: Reforbs Knowledge Base v4, page 9",
+            confidence: 30.0,
+            isFallback: false,
+          };
+        }
+
+        if (matchedProp.id === "park-island" && (queryLower.includes("pool") || queryLower.includes("gym") || queryLower.includes("swimming"))) {
+          return {
+            text:
+              "Yes. Reforbs Park Island specifically includes Swimming pool access and an In-house fitness gym among its listed amenities.\n\n" +
+              "• Full amenities at Reforbs Park Island: " +
+              matchedProp.amenities.join(" • ") +
+              "\n\nTo see the pool and facilities, call host Arpit at " +
+              CONTACT_PHONE +
+              ".",
+            pageNumber: 11,
+            sourceLabel: "Source: Reforbs Knowledge Base v4, page 11",
+            confidence: 30.0,
+            isFallback: false,
+          };
+        }
+
+        if (matchedProp.id === "langston-downtown" && (queryLower.includes("soundproof") || queryLower.includes("booth"))) {
+          return {
+            text:
+              "Yes. Langston Downtown specifically includes Soundproof call booths and an Executive business lounge among its listed amenities.\n\n" +
+              "• Full amenities at Langston Downtown: " +
+              matchedProp.amenities.join(" • ") +
+              "\n\nFor corporate visits or bookings, contact " +
+              CONTACT_PHONE +
+              ".",
+            pageNumber: 13,
+            sourceLabel: "Source: Reforbs Knowledge Base v4, page 13",
+            confidence: 30.0,
+            isFallback: false,
+          };
+        }
+
+        if (matchedProp.id === "shubh-gateway" && (queryLower.includes("cctv") || queryLower.includes("security"))) {
+          return {
+            text:
+              "Yes. Shubh Gateway specifically lists 24/7 security and CCTV among its included amenities, along with free high-speed Wi-Fi, daily cleaning, laundry care, quiet study desks, private kitchen access, full power backup, and zero bans.\n\nFor more details, contact host Arpit at " +
+              CONTACT_PHONE +
+              ".",
+            pageNumber: 4,
+            sourceLabel: "Source: Reforbs Knowledge Base v4, page 4 & 18",
+            confidence: 30.0,
+            isFallback: false,
+          };
+        }
+
+        // General amenities for the named property
+        return {
+          text:
+            `Amenities stated on the ${matchedProp.name} property page as included:\n\n` +
+            `• ${matchedProp.amenities.join("\n• ")}\n\n` +
+            `Rates: Double ${matchedProp.doubleRateStr} | Single ${matchedProp.singleRateStr}. Contact host Arpit Agarwal at ${CONTACT_PHONE} for more details.`,
+          pageNumber: matchedProp.pageNumber,
+          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      // General amenities query across properties
+      return {
+        text:
+          "Reforbs homepage features common amenities including:\n" +
+          "• Free high-speed Wi-Fi\n• TV & streaming\n• Work desks\n• Spacious living area\n• Private kitchen access\n• Daily cleaning\n• Free parking\n• Freedom / zero bans\n• Laundry care\n• Full power backup\n\n" +
+          "Important note: Amenities are property-specific. For example, Park Island features swimming pool and gym access, Langston features soundproof call booths, and Nirvana features a pool table and UV chill lounge. Check specific property pages or call " +
+          CONTACT_PHONE +
+          " to confirm.",
+        pageNumber: 14,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 14 & 19",
+        confidence: 25.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 9. CCTV / Security
+    // -------------------------------------------------------------------------
+    case "CCTV_SECURITY": {
+      if (matchedProp?.id === "shubh-gateway") {
+        return {
+          text:
+            "Yes. 24/7 security and CCTV are specifically listed on the Shubh Gateway property page as included.\n\nFor further details, contact host Arpit Agarwal at " +
+            CONTACT_PHONE +
+            ".",
+          pageNumber: 4,
+          sourceLabel: "Source: Reforbs Knowledge Base v4, page 4 & 18",
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      return {
+        text:
+          "24/7 security and CCTV are specifically listed on the Shubh Gateway and Reforbs Vairagya pages; CCTV and digital entry are listed for Reforbs Living Sakore Nagar. Reforbs does not claim CCTV across all ten properties unless confirmed on the relevant property page. Confirm with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 18,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 10. Proximity: Nearest to Pune Airport
+    // -------------------------------------------------------------------------
+    case "NEAREST_AIRPORT":
+    case "AIRPORT_DISTANCE": {
+      return {
+        text:
+          "Based on the website’s published approximate driving distances, Suyog Co-Living is listed closest to Pune International Airport at 1.8 km / about 5 minutes drive, followed by Langston Downtown at 1.9 km / about 5 minutes drive.\n\n" +
+          "Other residences nearby:\n" +
+          "• Sakore Nagar: 2.1 km (6 mins drive)\n" +
+          "• Shubh Nirvana: 2.1 km (6 mins drive)\n" +
+          "• Reforbs Park Island: 2.1 km (6 mins drive)\n" +
+          "• Moksha: 2.3 km (7 mins drive)\n" +
+          "• Shubh Gateway: 2.4 km (7 mins drive)\n" +
+          "• Vipasana: 2.4 km (7 mins drive)\n\n" +
+          "These are approximate website-published estimates; actual travel times depend on traffic. For directions, call " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 10 & 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 11. Proximity: Symbiosis Law School (SLS), SCMS, or other colleges
+    // -------------------------------------------------------------------------
+    case "COLLEGE_OFFICE_DISTANCE": {
+      const qLower = rawQuery.toLowerCase();
+
+      if (qLower.includes("sls") || qLower.includes("law school") || entities.college?.includes("Law")) {
+        return {
+          text:
+            "Shubh Gateway is listed directly opposite the Symbiosis Law School campus gate, about a 1-minute walk (50 metres).\n\n" +
+            "Other close properties to SLS include Sakore Nagar (5 mins walk / 400 m) and Reforbs Vairagya (6 mins walk / 500 m). All travel times are approximate website estimates. Contact " +
+            CONTACT_PHONE +
+            " to arrange a walkthrough.",
+          pageNumber: 17,
+          sourceLabel: "Source: Reforbs Knowledge Base v4, page 4 & 17",
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      if (qLower.includes("scms") || entities.college?.includes("SCMS")) {
+        return {
+          text:
+            "Reforbs Living Sakore Nagar is listed about 3 minutes on foot (250 metres) from SCMS.\n\n" +
+            "Shubh Gateway is also nearby (4 mins walk / 350 m), as is Reforbs Vairagya (5 mins walk / 450 m). These are approximate website estimates. Contact " +
+            CONTACT_PHONE +
+            " to schedule a visit.",
+          pageNumber: 17,
+          sourceLabel: "Source: Reforbs Knowledge Base v4, page 5 & 17",
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      if (qLower.includes("phoenix") || entities.location?.includes("Phoenix")) {
+        return {
+          text:
+            "Several properties are listed near Phoenix Marketcity. Shubh Nirvana and Vipasana are each listed about 1.1 km away (4 mins drive); Langston Downtown is a 3 mins walk (250 m); other nearby options include Shubh Gateway, Sakore Nagar, Moksha, Suyog, Park Island, and Pillar Homes. Confirm details with host Arpit at " +
+            CONTACT_PHONE +
+            ".",
+          pageNumber: 17,
+          sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      // Default college distance response
+      return {
+        text:
+          "Reforbs residences in Viman Nagar are strategically positioned near Symbiosis campuses:\n" +
+          "• Closest to Symbiosis Law School: Shubh Gateway (1 min walk / 50 m)\n" +
+          "• Closest to SCMS: Reforbs Living Sakore Nagar (3 mins walk / 250 m)\n" +
+          "• Closest to Symbiosis International School: Reforbs Vairagya (2 mins walk / 150 m)\n\n" +
+          "All walking times are website-published estimates. Contact " +
+          CONTACT_PHONE +
+          " for property-specific directions.",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+        confidence: 25.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 12. Unspecified College or Office Query
+    // -------------------------------------------------------------------------
+    case "UNSPECIFIED_COLLEGE_OFFICE": {
+      return {
+        text:
+          "Which college or office are you attending? Reforbs has properties in Viman Nagar within short walking distance of Symbiosis Law School (SLS), SCMS Campus, Symbiosis International School, as well as near Phoenix Marketcity, WeWork, and Kharadi IT corridors. Please specify your college or company so I can tell you the closest residence!",
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 2 & 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 13. Couples Policy (Unmarried couples / Live with partner / boyfriend / girlfriend)
+    // -------------------------------------------------------------------------
+    case "COUPLES_POLICY": {
+      return {
+        text:
+          "The website lists single- and double-occupancy room options, but it does not clearly confirm an unmarried-couples policy. Double occupancy is a room type, not proof of couples eligibility. Please check directly with the host at " +
+          CONTACT_PHONE +
+          " to confirm property-specific house rules.",
+        pageNumber: 18,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18 & 19",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 14. Food / Mess Policy
+    // -------------------------------------------------------------------------
+    case "FOOD_MESS": {
+      return {
+        text:
+          "The website says “No Mess Lock”, “zero forced food packages” and freedom to choose meal plans. It does not clearly specify a universal included-food arrangement. Meals are not automatically included in standard rent; please ask the host at " +
+          CONTACT_PHONE +
+          " about optional meal arrangements or private kitchen facilities.",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 15. Visitors / Friends Policy
+    // -------------------------------------------------------------------------
+    case "VISITORS_GUESTS": {
+      return {
+        text:
+          "Reforbs encourages a social environment and inviting friends, but the full guest and overnight-visitor rules are not listed. The About page says residents should be able to invite friends over and spend quality time, but complete visitor hours and overnight restrictions are not published on the website. Please confirm with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 18,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18 & 19",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 16. Lock-in Period Policy
+    // -------------------------------------------------------------------------
+    case "LOCK_IN_POLICY": {
+      return {
+        text:
+          "The website advertises zero lock-ins / no lock-in guarantee. It does not publish a complete notice-period, exit or refund-deduction schedule in the reviewed pages. Please confirm your specific agreement terms with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 17. Curfew Rules / Bans
+    // -------------------------------------------------------------------------
+    case "CURFEW_RULES": {
+      return {
+        text:
+          "Property pages describe zero bans or curfews / zero moral policing. The freedom policy also notes that mutual compatibility and social norms apply. For a specific property’s current house rules and night access, confirm with host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 17,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 18. Site Visit / Tour Timings
     // -------------------------------------------------------------------------
     case "VISIT_TOUR": {
       return {
         text:
-          `Scheduling a property walkthrough is strongly recommended before paying any booking amount!\n\n` +
-          `Please contact host Arpit directly at ${CONTACT_PHONE} to arrange a viewing at your preferred Reforbs residence in Viman Nagar.`,
-        pageNumber: 7,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 7",
-        confidence: 28.0,
+          `Yes. The website offers a free site visit / walkthrough request. The Contact page lists tour hours every day from 9:00 AM to 8:00 PM. Call ${CONTACT_PHONE} or use the website enquiry form to schedule. (Please note that the chatbot cannot itself guarantee or complete a live booking).`,
+        pageNumber: 16,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 16 & 18",
+        confidence: 30.0,
         isFallback: false,
       };
     }
 
     // -------------------------------------------------------------------------
-    // 36. Difference from Standard Hostel
+    // 19. Contact / Support
     // -------------------------------------------------------------------------
-    case "DIFFERENCE_FROM_HOSTEL": {
+    case "CONTACT_SUPPORT": {
       return {
         text:
-          `Reforbs is designed around community, comfort, and flexibility for students and working professionals:\n\n` +
-          `• Flexible room choices: Single- and double-occupancy layouts rather than cramped multi-sharing\n` +
-          `• Freedom: Zero arbitrary bans, freedom to personalize your space\n` +
-          `• Cooking freedom: Functional kitchens provided so you are not forced into rigid mess food\n` +
-          `• Bundled utilities: Wi-Fi, water, and maintenance bundled with standard packages\n\n` +
-          `To experience Reforbs firsthand, call ${CONTACT_PHONE} to book a free walkthrough!`,
+          `Official contact details for Reforbs:\n\n` +
+          `• Phone / WhatsApp: ${CONTACT_PHONE} (Host: ${HOST_NAME})\n` +
+          `• Email: ${CONTACT_EMAIL}\n` +
+          `• Location: ${PRIMARY_LOCATION}\n` +
+          `• Tour Hours: ${TOUR_HOURS}`,
+        pageNumber: 16,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 16 & 18",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 20. Destinations Coming Soon (Goa / Bangalore)
+    // -------------------------------------------------------------------------
+    case "DESTINATION_COMING_SOON": {
+      return {
+        text:
+          "The homepage labels Goa and Bangalore as coming soon. The currently active directory is Pune / Viman Nagar.",
+        pageNumber: 18,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18",
+        confidence: 30.0,
+        isFallback: false,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 21. Live Availability / Immediate Move-in
+    // -------------------------------------------------------------------------
+    case "LIVE_AVAILABILITY": {
+      return {
+        text:
+          "I can share the website-listed property details, but I can’t check live vacancies. Please contact host Arpit Agarwal at " +
+          CONTACT_PHONE +
+          " with your preferred property and move-in date.",
         pageNumber: 2,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 2 & 6",
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 2 & 19",
+        confidence: 30.0,
+        isFallback: true,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 22. Building Capacity / Unknown property detail
+    // -------------------------------------------------------------------------
+    case "BUILDING_CAPACITY": {
+      return {
+        text:
+          "I couldn’t verify that detail in the current Reforbs website information. Total building capacity is not listed on the public pages. Please contact " +
+          CONTACT_PHONE +
+          " or " +
+          CONTACT_EMAIL +
+          " to confirm.",
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 2 & 19",
+        confidence: 30.0,
+        isFallback: true,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 23. Community & Lifestyle Activities
+    // -------------------------------------------------------------------------
+    case "COMMUNITY_ACTIVITIES": {
+      return {
+        text:
+          "The Reforbs Community page highlights several community rituals and lifestyle activities:\n" +
+          "• Weekend rooftop yoga and wellness sessions\n" +
+          "• Glow & neon DIY nights, UV canvas painting, and pottery sessions\n" +
+          "• Communal cooking, Masterchef-style cook-offs, and BBQ evenings\n" +
+          "• Festival celebrations including Holi, Diwali, Christmas, and Eid\n" +
+          "• Professional networking and mentorship with working professionals\n" +
+          "• In-house movie and game nights, pool table, and friendly weekend tournaments\n\n" +
+          "These activities are conducted across the Reforbs community; specific schedules vary by residence. For more information, contact " +
+          CONTACT_PHONE +
+          ".",
+        pageNumber: 15,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 15",
         confidence: 28.0,
         isFallback: false,
       };
     }
 
     // -------------------------------------------------------------------------
-    // 37. Default Fallback
+    // 24. Named Property Profile ("Tell me about Shubh Nirvana", etc.)
+    // -------------------------------------------------------------------------
+    case "PROPERTY_PROFILE": {
+      if (matchedProp) {
+        return {
+          text:
+            `About ${matchedProp.name} (${matchedProp.category}):\n` +
+            `${matchedProp.description}\n\n` +
+            `• Location: ${matchedProp.locationCue}\n` +
+            `• Double Occupancy: ${matchedProp.doubleRateStr}\n` +
+            `• Single Occupancy: ${matchedProp.singleRateStr}\n` +
+            `• Security Deposit: ${matchedProp.securityDeposit}\n` +
+            `• Key Amenities: ${matchedProp.amenities.join(" • ")}\n` +
+            `• Proximity Estimates:\n  - ${matchedProp.nearbyEstimates.map((e) => `${e.place}: ${e.estimate}`).join("\n  - ")}\n\n` +
+            `Rates and distances are website-published estimates reviewed on 3 November 2026. Please confirm current vacancy and final quote with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+          pageNumber: matchedProp.pageNumber,
+          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      return {
+        text:
+          "I couldn’t verify that detail from the information currently published by Reforbs. Please contact the team at " +
+          CONTACT_PHONE +
+          " or " +
+          CONTACT_EMAIL +
+          " to confirm.",
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 2",
+        confidence: 10.0,
+        isFallback: true,
+      };
+    }
+
+    // -------------------------------------------------------------------------
+    // 25. General Inquiry Fallback
     // -------------------------------------------------------------------------
     default: {
-      recordKnowledgeGap("UNVERIFIED_GENERAL_DETAIL", rawQuery);
       return {
         text:
-          `I don't have a verified answer for that detail in the current ReForbs knowledge base.\n\n` +
-          `Please contact the team at ${CONTACT_PHONE} to confirm the latest information.`,
-        pageNumber: 8,
-        sourceLabel: "Source: Reforbs Knowledge Base v3, page 8",
-        confidence: 15.0,
+          "I couldn’t verify that detail from the information currently published by Reforbs. Please contact the team at " +
+          CONTACT_PHONE +
+          " or " +
+          CONTACT_EMAIL +
+          " to confirm.",
+        pageNumber: 2,
+        sourceLabel: "Source: Reforbs Knowledge Base v4, page 2",
+        confidence: 10.0,
         isFallback: true,
       };
     }

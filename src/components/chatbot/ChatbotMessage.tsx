@@ -1,7 +1,13 @@
+/**
+ * Chatbot Message Component
+ * Renders user and assistant bubbles with Markdown formatting, clickable links,
+ * and direct contact actions (Phone & Email).
+ */
+
 "use client";
 
 import React from "react";
-import { Phone, Bot, User, MapPin } from "lucide-react";
+import { Phone, Bot, User, MapPin, Mail } from "lucide-react";
 import { SearchResult } from "@/lib/chatbot/pdfKnowledgeEngine";
 
 export interface Message {
@@ -20,9 +26,9 @@ interface ChatbotMessageProps {
 export default function ChatbotMessage({ message }: ChatbotMessageProps) {
   const isUser = message.sender === "user";
 
-  // Formatter for bold text markdown (**text**) and clickable URLs
+  // Formatter for bold text markdown (**text**), URLs, emails, and phone numbers
   const formatContent = (text: string) => {
-    const tokenRegex = /(https?:\/\/[^\s)]+|\*\*[^*]+\*\*)/g;
+    const tokenRegex = /(https?:\/\/[^\s)]+|hello@reforbs\.com|\+91\s*74200\s*40241|7420040241|\*\*[^*]+\*\*)/g;
     const parts = text.split(tokenRegex);
     return parts.map((part, i) => {
       if (part.startsWith("http://") || part.startsWith("https://")) {
@@ -36,6 +42,36 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
               isUser
                 ? "underline font-bold text-white hover:text-white/80 break-all"
                 : "underline font-bold text-[#007A7A] hover:text-[#005F5F] break-all"
+            }
+          >
+            {part}
+          </a>
+        );
+      }
+      if (part === "hello@reforbs.com") {
+        return (
+          <a
+            key={i}
+            href="mailto:hello@reforbs.com"
+            className={
+              isUser
+                ? "underline font-bold text-white hover:text-white/80"
+                : "underline font-bold text-[#007A7A] hover:text-[#005F5F]"
+            }
+          >
+            {part}
+          </a>
+        );
+      }
+      if (part === "+91 74200 40241" || part === "7420040241") {
+        return (
+          <a
+            key={i}
+            href="tel:+917420040241"
+            className={
+              isUser
+                ? "underline font-bold text-white hover:text-white/80"
+                : "underline font-bold text-[#007A7A] hover:text-[#005F5F]"
             }
           >
             {part}
@@ -94,6 +130,10 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
     });
   };
 
+  const hasPhone = message.text.includes("74200") || message.text.includes("7420040241");
+  const hasEmail = message.text.includes("hello@reforbs.com");
+  const hasMapLink = message.text.includes("share.google");
+
   return (
     <div
       className={`flex items-start gap-2.5 my-2.5 transition-all ${
@@ -123,11 +163,18 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
         {/* Message Text Content */}
         <div className="font-sans break-words">{renderFormattedText(message.text)}</div>
 
-        {/* Action Button: Direct Call Hotline & Google Maps Pill */}
-        {!isUser && (message.text.includes("7420040241") || message.text.includes("share.google")) && (
+        {/* Source citation if available */}
+        {!isUser && message.searchResult?.sourceLabel && (
+          <div className="mt-2 text-[10px] text-gray-400 font-semibold italic border-t border-gray-100 pt-1">
+            {message.searchResult.sourceLabel}
+          </div>
+        )}
+
+        {/* Action Buttons: Direct Call Hotline & Email */}
+        {!isUser && (hasPhone || hasEmail || hasMapLink) && (
           <div className="mt-2.5 pt-2 border-t border-[#F1F4F4] flex flex-wrap items-center gap-2 justify-between">
             <div className="flex flex-wrap items-center gap-2">
-              {message.text.includes("share.google") && (
+              {hasMapLink && (
                 <a
                   href="https://share.google/UomLxgr596c1a1TVf"
                   target="_blank"
@@ -136,17 +183,27 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
                   aria-label="Open Google Maps location"
                 >
                   <MapPin size={12} className="text-[#FFDE59]" />
-                  <span>Open Google Maps</span>
+                  <span>Google Maps</span>
                 </a>
               )}
-              {message.text.includes("7420040241") && (
+              {hasPhone && (
                 <a
                   href="tel:+917420040241"
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white text-xs font-bold transition-all shadow-sm active:scale-95"
                   aria-label="Call host directly"
                 >
                   <Phone size={12} />
-                  <span>Call Arpit (7420040241)</span>
+                  <span>Call Arpit (+91 74200 40241)</span>
+                </a>
+              )}
+              {hasEmail && (
+                <a
+                  href="mailto:hello@reforbs.com"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF9D4] hover:bg-[#FFDE59] text-[#1B1D1C] text-xs font-bold transition-all shadow-sm active:scale-95"
+                  aria-label="Send email"
+                >
+                  <Mail size={12} />
+                  <span>Email Reforbs</span>
                 </a>
               )}
             </div>
