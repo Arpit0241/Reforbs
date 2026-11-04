@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useMemo, useCallback, useEf
 import { PropertyItem, propertiesData } from "@/data/properties";
 
 export interface FilterState {
-  category: "all" | "student" | "coliving";
+  category: "all" | "student" | "coliving" | "guesthouse";
   maxPrice: number;
   searchQuery: string;
 }
@@ -33,7 +33,7 @@ interface PropertyMapContextType {
 
 const defaultFilters: FilterState = {
   category: "all",
-  maxPrice: 25000,
+  maxPrice: 35000,
   searchQuery: "",
 };
 
@@ -44,7 +44,7 @@ export function PropertyMapProvider({
   initialCategory = "all",
 }: {
   children: React.ReactNode;
-  initialCategory?: "all" | "student" | "coliving";
+  initialCategory?: "all" | "student" | "coliving" | "guesthouse";
 }) {
   const [activeListingId, setActiveListingIdState] = useState<string | null>(
     propertiesData[0]?.id || null
@@ -108,10 +108,13 @@ export function PropertyMapProvider({
   const filteredListings = useMemo(() => {
     return propertiesData.filter((item) => {
       // Category filter
-      if (filters.category === "student" && item.category !== "Student Housing") {
+      if (filters.category === "student" && item.category !== "Student Accommodation") {
         return false;
       }
       if (filters.category === "coliving" && item.category !== "Co-Living") {
+        return false;
+      }
+      if (filters.category === "guesthouse" && item.category !== "Company Guesthouse") {
         return false;
       }
 

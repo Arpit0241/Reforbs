@@ -1,0 +1,84 @@
+import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
+
+export const metadata = {
+  title: "Vipasna | Hotel-Style Ensuite Co-Living Sanjay Park Pune - Reforbs",
+  description:
+    "Reforbs Vipasna - Mindful, hotel-style ensuite co-living in Sanjay Park, Pune. Couple friendly, zero lock-in, fiber internet & tranquil social lounges.",
+};
+
+const property: PropertyData = {
+  id: "vipasna",
+  name: "Vipasna",
+  category: "Co-Living",
+  tagline: "Hotel-Style Ensuite Living with Mindful Urban Luxury & Freedom",
+  address: "Plot 36, Lane 3, Sanjay Park, Pune 411032",
+  landmark: "Lane 3, Sanjay Park, Pune",
+  rating: "4.9",
+  reviewsCount: 152,
+  priceSingle: "₹27,000",
+  priceDouble: "₹17,000",
+  contactPhone: "+91 74200 40241",
+  googleMapsUrl: "https://maps.app.goo.gl/B9b55M89H7o4HwP27",
+  coupleFriendly: true,
+  annualLockIn: false,
+  foodPolicy: "Food Optional (Self-cooking allowed in community kitchen)",
+  laundryPolicy: "Washing machine available on premises",
+  heroImage: "/images/properties/vipasna/image-1.jpg",
+  galleryImages: [
+    "/images/properties/vipasna/image-1.jpg",
+    "/images/properties/vipasna/image-2.jpg",
+    "/images/properties/vipasna/image-3.jpg",
+    "/images/properties/vipasna/image-4.jpg",
+    "/images/properties/vipasna/image-5.jpg",
+    "/images/properties/vipasna/image-6.jpg",
+  ],
+  description:
+    "Vipasna offers hotel-style ensuite rooms designed for high-focus professionals and couples. Clean architectural lines, acoustic privacy, ergonomic workstations, zero lock-in period, and couple-friendly guidelines create a calm sanctuary in Pune.",
+  roomTypes: [
+    {
+      type: "Twin Sharing Ensuite",
+      price: "₹17,000",
+      deposit: "₹17,000 (1 Month Rent)",
+      features: [
+        "Two luxury wooden beds with hotel-grade linen",
+        "Individual wooden wardrobes with digital locks",
+        "Dual study and work desks with ergonomic seating",
+        "Private attached bathroom with continuous hot water",
+        "High-speed fiber Wi-Fi & daily housekeeping",
+      ],
+    },
+    {
+      type: "Private Ensuite Studio",
+      price: "₹27,000",
+      deposit: "₹27,000 (1 Month Rent)",
+      features: [
+        "Private hotel-style ensuite room exclusively for you",
+        "King-size bed with orthopedic mattress",
+        "Ergonomic work desk with multiple power outlets",
+        "Private attached designer washroom",
+        "Couple friendly with no curfew restrictions",
+      ],
+    },
+  ],
+  amenities: [
+    { name: "Hotel-Style Ensuite Rooms", included: true },
+    { name: "Couple Friendly Freedom", included: true },
+    { name: "Zero Lock-in Period", included: true },
+    { name: "Gigabit Optical Wi-Fi", included: true },
+    { name: "Daily Housekeeping & Care", included: true },
+    { name: "Washing Machine Access", included: true },
+    { name: "Shared Culinary Kitchen", included: true },
+    { name: "24/7 Power Backup & Security", included: true },
+  ],
+  landmarks: [
+    { name: "Sanjay Park Main Road", distance: "2 mins walk (150m)" },
+    { name: "Phoenix Marketcity Mall", distance: "4 mins drive (1.2 km)" },
+    { name: "Symbiosis Campuses", distance: "5 mins drive (1.5 km)" },
+    { name: "Pune International Airport", distance: "6 mins drive (2.0 km)" },
+    { name: "Kharadi IT Park", distance: "12 mins drive (5.2 km)" },
+  ],
+};
+
+export default function VipasnaPage() {
+  return <PropertyDetailView property={property} />;
+}

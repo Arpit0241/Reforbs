@@ -205,7 +205,13 @@ export default function PropertyMapCard({
           <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/20">
             {/* WhatsApp CTA (>= 44px) */}
             <a
-              href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(
+              href={`https://wa.me/${
+                property.contactPhone
+                  ? property.contactPhone.replace(/\D/g, "").length === 10
+                    ? "91" + property.contactPhone.replace(/\D/g, "")
+                    : property.contactPhone.replace(/\D/g, "")
+                  : "917420040241"
+              }?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(
                 property.name
               )}%20(${encodeURIComponent(property.subLocation)}).%20Please%20share%20details.`}
               target="_blank"

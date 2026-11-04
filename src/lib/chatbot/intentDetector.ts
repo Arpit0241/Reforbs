@@ -42,7 +42,7 @@ export interface ExtractedEntities {
   location?: string;
   college?: string;
   targetAmenities: string[];
-  occupancyType?: "single" | "double";
+  occupancyType?: "single" | "double" | "triple";
 }
 
 export interface IntentDetectionResult {
@@ -69,14 +69,15 @@ export function cleanInputText(text: string): string {
  */
 export function extractPropertyEntity(normalized: string): string | undefined {
   if (/\b(?:shubh\s+gateway|gateway)\b/.test(normalized)) return "Shubh Gateway";
-  if (/\b(?:reforbs\s+living\s+)?sakore\s+nagar\b/.test(normalized)) return "Reforbs Living Sakore Nagar";
-  if (/\b(?:reforbs\s+)?vairagya\b/.test(normalized)) return "Reforbs Vairagya";
+  if (/\bbrindavan\b/.test(normalized)) return "Brindavan";
+  if (/\b(?:reforbs\s+living\s+)?sakore\s+nagar\b/.test(normalized)) return "Brindavan";
+  if (/\b(?:reforbs\s+)?vairagya\b/.test(normalized)) return "Vairagya";
   if (/\bmoksha\b/.test(normalized)) return "Moksha";
-  if (/\b(?:shubh\s+)?nirvana\b/.test(normalized)) return "Shubh Nirvana";
-  if (/\bvipasana\b|\bvipasna\b/.test(normalized)) return "Vipasana";
-  if (/\bsuyog(?:\s+co-?living)?\b/.test(normalized)) return "Suyog Co-Living";
-  if (/\b(?:reforbs\s+)?park\s+island\b/.test(normalized)) return "Reforbs Park Island";
-  if (/\bpillar\s+homes(?:\s+co-?living)?\b/.test(normalized)) return "Pillar Homes Co-Living";
+  if (/\b(?:shubh\s+)?nirvana\b/.test(normalized)) return "Nirvana";
+  if (/\bvipasana\b|\bvipasna\b/.test(normalized)) return "Vipasna";
+  if (/\bsuyog(?:\s+enclave|\s+co-?living)?\b/.test(normalized)) return "Suyog Enclave";
+  if (/\b(?:reforbs\s+)?park\s+island\b/.test(normalized)) return "Park Island";
+  if (/\bpillar\s+homes(?:\s+co-?living)?\b/.test(normalized)) return "Pillar Homes";
   if (/\blangston(?:\s+downtown)?\b/.test(normalized)) return "Langston Downtown";
   if (/\bsanjay\s+park\b/.test(normalized)) return "Sanjay Park";
   return undefined;
@@ -142,7 +143,9 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
   const college = extractCollegeEntity(normalized);
   const targetAmenities = extractAmenityEntities(normalized);
 
-  const occupancyType = /\b(?:single|private\s+room|one\s+person|single\s+occupan(?:cy|t))\b/.test(normalized)
+  const occupancyType = /\b(?:triple|three\s+people|three\s+sharing|triple\s+occupan(?:cy|t))\b/.test(normalized)
+    ? "triple"
+    : /\b(?:single|private\s+room|one\s+person|single\s+occupan(?:cy|t))\b/.test(normalized)
     ? "single"
     : /\b(?:double|twin|sharing|two\s+people|double\s+occupan(?:cy|t))\b/.test(normalized)
     ? "double"

@@ -67,22 +67,26 @@ export function validateAndGenerateResponse(
     case "PROPERTY_DIRECTORY": {
       return {
         text:
-          "The homepage currently shows 10 active Pune spaces in Viman Nagar:\n\n" +
-          "• Shubh Gateway (Student Housing) — Double: ₹12,500/month | Single: ₹18,000/month\n" +
-          "• Reforbs Living Sakore Nagar (Student Housing) — Double: ₹12,000/month | Single: ₹17,500/month\n" +
-          "• Reforbs Vairagya (Student Housing) — Double: ₹13,000/month | Single: ₹19,000/month\n" +
-          "• Moksha (Co-Living) — Double: ₹14,500/month | Single: ₹22,000/month\n" +
-          "• Shubh Nirvana (Co-Living) — Double: ₹15,000/month | Single: ₹22,500/month\n" +
-          "• Vipasana (Co-Living) — Double: ₹14,000/month | Single: ₹21,000/month\n" +
-          "• Suyog Co-Living (Co-Living) — Double: ₹14,500/month | Single: ₹21,500/month\n" +
-          "• Reforbs Park Island (Co-Living) — Double: ₹15,500/month | Single: ₹23,000/month\n" +
-          "• Pillar Homes Co-Living (Co-Living) — Double: ₹15,000/month | Single: ₹22,000/month\n" +
-          "• Langston Downtown (Co-Living) — Double: ₹16,000/month | Single: ₹24,000/month\n\n" +
-          "All listed rates are website-published monthly rates reviewed on 3 November 2026. Please confirm current availability and final quote with host Arpit Agarwal at " +
+          "Reforbs operates 9 active residences in Pune across three categories:\n\n" +
+          "Student Accommodation (3):\n" +
+          "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/mo | Boys' Twin: ₹27,000/mo (Deposit: ₹40,000). Breakfast & dinner included, laundry 2x/wk.\n" +
+          "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/mo | Private: ₹32,000/mo (Deposit: ₹30,000). All 3 meals included, laundry 2x/wk.\n" +
+          "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/mo | Twin: ₹17,000/mo (Deposit: ₹20,000). Running mess included, non-AC.\n\n" +
+          "Co-Living (3):\n" +
+          "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private 1RK: ₹29,000/mo (Deposit: ₹17k/₹29k). Attached kitchen, couple friendly, zero lock-in.\n" +
+          "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private: ₹24,000/mo (Deposit: ₹17k/₹24k). 3BHK layout (max 4/floor), couple friendly, zero lock-in.\n" +
+          "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/mo | Private Ensuite: ₹27,000/mo (Deposit: ₹17k/₹27k). Hotel-style ensuite, couple friendly, zero lock-in.\n\n" +
+          "Company Guesthouses (3) (Dedicated corporate facilities for contracted company employees; not open to general public):\n" +
+          "• Park Island (Shastrinagar) — Twin: ₹20,000/mo (Deposit: ₹20,000).\n" +
+          "• Pillar Homes (Clover Park, Viman Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n" +
+          "• Suyog Enclave (Behind Bajaj Finserv, Sakore Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n\n" +
+          "All listed rates are monthly rents as published in Reforbs documentation. For inquiries or walkthroughs, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
+          " or " +
+          CONTACT_EMAIL +
           ".",
         pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3",
+        sourceLabel: "Source: Reforbs Website & Content Directory",
         confidence: 30.0,
         isFallback: false,
       };
@@ -95,12 +99,31 @@ export function validateAndGenerateResponse(
       if (entities.occupancyType === "single") {
         return {
           text:
-            "Reforbs Living Sakore Nagar is listed at ₹17,500/month for single occupancy, which is the lowest single-occupancy rate among the ten property pages reviewed.\n\n" +
-            "Please note that these rates are website-displayed prices reviewed on 3 November 2026, not a final guarantee of current vacancy. Please confirm latest vacancy and pricing with host Arpit Agarwal at " +
+            "The lowest single-occupancy / private room rate across Reforbs is at Moksha (Co-Living in Sanjay Park) at ₹24,000/month (security deposit: ₹24,000).\n\n" +
+            "Private room rates comparison:\n" +
+            "• Moksha (Co-Living, Sanjay Park): ₹24,000/month\n" +
+            "• Vipasna (Co-Living, Sanjay Park): ₹27,000/month\n" +
+            "• Nirvana (Co-Living 1RK, Sanjay Park): ₹29,000/month\n" +
+            "• Brindavan (Student Housing, Sakore Nagar): ₹32,000/month (all 3 meals included)\n\n" +
+            "Please confirm current vacancy with host Arpit Agarwal at " +
             CONTACT_PHONE +
             ".",
           pageNumber: 3,
-          sourceLabel: "Source: Reforbs Knowledge Base v4, page 3 & 17",
+          sourceLabel: "Source: Reforbs Property Directory & Pricing Tables",
+          confidence: 30.0,
+          isFallback: false,
+        };
+      }
+
+      if (entities.occupancyType === "triple") {
+        return {
+          text:
+            "The lowest triple-occupancy room rate across Reforbs is at Vairagya (Student Accommodation in Lavale) at ₹15,000/month (security deposit: ₹20,000), which includes a running mess with breakfast and dinner.\n\n" +
+            "Please confirm vacancy with host at " +
+            CONTACT_PHONE +
+            ".",
+          pageNumber: 6,
+          sourceLabel: "Source: Reforbs Vairagya Pricing",
           confidence: 30.0,
           isFallback: false,
         };
@@ -109,16 +132,23 @@ export function validateAndGenerateResponse(
       // Default or double occupancy cheapest
       return {
         text:
-          "The lowest monthly rate currently shown on the property pages is Reforbs Living Sakore Nagar at ₹12,000/month for double occupancy. Its listed single-occupancy rate is ₹17,500/month.\n\n" +
-          "For double sharing:\n" +
-          "• Reforbs Living Sakore Nagar: ₹12,000/month (lowest double rate)\n" +
-          "• Shubh Gateway: ₹12,500/month\n" +
-          "• Reforbs Vairagya: ₹13,000/month\n\n" +
-          "These are website-published monthly rates reviewed on 3 November 2026. Please confirm current availability and final pricing with the host at " +
+          "The lowest overall room rate across Reforbs is Vairagya Triple Sharing in Lavale at ₹15,000/month (with breakfast and dinner included in running mess).\n\n" +
+          "For twin sharing / double occupancy, the lowest rate is ₹17,000/month, available at:\n" +
+          "• Nirvana (Co-Living, Sanjay Park): ₹17,000/month (attached 1RK kitchen)\n" +
+          "• Moksha (Co-Living, Sanjay Park): ₹17,000/month (max 4 per floor)\n" +
+          "• Vipasna (Co-Living, Sanjay Park): ₹17,000/month (hotel-style ensuite)\n" +
+          "• Vairagya (Student Accommodation, Lavale): ₹17,000/month (running mess included)\n\n" +
+          "Other accommodation rates:\n" +
+          "• Park Island (Corporate Guesthouse, Shastrinagar): ₹20,000/month\n" +
+          "• Pillar Homes (Corporate Guesthouse, Clover Park): ₹25,000/month\n" +
+          "• Suyog Enclave (Corporate Guesthouse, Sakore Nagar): ₹25,000/month\n" +
+          "• Shubh Gateway (Student Housing, Viman Nagar): ₹25,000/month (Girls) / ₹27,000/month (Boys)\n" +
+          "• Brindavan (Student Housing, Sakore Nagar): ₹27,000/month (all 3 meals included)\n\n" +
+          "Please confirm current vacancy with host Arpit Agarwal at " +
           CONTACT_PHONE +
           ".",
         pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3 & 17",
+        sourceLabel: "Source: Reforbs Property Directory & Pricing Tables",
         confidence: 30.0,
         isFallback: false,
       };
@@ -129,15 +159,21 @@ export function validateAndGenerateResponse(
     // -------------------------------------------------------------------------
     case "RENT_PRICING": {
       if (matchedProp) {
+        const lines: string[] = [];
+        if (matchedProp.tripleRateStr) lines.push(`• Triple occupancy: ${matchedProp.tripleRateStr}`);
+        if (matchedProp.doubleRateStr) lines.push(`• Twin / Double occupancy: ${matchedProp.doubleRateStr}`);
+        if (matchedProp.singleRateStr) lines.push(`• Single / Private occupancy: ${matchedProp.singleRateStr}`);
+        if (matchedProp.foodPolicy) lines.push(`• Food / Mess: ${matchedProp.foodPolicy}`);
+        if (matchedProp.laundryPolicy) lines.push(`• Laundry: ${matchedProp.laundryPolicy}`);
+        lines.push(`• Refundable security deposit: ${matchedProp.securityDeposit}`);
+
         return {
           text:
-            `The website-listed monthly rates for ${matchedProp.name} are:\n\n` +
-            `• Double occupancy: ${matchedProp.doubleRateStr}\n` +
-            `• Single occupancy: ${matchedProp.singleRateStr}\n` +
-            `• Refundable security deposit: ${matchedProp.securityDeposit}\n\n` +
-            `Rates are as published on the website on 3 November 2026. Please confirm current vacancy and final quote with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+            `The monthly rates and room options for ${matchedProp.name} (${matchedProp.category}) are:\n\n` +
+            lines.join("\n") +
+            `\n\nFor current vacancy and booking, contact host Arpit Agarwal at ${matchedProp.contactPhone || CONTACT_PHONE}.`,
           pageNumber: matchedProp.pageNumber,
-          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          sourceLabel: `Source: Reforbs Knowledge Base, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
         };
@@ -146,30 +182,40 @@ export function validateAndGenerateResponse(
       // General pricing inquiry
       return {
         text:
-          "Website-listed monthly rates across Reforbs residences in Viman Nagar start at ₹12,000/month for double occupancy and ₹17,500/month for single occupancy (at Reforbs Living Sakore Nagar).\n\n" +
-          "Rates range from ₹12,000/month to ₹16,000/month for double sharing, and ₹17,500/month to ₹24,000/month for single private suites, depending on the property and amenities. For a specific quote, contact host Arpit Agarwal at " +
+          "Reforbs monthly rates start at ₹15,000/month for triple sharing at Vairagya, and ₹17,000/month for twin sharing across Nirvana, Moksha, Vipasna, and Vairagya.\n\n" +
+          "Private single rooms start at ₹24,000/month at Moksha. For inquiries or quotes, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
           ".",
         pageNumber: 3,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 3",
+        sourceLabel: "Source: Reforbs Property Directory",
         confidence: 25.0,
         isFallback: false,
       };
     }
 
     // -------------------------------------------------------------------------
-    // 5. Occupancy / Single vs Double Options
+    // 5. Occupancy / Single vs Double vs Triple Options
     // -------------------------------------------------------------------------
     case "OCCUPANCY_SINGLE_DOUBLE": {
       if (matchedProp) {
+        const opts: string[] = [];
+        if (matchedProp.tripleDetails && matchedProp.tripleDetails.length > 0) {
+          opts.push(`• Triple Occupancy (${matchedProp.tripleRateStr || "Available"}):\n  - ${matchedProp.tripleDetails.join("\n  - ")}`);
+        }
+        if (matchedProp.doubleDetails && matchedProp.doubleDetails.length > 0) {
+          opts.push(`• Twin / Double Occupancy (${matchedProp.doubleRateStr}):\n  - ${matchedProp.doubleDetails.join("\n  - ")}`);
+        }
+        if (matchedProp.singleDetails && matchedProp.singleDetails.length > 0) {
+          opts.push(`• Single / Private Occupancy (${matchedProp.singleRateStr}):\n  - ${matchedProp.singleDetails.join("\n  - ")}`);
+        }
+
         return {
           text:
-            `${matchedProp.name} detail page lists both Single Occupancy and Double Occupancy options:\n\n` +
-            `• Double Occupancy (${matchedProp.doubleRateStr}):\n  - ${matchedProp.doubleDetails.join("\n  - ")}\n\n` +
-            `• Single Occupancy (${matchedProp.singleRateStr}):\n  - ${matchedProp.singleDetails.join("\n  - ")}\n\n` +
-            `Please confirm actual room inventory and available dates with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+            `${matchedProp.name} room options:\n\n` +
+            opts.join("\n\n") +
+            `\n\nPlease confirm actual room inventory and available dates with host Arpit Agarwal at ${matchedProp.contactPhone || CONTACT_PHONE}.`,
           pageNumber: matchedProp.pageNumber,
-          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          sourceLabel: `Source: Reforbs Knowledge Base, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
         };
@@ -177,11 +223,11 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "The individual property detail pages list both single- and double-occupancy room options for all ten residences. Confirm the actual room inventory for your preferred property and dates with the host at " +
+          "Reforbs properties offer private single rooms, twin sharing, and triple sharing depending on the location. Student accommodations feature twin or triple suites, while co-living properties offer twin sharing or fully private 1RK and studio rooms. Confirm availability with host Arpit Agarwal at " +
           CONTACT_PHONE +
-          ". (Note: The site also contains general privacy copy stating rooms are single-occupant; however, each property page explicitly provides both single and double options with separate pricing).",
+          ".",
         pageNumber: 17,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        sourceLabel: "Source: Reforbs Property Directory",
         confidence: 28.0,
         isFallback: false,
       };
@@ -194,12 +240,12 @@ export function validateAndGenerateResponse(
       if (matchedProp) {
         return {
           text:
-            `At ${matchedProp.name}, the refundable security deposit is 1 month rent for each listed room option:\n\n` +
-            `• Double occupancy deposit: ${matchedProp.doubleRateStr} (1 month)\n` +
-            `• Single occupancy deposit: ${matchedProp.singleRateStr} (1 month)\n\n` +
-            `Please confirm the exact payable amount and written refund conditions with the host at ${CONTACT_PHONE} before paying.`,
+            `At ${matchedProp.name}, the refundable security deposit is:\n\n` +
+            `• Security Deposit: ${matchedProp.securityDeposit}\n` +
+            `• Refund Policy: Refundable with 30 days prior written notice and zero property damage. Cancellation prior to move-in has no refund.\n\n` +
+            `Please confirm payment details with host Arpit Agarwal at ${matchedProp.contactPhone || CONTACT_PHONE}.`,
           pageNumber: matchedProp.pageNumber,
-          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber} & 17`,
+          sourceLabel: `Source: Reforbs Knowledge Base, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
         };
@@ -207,11 +253,11 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "Each property room-option section states a refundable security deposit equal to one month’s rent. Confirm the exact payable amount and written refund conditions with host Arpit Agarwal at " +
+          "Security deposits at Reforbs range from ₹17,000 to ₹40,000 depending on the property and room configuration. All deposits are refundable with 30 days prior written notice and zero damage. Cancellation prior to move-in has no refund. Confirm with host Arpit Agarwal at " +
           CONTACT_PHONE +
-          " before paying.",
+          ".",
         pageNumber: 17,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17",
+        sourceLabel: "Source: Reforbs House Rules",
         confidence: 30.0,
         isFallback: false,
       };
@@ -392,12 +438,12 @@ export function validateAndGenerateResponse(
       if (qLower.includes("sls") || qLower.includes("law school") || entities.college?.includes("Law")) {
         return {
           text:
-            "Shubh Gateway is listed directly opposite the Symbiosis Law School campus gate, about a 1-minute walk (50 metres).\n\n" +
-            "Other close properties to SLS include Sakore Nagar (5 mins walk / 400 m) and Reforbs Vairagya (6 mins walk / 500 m). All travel times are approximate website estimates. Contact " +
+            "Shubh Gateway is located directly opposite the Symbiosis Law School (SLS) campus gate (30 seconds walk).\n\n" +
+            "Brindavan on Symbiosis Road in Sakore Nagar is also nearby (5 mins walk / 400 m). All travel times are approximate estimates. Contact " +
             CONTACT_PHONE +
             " to arrange a walkthrough.",
           pageNumber: 17,
-          sourceLabel: "Source: Reforbs Knowledge Base v4, page 4 & 17",
+          sourceLabel: "Source: Reforbs Location Directory",
           confidence: 30.0,
           isFallback: false,
         };
@@ -467,11 +513,19 @@ export function validateAndGenerateResponse(
     case "COUPLES_POLICY": {
       return {
         text:
-          "The website lists single- and double-occupancy room options, but it does not clearly confirm an unmarried-couples policy. Double occupancy is a room type, not proof of couples eligibility. Please check directly with the host at " +
+          "Reforbs has clear, property-specific policies regarding couples:\n\n" +
+          "• Couple-Friendly Properties (YES):\n" +
+          "  - Nirvana (Sanjay Park): Independent 1RK studio apartments with private kitchens. 100% couple friendly with zero lock-in.\n" +
+          "  - Moksha (Sanjay Park): 3BHK layout (max 4 per floor), couple friendly with no curfew restrictions.\n" +
+          "  - Vipasna (Sanjay Park): Hotel-style ensuite rooms, couple friendly with complete freedom and zero lock-in.\n\n" +
+          "• NOT Couple-Friendly (NO):\n" +
+          "  - Student Accommodations (Shubh Gateway, Brindavan, Vairagya): Opposite-gender visitors are strictly not allowed.\n" +
+          "  - Company Guesthouses (Park Island, Pillar Homes, Suyog Enclave): Exclusively reserved for corporate partner employees.\n\n" +
+          "For couple booking inquiries, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
-          " to confirm property-specific house rules.",
+          ".",
         pageNumber: 18,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18 & 19",
+        sourceLabel: "Source: Reforbs House Rules & Master Content",
         confidence: 30.0,
         isFallback: false,
       };
@@ -483,11 +537,20 @@ export function validateAndGenerateResponse(
     case "FOOD_MESS": {
       return {
         text:
-          "The website says “No Mess Lock”, “zero forced food packages” and freedom to choose meal plans. It does not clearly specify a universal included-food arrangement. Meals are not automatically included in standard rent; please ask the host at " +
+          "Food arrangements at Reforbs depend on the accommodation category:\n\n" +
+          "• Student Accommodation (Meals Included):\n" +
+          "  - Shubh Gateway: Breakfast and dinner included daily in running mess.\n" +
+          "  - Brindavan: All 3 meals (breakfast, lunch, and dinner) included daily.\n" +
+          "  - Vairagya: Running mess with breakfast and dinner included daily.\n\n" +
+          "• Co-Living (Food Optional / Cooking Freedom):\n" +
+          "  - Nirvana: Attached private kitchen in each 1RK studio apartment with full cooking freedom. Food is optional.\n" +
+          "  - Moksha & Vipasna: Modular kitchens available for self-cooking. Meal packages are optional and never forced.\n\n" +
+          "• Company Guesthouses: Corporate managed catering and dining setups.\n\n" +
+          "For meal arrangements or menu details, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
-          " about optional meal arrangements or private kitchen facilities.",
+          ".",
         pageNumber: 17,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        sourceLabel: "Source: Reforbs Master Content & House Rules",
         confidence: 30.0,
         isFallback: false,
       };
@@ -499,11 +562,17 @@ export function validateAndGenerateResponse(
     case "VISITORS_GUESTS": {
       return {
         text:
-          "Reforbs encourages a social environment and inviting friends, but the full guest and overnight-visitor rules are not listed. The About page says residents should be able to invite friends over and spend quality time, but complete visitor hours and overnight restrictions are not published on the website. Please confirm with host Arpit Agarwal at " +
+          "Visitor and guest rules at Reforbs:\n\n" +
+          "• Co-Living (Nirvana, Moksha, Vipasna):\n" +
+          "  Residents can invite friends and guests over within social norms and mutual understanding. There are zero arbitrary curfews or moral policing.\n\n" +
+          "• Student Accommodation (Shubh Gateway, Brindavan, Vairagya):\n" +
+          "  Opposite-gender visitors are strictly not allowed in student rooms. Shubh Gateway features gender-segregated towers with biometric entry.\n\n" +
+          "• Company Guesthouses: Restricted to designated corporate company personnel.\n\n" +
+          "For visitor policy clarification, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
           ".",
         pageNumber: 18,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 18 & 19",
+        sourceLabel: "Source: Reforbs House Rules & Master Content",
         confidence: 30.0,
         isFallback: false,
       };
@@ -515,11 +584,18 @@ export function validateAndGenerateResponse(
     case "LOCK_IN_POLICY": {
       return {
         text:
-          "The website advertises zero lock-ins / no lock-in guarantee. It does not publish a complete notice-period, exit or refund-deduction schedule in the reviewed pages. Please confirm your specific agreement terms with host Arpit Agarwal at " +
+          "Reforbs lock-in and exit terms:\n\n" +
+          "• Co-Living (Nirvana, Moksha, Vipasna):\n" +
+          "  Zero lock-in guarantee. Stay as long as you need without rigid contracts.\n\n" +
+          "• Student Accommodation (Shubh Gateway, Brindavan, Vairagya):\n" +
+          "  Annual academic lock-in corresponding to the college school year.\n\n" +
+          "• Security Deposit Refund Policy:\n" +
+          "  Security deposits are refundable with 30 days prior written notice and zero damage to property. Cancellation prior to move-in has NO refund.\n\n" +
+          "For agreement specifics, contact host Arpit Agarwal at " +
           CONTACT_PHONE +
           ".",
         pageNumber: 17,
-        sourceLabel: "Source: Reforbs Knowledge Base v4, page 17 & 19",
+        sourceLabel: "Source: Reforbs Operational Terms & House Rules",
         confidence: 30.0,
         isFallback: false,
       };
@@ -649,19 +725,25 @@ export function validateAndGenerateResponse(
     // -------------------------------------------------------------------------
     case "PROPERTY_PROFILE": {
       if (matchedProp) {
+        const pricingLines: string[] = [];
+        if (matchedProp.tripleRateStr) pricingLines.push(`• Triple Occupancy: ${matchedProp.tripleRateStr}`);
+        if (matchedProp.doubleRateStr) pricingLines.push(`• Twin / Double Occupancy: ${matchedProp.doubleRateStr}`);
+        if (matchedProp.singleRateStr) pricingLines.push(`• Single / Private Occupancy: ${matchedProp.singleRateStr}`);
+
         return {
           text:
             `About ${matchedProp.name} (${matchedProp.category}):\n` +
             `${matchedProp.description}\n\n` +
             `• Location: ${matchedProp.locationCue}\n` +
-            `• Double Occupancy: ${matchedProp.doubleRateStr}\n` +
-            `• Single Occupancy: ${matchedProp.singleRateStr}\n` +
+            pricingLines.join("\n") + "\n" +
             `• Security Deposit: ${matchedProp.securityDeposit}\n` +
+            (matchedProp.foodPolicy ? `• Food: ${matchedProp.foodPolicy}\n` : "") +
+            (matchedProp.laundryPolicy ? `• Laundry: ${matchedProp.laundryPolicy}\n` : "") +
             `• Key Amenities: ${matchedProp.amenities.join(" • ")}\n` +
             `• Proximity Estimates:\n  - ${matchedProp.nearbyEstimates.map((e) => `${e.place}: ${e.estimate}`).join("\n  - ")}\n\n` +
-            `Rates and distances are website-published estimates reviewed on 3 November 2026. Please confirm current vacancy and final quote with host Arpit Agarwal at ${CONTACT_PHONE}.`,
+            `For walkthroughs and current vacancy, contact host Arpit Agarwal at ${matchedProp.contactPhone || CONTACT_PHONE}.`,
           pageNumber: matchedProp.pageNumber,
-          sourceLabel: `Source: Reforbs Knowledge Base v4, page ${matchedProp.pageNumber}`,
+          sourceLabel: `Source: Reforbs Knowledge Base, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
         };

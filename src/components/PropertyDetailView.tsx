@@ -18,14 +18,15 @@ import { submitLead } from "@/lib/leads";
 export interface PropertyData {
   id: string;
   name: string;
-  category: "Student Housing" | "Co-Living";
+  category: "Student Housing" | "Student Accommodation" | "Co-Living" | "Company Guesthouse";
   tagline: string;
   address: string;
   landmark: string;
   rating: string;
   reviewsCount: number;
-  priceSingle: string;
-  priceDouble: string;
+  priceSingle?: string;
+  priceDouble?: string;
+  priceTriple?: string;
   heroImage: string;
   galleryImages: string[];
   description: string;
@@ -37,6 +38,12 @@ export interface PropertyData {
   }[];
   amenities: { name: string; included: boolean }[];
   landmarks: { name: string; distance: string }[];
+  coupleFriendly?: boolean;
+  annualLockIn?: boolean;
+  foodPolicy?: string;
+  laundryPolicy?: string;
+  contactPhone?: string;
+  googleMapsUrl?: string;
 }
 
 export default function PropertyDetailView({ property }: { property: PropertyData }) {
@@ -81,24 +88,53 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
         {/* Property Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="badge-eyebrow">
                 {property.category}
               </span>
-              <span className="text-xs font-black px-3 py-1 rounded-full bg-[#FFDE59] text-[#1B1D1C]">
-                Co-Ed Friendly
-              </span>
+              {property.category === "Company Guesthouse" ? (
+                <span className="text-xs font-black px-3 py-1 rounded-full bg-slate-800 text-white">
+                  Corporate Guesthouse
+                </span>
+              ) : property.coupleFriendly ? (
+                <span className="text-xs font-black px-3 py-1 rounded-full bg-[#FFDE59] text-[#1B1D1C]">
+                  Couple Friendly
+                </span>
+              ) : (
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#FAFAFA] text-[#4A524F] border border-[#E1E7E6]">
+                  Single Occupancy / No Opposite-Gender Visitors
+                </span>
+              )}
+              {property.annualLockIn ? (
+                <span className="text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3 py-1 rounded-full">
+                  Annual Lock-in
+                </span>
+              ) : (
+                <span className="text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3 py-1 rounded-full">
+                  Zero Lock-in
+                </span>
+              )}
               <span className="text-xs font-bold text-[#666B68] bg-white px-3 py-1 rounded-full border border-[#E1E7E6]">
-                Viman Nagar, Pune
+                Pune
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-black text-[#1B1D1C] font-heading">
               {property.name}
             </h1>
-            <p className="text-xs sm:text-sm text-[#4A524F] flex items-center gap-1.5 mt-1.5 font-medium">
+            <div className="text-xs sm:text-sm text-[#4A524F] flex flex-wrap items-center gap-2 mt-1.5 font-medium">
               <MapPin size={16} className="text-[#007A7A] shrink-0" />
               <span>{property.address} • <strong className="text-[#1B1D1C]">{property.landmark}</strong></span>
-            </p>
+              {property.googleMapsUrl && (
+                <a
+                  href={property.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-black bg-[#FFDE59] text-[#111827] px-2.5 py-0.5 rounded-full hover:bg-[#FACC15] transition-colors"
+                >
+                  <span>Google Maps ↗</span>
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
@@ -435,18 +471,24 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               {/* Direct Instant Action Buttons - Stanza Living Style */}
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <a
-                  href="tel:+917420040241"
+                  href={`tel:${property.contactPhone ? property.contactPhone.replace(/\s+/g, "") : "+917420040241"}`}
                   className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#E1E7E6] bg-[#F1F4F4] hover:bg-[#E6F4F3] text-[#1B1D1C] text-xs font-black transition-all active:scale-95"
-                  title="Call Host: +91 74200 40241"
+                  title={`Call Host: ${property.contactPhone || "+91 74200 40241"}`}
                 >
                   <Phone size={15} className="text-[#007A7A]" />
                   <span>Call Host</span>
                 </a>
 
                 <a
-                  href={`https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20interested%20in%20${encodeURIComponent(
+                  href={`https://wa.me/${
+                    property.contactPhone
+                      ? property.contactPhone.replace(/\D/g, "").length === 10
+                        ? "91" + property.contactPhone.replace(/\D/g, "")
+                        : property.contactPhone.replace(/\D/g, "")
+                      : "917420040241"
+                  }?text=Hi%20Reforbs!%20I%20am%20interested%20in%20${encodeURIComponent(
                     property.name
-                  )}%20in%20Viman%20Nagar.`}
+                  )}%20(${encodeURIComponent(property.address)}).`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-md transition-all active:scale-95"

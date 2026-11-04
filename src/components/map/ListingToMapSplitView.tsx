@@ -142,7 +142,7 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
               }`}
             >
               <GraduationCap size={15} />
-              <span>Student Housing (2)</span>
+              <span>Student Housing ({allListings.filter((p) => p.category === "Student Accommodation").length})</span>
             </button>
             <button
               onClick={() => setFilter("category", "coliving")}
@@ -153,7 +153,18 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
               }`}
             >
               <Building2 size={15} />
-              <span>Co-Living (3)</span>
+              <span>Co-Living ({allListings.filter((p) => p.category === "Co-Living").length})</span>
+            </button>
+            <button
+              onClick={() => setFilter("category", "guesthouse")}
+              className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                filters.category === "guesthouse"
+                  ? "bg-[#007A7A] text-white shadow-sm"
+                  : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+              }`}
+            >
+              <Building2 size={15} />
+              <span>Company Guesthouses ({allListings.filter((p) => p.category === "Company Guesthouse").length})</span>
             </button>
           </div>
 
@@ -186,14 +197,15 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                 className="min-h-[44px] px-3.5 py-2 text-xs font-black rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] text-[#111827] focus:outline-none focus:border-[#007A7A] cursor-pointer"
                 aria-label="Filter by maximum price"
               >
-                <option value={25000}>Max Price: Any</option>
-                <option value={12500}>Under ₹12,500/mo</option>
-                <option value={14000}>Under ₹14,000/mo</option>
+                <option value={35000}>Max Price: Any</option>
                 <option value={15000}>Under ₹15,000/mo</option>
+                <option value={20000}>Under ₹20,000/mo</option>
+                <option value={25000}>Under ₹25,000/mo</option>
+                <option value={30000}>Under ₹30,000/mo</option>
               </select>
             </div>
 
-            {(filters.category !== "all" || filters.maxPrice < 25000 || filters.searchQuery) && (
+            {(filters.category !== "all" || filters.maxPrice < 35000 || filters.searchQuery) && (
               <button
                 onClick={resetFilters}
                 className="min-h-[44px] px-3 py-2 rounded-2xl bg-[#FEE2E2] hover:bg-[#FECACA] text-[#DC2626] font-black text-xs flex items-center gap-1 transition-all"
@@ -323,7 +335,11 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                     className="object-cover"
                   />
                   <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[8px] sm:text-[9px] font-black uppercase bg-black/60 text-white border border-white/20">
-                    {activeListing.category === "Student Housing" ? "Student" : "Co-Living"}
+                    {activeListing.category === "Student Accommodation"
+                      ? "Student"
+                      : activeListing.category === "Company Guesthouse"
+                      ? "Guesthouse"
+                      : "Co-Living"}
                   </div>
                 </div>
 

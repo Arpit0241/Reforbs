@@ -1,22 +1,27 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
 export const metadata = {
-  title: "Suyog Co-Living | Premium Residence in Viman Nagar Pune - Reforbs",
+  title: "Suyog Enclave | Dedicated Corporate Guesthouse Sakore Nagar - Reforbs",
   description:
-    "Reforbs Suyog - Premium co-living near Dutta Mandir Chowk & Airport Road, Viman Nagar. Air-conditioned rooms, gigabit fiber, private kitchens, zero restrictions.",
+    "Reforbs Suyog Enclave - Dedicated company guesthouse behind Bajaj Finserv in Sakore Nagar, Pune. Exclusively for corporate partner employees (not open to general public / retail PGs).",
 };
 
 const property: PropertyData = {
-  id: "suyog",
-  name: "Suyog Co-Living",
-  category: "Co-Living",
-  tagline: "Elevated Living & High-Focus Work Suites Near Airport Road",
-  address: "Near Dutta Mandir Chowk, Viman Nagar, Pune",
-  landmark: "Near Dutta Mandir & Symbiosis International Campuses",
-  rating: "4.8",
-  reviewsCount: 119,
-  priceSingle: "₹21,500",
-  priceDouble: "₹14,500",
+  id: "suyog-enclave",
+  name: "Suyog Enclave",
+  category: "Company Guesthouse",
+  tagline: "Dedicated Corporate Guesthouse behind Bajaj Finserv (Corporate Personnel Only)",
+  address: "64P, behind Bajaj Finserv, Sakore Nagar, Pune",
+  landmark: "Behind Bajaj Finserv, Sakore Nagar",
+  rating: "4.9",
+  reviewsCount: 138,
+  priceDouble: "₹25,000",
+  contactPhone: "+91 74200 40241",
+  googleMapsUrl: "https://maps.app.goo.gl/j3K9N2M8P7L1X6W58",
+  coupleFriendly: false,
+  annualLockIn: false,
+  foodPolicy: "Corporate Managed Pantry & Catering",
+  laundryPolicy: "Professional laundry services on premises",
   heroImage: "/images/properties/suyog/image-1.jpg",
   galleryImages: [
     "/images/properties/suyog/image-1.jpg",
@@ -27,52 +32,37 @@ const property: PropertyData = {
     "/images/properties/suyog/image-6.jpg",
   ],
   description:
-    "Suyog delivers elevated living for tech professionals, consultants, and founders in Viman Nagar. Fully furnished rooms with high ceilings, private kitchen setups, dual-band Wi-Fi, and convenient proximity to Pune Airport and premier business parks.",
+    "Suyog Enclave is a dedicated company guesthouse located behind Bajaj Finserv in Sakore Nagar, Pune. Reserved exclusively for employees of partnered corporate enterprises, featuring corporate-standard housekeeping, security, and tranquility. Not an open PG.",
   roomTypes: [
     {
-      type: "Double Occupancy",
-      price: "₹14,500",
-      deposit: "1 Month Rent",
+      type: "Twin Sharing Corporate Suite",
+      price: "₹25,000",
+      deposit: "₹25,000 (1 Month Security Deposit)",
       features: [
-        "Two luxury wooden beds with posture mattresses",
-        "Individual wooden wardrobes with personal keys",
-        "Dual study/work desks with ergonomic chairs",
-        "Attached washroom with 24/7 hot water geyser",
-        "High-speed optical fiber Wi-Fi included",
-      ],
-    },
-    {
-      type: "Single Occupancy",
-      price: "₹21,500",
-      deposit: "1 Month Rent",
-      features: [
-        "100% exclusive single occupant privacy",
-        "Air-conditioned executive suite",
-        "Spacious wooden wardrobe with full mirror",
-        "Private attached luxury bathroom",
-        "Private balcony overlooking green canopy",
+        "Reserved exclusively for corporate enterprise guests",
+        "Two executive beds with ergonomic work desks",
+        "Attached washroom with continuous hot water supply",
+        "Daily housekeeping and linen sanitization",
+        "High-speed enterprise fiber network",
       ],
     },
   ],
   amenities: [
-    { name: "Dual-Band Optical Wi-Fi", included: true },
-    { name: "Daily Professional Cleaning", included: true },
-    { name: "Private Kitchen Freedom", included: true },
-    { name: "Air Conditioned Units Available", included: true },
-    { name: "Zero Moral Policing / Curfews", included: true },
-    { name: "Full Power Backup", included: true },
-    { name: "Laundry Facility On-Site", included: true },
-    { name: "Direct Host Support", included: true },
+    { name: "Dedicated Corporate Guesthouse", included: true },
+    { name: "Behind Bajaj Finserv Hub", included: true },
+    { name: "Enterprise Optical Fiber Wi-Fi", included: true },
+    { name: "Professional Daily Cleaning", included: true },
+    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Not an Open Public PG", included: true },
   ],
   landmarks: [
-    { name: "Dutta Mandir Chowk", distance: "2 mins walk (100m)" },
-    { name: "Pune International Airport", distance: "5 mins drive (1.8 km)" },
-    { name: "Phoenix Marketcity", distance: "6 mins drive (2.0 km)" },
-    { name: "Symbiosis Campuses", distance: "6 mins walk (500m)" },
-    { name: "Kalyani Nagar IT Corridor", distance: "10 mins drive (3.8 km)" },
+    { name: "Bajaj Finserv Corporate Hub", distance: "Directly Behind (1 min walk)" },
+    { name: "Symbiosis Campuses", distance: "4 mins drive (1.2 km)" },
+    { name: "Phoenix Marketcity", distance: "5 mins drive (1.5 km)" },
+    { name: "Pune Airport", distance: "6 mins drive (2.0 km)" },
   ],
 };
 
-export default function SuyogPage() {
+export default function SuyogEnclavePage() {
   return <PropertyDetailView property={property} />;
 }

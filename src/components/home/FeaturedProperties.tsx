@@ -34,15 +34,16 @@ import { Palmtree } from "lucide-react";
 
 export default function FeaturedProperties() {
   const [viewMode, setViewMode] = useState<"map" | "grid">("map");
-  const [activeTab, setActiveTab] = useState<"all" | "student" | "coliving">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "student" | "coliving" | "guesthouse">("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [maxPrice, setMaxPrice] = useState(25000);
+  const [maxPrice, setMaxPrice] = useState(35000);
   const [activePhotoMap, setActivePhotoMap] = useState<{ [id: string]: string }>({});
 
   const filtered = propertiesData.filter((p) => {
     // Category filter
-    if (activeTab === "student" && p.category !== "Student Housing") return false;
+    if (activeTab === "student" && p.category !== "Student Accommodation") return false;
     if (activeTab === "coliving" && p.category !== "Co-Living") return false;
+    if (activeTab === "guesthouse" && p.category !== "Company Guesthouse") return false;
 
     // Search query filter
     if (searchQuery.trim()) {
@@ -57,8 +58,8 @@ export default function FeaturedProperties() {
     }
 
     // Price filter
-    if (maxPrice < 25000) {
-      const numeric = parseInt((p.priceDouble || p.stat1Value).replace(/[^0-9]/g, ""), 10) || 0;
+    if (maxPrice < 35000) {
+      const numeric = p.priceNum || parseInt((p.priceDouble || p.stat1Value).replace(/[^0-9]/g, ""), 10) || 0;
       if (numeric > maxPrice) return false;
     }
 
@@ -114,7 +115,7 @@ export default function FeaturedProperties() {
           <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 max-w-full">
             <span className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#007A7A] text-white font-extrabold text-xs sm:text-sm shadow-md">
               <MapPin size={15} className="text-[#FFDE59]" />
-              <span>Pune (10 Active Spaces)</span>
+              <span>Pune ({propertiesData.length} Active Spaces)</span>
             </span>
 
             <Link
@@ -217,7 +218,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <GraduationCap size={15} />
-                    <span>Student Housing ({propertiesData.filter((p) => p.category === "Student Housing").length})</span>
+                    <span>Student Housing ({propertiesData.filter((p) => p.category === "Student Accommodation").length})</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("coliving")}
@@ -229,6 +230,17 @@ export default function FeaturedProperties() {
                   >
                     <Building2 size={15} />
                     <span>Co-Living ({propertiesData.filter((p) => p.category === "Co-Living").length})</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("guesthouse")}
+                    className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
+                      activeTab === "guesthouse"
+                        ? "bg-[#007A7A] text-white shadow-sm"
+                        : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
+                    }`}
+                  >
+                    <Building2 size={15} />
+                    <span>Company Guesthouses ({propertiesData.filter((p) => p.category === "Company Guesthouse").length})</span>
                   </button>
                 </div>
 
@@ -260,19 +272,20 @@ export default function FeaturedProperties() {
                       className="min-h-[44px] px-3.5 py-2 text-xs font-black rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] text-[#111827] focus:outline-none focus:border-[#007A7A] cursor-pointer"
                       aria-label="Filter by maximum price"
                     >
-                      <option value={25000}>Max Price: Any</option>
-                      <option value={12500}>Under ₹12,500/mo</option>
-                      <option value={14000}>Under ₹14,000/mo</option>
+                      <option value={35000}>Max Price: Any</option>
                       <option value={15000}>Under ₹15,000/mo</option>
+                      <option value={20000}>Under ₹20,000/mo</option>
+                      <option value={25000}>Under ₹25,000/mo</option>
+                      <option value={30000}>Under ₹30,000/mo</option>
                     </select>
                   </div>
 
-                  {(activeTab !== "all" || maxPrice < 25000 || searchQuery) && (
+                  {(activeTab !== "all" || maxPrice < 35000 || searchQuery) && (
                     <button
                       onClick={() => {
                         setActiveTab("all");
                         setSearchQuery("");
-                        setMaxPrice(25000);
+                        setMaxPrice(35000);
                       }}
                       className="min-h-[44px] px-3 py-2 rounded-2xl bg-[#FEE2E2] hover:bg-[#FECACA] text-[#DC2626] font-black text-xs flex items-center gap-1 transition-all"
                       title="Reset all filters"
@@ -484,7 +497,13 @@ export default function FeaturedProperties() {
                   <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-white/15">
                     {/* WhatsApp CTA (>= 44px) */}
                     <a
-                      href={`https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(
+                      href={`https://wa.me/${
+                        property.contactPhone
+                          ? property.contactPhone.replace(/\D/g, "").length === 10
+                            ? "91" + property.contactPhone.replace(/\D/g, "")
+                            : property.contactPhone.replace(/\D/g, "")
+                          : "917420040241"
+                      }?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20${encodeURIComponent(
                         property.name
                       )}%20(${encodeURIComponent(property.subLocation)}).%20Please%20share%20details.`}
                       target="_blank"
