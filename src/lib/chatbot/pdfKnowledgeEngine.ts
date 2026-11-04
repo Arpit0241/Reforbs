@@ -57,7 +57,7 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
     try {
       if (typeof window === "undefined") {
         cachedPassages = VERIFIED_PDF_PASSAGES;
-        cachedPagesCount = 21;
+        cachedPagesCount = 17;
         return cachedPassages;
       }
 
@@ -97,9 +97,9 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
       cachedPassages = VERIFIED_PDF_PASSAGES;
       return cachedPassages;
     } catch (err) {
-      console.warn("Client PDF.js parsing fallback to verified knowledge base v4:", err);
+      console.warn("Client PDF.js parsing fallback to verified owner QA knowledge base:", err);
       cachedPassages = VERIFIED_PDF_PASSAGES;
-      cachedPagesCount = 21;
+      cachedPagesCount = 17;
       return cachedPassages;
     }
   })();
@@ -169,7 +169,7 @@ export function matchPassageDeterministically(rawQuery: string): SearchResult | 
     return {
       text: bestPassage.content,
       pageNumber: bestPassage.pageNumber,
-      sourceLabel: `Source: Reforbs Knowledge Base v4, page ${bestPassage.pageNumber}`,
+      sourceLabel: `Source: Reforbs Owner Q&A Knowledge, page ${bestPassage.pageNumber}`,
       confidence: Math.min(30, Math.round(bestScore)),
       isFallback: false,
     };
