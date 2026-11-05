@@ -17,7 +17,6 @@ import {
   Coffee,
   Wifi,
   ShieldCheck,
-  ChevronRight,
 } from "lucide-react";
 
 export default function GoaComingSoonPage() {
@@ -41,25 +40,6 @@ export default function GoaComingSoonPage() {
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          {/* Breadcrumb / City Switcher Row */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 drop-shadow-sm">
-            <Link
-              href="/"
-              className="text-xs font-semibold text-white/70 hover:text-white transition-colors"
-            >
-              Home
-            </Link>
-            <ChevronRight size={13} className="text-white/40" />
-            <Link
-              href="/properties"
-              className="text-xs font-semibold text-white/70 hover:text-white transition-colors"
-            >
-              Locations
-            </Link>
-            <ChevronRight size={13} className="text-white/40" />
-            <span className="text-xs font-bold text-[#FFDE59]">Goa</span>
-          </div>
-
           {/* City Selection Pills */}
           <div className="inline-flex items-center p-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 mb-8 max-w-full overflow-x-auto no-scrollbar shadow-lg">
             <Link
