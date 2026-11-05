@@ -218,9 +218,10 @@ export default function ReforbsChatbot() {
             <a
               href="tel:+917420040241"
               className="text-[#007A7A] hover:underline font-bold flex items-center gap-1"
+              title="Call Us"
             >
               <Phone size={10} />
-              <span>Call Us: +91 74200 40241</span>
+              <span>Call Us</span>
             </a>
           </div>
 

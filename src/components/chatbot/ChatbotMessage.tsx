@@ -1,7 +1,7 @@
 /**
  * Chatbot Message Component
  * Renders user and assistant bubbles with Markdown formatting, clickable links,
- * and direct contact actions (Phone & Email).
+ * and direct contact actions (Phone & Email) with ZERO visible phone numbers.
  */
 
 "use client";
@@ -9,6 +9,7 @@
 import React from "react";
 import { Phone, Bot, User, MapPin, Mail } from "lucide-react";
 import { SearchResult } from "@/lib/chatbot/pdfKnowledgeEngine";
+import { sanitizeVisibleText, getPropertyPhoneTarget } from "@/lib/chatbot/phoneSanitizer";
 
 export interface Message {
   id: string;
@@ -26,9 +27,9 @@ interface ChatbotMessageProps {
 export default function ChatbotMessage({ message }: ChatbotMessageProps) {
   const isUser = message.sender === "user";
 
-  // Formatter for bold text markdown (**text**), URLs, emails, and phone numbers
+  // Formatter for bold text markdown (**text**), URLs, and emails
   const formatContent = (text: string) => {
-    const tokenRegex = /(https?:\/\/[^\s)]+|hello@reforbs\.com|\+91\s*74200\s*40241|7420040241|\*\*[^*]+\*\*)/g;
+    const tokenRegex = /(https?:\/\/[^\s)]+|hello@reforbs\.com|\*\*[^*]+\*\*)/g;
     const parts = text.split(tokenRegex);
     return parts.map((part, i) => {
       if (part.startsWith("http://") || part.startsWith("https://")) {
@@ -63,21 +64,6 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
           </a>
         );
       }
-      if (part === "+91 74200 40241" || part === "7420040241") {
-        return (
-          <a
-            key={i}
-            href="tel:+917420040241"
-            className={
-              isUser
-                ? "underline font-bold text-white hover:text-white/80"
-                : "underline font-bold text-[#007A7A] hover:text-[#005F5F]"
-            }
-          >
-            {part}
-          </a>
-        );
-      }
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
           <strong key={i} className={isUser ? "font-bold text-white" : "font-bold text-[#005F5F]"}>
@@ -91,48 +77,78 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
 
   // Formatter for plain text lines into clean structured React elements
   const renderFormattedText = (rawText: string) => {
-    const lines = rawText.split("\n");
+    const sanitized = isUser ? rawText : sanitizeVisibleText(rawText);
+    const lines = sanitized.split("\n");
     return lines.map((line, idx) => {
       const trimmed = line.trim();
       if (!trimmed) {
         return <div key={idx} className="h-1.5" />;
       }
 
-      // Check if bullet point
-      if (trimmed.startsWith("•") || trimmed.startsWith("-")) {
-        const bulletText = trimmed.replace(/^[•\-]\s*/, "");
+      // Check for bullet list item
+      if (trimmed.startsWith("•") || trimmed.startsWith("-") || trimmed.startsWith("*")) {
+        const content = trimmed.replace(/^[•\-*]\s*/, "");
         return (
-          <div key={idx} className="flex items-start gap-2 my-1 text-xs sm:text-[13px] leading-relaxed">
-            <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${isUser ? "bg-white" : "bg-[#007A7A]"}`} />
-            <span>{formatContent(bulletText)}</span>
+          <div key={idx} className="flex items-start gap-2 my-1 pl-1">
+            <span className="text-[#007A7A] font-black text-xs shrink-0 select-none">•</span>
+            <span className="text-xs sm:text-[13px] leading-relaxed font-medium">
+              {formatContent(content)}
+            </span>
           </div>
         );
       }
 
-      // Check if numbered item (e.g., "1.", "2.")
-      const numberedMatch = trimmed.match(/^(\d+)\.\s*(.*)$/);
-      if (numberedMatch) {
+      // Numbered list item
+      const numMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+      if (numMatch) {
         return (
-          <div key={idx} className="flex items-start gap-2 my-1 text-xs sm:text-[13px] leading-relaxed">
-            <span className={`font-bold shrink-0 ${isUser ? "text-white" : "text-[#007A7A]"}`}>
-              {numberedMatch[1]}.
+          <div key={idx} className="flex items-start gap-2 my-1 pl-1">
+            <span className="text-[#007A7A] font-black text-xs shrink-0 select-none">{numMatch[1]}.</span>
+            <span className="text-xs sm:text-[13px] leading-relaxed font-medium">
+              {formatContent(numMatch[2])}
             </span>
-            <span>{formatContent(numberedMatch[2])}</span>
           </div>
+        );
+      }
+
+      // Header or section label
+      if (trimmed.endsWith(":") && trimmed.length < 50) {
+        return (
+          <p
+            key={idx}
+            className={`font-black text-xs uppercase tracking-wider mt-2 mb-1 ${
+              isUser ? "text-white" : "text-[#007A7A]"
+            }`}
+          >
+            {formatContent(trimmed)}
+          </p>
         );
       }
 
       return (
-        <p key={idx} className="my-1 text-xs sm:text-[13px] leading-relaxed">
+        <p key={idx} className="text-xs sm:text-[13px] leading-relaxed my-1 font-medium">
           {formatContent(trimmed)}
         </p>
       );
     });
   };
 
-  const hasPhone = message.text.includes("74200") || message.text.includes("7420040241");
-  const hasEmail = message.text.includes("hello@reforbs.com");
-  const hasMapLink = message.text.includes("share.google");
+  const textLower = (message.text || "").toLowerCase();
+  const hasPhone =
+    textLower.includes("call us") ||
+    textLower.includes("contact") ||
+    textLower.includes("call") ||
+    textLower.includes("visit") ||
+    textLower.includes("phone") ||
+    textLower.includes("manager") ||
+    textLower.includes("74200") ||
+    textLower.includes("70578") ||
+    textLower.includes("96370") ||
+    textLower.includes("73876");
+
+  const hasEmail = message.text.includes("hello@reforbs.com") || message.text.includes("reforbsar@gmail.com");
+  const hasMapLink = message.text.includes("maps.app.goo.gl") || message.text.includes("share.google");
+  const targetPhone = message.searchResult?.phoneTarget || getPropertyPhoneTarget(message.text);
 
   return (
     <div
@@ -166,7 +182,7 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
         {/* Source citation if available */}
         {!isUser && message.searchResult?.sourceLabel && (
           <div className="mt-2 text-[10px] text-gray-400 font-semibold italic border-t border-gray-100 pt-1">
-            {message.searchResult.sourceLabel}
+            {sanitizeVisibleText(message.searchResult.sourceLabel)}
           </div>
         )}
 
@@ -174,31 +190,32 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
         {!isUser && (hasPhone || hasEmail || hasMapLink) && (
           <div className="mt-2.5 pt-2 border-t border-[#F1F4F4] flex flex-wrap items-center gap-2 justify-between">
             <div className="flex flex-wrap items-center gap-2">
+              {hasPhone && (
+                <a
+                  href={`tel:${targetPhone}`}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#007A7A] hover:bg-[#005F5F] text-white text-xs font-black transition-all shadow-sm active:scale-95"
+                  aria-label="Call Us"
+                  title="Call Us"
+                >
+                  <Phone size={12} className="text-[#FFDE59]" />
+                  <span>Call Us</span>
+                </a>
+              )}
               {hasMapLink && (
                 <a
-                  href="https://share.google/UomLxgr596c1a1TVf"
+                  href="https://maps.app.goo.gl/VR1T7UwD58H6UGa49"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#007A7A] hover:bg-[#005F5F] text-white text-xs font-bold transition-all shadow-sm active:scale-95"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white text-xs font-bold transition-all shadow-sm active:scale-95"
                   aria-label="Open Google Maps location"
                 >
                   <MapPin size={12} className="text-[#FFDE59]" />
                   <span>Google Maps</span>
                 </a>
               )}
-              {hasPhone && (
-                <a
-                  href="tel:+917420040241"
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white text-xs font-bold transition-all shadow-sm active:scale-95"
-                  aria-label="Call host directly"
-                >
-                  <Phone size={12} />
-                  <span>Call Us (+91 74200 40241)</span>
-                </a>
-              )}
               {hasEmail && (
                 <a
-                  href="mailto:hello@reforbs.com"
+                  href="mailto:reforbsar@gmail.com"
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF9D4] hover:bg-[#FFDE59] text-[#1B1D1C] text-xs font-bold transition-all shadow-sm active:scale-95"
                   aria-label="Send email"
                 >

@@ -159,7 +159,7 @@ export default function ContactPage() {
                     inputMode="tel"
                     autoComplete="tel"
                     required
-                    placeholder="+91 74200 40241"
+                    placeholder="Enter 10-digit mobile number"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-base sm:text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] transition-all min-h-[48px]"
@@ -232,17 +232,18 @@ export default function ContactPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <span className="text-xs text-[#374151] block font-black uppercase font-heading">
-                      Phone &amp; WhatsApp
+                    <span className="text-xs text-[#374151] block font-black uppercase font-heading mb-1.5">
+                      Telephone Enquiries
                     </span>
                     <a
                       href="tel:+917420040241"
-                      className="text-sm font-black text-[#111827] hover:text-[#007A7A] transition-colors block"
+                      className="btn-teal !px-5 !py-2 !text-xs !rounded-full shadow-sm inline-flex items-center gap-1.5"
                     >
-                      +91 74200 40241
+                      <Phone size={14} />
+                      <span>Call Us</span>
                     </a>
-                    <span className="text-xs text-[#374151] font-bold block mt-0.5">
-                      Reforbs Support Team
+                    <span className="text-xs text-[#374151] font-bold block mt-1.5">
+                      Reforbs Support Team (10 AM – 10 PM)
                     </span>
                   </div>
                 </div>

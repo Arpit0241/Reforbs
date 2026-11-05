@@ -446,11 +446,12 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <a
                   href={`tel:${property.contactPhone ? property.contactPhone.replace(/\s+/g, "") : "+917420040241"}`}
-                  className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#E1E7E6] bg-[#F1F4F4] hover:bg-[#E6F4F3] text-[#1B1D1C] text-xs font-black transition-all active:scale-95"
-                  title={`Call Host: ${property.contactPhone || "+91 74200 40241"}`}
+                  className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#007A7A] bg-[#E6F4F3] hover:bg-[#007A7A] hover:text-white text-[#007A7A] text-xs font-black transition-all active:scale-95 shadow-sm"
+                  title="Call Us"
+                  aria-label="Call Us"
                 >
-                  <Phone size={15} className="text-[#007A7A]" />
-                  <span>Call Host</span>
+                  <Phone size={15} />
+                  <span>Call Us</span>
                 </a>
 
                 <a

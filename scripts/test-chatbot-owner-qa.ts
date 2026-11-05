@@ -209,17 +209,22 @@ const testCases: TestCase[] = [
   {
     id: 29,
     question: "Is a room available tomorrow?",
-    expectedCheck: (ans) =>
-      ans.includes("7420040241") && (ans.toLowerCase().includes("not supplied") || ans.toLowerCase().includes("live availability") || ans.toLowerCase().includes("representative")),
-    expectedDescription: "Hands off to human representative on 7420040241",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us") &&
+      (ans.toLowerCase().includes("not supplied") || ans.toLowerCase().includes("live availability")),
+    expectedDescription: "Routes to Call Us button (phoneTarget 7420040241) without visible numbers",
   },
   {
     id: 30,
     question: "How can I book a visit?",
-    expectedCheck: (ans) =>
-      ans.replace(/\s+/g, "").includes("7420040241") &&
-      (ans.toLowerCase().includes("visit") || ans.toLowerCase().includes("call") || ans.toLowerCase().includes("whatsapp")),
-    expectedDescription: "Directs to call/WhatsApp 7420040241 to arrange a visit",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us") &&
+      ans.toLowerCase().includes("visit"),
+    expectedDescription: "Directs to Call Us button (phoneTarget 7420040241) to arrange a visit",
   },
   {
     id: 31,
@@ -227,6 +232,83 @@ const testCases: TestCase[] = [
     expectedCheck: (ans) =>
       ans.toLowerCase().includes("not included") || ans.toLowerCase().includes("not present") || ans.toLowerCase().includes("do not invent"),
     expectedDescription: "States helpline number is not included in the owner document",
+  },
+  {
+    id: 32,
+    question: "What is your contact number?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      !ans.toLowerCase().includes("arpit") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us"),
+    expectedDescription: "Speaks via Call Us button with zero visible numbers and zero Arpit",
+  },
+  {
+    id: 33,
+    question: "How can I call Reforbs?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      !ans.toLowerCase().includes("arpit") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us"),
+    expectedDescription: "Directs to Call Us button without visible phone number",
+  },
+  {
+    id: 34,
+    question: "Can I speak to Arpit?",
+    expectedCheck: (ans, res) =>
+      !ans.toLowerCase().includes("arpit") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.includes("Reforbs properties are managed by our dedicated property management teams"),
+    expectedDescription: "Politely responds without mentioning Arpit and provides Call Us button",
+  },
+  {
+    id: 35,
+    question: "How do I contact the property manager?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.includes("Each Reforbs property has its own management team"),
+    expectedDescription: "Directs to Call Us button for property management team",
+  },
+  {
+    id: 36,
+    question: "How can I check room availability?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us"),
+    expectedDescription: "States live availability is handled via Call Us button",
+  },
+  {
+    id: 37,
+    question: "Can you give me the Shubh Gateway phone number?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7057897430") &&
+      res?.phoneTarget === "7057897430" &&
+      ans.toLowerCase().includes("call us") &&
+      ans.includes("Shubh Gateway"),
+    expectedDescription: "Provides Call Us button routed specifically to Shubh Gateway (7057897430)",
+  },
+  {
+    id: 38,
+    question: "I want to contact Moksha management.",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us") &&
+      ans.includes("Moksha"),
+    expectedDescription: "Provides Call Us button routed to Moksha (7420040241)",
+  },
+  {
+    id: 39,
+    question: "How can I schedule a visit?",
+    expectedCheck: (ans, res) =>
+      !ans.includes("7420040241") &&
+      res?.phoneTarget === "7420040241" &&
+      ans.toLowerCase().includes("call us") &&
+      ans.toLowerCase().includes("visit"),
+    expectedDescription: "Explains visit scheduling via Call Us button",
   },
 ];
 

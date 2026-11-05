@@ -58,8 +58,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={15} className="text-[#FFDE59] shrink-0" />
-                <a href="tel:+917420040241" className="hover:text-[#FFDE59] transition-colors">
-                  +91 74200 40241
+                <a href="tel:+917420040241" className="hover:text-[#FFDE59] transition-colors font-bold">
+                  Call Us
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
@@ -72,9 +72,9 @@ export default function Footer() {
                   href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Pune."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#25D366] transition-colors"
+                  className="hover:text-[#25D366] transition-colors font-bold"
                 >
-                  WhatsApp: +91 74200 40241
+                  Chat on WhatsApp
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

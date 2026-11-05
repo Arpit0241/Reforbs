@@ -381,7 +381,7 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
 
   // 26. Live Availability / Vacancy / Move-in date / Available Tomorrow
   if (
-    /\b(?:available\s+tomorrow|what\s+is\s+available|live\s+availabilit(?:y|ies)|vacanc(?:y|ies)|room\s+available|move-?in\s+date|when\s+can\s+i\s+move\s+in|check\s+availability|current\s+availability)\b/.test(
+    /\b(?:available\s+tomorrow|what\s+is\s+available|live\s+availabilit(?:y|ies)|vacanc(?:y|ies)|room\s+available|move-?in\s+date|when\s+can\s+i\s+move\s+in|check\s+(?:room\s+|bed\s+)?availability|current\s+availability|any\s+(?:room|bed)\s+available)\b/.test(
       normalized
     )
   ) {
@@ -435,9 +435,9 @@ export function detectCustomerIntent(rawQuery: string): IntentDetectionResult {
     return { intent: "RENT_PRICING", confidence: 28, entities, matchedPattern: "rent_pricing" };
   }
 
-  // 32. Contact / Working Hours / Support Email / Price Updates
+  // 32. Contact / Working Hours / Support Email / Price Updates / Phone / Call
   if (
-    /\b(?:contact\s+(?:number|details|us|support)?|working\s+hours|support\s+email|who\s+updates\s+prices|reforbsar@gmail\.com|phone\s+number)\b/.test(
+    /\b(?:contact\s+(?:number|details|us|support|management)?|working\s+hours|support\s+email|who\s+updates\s+prices|reforbsar@gmail\.com|phone(?:\s+number)?|call(?:\s+(?:us|reforbs|them))?|speak\s+to|arpit|property\s+manager|manager|telephone)\b/.test(
       normalized
     )
   ) {

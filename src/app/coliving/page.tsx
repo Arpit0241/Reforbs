@@ -189,10 +189,10 @@ export default function ColivingIndex() {
                     </div>
                     <a
                       href="tel:+917420040241"
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#666B68] hover:text-[#007A7A] mt-0.5"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#007A7A] hover:text-[#005F5F] mt-0.5"
                     >
                       <Phone size={11} className="text-[#007A7A]" />
-                      <span>Call: +91 74200 40241</span>
+                      <span>Call Us</span>
                     </a>
                   </div>
 

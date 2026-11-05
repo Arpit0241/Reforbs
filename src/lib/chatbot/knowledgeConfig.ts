@@ -62,19 +62,20 @@ export const CONTACT_EMAIL = "reforbsar@gmail.com";
 export const TOUR_HOURS = "Every day, 10:00 AM to 10:00 PM";
 export const PRIMARY_LOCATION = "Viman Nagar, Pune, Maharashtra 411014";
 
-export const APPROVED_FALLBACK = "Kindly get in touch with our representative on below number - 7420040241";
+export const APPROVED_FALLBACK =
+  "I couldn't verify that information in our current knowledge base. Please use the Call Us button to speak with our Reforbs support team.";
 
 export const WELCOME_MESSAGE =
-  "Hi! Welcome to Reforbs. I'm your Reforbs assistant. How can I help you today? Feel free to ask about our 9 residences in Pune, monthly rates, food and laundry inclusions, couple-friendly policies, or campus distances!";
+  "Hi! Welcome to Reforbs. I'm your Reforbs Assistant. How can I help you today? Ask me about our properties, room types, amenities, pricing, locations, or house rules.";
 
 export const RECOMMENDED_FALLBACK =
-  "I couldn’t verify that detail in the current Reforbs knowledge base. Kindly get in touch with our representative on below number - 7420040241 or email reforbsar@gmail.com.";
+  "I couldn't verify that information in our current knowledge base. Please use the Call Us button to speak with our Reforbs support team.";
 
 export const OFF_TOPIC_FALLBACK =
-  "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, room options, and living in Pune. If you have any questions about our spaces or would like to schedule a visit, feel free to ask or call us at +91 74200 40241!";
+  "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, room options, and living in Pune. Please use the Call Us button below to speak directly with our team!";
 
 export const PDF_LOAD_ERROR_MESSAGE =
-  "We're having trouble loading our local knowledge document. Please call sales directly at +91 74200 40241 for instant assistance.";
+  "We're having trouble loading our local knowledge document. Please use the Call Us button for instant assistance.";
 
 /**
  * 9 Authoritative Properties from Owner Q&A Knowledge Base
@@ -1008,7 +1009,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "Which rooms are available right now?",
     content:
-      "Live availability is not supplied in this knowledge document. Please contact Reforbs sales on 7420040241 by call or WhatsApp. Kindly get in touch with our representative on below number - 7420040241",
+      "Live availability is not supplied in this knowledge document. Move-in dates depend on current availability. Please use the Call Us button below to speak directly with our Reforbs representative.",
     searchTerms: ["availability", "vacancies", "rooms available", "available tomorrow", "live vacancy"],
     isFAQ: true,
     priorityWeight: 2.2,
@@ -1019,7 +1020,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "When can I move in?",
     content:
-      "Move-in dates depend on current availability and are not provided in this document. Please contact Reforbs sales on 7420040241. Kindly get in touch with our representative on below number - 7420040241",
+      "Move-in dates depend on current availability and are not provided in this document. Please use the Call Us button below to speak directly with our Reforbs representative.",
     searchTerms: ["move-in", "joining date", "move date", "when can i move in"],
     isFAQ: true,
     priorityWeight: 2.0,
@@ -1030,7 +1031,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "How do I book a room?",
     content:
-      "Booking questions must be handled by Reforbs personnel. Please call or WhatsApp the sales team on 7420040241. Kindly get in touch with our representative on below number - 7420040241",
+      "Booking questions must be handled by Reforbs personnel. Please use the Call Us button below to speak with our sales team.",
     searchTerms: ["booking", "reserve", "reservation", "how do i book a room"],
     isFAQ: true,
     priorityWeight: 2.2,
@@ -1041,7 +1042,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "Can I schedule a property visit?",
     content:
-      "Please contact Reforbs sales on 7420040241 by call or WhatsApp to arrange a visit.",
+      "Please contact Reforbs sales using the Call Us button below or by WhatsApp to arrange a visit.",
     searchTerms: ["visit", "site visit", "inspection", "schedule visit", "book visit", "how can i book a visit"],
     isFAQ: true,
     priorityWeight: 2.2,
@@ -1052,7 +1053,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "Can I visit before paying?",
     content:
-      "The owner document does not explicitly answer whether a visit before payment is required or permitted. Please confirm with the sales team on 7420040241.",
+      "The owner document does not explicitly answer whether a visit before payment is required or permitted. Please confirm with the sales team using the Call Us button below.",
     searchTerms: ["visit before payment", "payment before visit", "can i visit before paying"],
     isFAQ: true,
     priorityWeight: 1.8,
@@ -1063,7 +1064,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "Which documents are needed to book?",
     content:
-      "Required booking documents are not specified in the owner document. Please confirm with the sales team on 7420040241.",
+      "Required booking documents are not specified in the owner document. Please confirm with the sales team using the Call Us button below.",
     searchTerms: ["documents", "id", "aadhaar", "kyc", "documents needed to book"],
     isFAQ: true,
     priorityWeight: 1.8,
@@ -1085,7 +1086,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Booking, availability, visits, and human handoff",
     question: "Can the chatbot confirm or reserve a room?",
     content:
-      "No. The chatbot can answer from the knowledge document but cannot check live availability or confirm a booking. Please call or WhatsApp 7420040241.",
+      "No. The chatbot can answer from the knowledge document but cannot check live availability or confirm a booking. Please use the Call Us button below to speak with our team.",
     searchTerms: ["reserve a room", "hold", "booking confirmation", "can chatbot confirm"],
     isFAQ: true,
     priorityWeight: 1.8,
@@ -1098,7 +1099,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Nirvana",
     question: "What is the rent at Nirvana?",
     content:
-      "Nirvana (Co-Living) is located at Plot 34, Lane 2A, Sanjay Park, Viman Nagar - 411032.\n• Twin: 26 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 7 beds listed; rent ₹29,000/month; deposit ₹29,000.\n• Setup: 1RK standalone building with 3 floors and 4 units of 1RK per floor (2 twin sharing, 2 single/private). Separate entrance, private attached kitchen, attached washroom. Suited to couples and people preferring privacy.\n• AC: Yes | Washroom: Attached | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
+      "Nirvana (Co-Living) is located at Plot 34, Lane 2A, Sanjay Park, Viman Nagar - 411032.\n• Twin: 26 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 7 beds listed; rent ₹29,000/month; deposit ₹29,000.\n• Setup: 1RK standalone building with 3 floors and 4 units of 1RK per floor (2 twin sharing, 2 single/private). Separate entrance, private attached kitchen, attached washroom. Suited to couples and people preferring privacy.\n• AC: Yes | Washroom: Attached | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
     searchTerms: ["nirvana", "rent at nirvana", "nirvana twin", "nirvana private", "nirvana co-living"],
     propertyNames: ["Nirvana"],
     isFAQ: true,
@@ -1110,7 +1111,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Nirvana",
     question: "Is Nirvana couple-friendly?",
     content:
-      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager on 7420040241.",
+      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager using the Call Us button below.",
     searchTerms: ["nirvana couple friendly", "boyfriend at nirvana", "girlfriend at nirvana", "stay with boyfriend at nirvana"],
     propertyNames: ["Nirvana"],
     isFAQ: true,
@@ -1124,7 +1125,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Moksha",
     question: "What is the rent at Moksha?",
     content:
-      "Moksha (Co-Living) is located at Plot 61, Lane 2A, Sanjay Park, Viman Nagar - 411032.\n• Twin: 18 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 11 beds listed; rent ₹24,000/month; deposit ₹24,000 (lowest private room rate in Reforbs).\n• Setup: 3BHK standalone building; each floor is a 3BHK (2 single/private sharing, 1 twin sharing). Maximum occupancy per floor: 4. Kitchen, balcony, living area, and dining area.\n• AC: Yes | Washroom: Attached | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
+      "Moksha (Co-Living) is located at Plot 61, Lane 2A, Sanjay Park, Viman Nagar - 411032.\n• Twin: 18 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 11 beds listed; rent ₹24,000/month; deposit ₹24,000 (lowest private room rate in Reforbs).\n• Setup: 3BHK standalone building; each floor is a 3BHK (2 single/private sharing, 1 twin sharing). Maximum occupancy per floor: 4. Kitchen, balcony, living area, and dining area.\n• AC: Yes | Washroom: Attached | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
     searchTerms: ["moksha", "rent at moksha", "private room rent at moksha", "moksha twin", "moksha private"],
     propertyNames: ["Moksha"],
     isFAQ: true,
@@ -1136,7 +1137,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Moksha",
     question: "Is Moksha couple-friendly?",
     content:
-      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager on 7420040241.",
+      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager using the Call Us button below.",
     searchTerms: ["moksha couple friendly", "boyfriend at moksha", "couple at moksha"],
     propertyNames: ["Moksha"],
     isFAQ: true,
@@ -1150,7 +1151,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Vipasna",
     question: "What is the rent at Vipasna?",
     content:
-      "Vipasna (Co-Living) is located at Plot 36, Lane 3, Sanjay Park, Viman Nagar - 411032.\n• Twin: 6 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 8 beds listed; rent ₹27,000/month; deposit ₹27,000.\n• Setup: Dorm layout. Standalone building with 4 rooms on every floor. Every room has an attached washroom. Common kitchen shared by 4 rooms, living area, and dining area. Hotel-like structure suitable for premium rooms.\n• AC: Yes | Washroom: Attached to every room | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
+      "Vipasna (Co-Living) is located at Plot 36, Lane 3, Sanjay Park, Viman Nagar - 411032.\n• Twin: 6 beds listed; rent ₹17,000/month; deposit ₹17,000.\n• Private: 8 beds listed; rent ₹27,000/month; deposit ₹27,000.\n• Setup: Dorm layout. Standalone building with 4 rooms on every floor. Every room has an attached washroom. Common kitchen shared by 4 rooms, living area, and dining area. Hotel-like structure suitable for premium rooms.\n• AC: Yes | Washroom: Attached to every room | Couple-friendly: Yes\n• Food: Available and optional; call for further details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed | Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/8MsiHGMq8s6R2At28 (flagged for owner verification)",
     searchTerms: ["vipasna", "vipasana", "rent at vipasna", "vipasna twin", "vipasna private"],
     propertyNames: ["Vipasna"],
     isFAQ: true,
@@ -1162,7 +1163,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Vipasna",
     question: "Is Vipasna couple-friendly?",
     content:
-      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager on 7420040241.",
+      "The owner table marks this property as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager using the Call Us button below.",
     searchTerms: ["vipasna couple friendly", "vipasana couple friendly"],
     propertyNames: ["Vipasna"],
     isFAQ: true,
@@ -1176,7 +1177,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Park Island",
     question: "What is the rent at Park Island?",
     content:
-      "Park Island (Company Guesthouse) is located at Shastrinagar, Pune, Maharashtra 411006.\n• Twin: 12 beds listed; rent ₹20,000/month; deposit ₹20,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/8h4ivEDdFCMz5kFg9",
+      "Park Island (Company Guesthouse) is located at Shastrinagar, Pune, Maharashtra 411006.\n• Twin: 12 beds listed; rent ₹20,000/month; deposit ₹20,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/8h4ivEDdFCMz5kFg9",
     searchTerms: ["park island", "rent at park island", "park island regular pg", "park island company guesthouse"],
     propertyNames: ["Park Island"],
     isFAQ: true,
@@ -1190,7 +1191,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Pillar Homes",
     question: "What is the rent at Pillar Homes?",
     content:
-      "Pillar Homes (Company Guesthouse) is located at Pillar Homes, Clover Park, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 27 beds listed; rent ₹25,000/month; deposit ₹25,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/V4JFnudQ7dCT7euB7",
+      "Pillar Homes (Company Guesthouse) is located at Pillar Homes, Clover Park, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 27 beds listed; rent ₹25,000/month; deposit ₹25,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/V4JFnudQ7dCT7euB7",
     searchTerms: ["pillar homes", "rent at pillar homes", "pillar homes regular pg", "pillar homes company guesthouse"],
     propertyNames: ["Pillar Homes"],
     isFAQ: true,
@@ -1204,7 +1205,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Suyog Enclave",
     question: "What is the rent at Suyog Enclave?",
     content:
-      "Suyog Enclave (Company Guesthouse) is located at 64P, behind Bajaj Finserv, Sakore Nagar Road, Sakore Nagar, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 18 beds listed; rent ₹25,000/month; deposit ₹25,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: 7420040241 | Google Maps: https://maps.app.goo.gl/2vLb3jCP81qCEZuL9",
+      "Suyog Enclave (Company Guesthouse) is located at 64P, behind Bajaj Finserv, Sakore Nagar Road, Sakore Nagar, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 18 beds listed; rent ₹25,000/month; deposit ₹25,000. Private: 0 beds; rent and deposit NA.\n• Important eligibility: Company guesthouse for employees of a dedicated company; not available as a regular PG.\n• AC: Yes | Washroom: Attached (Table 1) | Couple-friendly: No\n• Food: Available and optional; call for details.\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Restrictions: None listed in restrictions field; company-guesthouse eligibility still applies. Lock-in: No\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/2vLb3jCP81qCEZuL9",
     searchTerms: ["suyog enclave", "suyog", "address of suyog enclave", "rent at suyog enclave", "suyog company guesthouse"],
     propertyNames: ["Suyog Enclave"],
     isFAQ: true,
@@ -1218,7 +1219,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Shubh Gateway",
     question: "What is the rent at Shubh Gateway?",
     content:
-      "Shubh Gateway (Student Accommodation) is located at Sr. No. 227, Plot No. 1, New Airport Road, opposite Symbiosis Law College, Viman Nagar, Pune, Maharashtra 411032.\n• Girls twin: 42 beds listed; ₹25,000/month; deposit ₹40,000.\n• Boys twin: 24 beds listed; ₹27,000/month; deposit ₹40,000.\n• Private rows list 0 beds and rent NA; deposit field shows ₹40,000, which must not be treated as an available private offer (refer to sales).\n• Setup: 3BHK apartments in a gated society with 4 towers A-D, 12 floors per tower and 4 units of 3BHK per floor. Selected apartments managed as student accommodation. Towers/apartments are gender-specific: boys only or girls only.\n• AC: Yes | Washroom: Attached/private | Couple-friendly: No\n• Food: Breakfast and dinner included.\n• Laundry: Included twice weekly, 5 kg.\n• Restrictions: Visitors of opposite genders are not allowed. Boys and girls accommodation is gender-specific. Lock-in: Annual\n• Contact: 7057897430 | Google Maps: https://maps.app.goo.gl/VR1T7UwD58H6UGa49",
+      "Shubh Gateway (Student Accommodation) is located at Sr. No. 227, Plot No. 1, New Airport Road, opposite Symbiosis Law College, Viman Nagar, Pune, Maharashtra 411032.\n• Girls twin: 42 beds listed; ₹25,000/month; deposit ₹40,000.\n• Boys twin: 24 beds listed; ₹27,000/month; deposit ₹40,000.\n• Private rows list 0 beds and rent NA; deposit field shows ₹40,000, which must not be treated as an available private offer (refer to sales).\n• Setup: 3BHK apartments in a gated society with 4 towers A-D, 12 floors per tower and 4 units of 3BHK per floor. Selected apartments managed as student accommodation. Towers/apartments are gender-specific: boys only or girls only.\n• AC: Yes | Washroom: Attached/private | Couple-friendly: No\n• Food: Breakfast and dinner included.\n• Laundry: Included twice weekly, 5 kg.\n• Restrictions: Visitors of opposite genders are not allowed. Boys and girls accommodation is gender-specific. Lock-in: Annual\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/VR1T7UwD58H6UGa49",
     searchTerms: ["shubh gateway", "rent at shubh gateway", "girls twin sharing shubh gateway", "boys twin sharing shubh gateway", "shubh gateway laundry", "shubh gateway opposite gender"],
     propertyNames: ["Shubh Gateway"],
     isFAQ: true,
@@ -1232,7 +1233,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Brindavan",
     question: "What is the rent at Brindavan?",
     content:
-      "Brindavan (Student Accommodation) is located at Symbiosis Road, behind Dr Lal Path Lab, Sakore Nagar, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 32 beds listed; ₹27,000/month; deposit ₹30,000.\n• Private: 16 beds listed; ₹32,000/month; deposit ₹30,000.\n• Setup: 1BHK units in a standalone 4-floor building with 4 units per floor. Each 1BHK accommodates 3 people: one twin-sharing room and one single/private room. Separate entrance, private washroom, co-working space.\n• AC: Yes | Washroom: Private | Couple-friendly: No\n• Food: Breakfast, lunch and dinner included (all 3 meals).\n• Laundry: Included twice weekly, 5 kg.\n• Restrictions: Visitors of opposite genders are not allowed. Lock-in: Annual\n• Closest college: Symbiosis Management College 400 m (Symbiosis Law School is 2 km).\n• Contact: 9637019838 | Google Maps: https://maps.app.goo.gl/MJWzeZj1LZHcyn1V9",
+      "Brindavan (Student Accommodation) is located at Symbiosis Road, behind Dr Lal Path Lab, Sakore Nagar, Viman Nagar, Pune, Maharashtra 411014.\n• Twin: 32 beds listed; ₹27,000/month; deposit ₹30,000.\n• Private: 16 beds listed; ₹32,000/month; deposit ₹30,000.\n• Setup: 1BHK units in a standalone 4-floor building with 4 units per floor. Each 1BHK accommodates 3 people: one twin-sharing room and one single/private room. Separate entrance, private washroom, co-working space.\n• AC: Yes | Washroom: Private | Couple-friendly: No\n• Food: Breakfast, lunch and dinner included (all 3 meals).\n• Laundry: Included twice weekly, 5 kg.\n• Restrictions: Visitors of opposite genders are not allowed. Lock-in: Annual\n• Closest college: Symbiosis Management College 400 m (Symbiosis Law School is 2 km).\n• Contact: Available via the Call Us button below | Google Maps: https://maps.app.goo.gl/MJWzeZj1LZHcyn1V9",
     searchTerms: ["brindavan", "rent at brindavan", "food included at brindavan", "college closest to brindavan", "lock-in at brindavan"],
     propertyNames: ["Brindavan"],
     isFAQ: true,
@@ -1246,7 +1247,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Vairagya",
     question: "What is the rent at Vairagya?",
     content:
-      "Vairagya (Student Accommodation) is located near Symbiosis University, Lavale, Pune.\n• Triple: 27 beds listed; ₹15,000/month; deposit ₹20,000 (lowest listed rate in Reforbs).\n• Twin: 24 beds listed; ₹17,000/month; deposit ₹20,000.\n• Setup: Standalone building with 5 spacious 1BHK units. Each 1BHK holds 3 people in triple-sharing configuration; some units reserved for twin sharing only. Best suited for Symbiosis University, Lavale.\n• AC: No (non-AC property) | Washroom: Private/attached (Table 1) | Couple-friendly: No\n• Food: Breakfast and dinner included (running mess with in-house cooking).\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Address: Not provided in owner document. Do not invent.\n• Google Maps: Not supplied in owner document. Do not invent.\n• Restrictions: Visitors of opposite genders are not allowed. Lock-in: Annual\n• Landmarks: Symbiosis University 500 m; ISBM College 500 m.\n• Contact: 7387614629",
+      "Vairagya (Student Accommodation) is located near Symbiosis University, Lavale, Pune.\n• Triple: 27 beds listed; ₹15,000/month; deposit ₹20,000 (lowest listed rate in Reforbs).\n• Twin: 24 beds listed; ₹17,000/month; deposit ₹20,000.\n• Setup: Standalone building with 5 spacious 1BHK units. Each 1BHK holds 3 people in triple-sharing configuration; some units reserved for twin sharing only. Best suited for Symbiosis University, Lavale.\n• AC: No (non-AC property) | Washroom: Private/attached (Table 1) | Couple-friendly: No\n• Food: Breakfast and dinner included (running mess with in-house cooking).\n• Laundry: Self-use multiple washing machines; paid laundry service also available.\n• Address: Not provided in owner document. Do not invent.\n• Google Maps: Not supplied in owner document. Do not invent.\n• Restrictions: Visitors of opposite genders are not allowed. Lock-in: Annual\n• Landmarks: Symbiosis University 500 m; ISBM College 500 m.\n• Contact: Available via the Call Us button below",
     searchTerms: ["vairagya", "rent at vairagya", "triple sharing rent at vairagya", "is vairagya air-conditioned", "where is vairagya located"],
     propertyNames: ["Vairagya"],
     isFAQ: true,
@@ -1260,7 +1261,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Shared policies, safety, and support",
     question: "What is the maintenance helpline number?",
     content:
-      "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team at 7420040241 or reforbsar@gmail.com.",
+      "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team using the Call Us button below or email reforbsar@gmail.com.",
     searchTerms: ["maintenance helpline", "helpline number", "maintenance helpline number", "report maintenance"],
     isFAQ: true,
     priorityWeight: 2.5,

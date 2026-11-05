@@ -22,6 +22,7 @@ import {
   CONTACT_EMAIL,
   APPROVED_FALLBACK,
 } from "./knowledgeConfig";
+import { sanitizeVisibleText } from "./phoneSanitizer";
 
 function findProperty(nameOrAlias?: string): PropertyKnowledge | undefined {
   if (!nameOrAlias) return undefined;
@@ -33,7 +34,25 @@ function findProperty(nameOrAlias?: string): PropertyKnowledge | undefined {
   );
 }
 
+function cleanPhoneTarget(phone?: string): string {
+  if (!phone) return "7420040241";
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 10 ? digits.slice(-10) : "7420040241";
+}
+
 export function validateAndGenerateResponse(
+  rawQuery: string,
+  analysis: IntentDetectionResult
+): SearchResult {
+  const innerResult = _validateAndGenerateResponseInner(rawQuery, analysis);
+  return {
+    ...innerResult,
+    text: sanitizeVisibleText(innerResult.text),
+    phoneTarget: cleanPhoneTarget(innerResult.phoneTarget),
+  };
+}
+
+function _validateAndGenerateResponseInner(
   rawQuery: string,
   analysis: IntentDetectionResult
 ): SearchResult {
@@ -48,9 +67,7 @@ export function validateAndGenerateResponse(
       recordKnowledgeGap("OFF_TOPIC_QUERY", rawQuery);
       return {
         text:
-          "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, room options, and living in Pune. If you have any questions about our spaces or would like to schedule a visit, feel free to ask or call us at " +
-          CONTACT_PHONE +
-          "!",
+          "I'm dedicated to helping you with Reforbs accommodation, properties, amenities, room options, and living in Pune. Please use the Call Us button below to speak directly with our team!",
         pageNumber: null,
         sourceLabel: null,
         confidence: 0,
@@ -70,13 +87,12 @@ export function validateAndGenerateResponse(
             "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private 1RK: ₹29,000/mo. Attached kitchen, AC, couple-friendly, zero lock-in.\n" +
             "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private: ₹24,000/mo. 3BHK layout (max 4/floor), AC, couple-friendly, zero lock-in.\n" +
             "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/mo | Private Ensuite: ₹27,000/mo. Hotel-style ensuite, AC, couple-friendly, zero lock-in.\n\n" +
-            "For inquiries, contact the Reforbs team at " +
-            CONTACT_PHONE +
-            ".",
+            "For inquiries, please use the Call Us button below.",
           pageNumber: 2,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 2",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: "7420040241",
         };
       }
 
@@ -87,13 +103,12 @@ export function validateAndGenerateResponse(
             "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/mo | Boys' Twin: ₹27,000/mo (Deposit: ₹40,000). Breakfast & dinner included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
             "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/mo | Private: ₹32,000/mo (Deposit: ₹30,000). All 3 meals included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
             "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/mo | Twin: ₹17,000/mo (Deposit: ₹20,000). Running mess included, non-AC. Opposite-gender visitors not allowed. Annual lock-in.\n\n" +
-            "For inquiries, contact the respective student residence managers or call " +
-            CONTACT_PHONE +
-            ".",
+            "For inquiries, please use the Call Us button below.",
           pageNumber: 2,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 2",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: "7420040241",
         };
       }
 
@@ -112,9 +127,7 @@ export function validateAndGenerateResponse(
           "• Park Island (Shastrinagar) — Twin: ₹20,000/mo (Deposit: ₹20,000).\n" +
           "• Pillar Homes (Clover Park, Viman Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n" +
           "• Suyog Enclave (Behind Bajaj Finserv, Sakore Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n\n" +
-          "For inquiries, contact the Reforbs team at " +
-          CONTACT_PHONE +
-          " or " +
+          "For inquiries, please use the Call Us button below or email " +
           CONTACT_EMAIL +
           ".",
         pageNumber: 2,
@@ -150,26 +163,24 @@ export function validateAndGenerateResponse(
             "• Vipasna (Co-Living, Sanjay Park): ₹27,000/month\n" +
             "• Nirvana (Co-Living 1RK, Sanjay Park): ₹29,000/month\n" +
             "• Brindavan (Student Accommodation, Sakore Nagar): ₹32,000/month (all 3 meals included)\n\n" +
-            "These are document comparisons, not a live availability guarantee. Please confirm with sales on " +
-            CONTACT_PHONE +
-            ".",
+            "These are document comparisons, not a live availability guarantee. Please confirm with sales using the Call Us button below.",
           pageNumber: 4,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 4",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: "7420040241",
         };
       }
 
       if (entities.occupancyType === "double") {
         return {
           text:
-            "The lowest listed twin-sharing rent is ₹17,000 per month at Nirvana, Moksha, Vipasna, and Vairagya. Confirm the preferred property’s current availability with sales on " +
-            CONTACT_PHONE +
-            ".",
+            "The lowest listed twin-sharing rent is ₹17,000 per month at Nirvana, Moksha, Vipasna, and Vairagya. Confirm the preferred property’s current availability with sales using the Call Us button below.",
           pageNumber: 4,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 4",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: "7420040241",
         };
       }
 
@@ -178,13 +189,12 @@ export function validateAndGenerateResponse(
           "The lowest listed room rate in the owner table is Vairagya triple sharing at ₹15,000 per month (with breakfast and dinner included in running mess). This is a listed starting rate, not confirmation of current availability.\n\n" +
           "Lowest twin-sharing rate: ₹17,000/month at Nirvana, Moksha, Vipasna, and Vairagya.\n" +
           "Lowest private-room rate: ₹24,000/month at Moksha.\n\n" +
-          "To check live vacancies, please contact sales on " +
-          CONTACT_PHONE +
-          ".",
+          "To check live vacancies, please contact sales using the Call Us button below.",
         pageNumber: 4,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 4",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: "7420040241",
       };
     }
 
@@ -200,13 +210,12 @@ export function validateAndGenerateResponse(
         ) {
           return {
             text:
-              "For Shubh Gateway, the owner table lists 0 beds and rent as NA for private rows, while the deposit column shows ₹40,000. Private occupancy is not listed as available and must not be inferred as an available offer. Please contact sales at " +
-              (matchedProp.contactPhone || CONTACT_PHONE) +
-              " for inquiries.",
+              "For Shubh Gateway, the owner table lists 0 beds and rent as NA for private rows, while the deposit column shows ₹40,000. Private occupancy is not listed as available and must not be inferred as an available offer. Please contact sales using the Call Us button below for inquiries.",
             pageNumber: 13,
             sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 13",
             confidence: 30.0,
             isFallback: false,
+            phoneTarget: matchedProp.contactPhone || "7057897430",
           };
         }
 
@@ -215,25 +224,23 @@ export function validateAndGenerateResponse(
           if (entities.targetGender === "girls") {
             return {
               text:
-                "At Shubh Gateway (Student Accommodation), girls' twin sharing is ₹25,000/month (security deposit: ₹40,000; 42 beds listed). Includes breakfast and dinner, and laundry twice weekly (up to 5 kg). Opposite-gender visitors are not allowed. Contact manager at " +
-                matchedProp.contactPhone +
-                ".",
+                "At Shubh Gateway (Student Accommodation), girls' twin sharing is ₹25,000/month (security deposit: ₹40,000; 42 beds listed). Includes breakfast and dinner, and laundry twice weekly (up to 5 kg). Opposite-gender visitors are not allowed. Please use the Call Us button below to connect with the management team.",
               pageNumber: 13,
               sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 13",
               confidence: 30.0,
               isFallback: false,
+              phoneTarget: matchedProp.contactPhone || "7057897430",
             };
           }
           if (entities.targetGender === "boys") {
             return {
               text:
-                "At Shubh Gateway (Student Accommodation), boys' twin sharing is ₹27,000/month (security deposit: ₹40,000; 24 beds listed). Includes breakfast and dinner, and laundry twice weekly (up to 5 kg). Opposite-gender visitors are not allowed. Contact manager at " +
-                matchedProp.contactPhone +
-                ".",
+                "At Shubh Gateway (Student Accommodation), boys' twin sharing is ₹27,000/month (security deposit: ₹40,000; 24 beds listed). Includes breakfast and dinner, and laundry twice weekly (up to 5 kg). Opposite-gender visitors are not allowed. Please use the Call Us button below to connect with the management team.",
               pageNumber: 13,
               sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 13",
               confidence: 30.0,
               isFallback: false,
+              phoneTarget: matchedProp.contactPhone || "7057897430",
             };
           }
         }
@@ -242,13 +249,12 @@ export function validateAndGenerateResponse(
         if (matchedProp.id === "vairagya" && entities.occupancyType === "triple") {
           return {
             text:
-              "At Vairagya (Student Accommodation in Lavale), triple sharing is ₹15,000/month (security deposit: ₹20,000; 27 beds listed). This is the lowest listed rate across Reforbs. Includes breakfast and dinner in running mess; non-AC. Contact manager at " +
-              matchedProp.contactPhone +
-              ".",
+              "At Vairagya (Student Accommodation in Lavale), triple sharing is ₹15,000/month (security deposit: ₹20,000; 27 beds listed). This is the lowest listed rate across Reforbs. Includes breakfast and dinner in running mess; non-AC. Please use the Call Us button below to connect with the management team.",
             pageNumber: 15,
             sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 15",
             confidence: 30.0,
             isFallback: false,
+            phoneTarget: matchedProp.contactPhone || "7387614629",
           };
         }
 
@@ -256,13 +262,12 @@ export function validateAndGenerateResponse(
         if (matchedProp.id === "nirvana" && (entities.occupancyType === "double" || rawQuery.toLowerCase().includes("twin"))) {
           return {
             text:
-              "At Nirvana (Co-Living), twin sharing is ₹17,000/month (security deposit: ₹17,000; 26 beds listed). Units are independent 1RKs with attached private kitchen, attached washroom, AC, couple-friendly, zero lock-in. Contact host on " +
-              matchedProp.contactPhone +
-              ".",
+              "At Nirvana (Co-Living), twin sharing is ₹17,000/month (security deposit: ₹17,000; 26 beds listed). Units are independent 1RKs with attached private kitchen, attached washroom, AC, couple-friendly, zero lock-in. Please use the Call Us button below to connect with the host.",
             pageNumber: 7,
             sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 7",
             confidence: 30.0,
             isFallback: false,
+            phoneTarget: matchedProp.contactPhone || "7420040241",
           };
         }
 
@@ -270,13 +275,12 @@ export function validateAndGenerateResponse(
         if (matchedProp.id === "moksha" && (entities.occupancyType === "single" || rawQuery.toLowerCase().includes("private"))) {
           return {
             text:
-              "At Moksha (Co-Living), private room rent is ₹24,000/month (security deposit: ₹24,000; 11 beds listed). This is the lowest private room rate in Reforbs. Twin sharing is ₹17,000/month (deposit: ₹17,000; 18 beds listed). AC, attached washrooms, max 4 residents per floor, couple-friendly, zero lock-in. Contact host on " +
-              matchedProp.contactPhone +
-              ".",
+              "At Moksha (Co-Living), private room rent is ₹24,000/month (security deposit: ₹24,000; 11 beds listed). This is the lowest private room rate in Reforbs. Twin sharing is ₹17,000/month (deposit: ₹17,000; 18 beds listed). AC, attached washrooms, max 4 residents per floor, couple-friendly, zero lock-in. Please use the Call Us button below to connect with the host.",
             pageNumber: 8,
             sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 8",
             confidence: 30.0,
             isFallback: false,
+            phoneTarget: matchedProp.contactPhone || "7420040241",
           };
         }
 
@@ -296,7 +300,7 @@ export function validateAndGenerateResponse(
         if (matchedProp.foodPolicy) {
           rentDetails += `• Food: ${matchedProp.foodPolicy}\n`;
         }
-        rentDetails += `For inquiries, contact: ${matchedProp.contactPhone || CONTACT_PHONE}.`;
+        rentDetails += `For inquiries, please use the Call Us button below.`;
 
         return {
           text: rentDetails,
@@ -304,19 +308,19 @@ export function validateAndGenerateResponse(
           sourceLabel: `Source: Reforbs Owner Q&A Knowledge, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: matchedProp.contactPhone || "7420040241",
         };
       }
 
       // If no property specified, show lowest listed rates
       return {
         text:
-          "Lowest listed rate across the room options in Table 1: Vairagya triple sharing at ₹15,000 per month. Lowest listed twin-sharing rate: ₹17,000 at Nirvana, Moksha, Vipasna, and Vairagya. Lowest listed private-room rate: Moksha at ₹24,000. These are document comparisons, not a live availability or final-quote guarantee. Please specify a property or contact sales on " +
-          CONTACT_PHONE +
-          ".",
+          "Lowest listed rate across the room options in Table 1: Vairagya triple sharing at ₹15,000 per month. Lowest listed twin-sharing rate: ₹17,000 at Nirvana, Moksha, Vipasna, and Vairagya. Lowest listed private-room rate: Moksha at ₹24,000. These are document comparisons, not a live availability or final-quote guarantee. Please specify a property or use the Call Us button below.",
         pageNumber: 3,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 3",
         confidence: 25.0,
         isFallback: false,
+        phoneTarget: "7420040241",
       };
     }
 
@@ -328,13 +332,12 @@ export function validateAndGenerateResponse(
         if (matchedProp.coupleFriendly) {
           return {
             text:
-              `Yes. The owner table marks ${matchedProp.name} as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager on ` +
-              (matchedProp.contactPhone || CONTACT_PHONE) +
-              ".",
+              `Yes. The owner table marks ${matchedProp.name} as Yes for couple-friendly eligibility. Confirm any individual arrangement with the property manager using the Call Us button below.`,
             pageNumber: matchedProp.pageNumber,
             sourceLabel: `Source: Reforbs Owner Q&A Knowledge, page ${matchedProp.pageNumber}`,
             confidence: 30.0,
             isFallback: false,
+            phoneTarget: matchedProp.contactPhone || "7420040241",
           };
         } else {
           return {
@@ -350,11 +353,12 @@ export function validateAndGenerateResponse(
 
       return {
         text:
-          "The owner table marks Nirvana, Moksha, and Vipasna as Yes for couple-friendly eligibility. Park Island, Pillar Homes, Suyog Enclave, Shubh Gateway, Brindavan, and Vairagya are marked No for couples.",
+          "Couples are welcome at Reforbs Co-Living properties (Nirvana, Moksha, and Vipasna). Student accommodations and company guesthouses are not couple-friendly.",
         pageNumber: 4,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 4",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: "7420040241",
       };
     }
 
@@ -917,6 +921,7 @@ export function validateAndGenerateResponse(
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: matchedProp?.contactPhone || "7420040241",
       };
     }
 
@@ -928,25 +933,23 @@ export function validateAndGenerateResponse(
       if (q.includes("visit before paying") || q.includes("payment before visit")) {
         return {
           text:
-            "The owner document does not explicitly answer whether a visit before payment is required or permitted. Please confirm with the sales team on " +
-            CONTACT_PHONE +
-            ".",
+            "The owner document does not explicitly answer whether a visit before payment is required or permitted. Please confirm with the sales team using the Call Us button below.",
           pageNumber: 6,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: matchedProp?.contactPhone || "7420040241",
         };
       }
 
       return {
         text:
-          "Please contact Reforbs sales on " +
-          CONTACT_PHONE +
-          " by call or WhatsApp to arrange a visit. Working hours are 10 AM to 10 PM. (The chatbot cannot schedule or complete a booking).",
+          "To schedule a visit or property walkthrough, please use the Call Us button below to connect with our team. Working hours are 10 AM to 10 PM. (The chatbot cannot schedule or complete a booking).",
         pageNumber: 6,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: matchedProp?.contactPhone || "7420040241",
       };
     }
 
@@ -958,26 +961,24 @@ export function validateAndGenerateResponse(
       if (q.includes("documents") || q.includes("aadhaar") || q.includes("kyc")) {
         return {
           text:
-            "Required booking documents are not specified in the owner document. Please confirm with the sales team on " +
-            CONTACT_PHONE +
-            ".",
+            "Required booking documents are not specified in the owner document. Please confirm with the sales team using the Call Us button below.",
           pageNumber: 6,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: matchedProp?.contactPhone || "7420040241",
         };
       }
 
       if (q.includes("confirm") || q.includes("reserve") || q.includes("hold")) {
         return {
           text:
-            "No. The chatbot can answer from the knowledge document but cannot check live availability or confirm a booking. Please call or WhatsApp " +
-            CONTACT_PHONE +
-            ".",
+            "No. The chatbot can answer from the knowledge document but cannot check live availability or confirm a booking. Please use the Call Us button below to speak directly with our team.",
           pageNumber: 6,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: matchedProp?.contactPhone || "7420040241",
         };
       }
 
@@ -989,6 +990,7 @@ export function validateAndGenerateResponse(
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 6",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: matchedProp?.contactPhone || "7420040241",
       };
     }
 
@@ -998,15 +1000,14 @@ export function validateAndGenerateResponse(
     case "MAINTENANCE_HELPLINE": {
       return {
         text:
-          "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team at " +
-          CONTACT_PHONE +
-          " or " +
+          "Report maintenance issues through the common helpline. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team using the Call Us button below or by email at " +
           CONTACT_EMAIL +
           ".",
         pageNumber: 16,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 16",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: "7420040241",
       };
     }
 
@@ -1062,6 +1063,28 @@ export function validateAndGenerateResponse(
     // -------------------------------------------------------------------------
     case "CONTACT_SUPPORT": {
       const q = rawQuery.toLowerCase();
+      if (q.includes("arpit")) {
+        return {
+          text: "Reforbs properties are managed by our dedicated property management teams. You can speak directly with our Reforbs team by using the Call Us button.",
+          pageNumber: 5,
+          sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 5",
+          confidence: 30.0,
+          isFallback: false,
+          phoneTarget: "7420040241",
+        };
+      }
+
+      if (q.includes("manager") || q.includes("host") || q.includes("caretaker")) {
+        return {
+          text: "Each Reforbs property has its own management team. Please use the Call Us button to connect with the relevant team.",
+          pageNumber: 5,
+          sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 5",
+          confidence: 30.0,
+          isFallback: false,
+          phoneTarget: matchedProp?.contactPhone || "7420040241",
+        };
+      }
+
       if (q.includes("who updates") || q.includes("policy update") || q.includes("price update")) {
         return {
           text: "The owner document notes that the property management team is responsible for updating prices, vacancies, and policies. It says rates and deposits should be reviewed annually.",
@@ -1092,16 +1115,29 @@ export function validateAndGenerateResponse(
         };
       }
 
+      if (q.includes("phone") || q.includes("number") || q.includes("call") || q.includes("contact")) {
+        const teamLabel = matchedProp ? `the ${matchedProp.name} team` : "our Reforbs team";
+        return {
+          text: `You can speak directly with ${teamLabel} by using the Call Us button. Our team will be happy to assist you.`,
+          pageNumber: 5,
+          sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 5",
+          confidence: 30.0,
+          isFallback: false,
+          phoneTarget: matchedProp?.contactPhone || "7420040241",
+        };
+      }
+
       return {
         text:
           "Official contact details for Reforbs:\n" +
-          "• Phone / WhatsApp: +91 74200 40241\n" +
+          "• Telephone: Available via the Call Us button below\n" +
           "• Email: reforbsar@gmail.com\n" +
           "• Working Hours: 10 AM to 10 PM",
         pageNumber: 5,
         sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 5",
         confidence: 30.0,
         isFallback: false,
+        phoneTarget: matchedProp?.contactPhone || "7420040241",
       };
     }
 
@@ -1136,11 +1172,12 @@ export function validateAndGenerateResponse(
             `• Lock-in: ${matchedProp.annualLockIn ? "Annual" : "No"}\n` +
             (matchedProp.foodPolicy ? `• Food: ${matchedProp.foodPolicy}\n` : "") +
             (matchedProp.laundryPolicy ? `• Laundry: ${matchedProp.laundryPolicy}\n` : "") +
-            `• Contact: ${matchedProp.contactPhone || CONTACT_PHONE}`,
+            `• Contact: Available via the Call Us button below`,
           pageNumber: matchedProp.pageNumber,
           sourceLabel: `Source: Reforbs Owner Q&A Knowledge, page ${matchedProp.pageNumber}`,
           confidence: 30.0,
           isFallback: false,
+          phoneTarget: matchedProp.contactPhone || "7420040241",
         };
       }
       break;
@@ -1156,12 +1193,11 @@ export function validateAndGenerateResponse(
   // Honest fallback when no factual claim is found
   recordKnowledgeGap("UNVERIFIED_GENERAL_DETAIL", rawQuery);
   return {
-    text:
-      "I couldn’t verify that detail in the current Reforbs knowledge base. " +
-      APPROVED_FALLBACK,
+    text: APPROVED_FALLBACK,
     pageNumber: 2,
     sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 2",
     confidence: 10.0,
     isFallback: true,
+    phoneTarget: "7420040241",
   };
 }

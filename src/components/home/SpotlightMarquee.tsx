@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ExternalLink, ChevronDown, ChevronUp, Newspaper, CheckCircle2 } from "lucide-react";
+import { ExternalLink, ChevronDown, ChevronUp, Newspaper, CheckCircle2, Phone } from "lucide-react";
 
 interface BrandItem {
   id: string;
@@ -390,9 +390,11 @@ export default function SpotlightMarquee() {
             <span>Press inquiries & media interviews: <strong className="text-[#1B1D1C]">contact@reforbs.com</strong></span>
             <a
               href="tel:7420040241"
-              className="inline-flex items-center gap-1 text-[#007A7A] font-bold hover:underline"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white transition-colors text-xs font-bold shadow-sm"
+              aria-label="Call Us"
             >
-              Host Helpline 7420040241 <ExternalLink size={12} />
+              <Phone size={12} />
+              <span>Call Us</span>
             </a>
           </div>
         </div>

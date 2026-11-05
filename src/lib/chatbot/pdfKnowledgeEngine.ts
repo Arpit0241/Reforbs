@@ -24,6 +24,7 @@ export interface SearchResult {
   confidence: number;
   isFallback: boolean;
   isOffTopic?: boolean;
+  phoneTarget?: string;
 }
 
 export interface EngineStatus {
