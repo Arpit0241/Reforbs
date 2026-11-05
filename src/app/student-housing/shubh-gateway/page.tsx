@@ -17,10 +17,10 @@ const property: PropertyData = {
   reviewsCount: 148,
   priceDouble: "₹25,000 (Girls) / ₹27,000 (Boys)",
   contactPhone: "+91 70578 97430",
-  googleMapsUrl: "https://maps.app.goo.gl/uX3L3b1kR7N7K3Fk6",
+  googleMapsUrl: "https://maps.app.goo.gl/o1S39E1QnLh1K7C77",
   coupleFriendly: false,
   annualLockIn: true,
-  foodPolicy: "Breakfast & Dinner Included in Running Mess",
+  foodPolicy: "Breakfast and dinner included.",
   laundryPolicy: "Laundry Included 2x a Week (up to 5 kg)",
   heroImage: "/images/properties/sls/image-1.jpg",
   galleryImages: [
@@ -66,7 +66,7 @@ const property: PropertyData = {
     { name: "High-Speed Optical Wi-Fi", included: true },
     { name: "Daily Housekeeping & Care", included: true },
     { name: "Gender-Segregated Living", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
     { name: "Annual Academic Lock-in", included: true },
   ],
   landmarks: [

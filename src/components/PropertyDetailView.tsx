@@ -88,36 +88,6 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
         {/* Property Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="badge-eyebrow">
-                {property.category}
-              </span>
-              {property.category === "Company Guesthouse" ? (
-                <span className="text-xs font-black px-3 py-1 rounded-full bg-slate-800 text-white">
-                  Corporate Guesthouse
-                </span>
-              ) : property.coupleFriendly ? (
-                <span className="text-xs font-black px-3 py-1 rounded-full bg-[#FFDE59] text-[#1B1D1C]">
-                  Couple Friendly
-                </span>
-              ) : (
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#FAFAFA] text-[#4A524F] border border-[#E1E7E6]">
-                  Single Occupancy / No Opposite-Gender Visitors
-                </span>
-              )}
-              {property.annualLockIn ? (
-                <span className="text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3 py-1 rounded-full">
-                  Annual Lock-in
-                </span>
-              ) : (
-                <span className="text-xs font-bold text-[#007A7A] bg-[#E6F4F3] px-3 py-1 rounded-full">
-                  Zero Lock-in
-                </span>
-              )}
-              <span className="text-xs font-bold text-[#666B68] bg-white px-3 py-1 rounded-full border border-[#E1E7E6]">
-                Pune
-              </span>
-            </div>
             <h1 className="text-2xl sm:text-4xl font-black text-[#1B1D1C] font-heading">
               {property.name}
             </h1>
@@ -244,12 +214,16 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                   <span className="font-black text-[#1B1D1C] text-sm">Single &amp; Double</span>
                 </div>
                 <div>
-                  <span className="text-[#666B68] block font-bold">Food Policy</span>
-                  <span className="font-black text-[#1B1D1C] text-sm">Freedom (No Mess Lock)</span>
+                  <span className="text-[#666B68] block font-bold">Food</span>
+                  <span className="font-black text-[#1B1D1C] text-sm">
+                    {property.foodPolicy || "Contact property team"}
+                  </span>
                 </div>
                 <div>
-                  <span className="text-[#666B68] block font-bold">House Freedom</span>
-                  <span className="font-black text-[#007A7A] text-sm">Zero Bans / Curfews</span>
+                  <span className="text-[#666B68] block font-bold">House Rules</span>
+                  <span className="font-black text-[#007A7A] text-sm">
+                    {property.annualLockIn ? "Annual Lock-in" : "Zero Lock-in"}
+                  </span>
                 </div>
               </div>
             </div>

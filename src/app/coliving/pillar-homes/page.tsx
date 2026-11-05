@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/u5K8f7H9Y4X2Z1W18",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Corporate Dining / Catering Facilitated",
+  foodPolicy: "Contact property team for details.",
   laundryPolicy: "In-house laundry management",
   heroImage: "/images/properties/pillar-homes/image-1.jpg",
   galleryImages: [
@@ -43,7 +43,7 @@ const property: PropertyData = {
         "Two luxury wooden beds with posture mattresses",
         "Dual executive work desks with high-speed ports",
         "Attached washroom with 24/7 hot water geyser",
-        "Full daily housekeeping and linen services included",
+        "Full daily housekeeping included",
       ],
     },
   ],
@@ -52,7 +52,7 @@ const property: PropertyData = {
     { name: "Clover Park Prime Location", included: true },
     { name: "High-Speed Enterprise Wi-Fi", included: true },
     { name: "Professional Daily Cleaning", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
     { name: "Not an Open Public PG", included: true },
   ],
   landmarks: [

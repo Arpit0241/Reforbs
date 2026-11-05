@@ -17,9 +17,10 @@ const property: PropertyData = {
   reviewsCount: 128,
   priceDouble: "₹17,000",
   contactPhone: "+91 73876 14629",
+  googleMapsUrl: "https://maps.google.com/?q=Symbiosis+University+Lavale",
   coupleFriendly: false,
   annualLockIn: true,
-  foodPolicy: "Breakfast & Dinner Included in Running Mess",
+  foodPolicy: "Breakfast and dinner included.",
   laundryPolicy: "Laundry facilities available on premises",
   heroImage: "/images/properties/vairagya/image-1.jpg",
   galleryImages: [
@@ -65,7 +66,7 @@ const property: PropertyData = {
     { name: "Daily Professional Cleaning", included: true },
     { name: "Quiet Study Sanctuary", included: true },
     { name: "Annual Academic Lock-in", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
     { name: "Natural Ventilation (Non-AC)", included: true },
   ],
   landmarks: [

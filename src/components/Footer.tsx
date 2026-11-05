@@ -59,7 +59,7 @@ export default function Footer() {
               <div className="flex items-center gap-2.5">
                 <Phone size={15} className="text-[#FFDE59] shrink-0" />
                 <a href="tel:+917420040241" className="hover:text-[#FFDE59] transition-colors">
-                  +91 74200 40241 (Host: Arpit Agarwal)
+                  +91 74200 40241
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

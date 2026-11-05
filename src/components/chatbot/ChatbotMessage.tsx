@@ -193,7 +193,7 @@ export default function ChatbotMessage({ message }: ChatbotMessageProps) {
                   aria-label="Call host directly"
                 >
                   <Phone size={12} />
-                  <span>Call Arpit (+91 74200 40241)</span>
+                  <span>Call Us (+91 74200 40241)</span>
                 </a>
               )}
               {hasEmail && (

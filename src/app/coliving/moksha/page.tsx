@@ -18,10 +18,10 @@ const property: PropertyData = {
   priceSingle: "₹24,000",
   priceDouble: "₹17,000",
   contactPhone: "+91 74200 40241",
-  googleMapsUrl: "https://maps.app.goo.gl/B9b55M89H7o4HwP27",
+  googleMapsUrl: "https://maps.app.goo.gl/8MsiHGMq8s6R2At28",
   coupleFriendly: true,
   annualLockIn: false,
-  foodPolicy: "Food Optional (Self-cooking allowed in spacious kitchen)",
+  foodPolicy: "Optional food arrangements available. Contact the property team for details.",
   laundryPolicy: "Washing machine available on premises",
   heroImage: "/images/properties/moksha/image-1.jpg",
   galleryImages: [
@@ -44,7 +44,7 @@ const property: PropertyData = {
         "Dual wardrobes with full-length mirror",
         "Co-working desk setup with fiber internet",
         "Attached bathroom with 24/7 hot geyser",
-        "Housekeeping, linen & optical Wi-Fi included",
+        "Daily housekeeping & high-speed optical Wi-Fi included",
       ],
     },
     {
@@ -68,7 +68,7 @@ const property: PropertyData = {
     { name: "Daily Professional Care", included: true },
     { name: "Washing Machine Access", included: true },
     { name: "Full Modular Kitchen", included: true },
-    { name: "24/7 Power Backup & CCTV", included: true },
+    { name: "Inverter Backup & CCTV", included: true },
   ],
   landmarks: [
     { name: "Joggers Park & Cafes", distance: "3 mins walk (250m)" },

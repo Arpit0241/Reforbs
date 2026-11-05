@@ -111,11 +111,11 @@ export default function FeaturedProperties() {
             Explore handcrafted student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, and real community.
           </motion.p>
 
-          {/* Top-Level City Selector: Pune (Active), Goa (Coming Soon), Bangalore (Coming Soon) */}
+          {/* Top-Level City Selector: Pune, Goa, Bangalore */}
           <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 max-w-full">
             <span className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#007A7A] text-white font-extrabold text-xs sm:text-sm shadow-md">
               <MapPin size={15} className="text-[#FFDE59]" />
-              <span>Pune ({propertiesData.length} Active Spaces)</span>
+              <span>Pune</span>
             </span>
 
             <Link
@@ -207,7 +207,7 @@ export default function FeaturedProperties() {
                         : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
                     }`}
                   >
-                    All Properties ({propertiesData.length})
+                    All Properties
                   </button>
                   <button
                     onClick={() => setActiveTab("student")}
@@ -218,7 +218,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <GraduationCap size={15} />
-                    <span>Student Housing ({propertiesData.filter((p) => p.category === "Student Accommodation").length})</span>
+                    <span>Student Housing</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("coliving")}
@@ -229,7 +229,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <Building2 size={15} />
-                    <span>Co-Living ({propertiesData.filter((p) => p.category === "Co-Living").length})</span>
+                    <span>Co-Living</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("guesthouse")}
@@ -240,7 +240,7 @@ export default function FeaturedProperties() {
                     }`}
                   >
                     <Building2 size={15} />
-                    <span>Company Guesthouses ({propertiesData.filter((p) => p.category === "Company Guesthouse").length})</span>
+                    <span>Company Guesthouses</span>
                   </button>
                 </div>
 
@@ -250,7 +250,7 @@ export default function FeaturedProperties() {
                     <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B7280]" />
                     <input
                       type="text"
-                      placeholder="Search SLS, SCMS, park..."
+                      placeholder="Search residences, locations..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full min-h-[44px] pl-9 pr-8 py-2 text-xs font-bold rounded-2xl bg-[#FAFAFA] border border-[#E1E7E6] focus:outline-none focus:border-[#007A7A] focus:ring-2 focus:ring-[#007A7A]/20"
@@ -295,42 +295,6 @@ export default function FeaturedProperties() {
                     </button>
                   )}
                 </div>
-              </div>
-
-              {/* Nearby Campus & Micro-Market Chips */}
-              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-3 mt-3 border-t border-[#F3F4F6]">
-                <span className="text-[10px] font-black uppercase text-[#6B7280] shrink-0 mr-1">Nearby:</span>
-                {[
-                  { label: "All Areas", query: "" },
-                  { label: "Opp. Symbiosis SLS", query: "SLS" },
-                  { label: "Near SCMS Campus", query: "SCMS" },
-                  { label: "Sanjay Park", query: "Sanjay Park" },
-                  { label: "Sakore Nagar", query: "Sakore" },
-                  { label: "Clover Park", query: "Clover" },
-                ].map((chip, idx) => {
-                  const isActive = searchQuery === chip.query || (!searchQuery && chip.query === "");
-                  return (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setSearchQuery(chip.query)}
-                      className={`min-h-[32px] px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-all active:scale-95 ${
-                        isActive
-                          ? "bg-[#007A7A] text-white shadow-xs"
-                          : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
-                      }`}
-                    >
-                      {chip.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Results count */}
-              <div className="flex items-center justify-between text-xs text-[#6B7280] font-bold pt-2.5 mt-2.5 border-t border-[#F3F4F6]">
-                <span>
-                  Showing <strong className="text-[#111827]">{filtered.length}</strong> of {propertiesData.length} Reforbs Residences in Viman Nagar
-                </span>
               </div>
             </motion.div>
           )}
@@ -582,7 +546,7 @@ export default function FeaturedProperties() {
               { name: "Free Parking", icon: Car, bg: "bg-[#6366F1]/20", border: "border-[#6366F1]/40", text: "text-[#818CF8]" },
               { name: "Freedom (Zero Bans)", icon: Smile, bg: "bg-[#FFDE59]/25", border: "border-[#FFDE59]/60", text: "text-[#FFDE59]" },
               { name: "Laundry Care", icon: Shirt, bg: "bg-[#0EA5E9]/20", border: "border-[#0EA5E9]/40", text: "text-[#38BDF8]" },
-              { name: "Full Power Backup", icon: Zap, bg: "bg-[#EAB308]/20", border: "border-[#EAB308]/40", text: "text-[#FACC15]" },
+              { name: "Inverter Backup", icon: Zap, bg: "bg-[#EAB308]/20", border: "border-[#EAB308]/40", text: "text-[#FACC15]" },
             ].map((facility, i) => {
               const Icon = facility.icon;
               return (

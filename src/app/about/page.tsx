@@ -38,18 +38,6 @@ export default function AboutPage() {
           <p className="text-white text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium text-white/95">
             Reforbs is an innovative living space solution in Pune. Affordable and customised spaces enabling tenants not just to stay, but to live, work, study, and play. Our tenants never want to leave!
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold text-white">
-            <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-              <CheckCircle2 size={16} className="text-[#FFDE59]" /> Inspired by Backpacker Culture
-            </span>
-            <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-              <CheckCircle2 size={16} className="text-[#FFDE59]" /> 100% Privacy &amp; Single Rooms
-            </span>
-            <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-              <CheckCircle2 size={16} className="text-[#FFDE59]" /> Opp. SLS &amp; SCMS Campuses
-            </span>
-          </div>
         </div>
       </section>
 
@@ -63,7 +51,7 @@ export default function AboutPage() {
               <div className="text-[11px] text-[#6B7280] font-medium">Across Viman Nagar, Pune</div>
             </div>
             <div className="p-4">
-              <div className="text-3xl sm:text-4xl font-black text-[#007A7A] font-heading">5</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#007A7A] font-heading">Curated</div>
               <div className="text-xs sm:text-sm font-bold text-[#111827] mt-1">Bespoke Properties</div>
               <div className="text-[11px] text-[#6B7280] font-medium">Student &amp; Co-Living Havens</div>
             </div>

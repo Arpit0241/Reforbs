@@ -18,10 +18,10 @@ const property: PropertyData = {
   priceSingle: "₹29,000",
   priceDouble: "₹17,000",
   contactPhone: "+91 74200 40241",
-  googleMapsUrl: "https://maps.app.goo.gl/B9b55M89H7o4HwP27",
+  googleMapsUrl: "https://maps.app.goo.gl/8MsiHGMq8s6R2At28",
   coupleFriendly: true,
   annualLockIn: false,
-  foodPolicy: "Food Optional (Attached private kitchen for self-cooking)",
+  foodPolicy: "Optional food arrangements available. Contact the property team for details.",
   laundryPolicy: "Washing machine available on premises",
   heroImage: "/images/properties/nirvana/image-1.jpg",
   galleryImages: [
@@ -42,7 +42,7 @@ const property: PropertyData = {
       features: [
         "Two luxury wooden beds with orthopaedic spring mattresses",
         "Attached modular kitchen with induction & cooking freedom",
-        "Individual wardrobes with digital locks",
+        "Individual wardrobes & dedicated storage",
         "Ensuite modern washroom with 24/7 hot water geyser",
         "High-speed fiber Wi-Fi & daily housekeeping included",
       ],
@@ -53,7 +53,7 @@ const property: PropertyData = {
       deposit: "₹29,000 (1 Month Rent)",
       features: [
         "100% private 1RK studio apartment exclusively for you",
-        "King-size bed with hotel-grade linen",
+        "King-size bed with orthopaedic mattress",
         "Private modular kitchen with cooking freedom",
         "Couple friendly with zero judgment or curfews",
         "Private balcony & individual split AC",
@@ -65,9 +65,9 @@ const property: PropertyData = {
     { name: "Couple Friendly Policy", included: true },
     { name: "Zero Lock-in Period", included: true },
     { name: "Gigabit Fiber Wi-Fi", included: true },
-    { name: "Pro Housekeeping & Linen", included: true },
+    { name: "Professional Housekeeping", included: true },
     { name: "Washing Machine Access", included: true },
-    { name: "Full Generator Backup", included: true },
+    { name: "Inverter Backup", included: true },
     { name: "24/7 Security & CCTV", included: true },
   ],
   landmarks: [

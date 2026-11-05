@@ -56,33 +56,30 @@ export default function BangaloreComingSoonPage() {
               className="px-4 py-2 rounded-full text-xs font-black text-white/80 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5"
             >
               <MapPin size={13} className="text-[#FFDE59]" />
-              <span>Pune (10 Active Spaces)</span>
+              <span>Pune</span>
             </Link>
             <Link
               href="/goa"
               className="px-4 py-2 rounded-full text-xs font-black text-white/80 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5"
             >
               <Palmtree size={13} className="text-[#25D366]" />
-              <span>Goa (Coming Soon)</span>
+              <span>Goa</span>
             </Link>
             <span className="px-4 py-2 rounded-full text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm flex items-center gap-1.5">
               <Building2 size={14} className="text-[#111827]" />
-              <span>Bangalore (Coming Soon)</span>
+              <span>Bangalore</span>
             </span>
           </div>
 
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] font-black text-xs uppercase tracking-wider mb-5 shadow-sm">
             <Sparkles size={14} className="text-[#FFDE59] animate-pulse" />
-            <span>Silicon Valley of India • Launching Soon</span>
+            <span>Coming Soon</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight text-white mb-4">
-            Reforbs is Expanding to <br />
-            <span className="text-[#FFDE59] underline decoration-[#FFDE59]/50 underline-offset-8">
-              Bangalore
-            </span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-heading tracking-tight text-white mb-4">
+            <span className="text-[#FFDE59]">Bangalore</span>
           </h1>
 
           <p className="text-white/90 text-sm sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium mb-8">

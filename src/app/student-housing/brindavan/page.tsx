@@ -21,7 +21,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/qM8hH4U3C7Yy8x3L8",
   coupleFriendly: false,
   annualLockIn: true,
-  foodPolicy: "All 3 Meals Included (Breakfast, Lunch & Dinner Daily)",
+  foodPolicy: "Breakfast, lunch and dinner included.",
   laundryPolicy: "Laundry Included 2x a Week (up to 5 kg)",
   heroImage: "/images/properties/sakore-nagar/image-1.jpg",
   galleryImages: [
@@ -67,7 +67,7 @@ const property: PropertyData = {
     { name: "Daily Housekeeping & Care", included: true },
     { name: "Single-Gender Floor Guidelines", included: true },
     { name: "Annual Academic Lock-in", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
     { name: "Walking Distance to SCMS & SLS", included: true },
   ],
   landmarks: [

@@ -47,7 +47,7 @@ const property: PropertyData = {
       deposit: "1 Month Rent",
       features: [
         "100% executive single occupant privacy",
-        "King/Queen bed with premium linen & headboard",
+        "King/Queen bed with ergonomic headboard",
         "Executive private office desk setup",
         "Private ensuite luxury bathroom",
         "Private balcony overlooking downtown Viman Nagar",
@@ -61,8 +61,8 @@ const property: PropertyData = {
     { name: "Daily Professional Cleaning", included: true },
     { name: "Private Modular Kitchens", included: true },
     { name: "Zero Moral Policing / Curfews", included: true },
-    { name: "Full Power Backup", included: true },
-    { name: "Direct Host VIP Support", included: true },
+    { name: "Inverter Backup", included: true },
+    { name: "Direct Team Support", included: true },
   ],
   landmarks: [
     { name: "Hyatt Regency & Central Hub", distance: "2 mins walk (150m)" },

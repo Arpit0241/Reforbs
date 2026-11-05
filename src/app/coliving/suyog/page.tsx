@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/j3K9N2M8P7L1X6W58",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Corporate Managed Pantry & Catering",
+  foodPolicy: "Contact property team for details.",
   laundryPolicy: "Professional laundry services on premises",
   heroImage: "/images/properties/suyog/image-1.jpg",
   galleryImages: [
@@ -42,7 +42,7 @@ const property: PropertyData = {
         "Reserved exclusively for corporate enterprise guests",
         "Two executive beds with ergonomic work desks",
         "Attached washroom with continuous hot water supply",
-        "Daily housekeeping and linen sanitization",
+        "Daily housekeeping included",
         "High-speed enterprise fiber network",
       ],
     },
@@ -52,7 +52,7 @@ const property: PropertyData = {
     { name: "Behind Bajaj Finserv Hub", included: true },
     { name: "Enterprise Optical Fiber Wi-Fi", included: true },
     { name: "Professional Daily Cleaning", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
     { name: "Not an Open Public PG", included: true },
   ],
   landmarks: [

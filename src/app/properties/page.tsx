@@ -23,21 +23,21 @@ export default function PropertiesPage() {
           <div className="inline-flex items-center p-1.5 bg-black/25 backdrop-blur-md rounded-full border border-white/20 mb-5 max-w-full overflow-x-auto no-scrollbar shadow-lg">
             <span className="px-4 py-2 rounded-full text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm flex items-center gap-1.5">
               <MapPin size={13} className="text-[#111827]" />
-              <span>Pune (10 Active Spaces)</span>
+              <span>Pune</span>
             </span>
             <Link
               href="/goa"
               className="px-4 py-2 rounded-full text-xs font-black text-white/90 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5"
             >
               <Palmtree size={13} className="text-[#FFDE59]" />
-              <span>Goa (Coming Soon)</span>
+              <span>Goa</span>
             </Link>
             <Link
               href="/bangalore"
               className="px-4 py-2 rounded-full text-xs font-black text-white/90 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5"
             >
               <Building2 size={13} className="text-[#25D366]" />
-              <span>Bangalore (Coming Soon)</span>
+              <span>Bangalore</span>
             </Link>
           </div>
 
@@ -46,7 +46,7 @@ export default function PropertiesPage() {
           </h1>
 
           <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
-            Browse our 10 handpicked student sanctuaries and co-living spaces with live map tracking. Hover any card on desktop or scroll to automatically pinpoint locations in Pune.
+            Browse our handpicked student sanctuaries and co-living spaces with live map tracking. Hover any card on desktop or scroll to automatically pinpoint locations in Pune.
           </p>
         </div>
       </div>

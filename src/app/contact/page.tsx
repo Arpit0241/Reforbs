@@ -242,7 +242,7 @@ export default function ContactPage() {
                       +91 74200 40241
                     </a>
                     <span className="text-xs text-[#374151] font-bold block mt-0.5">
-                      Host: Arpit Agarwal
+                      Reforbs Support Team
                     </span>
                   </div>
                 </div>

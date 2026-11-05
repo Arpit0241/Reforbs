@@ -57,7 +57,7 @@ export const PDF_WORKER_PATH = "/pdf.worker.min.js";
 
 export const CONTACT_PHONE = "+91 74200 40241";
 export const CONTACT_PHONE_RAW = "7420040241";
-export const HOST_NAME = "Arpit Agarwal";
+export const HOST_NAME = "Reforbs Host";
 export const CONTACT_EMAIL = "reforbsar@gmail.com";
 export const TOUR_HOURS = "Every day, 10:00 AM to 10:00 PM";
 export const PRIMARY_LOCATION = "Viman Nagar, Pune, Maharashtra 411014";
@@ -732,7 +732,7 @@ export const SYNONYM_GROUPS: Record<string, string[]> = {
   ],
   contact: [
     "contact", "phone", "phone number", "call", "number", "mobile", "reach", "speak",
-    "host", "arpit", "helpline", "email", "support", "whatsapp", "maintenance helpline",
+    "host", "helpline", "email", "support", "whatsapp", "maintenance helpline",
   ],
 };
 
@@ -995,7 +995,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Common customer questions and answers",
     question: "Who updates prices and policies?",
     content:
-      "The owner document identifies Arpit as responsible for updating prices, vacancies, and policies. It says rates and deposits should be reviewed annually.",
+      "The owner document notes that the property management team is responsible for updating prices, vacancies, and policies. It says rates and deposits should be reviewed annually.",
     searchTerms: ["price update", "policy update", "owner", "who updates prices"],
     isFAQ: true,
     priorityWeight: 1.5,
@@ -1260,7 +1260,7 @@ export const VERIFIED_PDF_PASSAGES: KnowledgeItem[] = [
     section: "Shared policies, safety, and support",
     question: "What is the maintenance helpline number?",
     content:
-      "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact host Arpit Agarwal at 7420040241 or reforbsar@gmail.com.",
+      "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team at 7420040241 or reforbsar@gmail.com.",
     searchTerms: ["maintenance helpline", "helpline number", "maintenance helpline number", "report maintenance"],
     isFAQ: true,
     priorityWeight: 2.5,

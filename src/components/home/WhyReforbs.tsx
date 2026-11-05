@@ -3,7 +3,7 @@ import { Lock, Sliders, SunMedium, LifeBuoy, Palette, Sparkles } from "lucide-re
 
 export default function WhyReforbs() {
   return (
-    <section className="py-24 bg-[#FAF6E8]/40 border-y border-[#E1E7E6]">
+    <section id="why-reforbs" className="py-24 bg-[#FAF6E8]/40 border-y border-[#E1E7E6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

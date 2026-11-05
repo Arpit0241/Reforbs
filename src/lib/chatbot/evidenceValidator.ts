@@ -70,7 +70,7 @@ export function validateAndGenerateResponse(
             "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private 1RK: ₹29,000/mo. Attached kitchen, AC, couple-friendly, zero lock-in.\n" +
             "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private: ₹24,000/mo. 3BHK layout (max 4/floor), AC, couple-friendly, zero lock-in.\n" +
             "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/mo | Private Ensuite: ₹27,000/mo. Hotel-style ensuite, AC, couple-friendly, zero lock-in.\n\n" +
-            "For inquiries, contact host Arpit Agarwal at " +
+            "For inquiries, contact the Reforbs team at " +
             CONTACT_PHONE +
             ".",
           pageNumber: 2,
@@ -112,7 +112,7 @@ export function validateAndGenerateResponse(
           "• Park Island (Shastrinagar) — Twin: ₹20,000/mo (Deposit: ₹20,000).\n" +
           "• Pillar Homes (Clover Park, Viman Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n" +
           "• Suyog Enclave (Behind Bajaj Finserv, Sakore Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n\n" +
-          "For inquiries, contact host Arpit Agarwal at " +
+          "For inquiries, contact the Reforbs team at " +
           CONTACT_PHONE +
           " or " +
           CONTACT_EMAIL +
@@ -998,7 +998,7 @@ export function validateAndGenerateResponse(
     case "MAINTENANCE_HELPLINE": {
       return {
         text:
-          "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact host Arpit Agarwal at " +
+          "Report maintenance issues through the common helpline number. The actual helpline number is not included in the document; do not invent it. For assistance, contact the Reforbs team at " +
           CONTACT_PHONE +
           " or " +
           CONTACT_EMAIL +
@@ -1064,7 +1064,7 @@ export function validateAndGenerateResponse(
       const q = rawQuery.toLowerCase();
       if (q.includes("who updates") || q.includes("policy update") || q.includes("price update")) {
         return {
-          text: "The owner document identifies Arpit as responsible for updating prices, vacancies, and policies. It says rates and deposits should be reviewed annually.",
+          text: "The owner document notes that the property management team is responsible for updating prices, vacancies, and policies. It says rates and deposits should be reviewed annually.",
           pageNumber: 5,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 5",
           confidence: 30.0,
@@ -1095,7 +1095,7 @@ export function validateAndGenerateResponse(
       return {
         text:
           "Official contact details for Reforbs:\n" +
-          "• Phone / WhatsApp: +91 74200 40241 (Host: Arpit Agarwal)\n" +
+          "• Phone / WhatsApp: +91 74200 40241\n" +
           "• Email: reforbsar@gmail.com\n" +
           "• Working Hours: 10 AM to 10 PM",
         pageNumber: 5,

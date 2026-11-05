@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/o1S39E1QnLh1K7C77",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Corporate Managed Pantry / Dining Setup",
+  foodPolicy: "Food details to be confirmed with the team.",
   laundryPolicy: "Professional laundry services on premises",
   heroImage: "/images/properties/park-island/image-1.jpg",
   galleryImages: [
@@ -43,7 +43,7 @@ const property: PropertyData = {
         "Two luxury executive beds with orthopaedic bedding",
         "High-speed enterprise fiber Wi-Fi & work stations",
         "Attached washroom with 24/7 hot water supply",
-        "Professional daily housekeeping and linen change",
+        "Professional daily housekeeping",
       ],
     },
   ],
@@ -52,7 +52,7 @@ const property: PropertyData = {
     { name: "Enterprise Optical Fiber Wi-Fi", included: true },
     { name: "Professional Daily Housekeeping", included: true },
     { name: "Corporate Guesthouse (Not Open PG)", included: true },
-    { name: "Full Generator Backup", included: true },
+    { name: "Inverter Backup", included: true },
     { name: "24/7 Security & Access Control", included: true },
   ],
   landmarks: [

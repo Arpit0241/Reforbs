@@ -18,10 +18,10 @@ const property: PropertyData = {
   priceSingle: "₹27,000",
   priceDouble: "₹17,000",
   contactPhone: "+91 74200 40241",
-  googleMapsUrl: "https://maps.app.goo.gl/B9b55M89H7o4HwP27",
+  googleMapsUrl: "https://maps.app.goo.gl/8MsiHGMq8s6R2At28",
   coupleFriendly: true,
   annualLockIn: false,
-  foodPolicy: "Food Optional (Self-cooking allowed in community kitchen)",
+  foodPolicy: "Optional food arrangements available. Contact the property team for details.",
   laundryPolicy: "Washing machine available on premises",
   heroImage: "/images/properties/vipasna/image-1.jpg",
   galleryImages: [
@@ -40,8 +40,8 @@ const property: PropertyData = {
       price: "₹17,000",
       deposit: "₹17,000 (1 Month Rent)",
       features: [
-        "Two luxury wooden beds with hotel-grade linen",
-        "Individual wooden wardrobes with digital locks",
+        "Two luxury wooden beds with posture mattresses",
+        "Individual wooden wardrobes & dedicated storage",
         "Dual study and work desks with ergonomic seating",
         "Private attached bathroom with continuous hot water",
         "High-speed fiber Wi-Fi & daily housekeeping",
@@ -68,7 +68,7 @@ const property: PropertyData = {
     { name: "Daily Housekeeping & Care", included: true },
     { name: "Washing Machine Access", included: true },
     { name: "Shared Culinary Kitchen", included: true },
-    { name: "24/7 Power Backup & Security", included: true },
+    { name: "Inverter Backup & Security", included: true },
   ],
   landmarks: [
     { name: "Sanjay Park Main Road", distance: "2 mins walk (150m)" },

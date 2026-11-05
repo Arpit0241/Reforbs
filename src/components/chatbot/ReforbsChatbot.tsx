@@ -220,7 +220,7 @@ export default function ReforbsChatbot() {
               className="text-[#007A7A] hover:underline font-bold flex items-center gap-1"
             >
               <Phone size={10} />
-              <span>Host Arpit: +91 74200 40241</span>
+              <span>Call Us: +91 74200 40241</span>
             </a>
           </div>
 
