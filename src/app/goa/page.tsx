@@ -7,7 +7,6 @@ import {
   Palmtree,
   Sparkles,
   MapPin,
-  ArrowRight,
   CheckCircle2,
   Bell,
   Phone,
@@ -90,7 +89,7 @@ export default function GoaComingSoonPage() {
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+          <div className="flex items-center justify-center max-w-md mx-auto">
             <a
               href="https://wa.me/917420040241?text=Hi%20Reforbs%2C%20I%20am%20interested%20in%20your%20upcoming%20Goa%20properties%20(Backpackers%20%26%20Hotels).%20Please%20notify%20me%20when%20you%20launch!"
               target="_blank"
@@ -100,13 +99,6 @@ export default function GoaComingSoonPage() {
               <Phone size={17} />
               <span>Get WhatsApp Early Access</span>
             </a>
-            <Link
-              href="/properties"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-bold text-sm border border-white/20 active:scale-95 inline-flex items-center justify-center gap-2 transition-all"
-            >
-              <span>Explore Pune Spaces</span>
-              <ArrowRight size={15} />
-            </Link>
           </div>
         </div>
       </section>
