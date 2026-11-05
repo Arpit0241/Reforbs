@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { PropertyMapProvider } from "@/context/PropertyMapContext";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
 import { MapPin, Sparkles, Building2, GraduationCap, Palmtree } from "lucide-react";
@@ -13,10 +14,22 @@ export const metadata: Metadata = {
 export default function PropertiesPage() {
   return (
     <main className="min-h-screen pt-24 pb-16 bg-[#FAFAFA]">
-      {/* Page Header */}
-      <div className="bg-gradient-to-b from-[#006A6A] to-[#007A7A] text-white py-12 sm:py-16 relative overflow-hidden mb-6">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#FFDE59]/10 rounded-full blur-2xl pointer-events-none" />
+      {/* Page Header with Pune Landmarks Background Collage */}
+      <div className="relative text-white py-12 sm:py-16 overflow-hidden mb-6 bg-[#004D4D]">
+        {/* Background Photograph */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <Image
+            src="/images/pune-hero-banner.png"
+            alt="Pune City Landmarks - Shaniwar Wada, Sarasbaug, Lal Mahal"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center transform scale-[1.02]"
+            quality={90}
+          />
+          {/* Subtle Dark Teal Gradient Overlay for Readability and Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#003838]/75 via-[#004D4D]/60 to-[#003D3D]/85 pointer-events-none" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* City Selection Pills */}
@@ -41,11 +54,11 @@ export default function PropertiesPage() {
             </Link>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-3 text-white">
+          <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-3 text-white drop-shadow-md">
             Explore Residences in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Pune</span>
           </h1>
 
-          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
+          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-medium text-white/95 drop-shadow">
             Browse our handpicked student sanctuaries and co-living spaces with live map tracking. Hover any card on desktop or scroll to automatically pinpoint locations in Pune.
           </p>
         </div>
