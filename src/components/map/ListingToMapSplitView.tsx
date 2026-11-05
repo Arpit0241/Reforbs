@@ -119,7 +119,7 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
       </a>
 
       {/* Top Filter & Search Controls Bar */}
-      <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E1E7E6] shadow-sm mb-6">
+      <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E1E7E6] shadow-sm mb-4 sm:mb-5">
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0">
@@ -216,16 +216,6 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
               </button>
             )}
           </div>
-        </div>
-
-        {/* Results summary line */}
-        <div className="flex items-center justify-between text-xs text-[#6B7280] font-bold pt-2.5 mt-2.5 border-t border-[#F3F4F6]">
-          <span>
-            Reforbs Residences in Viman Nagar
-          </span>
-          <span className="hidden sm:inline-block text-[#007A7A]">
-            Hover card or click marker to sync map view
-          </span>
         </div>
       </div>
 
