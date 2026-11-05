@@ -42,7 +42,7 @@ export default function PropertiesPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-3 text-white">
-            Explore Residences in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Viman Nagar, Pune</span>
+            Explore Residences in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Pune</span>
           </h1>
 
           <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
