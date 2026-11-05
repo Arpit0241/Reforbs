@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import {
   Search,
@@ -27,8 +26,6 @@ const communityPills = [
 ];
 
 export default function HeroSection() {
-  const [activePill, setActivePill] = useState(0);
-
   return (
     <section className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[85vh] flex flex-col justify-between lg:justify-center pt-14 sm:pt-16 pb-6 sm:pb-8 lg:py-24 overflow-hidden bg-[#0D1110]">
       {/* Mobile-Specific Hero Background Photograph (User-supplied authentic 9:16 portrait image) */}
@@ -125,22 +122,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Desktop-Only Community Highlight Category Pills */}
+        {/* Desktop-Only Community Highlight Category Pills (Static info pills, non-clickable) */}
         <div className="hidden lg:flex mt-10 items-center justify-center gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
           {communityPills.map((pill, idx) => (
-            <button
+            <div
               key={idx}
-              type="button"
-              onClick={() => setActivePill(idx)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 transition-all duration-300 min-h-[36px] ${
-                activePill === idx
-                  ? "bg-white text-[#1B1D1C] shadow-lg ring-2 ring-[#007A7A]/30"
-                  : "bg-black/50 backdrop-blur-md text-white/90 hover:bg-black/70 hover:text-white border border-white/20"
-              }`}
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 min-h-[36px] bg-black/50 backdrop-blur-md text-white/90 border border-white/20 select-none cursor-default shadow-sm"
             >
-              <span className={`w-2 h-2 rounded-full shrink-0 ${activePill === idx ? "bg-[#007A7A]" : "bg-[#FFDE59]"}`} />
+              <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59]" />
               <span>{pill.label}</span>
-            </button>
+            </div>
           ))}
         </div>
 
