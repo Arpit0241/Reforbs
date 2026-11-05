@@ -125,7 +125,7 @@ export default function StudentHousingIndex() {
                       <span className="text-2xl font-black font-heading text-[#007A7A]">
                         {prop.price}
                       </span>
-                      <span className="text-xs text-[#666B68] font-semibold">/mo</span>
+                      <span className="text-xs text-[#666B68] font-semibold">/month</span>
                     </div>
                     <a
                       href="tel:+917420040241"

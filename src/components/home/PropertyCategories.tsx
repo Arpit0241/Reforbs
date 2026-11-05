@@ -66,7 +66,7 @@ export default function PropertyCategories() {
               <div className="pt-6 border-t border-white/10 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-slate-400">Starting from</div>
-                  <div className="text-xl font-black font-heading text-brand-yellow">₹12,000 <span className="text-xs font-normal text-slate-300">/mo</span></div>
+                  <div className="text-xl font-black font-heading text-brand-yellow">₹12,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
                 </div>
                 <Link
                   href="/student-housing"
@@ -122,7 +122,7 @@ export default function PropertyCategories() {
               <div className="pt-6 border-t border-white/10 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-slate-400">Starting from</div>
-                  <div className="text-xl font-black font-heading text-brand-teal">₹15,000 <span className="text-xs font-normal text-slate-300">/mo</span></div>
+                  <div className="text-xl font-black font-heading text-brand-teal">₹15,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
                 </div>
                 <Link
                   href="/coliving"

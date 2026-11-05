@@ -198,10 +198,10 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                 aria-label="Filter by maximum price"
               >
                 <option value={35000}>Max Price: Any</option>
-                <option value={15000}>Under ₹15,000/mo</option>
-                <option value={20000}>Under ₹20,000/mo</option>
-                <option value={25000}>Under ₹25,000/mo</option>
-                <option value={30000}>Under ₹30,000/mo</option>
+                <option value={15000}>Under ₹15,000/month</option>
+                <option value={20000}>Under ₹20,000/month</option>
+                <option value={25000}>Under ₹25,000/month</option>
+                <option value={30000}>Under ₹30,000/month</option>
               </select>
             </div>
 
@@ -314,7 +314,7 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                     {activeListing.name}
                   </h4>
                   <div className="text-xs font-black text-[#FFDE59] mt-0.5">
-                    {activeListing.price} <span className="text-[10px] text-white/70 font-medium">/mo</span>
+                    {activeListing.price} <span className="text-[10px] text-white/70 font-medium">/month</span>
                   </div>
                   <div className="grid grid-cols-3 gap-1 sm:gap-1.5 mt-1.5">
                     <a

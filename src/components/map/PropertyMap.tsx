@@ -38,7 +38,7 @@ function getPopupHtml(item: PropertyItem) {
           ${item.category}
         </div>
         <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded-xl text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm">
-          ${item.price}<span class="text-[10px] font-bold text-gray-800">/mo</span>
+          ${item.price}<span class="text-[10px] font-bold text-gray-800">/month</span>
         </div>
       </a>
 

@@ -90,7 +90,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
     category: "Student Housing",
     pageNumber: 13,
     doubleRate: 25000,
-    doubleRateStr: "₹25,000/mo (Girls) | ₹27,000/mo (Boys)",
+    doubleRateStr: "₹25,000/month (Girls) | ₹27,000/month (Boys)",
     securityDeposit: "₹40,000",
     locationCue: "Shubh Gateway, Sr. No. 227, Plot No. 1, New Airport Road, opposite Symbiosis Law College, Viman Nagar, Pune, Maharashtra 411032",
     googleMapsUrl: "https://maps.app.goo.gl/VR1T7UwD58H6UGa49",
@@ -236,7 +236,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
     ],
     amenities: [
       "Breakfast and dinner included in running mess",
-      "Lowest Reforbs rate: ₹15,000/mo (Triple)",
+      "Lowest Reforbs rate: ₹15,000/month (Triple)",
       "Private/attached washrooms",
       "Common pantry in premises (in-house cooking)",
       "Self-use multiple washing machines & optional paid laundry",
@@ -358,7 +358,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       "Zero lock-in period",
     ],
     amenities: [
-      "Lowest private room rate in Reforbs: ₹24,000/mo",
+      "Lowest private room rate in Reforbs: ₹24,000/month",
       "Couple-friendly eligibility (Yes)",
       "Zero lock-in period (Lock-in: No)",
       "Maximum occupancy per floor: 4",

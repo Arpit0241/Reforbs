@@ -84,9 +84,9 @@ function _validateAndGenerateResponseInner(
         return {
           text:
             "Reforbs co-living properties in Pune (Page 2 & 7–9):\n\n" +
-            "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private 1RK: ₹29,000/mo. Attached kitchen, AC, couple-friendly, zero lock-in.\n" +
-            "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private: ₹24,000/mo. 3BHK layout (max 4/floor), AC, couple-friendly, zero lock-in.\n" +
-            "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/mo | Private Ensuite: ₹27,000/mo. Hotel-style ensuite, AC, couple-friendly, zero lock-in.\n\n" +
+            "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/month | Private 1RK: ₹29,000/month. Attached kitchen, AC, couple-friendly, zero lock-in.\n" +
+            "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/month | Private: ₹24,000/month. 3BHK layout (max 4/floor), AC, couple-friendly, zero lock-in.\n" +
+            "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/month | Private Ensuite: ₹27,000/month. Hotel-style ensuite, AC, couple-friendly, zero lock-in.\n\n" +
             "For inquiries, please use the Call Us button below.",
           pageNumber: 2,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 2",
@@ -100,9 +100,9 @@ function _validateAndGenerateResponseInner(
         return {
           text:
             "Reforbs student accommodation properties in Pune (Page 2 & 13–15):\n\n" +
-            "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/mo | Boys' Twin: ₹27,000/mo (Deposit: ₹40,000). Breakfast & dinner included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
-            "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/mo | Private: ₹32,000/mo (Deposit: ₹30,000). All 3 meals included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
-            "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/mo | Twin: ₹17,000/mo (Deposit: ₹20,000). Running mess included, non-AC. Opposite-gender visitors not allowed. Annual lock-in.\n\n" +
+            "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/month | Boys' Twin: ₹27,000/month (Deposit: ₹40,000). Breakfast & dinner included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
+            "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/month | Private: ₹32,000/month (Deposit: ₹30,000). All 3 meals included, laundry 2x/wk. Opposite-gender visitors not allowed. Annual lock-in.\n" +
+            "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/month | Twin: ₹17,000/month (Deposit: ₹20,000). Running mess included, non-AC. Opposite-gender visitors not allowed. Annual lock-in.\n\n" +
             "For inquiries, please use the Call Us button below.",
           pageNumber: 2,
           sourceLabel: "Source: Reforbs Owner Q&A Knowledge, page 2",
@@ -116,17 +116,17 @@ function _validateAndGenerateResponseInner(
         text:
           "Reforbs operates 9 active residences in Pune across three categories:\n\n" +
           "Co-Living (3):\n" +
-          "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private 1RK: ₹29,000/mo. Attached kitchen, couple-friendly, zero lock-in.\n" +
-          "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/mo | Private: ₹24,000/mo. 3BHK layout (max 4/floor), couple-friendly, zero lock-in.\n" +
-          "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/mo | Private Ensuite: ₹27,000/mo. Hotel-style ensuite, couple-friendly, zero lock-in.\n\n" +
+          "• Nirvana (Plot 34, Lane 2A, Sanjay Park) — Twin: ₹17,000/month | Private 1RK: ₹29,000/month. Attached kitchen, couple-friendly, zero lock-in.\n" +
+          "• Moksha (Plot 61, Lane 2A, Sanjay Park) — Twin: ₹17,000/month | Private: ₹24,000/month. 3BHK layout (max 4/floor), couple-friendly, zero lock-in.\n" +
+          "• Vipasna (Plot 36, Lane 3, Sanjay Park) — Twin: ₹17,000/month | Private Ensuite: ₹27,000/month. Hotel-style ensuite, couple-friendly, zero lock-in.\n\n" +
           "Student Accommodation (3):\n" +
-          "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/mo | Boys' Twin: ₹27,000/mo. Meals & laundry included. Annual lock-in.\n" +
-          "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/mo | Private: ₹32,000/mo. All 3 meals & laundry included. Annual lock-in.\n" +
-          "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/mo | Twin: ₹17,000/mo. Running mess included, non-AC. Annual lock-in.\n\n" +
+          "• Shubh Gateway (Opp. SLS Gate, Viman Nagar) — Girls' Twin: ₹25,000/month | Boys' Twin: ₹27,000/month. Meals & laundry included. Annual lock-in.\n" +
+          "• Brindavan (Behind Dr Lal Path Lab, Sakore Nagar) — Twin: ₹27,000/month | Private: ₹32,000/month. All 3 meals & laundry included. Annual lock-in.\n" +
+          "• Vairagya (Near Symbiosis University, Lavale) — Triple: ₹15,000/month | Twin: ₹17,000/month. Running mess included, non-AC. Annual lock-in.\n\n" +
           "Company Guesthouses (3) (Dedicated corporate facilities for contracted company employees; not available as regular PGs):\n" +
-          "• Park Island (Shastrinagar) — Twin: ₹20,000/mo (Deposit: ₹20,000).\n" +
-          "• Pillar Homes (Clover Park, Viman Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n" +
-          "• Suyog Enclave (Behind Bajaj Finserv, Sakore Nagar) — Twin: ₹25,000/mo (Deposit: ₹25,000).\n\n" +
+          "• Park Island (Shastrinagar) — Twin: ₹20,000/month (Deposit: ₹20,000).\n" +
+          "• Pillar Homes (Clover Park, Viman Nagar) — Twin: ₹25,000/month (Deposit: ₹25,000).\n" +
+          "• Suyog Enclave (Behind Bajaj Finserv, Sakore Nagar) — Twin: ₹25,000/month (Deposit: ₹25,000).\n\n" +
           "For inquiries, please use the Call Us button below or email " +
           CONTACT_EMAIL +
           ".",

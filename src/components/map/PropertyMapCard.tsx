@@ -100,7 +100,7 @@ export default function PropertyMapCard({
             {/* Price Pill on Photo */}
             <div className="absolute bottom-3 left-3 z-10">
               <span className="px-3 py-1.5 rounded-xl font-black text-xs bg-[#FFDE59] text-[#111827] shadow-xl">
-                {property.price} <span className="text-[10px] font-bold text-gray-800">/mo</span>
+                {property.price} <span className="text-[10px] font-bold text-gray-800">/month</span>
               </span>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function PropertyMapCard({
                 <span className="text-xl sm:text-2xl font-black text-[#FFDE59] font-heading">
                   {property.price}
                 </span>
-                <span className="text-xs font-bold text-white/70">/mo</span>
+                <span className="text-xs font-bold text-white/70">/month</span>
               </div>
             </div>
 
