@@ -23,16 +23,26 @@ import {
 export default function GoaComingSoonPage() {
   return (
     <main className="min-h-screen pt-24 pb-20 bg-[#FAFAFA]">
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0B2524] via-[#004A4A] to-[#007A7A] text-white py-16 sm:py-24">
-        {/* Decorative backdrop elements */}
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#FFDE59]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#25D366]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,222,89,0.12)_0%,_transparent_60%)] pointer-events-none" />
+      {/* Hero Banner with Goa Panoramic Collage Background */}
+      <section className="relative overflow-hidden bg-[#002D2D] text-white py-16 sm:py-24">
+        {/* Background Photograph */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <Image
+            src="/images/goa-hero-banner.jpg"
+            alt="Goa Beach and Lifestyle Landmarks - Palm trees, beach shacks, ocean sunset, and heritage architecture"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center transform scale-[1.01]"
+            quality={95}
+          />
+          {/* Subtle Dark Gradient Overlay preserving vibrant Goa colors while ensuring text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/65 pointer-events-none" />
+        </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* Breadcrumb / City Switcher Row */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 drop-shadow-sm">
             <Link
               href="/"
               className="text-xs font-semibold text-white/70 hover:text-white transition-colors"
@@ -51,7 +61,7 @@ export default function GoaComingSoonPage() {
           </div>
 
           {/* City Selection Pills */}
-          <div className="inline-flex items-center p-1.5 bg-black/35 backdrop-blur-md rounded-full border border-white/20 mb-8 max-w-full overflow-x-auto no-scrollbar shadow-lg">
+          <div className="inline-flex items-center p-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 mb-8 max-w-full overflow-x-auto no-scrollbar shadow-lg">
             <Link
               href="/properties"
               className="px-4 py-2 rounded-full text-xs font-black text-white/80 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5"
@@ -73,17 +83,17 @@ export default function GoaComingSoonPage() {
           </div>
 
           {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] font-black text-xs uppercase tracking-wider mb-5 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/35 backdrop-blur-md border border-white/25 text-[#FFDE59] font-black text-xs uppercase tracking-wider mb-5 shadow-sm">
             <Sparkles size={14} className="text-[#FFDE59] animate-pulse" />
             <span>Coming Soon</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-heading tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-heading tracking-tight text-white mb-4 drop-shadow-lg">
             <span className="text-[#FFDE59]">Goa</span>
           </h1>
 
-          <p className="text-white/90 text-sm sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium mb-8">
+          <p className="text-white text-sm sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-semibold mb-8 drop-shadow-md">
             Curated backpackers hostels, beachside digital nomad workations, and boutique hotel stays.
             Experience the genuine ReForbs culture of freedom, community, and zero lock-in stays by the Arabian Sea.
           </p>
