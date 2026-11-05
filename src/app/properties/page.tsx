@@ -15,7 +15,7 @@ export default function PropertiesPage() {
   return (
     <main className="min-h-screen pt-24 pb-16 bg-[#FAFAFA]">
       {/* Page Header with Pune Landmarks Background Collage */}
-      <div className="relative text-white py-12 sm:py-16 overflow-hidden mb-6 bg-[#004D4D]">
+      <div className="relative text-white py-12 sm:py-16 overflow-hidden mb-6 bg-[#002D2D]">
         {/* Background Photograph */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <Image
@@ -24,16 +24,16 @@ export default function PropertiesPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center transform scale-[1.02]"
-            quality={90}
+            className="object-cover object-center transform scale-[1.01]"
+            quality={95}
           />
-          {/* Subtle Dark Teal Gradient Overlay for Readability and Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#003838]/75 via-[#004D4D]/60 to-[#003D3D]/85 pointer-events-none" />
+          {/* Subtle Dark Overlay preserving the vibrant colors of the Pune collage while maintaining text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* City Selection Pills */}
-          <div className="inline-flex items-center p-1.5 bg-black/25 backdrop-blur-md rounded-full border border-white/20 mb-5 max-w-full overflow-x-auto no-scrollbar shadow-lg">
+          <div className="inline-flex items-center p-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 mb-5 max-w-full overflow-x-auto no-scrollbar shadow-lg">
             <span className="px-4 py-2 rounded-full text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm flex items-center gap-1.5">
               <MapPin size={13} className="text-[#111827]" />
               <span>Pune</span>
@@ -54,11 +54,11 @@ export default function PropertiesPage() {
             </Link>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-3 text-white drop-shadow-md">
+          <h1 className="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-3 text-white drop-shadow-lg">
             Explore Residences in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Pune</span>
           </h1>
 
-          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-medium text-white/95 drop-shadow">
+          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-semibold text-white drop-shadow-md">
             Browse our handpicked student sanctuaries and co-living spaces with live map tracking. Hover any card on desktop or scroll to automatically pinpoint locations in Pune.
           </p>
         </div>
