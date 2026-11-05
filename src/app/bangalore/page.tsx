@@ -33,7 +33,7 @@ export default function BangaloreComingSoonPage() {
             priority
             sizes="100vw"
             className="object-cover object-center transform scale-[1.01]"
-            quality={95}
+            quality={90}
           />
           {/* Subtle Dark Gradient Overlay preserving vibrant Bangalore colors while ensuring text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/65 pointer-events-none" />
