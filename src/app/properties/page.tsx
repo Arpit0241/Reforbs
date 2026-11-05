@@ -19,7 +19,7 @@ export default function PropertiesPage() {
         {/* Background Photograph */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <Image
-            src="/images/pune-hero-banner.png"
+            src="/images/pune-hero-banner.jpg"
             alt="Pune City Landmarks - Shaniwar Wada, Sarasbaug, Lal Mahal"
             fill
             priority
