@@ -172,19 +172,16 @@ export default function PropertyMapCard({
               {property.description}
             </p>
 
-            {/* Key stats row */}
-            <div className="grid grid-cols-2 gap-2 p-3 rounded-2xl bg-black/25 backdrop-blur-md border border-white/15 mb-3.5">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-white/70 block">
-                  {property.stat1Label}
+            {/* Rent Section */}
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-black/25 backdrop-blur-md border border-white/15 mb-3.5">
+              <span className="text-[10px] uppercase font-bold text-white/70 block tracking-wider">
+                Rent
+              </span>
+              <div className="flex items-baseline gap-1 mt-0.5">
+                <span className="text-xl sm:text-2xl font-black text-[#FFDE59] font-heading">
+                  {property.price}
                 </span>
-                <span className="text-base sm:text-lg font-black text-[#FFDE59] font-heading">{property.stat1Value}</span>
-              </div>
-              <div className="border-l border-white/20 pl-3">
-                <span className="text-[10px] uppercase font-bold text-white/70 block">
-                  {property.stat2Label}
-                </span>
-                <span className="text-base sm:text-lg font-black text-white font-heading">{property.stat2Value}</span>
+                <span className="text-xs font-bold text-white/70">/mo</span>
               </div>
             </div>
 
