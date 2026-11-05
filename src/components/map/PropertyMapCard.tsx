@@ -59,6 +59,7 @@ export default function PropertyMapCard({
     <div
       id={`property-card-${property.id}`}
       data-property-id={property.id}
+      onClick={() => setActiveListingId(property.id)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}

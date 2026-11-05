@@ -5,13 +5,71 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { usePropertyMap } from "@/context/PropertyMapContext";
 import { VIMAN_NAGAR_CENTER, PropertyItem } from "@/data/properties";
-import { MapPin, Navigation, ZoomIn, ZoomOut, Search, Compass } from "lucide-react";
+import { Navigation, ZoomIn, ZoomOut, Search } from "lucide-react";
+
+function getMarkerHtml(item: PropertyItem, isActive: boolean, isHovered: boolean, isVisited: boolean) {
+  let badgeClasses = "bg-[#007A7A] text-white border-[1.5px] border-white shadow-sm";
+  if (isActive || isHovered) {
+    badgeClasses =
+      "bg-[#FFDE59] text-[#111827] border-2 border-[#111827] shadow-xl scale-110 ring-4 ring-[#007A7A]/30 font-black";
+  } else if (isVisited) {
+    badgeClasses = "bg-[#005555] text-white/90 border-[1.5px] border-white/80 shadow-xs";
+  }
+
+  return `
+    <div class="relative group cursor-pointer transition-transform duration-200" style="transform: translate(-50%, -100%);">
+      <div class="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-extrabold whitespace-nowrap transition-all ${badgeClasses}">
+        <span class="w-1.5 h-1.5 rounded-full ${isActive || isHovered ? "bg-[#007A7A]" : "bg-[#FFDE59]"}"></span>
+        <span>${item.price}</span>
+      </div>
+      <div class="w-2 h-2 bg-inherit rotate-45 mx-auto -mt-1 border-r border-b ${
+        isActive || isHovered ? "bg-[#FFDE59] border-[#111827]" : "bg-[#007A7A] border-white"
+      }"></div>
+    </div>
+  `;
+}
+
+function getPopupHtml(item: PropertyItem) {
+  return `
+    <div class="w-[265px] min-w-[250px] max-w-[calc(100vw-36px)] p-3 font-sans bg-white rounded-2xl box-border">
+      <a href="${item.link}" class="block relative h-32 w-full rounded-xl overflow-hidden mb-2.5 bg-[#111827] group" title="View ${item.name} details">
+        <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white shadow-xs">
+          ${item.category}
+        </div>
+        <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded-xl text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm">
+          ${item.price}<span class="text-[10px] font-bold text-gray-800">/mo</span>
+        </div>
+      </a>
+
+      <a href="${item.link}" class="block hover:text-[#007A7A] transition-colors" title="View ${item.name} details">
+        <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 truncate flex items-center justify-between">
+          <span class="truncate">${item.name}</span>
+          <span class="text-xs text-[#007A7A] font-black shrink-0 ml-1">→</span>
+        </h4>
+      </a>
+      <div class="text-[11px] text-[#4B5563] mb-3 font-medium truncate block">
+        📍 ${item.address || item.subLocation}
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-2.5 border-t border-[#E5E7EB]">
+        <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-gmaps flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-all shadow-xs" style="background-color: #FFDE59 !important; color: #111827 !important; border: 1.5px solid #111827 !important;" title="Open in Google Maps">
+          <span>📍 Google Maps</span>
+        </a>
+        <a href="${item.link}" class="btn-details flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-colors shadow-xs" style="background-color: #007A7A !important; color: #FFFFFF !important;" title="View Property Details">
+          <span>Details →</span>
+        </a>
+      </div>
+    </div>
+  `;
+}
 
 export default function PropertyMap() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<{ [id: string]: L.Marker }>({});
   const isProgrammaticMoveRef = useRef(false);
+  const lastClickedMarkerRef = useRef<{ id: string | null; time: number }>({ id: null, time: 0 });
 
   const {
     listings,
@@ -53,6 +111,7 @@ export default function PropertyMap() {
       maxZoom: 19,
       minZoom: 11,
       trackResize: true,
+      closePopupOnClick: false, // Prevents popup closing when moving mouse onto map canvas
     });
 
     const tileLayer = L.tileLayer(tileLayerUrl, {
@@ -147,7 +206,6 @@ export default function PropertyMap() {
     const map = mapInstanceRef.current;
     if (!map || !isMapReady) return;
 
-    // Trigger invalidateSize in quick stages to ensure mobile viewport animation/transition finishes cleanly
     const t1 = setTimeout(() => map.invalidateSize(), 50);
     const t2 = setTimeout(() => {
       map.invalidateSize();
@@ -172,7 +230,8 @@ export default function PropertyMap() {
     };
   }, [isMobileMapOpen, isMapReady, activeListingId, listings]);
 
-  // Update Markers whenever listings, activeListingId, hoveredListingId, or visited change
+  // 1. Create / Recreate markers ONLY when listings list or map ready state changes
+  // (NOT on hover or active state changes - this prevents popups from disappearing!)
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !isMapReady) return;
@@ -182,7 +241,6 @@ export default function PropertyMap() {
     markersRef.current = {};
 
     if (listings.length === 0) {
-      // Recenter on Viman Nagar if no listings
       map.setView([VIMAN_NAGAR_CENTER.lat, VIMAN_NAGAR_CENTER.lng], 13);
       return;
     }
@@ -196,32 +254,11 @@ export default function PropertyMap() {
       const isHovered = item.id === hoveredListingId;
       const isVisited = visitedListingIds.includes(item.id);
 
-      // Custom divIcon Marker styled with Reforbs design tokens - Compact, legible, non-overlapping
-      let badgeClasses = "bg-[#007A7A] text-white border-[1.5px] border-white shadow-sm";
-      let zIndex = 100 + Math.round((item.lat - 18.5) * 10000);
-
-      if (isActive || isHovered) {
-        badgeClasses =
-          "bg-[#FFDE59] text-[#111827] border-2 border-[#111827] shadow-xl scale-110 ring-4 ring-[#007A7A]/30 font-black";
-        zIndex = 1000;
-      } else if (isVisited) {
-        badgeClasses = "bg-[#005555] text-white/90 border-[1.5px] border-white/80 shadow-xs";
-      }
-
-      const customHtml = `
-        <div class="relative group cursor-pointer transition-transform duration-200" style="transform: translate(-50%, -100%);">
-          <div class="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-extrabold whitespace-nowrap transition-all ${badgeClasses}">
-            <span class="w-1.5 h-1.5 rounded-full ${isActive || isHovered ? "bg-[#007A7A]" : "bg-[#FFDE59]"}"></span>
-            <span>${item.price}</span>
-          </div>
-          <div class="w-2 h-2 bg-inherit rotate-45 mx-auto -mt-1 border-r border-b ${
-            isActive || isHovered ? "bg-[#FFDE59] border-[#111827]" : "bg-[#007A7A] border-white"
-          }"></div>
-        </div>
-      `;
+      const html = getMarkerHtml(item, isActive, isHovered, isVisited);
+      const zIndex = (isActive || isHovered) ? 1000 : 100 + Math.round((item.lat - 18.5) * 10000);
 
       const icon = L.divIcon({
-        html: customHtml,
+        html,
         className: "custom-property-pin",
         iconSize: [68, 32],
         iconAnchor: [34, 32],
@@ -234,45 +271,11 @@ export default function PropertyMap() {
         alt: `${item.name} - ${item.price}`,
       });
 
-      // Marker popup content: 265px responsive width, clean word wrapping, high contrast
-      const popupContent = `
-        <div class="w-[265px] min-w-[250px] max-w-[calc(100vw-36px)] p-3 font-sans bg-white rounded-2xl box-border">
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block relative h-32 w-full rounded-xl overflow-hidden mb-2.5 bg-[#111827] group" title="Open ${item.name} in Google Maps">
-            <img src="${item.coverImage}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white shadow-xs">
-              ${item.category}
-            </div>
-            <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded-xl text-xs font-black bg-[#FFDE59] text-[#111827] shadow-sm">
-              ${item.price}<span class="text-[10px] font-bold text-gray-800">/mo</span>
-            </div>
-            <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-full text-[10px] font-black bg-black/60 backdrop-blur-xs text-white border border-white/20 shadow-sm flex items-center gap-1">
-              <span>📍 Maps ↗</span>
-            </div>
-          </a>
-
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="block hover:text-[#007A7A] transition-colors" title="Open ${item.name} in Google Maps">
-            <h4 class="font-extrabold text-sm text-[#111827] font-heading mb-0.5 truncate flex items-center justify-between">
-              <span class="truncate">${item.name}</span>
-              <span class="text-xs text-[#007A7A] font-black shrink-0 ml-1">↗</span>
-            </h4>
-          </a>
-          <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#4B5563] hover:text-[#007A7A] mb-3 font-medium truncate block">
-            📍 ${item.address || item.subLocation}
-          </a>
-
-          <div class="grid grid-cols-2 gap-2 pt-2.5 border-t border-[#E5E7EB]">
-            <a href="${item.googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="btn-gmaps flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-all shadow-xs" style="background-color: #FFDE59 !important; color: #111827 !important; border: 1.5px solid #111827 !important;">
-              <span>📍 Google Maps</span>
-            </a>
-            <a href="${item.link}" class="btn-details flex items-center justify-center gap-1 px-2.5 py-2 rounded-xl text-[11px] font-black text-center transition-colors shadow-xs" style="background-color: #007A7A !important; color: #FFFFFF !important;">
-              <span>Details →</span>
-            </a>
-          </div>
-        </div>
-      `;
-
-      marker.bindPopup(popupContent, {
+      // Bind popup with safe settings so moving mouse to map canvas does not dismiss it
+      marker.bindPopup(getPopupHtml(item), {
         closeButton: true,
+        closeOnClick: false, // Never close when clicking or moving over the map canvas
+        autoClose: true,     // Keep one active popup open at a time
         offset: [0, -28],
         minWidth: 250,
         maxWidth: 280,
@@ -281,13 +284,25 @@ export default function PropertyMap() {
         className: "custom-property-popup",
       });
 
-      // Click on marker: selects listing, scrolls matching card on left into view.
-      // If already selected, clicking it redirects directly to Google Maps!
-      marker.on("click", () => {
-        if (activeListingId === item.id) {
+      // MARKER CLICK HANDLER:
+      // First click: selects the property, opens the popup on the map, and scrolls matching card into view.
+      // Second click on the same marker while popup is open: redirects directly to Google Maps location!
+      marker.on("click", (e) => {
+        L.DomEvent.stopPropagation(e);
+        const now = Date.now();
+        const isSameMarker = lastClickedMarkerRef.current.id === item.id;
+        const isRecent = (now - lastClickedMarkerRef.current.time) < 4000;
+        const isPopupAlreadyOpen = marker.isPopupOpen();
+
+        if (isSameMarker && isRecent && isPopupAlreadyOpen) {
+          // SECOND CLICK: Redirect to Google Maps location!
           window.open(item.googleMapsUrl, "_blank", "noopener,noreferrer");
+          lastClickedMarkerRef.current = { id: null, time: 0 };
         } else {
+          // FIRST CLICK: Select property in maps, open popup, pan, scroll card into view
+          lastClickedMarkerRef.current = { id: item.id, time: now };
           setActiveListingId(item.id);
+          marker.openPopup();
           const cardEl = document.getElementById(`property-card-${item.id}`);
           if (cardEl) {
             cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -315,18 +330,35 @@ export default function PropertyMap() {
         animate: true,
       });
     }
-  }, [
-    listings,
-    activeListingId,
-    hoveredListingId,
-    visitedListingIds,
-    fitBoundsTrigger,
-    isMapReady,
-    setActiveListingId,
-    setHoveredListingId,
-  ]);
+  }, [listings, isMapReady, fitBoundsTrigger, setActiveListingId, setHoveredListingId]);
 
-  // Smooth camera pan to active listing
+  // 2. Lightweight visual update when activeListingId, hoveredListingId, or visited changes
+  // Updates marker pins smoothly without destroying markers or closing open popups!
+  useEffect(() => {
+    listings.forEach((item) => {
+      const marker = markersRef.current[item.id];
+      if (!marker) return;
+
+      const isActive = item.id === activeListingId;
+      const isHovered = item.id === hoveredListingId;
+      const isVisited = visitedListingIds.includes(item.id);
+
+      const html = getMarkerHtml(item, isActive, isHovered, isVisited);
+      const zIndex = (isActive || isHovered) ? 1000 : 100 + Math.round((item.lat - 18.5) * 10000);
+
+      marker.setIcon(
+        L.divIcon({
+          html,
+          className: "custom-property-pin",
+          iconSize: [68, 32],
+          iconAnchor: [34, 32],
+        })
+      );
+      marker.setZIndexOffset(zIndex);
+    });
+  }, [listings, activeListingId, hoveredListingId, visitedListingIds]);
+
+  // 3. Smooth camera pan and popup display for active listing
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !activeListingId || !isMapReady) return;
@@ -345,7 +377,6 @@ export default function PropertyMap() {
     const currentZoom = typeof map.getZoom === "function" ? map.getZoom() : 15;
     const targetZoom = isFinite(currentZoom) ? Math.max(currentZoom, 15) : 15;
 
-    // Pan smoothly without jarring zoom jumps
     try {
       map.flyTo([targetItem.lat, targetItem.lng], targetZoom, {
         duration: 0.65,
@@ -355,7 +386,7 @@ export default function PropertyMap() {
       console.warn("Leaflet flyTo skipped:", e);
     }
 
-    // Open popup for active marker
+    // Keep popup open for active marker
     const marker = markersRef.current[activeListingId];
     if (marker && !marker.isPopupOpen()) {
       marker.openPopup();
