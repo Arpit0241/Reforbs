@@ -5,7 +5,6 @@ import {
   MessageSquare,
   X,
   Send,
-  Sparkles,
   RefreshCw,
   Phone,
   FileCheck,

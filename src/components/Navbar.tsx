@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Sparkles, Building2, GraduationCap, MapPin, Palmtree } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Building2, GraduationCap, MapPin, Palmtree } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -167,7 +167,6 @@ export default function Navbar() {
               href="/contact"
               className="btn-yellow text-xs py-2.5 px-5 shadow-sm font-extrabold"
             >
-              <Sparkles size={14} />
               <span>Schedule Visit</span>
             </Link>
           </div>
