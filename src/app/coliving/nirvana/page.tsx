@@ -45,6 +45,7 @@ const property: PropertyData = {
         "Individual wardrobes & dedicated storage",
         "Ensuite modern washroom with 24/7 hot water geyser",
         "High-speed fiber Wi-Fi & daily housekeeping included",
+        "Food included",
       ],
     },
     {
@@ -57,6 +58,7 @@ const property: PropertyData = {
         "Private modular kitchen with cooking freedom",
         "Couple friendly with zero judgment or curfews",
         "Private balcony & individual split AC",
+        "Food included",
       ],
     },
   ],
