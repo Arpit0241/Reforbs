@@ -56,10 +56,15 @@ const property: PropertyData = {
     { name: "Not an Open Public PG", included: true },
   ],
   landmarks: [
-    { name: "Clover Park Central Green", distance: "2 mins walk (100m)" },
-    { name: "Symbiosis Campuses", distance: "4 mins drive (1.1 km)" },
-    { name: "Phoenix Marketcity", distance: "5 mins drive (1.4 km)" },
-    { name: "Pune International Airport", distance: "7 mins drive (2.3 km)" },
+    { name: "Panchshil Tech Park", distance: "700 m" },
+    { name: "Gigaspace IT Park", distance: "800 m" },
+    { name: "Bajaj Finserv", distance: "1 km" },
+    { name: "Phoenix Mall", distance: "1 km" },
+    { name: "Solitaire Business Hub", distance: "1 km" },
+    { name: "Metro Station", distance: "1 km" },
+    { name: "Symbiosis Management College", distance: "2 km" },
+    { name: "Pune Airport", distance: "2.5 km" },
+    { name: "Symbiosis Law School", distance: "3 km" },
   ],
 };
 

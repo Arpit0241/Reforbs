@@ -56,10 +56,15 @@ const property: PropertyData = {
     { name: "Not an Open Public PG", included: true },
   ],
   landmarks: [
-    { name: "Bajaj Finserv Corporate Hub", distance: "Directly Behind (1 min walk)" },
-    { name: "Symbiosis Campuses", distance: "4 mins drive (1.2 km)" },
-    { name: "Phoenix Marketcity", distance: "5 mins drive (1.5 km)" },
-    { name: "Pune Airport", distance: "6 mins drive (2.0 km)" },
+    { name: "Bajaj Finserv", distance: "200 m" },
+    { name: "Solitaire Business Hub", distance: "500 m" },
+    { name: "Panchshil Tech Park", distance: "700 m" },
+    { name: "Phoenix Mall", distance: "800 m" },
+    { name: "Gigaspace IT Park", distance: "1 km" },
+    { name: "Metro Station", distance: "1 km" },
+    { name: "Symbiosis Management College", distance: "1.5 km" },
+    { name: "Symbiosis Law School", distance: "2.5 km" },
+    { name: "Pune Airport", distance: "2.5 km" },
   ],
 };
 

@@ -73,11 +73,15 @@ const property: PropertyData = {
     { name: "24/7 Security & CCTV", included: true },
   ],
   landmarks: [
-    { name: "Phoenix Marketcity Mall", distance: "4 mins drive (1.1 km)" },
-    { name: "Symbiosis Law & Management Campuses", distance: "5 mins drive (1.4 km)" },
-    { name: "WeWork / Regus Viman Nagar", distance: "4 mins walk (350m)" },
-    { name: "Pune International Airport", distance: "6 mins drive (2.1 km)" },
-    { name: "EON IT Park / Kharadi", distance: "12 mins drive (5.2 km)" },
+    { name: "Pune Airport", distance: "1 km" },
+    { name: "Symbiosis Law School", distance: "2 km" },
+    { name: "Symbiosis Management College", distance: "2 km" },
+    { name: "Commerzone IT Park", distance: "2.5 km" },
+    { name: "Phoenix Mall", distance: "3 km" },
+    { name: "Gigaspace IT Park", distance: "3 km" },
+    { name: "Metro Station", distance: "3 km" },
+    { name: "Panchshil Tech Park", distance: "3.2 km" },
+    { name: "Business Bay", distance: "4 km" },
   ],
 };
 

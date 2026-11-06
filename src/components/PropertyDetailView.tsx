@@ -308,10 +308,10 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
             {/* Nearby Highlights */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card">
               <h2 className="text-xl font-black font-heading text-[#1B1D1C] mb-2">
-                Location &amp; Walking Distances
+                Nearby Locations &amp; Distances
               </h2>
               <p className="text-xs sm:text-sm text-[#666B68] mb-6 font-medium">
-                Situated in prime Viman Nagar, Pune. Walk to classes or grab cabs to work easily.
+                Verified distances to key colleges, IT parks, malls, airport, and transit hubs.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

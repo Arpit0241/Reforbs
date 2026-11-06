@@ -56,10 +56,13 @@ const property: PropertyData = {
     { name: "24/7 Security & Access Control", included: true },
   ],
   landmarks: [
-    { name: "Shastrinagar Main Chowk", distance: "2 mins walk (150m)" },
-    { name: "Kharadi EON IT Park", distance: "8 mins drive (3.8 km)" },
-    { name: "Kalyani Nagar Tech Parks", distance: "6 mins drive (2.4 km)" },
-    { name: "Pune International Airport", distance: "10 mins drive (4.2 km)" },
+    { name: "Commerzone IT Park", distance: "1.5 km" },
+    { name: "Business Bay", distance: "2 km" },
+    { name: "Pune Airport", distance: "3 km" },
+    { name: "Phoenix Mall", distance: "4 km" },
+    { name: "Gigaspace IT Park", distance: "5 km" },
+    { name: "Metro Station", distance: "5 km" },
+    { name: "Panchshil Tech Park", distance: "6 km" },
   ],
 };
 

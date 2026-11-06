@@ -70,10 +70,8 @@ const property: PropertyData = {
     { name: "Natural Ventilation (Non-AC)", included: true },
   ],
   landmarks: [
-    { name: "Symbiosis University Lavale Campus", distance: "500m (6 mins walk)" },
-    { name: "ISBM Pune", distance: "600m (7 mins walk)" },
-    { name: "Lavale Village Center", distance: "1 km (3 mins drive)" },
-    { name: "Hinjawadi IT Park Phase 3", distance: "15 mins drive (7 km)" },
+    { name: "Symbiosis University", distance: "500 m" },
+    { name: "ISBM College", distance: "500 m" },
   ],
 };
 

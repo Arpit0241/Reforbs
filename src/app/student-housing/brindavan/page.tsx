@@ -71,11 +71,13 @@ const property: PropertyData = {
     { name: "Walking Distance to SCMS & SLS", included: true },
   ],
   landmarks: [
-    { name: "Dr Lal Path Lab Sakore Nagar", distance: "Directly Behind (30 sec walk)" },
-    { name: "Symbiosis SCMS Campus", distance: "4 mins walk (300m)" },
-    { name: "Symbiosis Law School (SLS)", distance: "6 mins walk (450m)" },
-    { name: "Phoenix Marketcity", distance: "4 mins drive (1.3 km)" },
-    { name: "Pune Airport", distance: "5 mins drive (1.8 km)" },
+    { name: "Symbiosis Management College", distance: "400 m" },
+    { name: "IIHM", distance: "1 km" },
+    { name: "Allen Career Institute", distance: "1.2 km" },
+    { name: "Pune Airport", distance: "1.5 km" },
+    { name: "Phoenix Mall", distance: "1.5 km" },
+    { name: "Metro Station", distance: "1.5 km" },
+    { name: "Symbiosis Law School", distance: "2 km" },
   ],
 };
 

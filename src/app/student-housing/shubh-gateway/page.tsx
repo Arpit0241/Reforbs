@@ -70,11 +70,14 @@ const property: PropertyData = {
     { name: "Annual Academic Lock-in", included: true },
   ],
   landmarks: [
-    { name: "Symbiosis Law School (SLS)", distance: "Directly Opposite (30 sec walk)" },
-    { name: "Symbiosis International School", distance: "3 mins walk (200m)" },
-    { name: "Symbiosis SCMS Campus", distance: "5 mins walk (400m)" },
-    { name: "Phoenix Marketcity", distance: "4 mins drive (1.1 km)" },
-    { name: "Pune International Airport", distance: "6 mins drive (2.1 km)" },
+    { name: "Symbiosis Law School", distance: "150 m" },
+    { name: "Pune Airport", distance: "400 m" },
+    { name: "Symbiosis Management College", distance: "1.2 km" },
+    { name: "Phoenix Mall", distance: "2.5 km" },
+    { name: "Commerzone IT Park", distance: "2.5 km" },
+    { name: "Gigaspace IT Park", distance: "2.5 km" },
+    { name: "Panchshil Tech Park", distance: "2.5 km" },
+    { name: "Metro Station", distance: "3 km" },
   ],
 };
 
