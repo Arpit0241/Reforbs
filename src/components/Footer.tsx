@@ -33,9 +33,9 @@ export default function Footer() {
 
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex flex-col items-start group">
               <div className="relative w-44 h-10">
                 <Image
@@ -106,7 +106,7 @@ export default function Footer() {
           </div>
 
           {/* Student Housing */}
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="font-black text-white text-sm mb-4 font-heading">
               Student Housing
             </h4>
@@ -135,7 +135,7 @@ export default function Footer() {
           </div>
 
           {/* Co-Living */}
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="font-black text-white text-sm mb-4 font-heading">
               Co-Living (Pros)
             </h4>
@@ -169,32 +169,48 @@ export default function Footer() {
           </div>
 
           {/* Destinations & Cities */}
-          <div>
+          <div className="lg:col-span-4">
             <h4 className="font-black text-white text-sm mb-4 font-heading">
               Destinations
             </h4>
-            <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
+            <ul className="space-y-3 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/properties" className="hover:text-white transition-colors flex items-center justify-between">
-                  <span>Pune (Viman Nagar)</span>
-                  <span className="text-[10px] bg-[#007A7A] text-white px-2 py-0.5 rounded-full font-bold">Active</span>
+                <Link
+                  href="/properties"
+                  className="hover:text-white transition-colors flex items-center justify-between gap-3 group"
+                >
+                  <span className="group-hover:text-white transition-colors">Pune (Viman Nagar)</span>
+                  <span className="text-[10px] bg-[#007A7A] text-white px-2.5 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0">
+                    Active
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/goa" className="hover:text-white transition-colors flex items-center justify-between">
-                  <span>Goa (Hostels &amp; Hotels)</span>
-                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full font-extrabold">Coming Soon</span>
+                <Link
+                  href="/goa"
+                  className="hover:text-white transition-colors flex items-center justify-between gap-3 group"
+                >
+                  <span className="group-hover:text-white transition-colors">Goa (Hostels &amp; Hotels)</span>
+                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2.5 py-0.5 rounded-full font-black whitespace-nowrap shrink-0">
+                    Coming Soon
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link href="/bangalore" className="hover:text-white transition-colors flex items-center justify-between">
-                  <span>Bangalore (Co-Living)</span>
-                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full font-extrabold">Coming Soon</span>
+                <Link
+                  href="/bangalore"
+                  className="hover:text-white transition-colors flex items-center justify-between gap-3 group"
+                >
+                  <span className="group-hover:text-white transition-colors">Bangalore (Co-Living)</span>
+                  <span className="text-[10px] bg-[#FFDE59] text-[#111827] px-2.5 py-0.5 rounded-full font-black whitespace-nowrap shrink-0">
+                    Coming Soon
+                  </span>
                 </Link>
               </li>
-              <li className="pt-2">
-                <Link href="/about" className="text-white/80 hover:text-white transition-colors block">
-                  About Us &amp; 3P/3D Standard
+              <li className="pt-2 border-t border-[#272B29]/60">
+                <Link href="/about" className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5 group">
+                  <span className="group-hover:text-[#FFDE59] transition-colors">About Us &amp; 3P/3D Standard</span>
+                  <span className="text-xs group-hover:translate-x-0.5 transition-transform text-[#4AA8A0]">→</span>
                 </Link>
               </li>
             </ul>
