@@ -8,9 +8,9 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header from reforbs.com */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="badge-eyebrow mb-3">Stories from our tribe</div>
+          <div className="badge-eyebrow mb-3">Stories from our reforbs family</div>
           <h2 className="section-heading-lg">
-            Hear from <span className="text-[#007A7A]">our community</span>
+            Hear from <span className="text-[#007A7A]">our client</span>
           </h2>
           <p className="text-[#666B68] text-sm sm:text-base mt-3 font-medium">
             Over the years, Reforbs has made sure that tenants enjoy absolute freedom of choice. Here is what real residents say about us on Google:
