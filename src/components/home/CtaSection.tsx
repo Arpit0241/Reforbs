@@ -39,11 +39,11 @@ export default function CtaSection() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading leading-tight text-white">
-              Your new home is waiting in <span className="text-[#FFDE59]">Viman Nagar</span>.
+              Your new home at <span className="text-[#FFDE59]">reforbs family</span>.
             </h2>
 
             <p className="text-white text-base sm:text-lg leading-relaxed font-medium">
-              Join hundreds of Symbiosis students and young professionals who chose community over loneliness. Start your Reforbs journey today.
+              Join hundreds of students and young professionals who chose community over loneliness. Start your Reforbs journey today.
             </p>
 
             <div className="space-y-3.5 pt-2 text-sm text-white font-bold">
@@ -57,7 +57,7 @@ export default function CtaSection() {
                 <div className="w-5 h-5 rounded-full bg-[#FFDE59] text-[#111827] flex items-center justify-center shrink-0 font-bold text-xs">
                   ✓
                 </div>
-                <span className="text-white font-semibold">Walking distance to Symbiosis SLS &amp; SCMS Campuses</span>
+                <span className="text-white font-semibold">Prime, well-connected locations close to campuses &amp; workplaces</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-full bg-[#FFDE59] text-[#111827] flex items-center justify-center shrink-0 font-bold text-xs">
@@ -80,7 +80,7 @@ export default function CtaSection() {
                     Tour Request Received!
                   </h3>
                   <p className="text-sm text-[#374151] max-w-sm mx-auto mb-6 font-medium">
-                    Our Viman Nagar property host will message you on WhatsApp with parking directions and schedule confirmation.
+                    Our property host will message you on WhatsApp with parking directions and schedule confirmation.
                   </p>
                   <a
                     href={whatsappUrl || "https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."}
@@ -138,7 +138,7 @@ export default function CtaSection() {
 
                   <div>
                     <label htmlFor="preferred-space-select" className="block text-xs font-bold text-[#111827] mb-1.5">
-                      Preferred Space in Viman Nagar *
+                      Preferred Space at reforbs *
                     </label>
                     <select
                       id="preferred-space-select"
@@ -151,7 +151,7 @@ export default function CtaSection() {
                       <option value="Moksha (Co-Living / Working Professionals)">Moksha (Co-Living / Working Professionals)</option>
                       <option value="Vipasana (Co-Living / Premium Suites)">Vipasana (Co-Living / Premium Suites)</option>
                       <option value="Shubh Nirvana (Co-Living / Executive)">Shubh Nirvana (Co-Living / Executive)</option>
-                      <option value="Any Available Space in Viman Nagar">Any Available Space in Viman Nagar</option>
+                      <option value="Any Available Spaces in Pune">Any Available Spaces in Pune</option>
                     </select>
                   </div>
 

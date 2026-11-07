@@ -49,7 +49,7 @@ export default function FeaturedProperties() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111827] font-heading tracking-tight leading-tight mb-3"
           >
-            Our <span className="text-[#007A7A]">Properties</span> in Viman Nagar
+            Our <span className="text-[#007A7A]">Properties</span> in Pune
           </motion.h2>
 
           {/* Subtitle */}
@@ -60,7 +60,7 @@ export default function FeaturedProperties() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-[#4A524F] text-sm sm:text-base md:text-lg leading-relaxed font-semibold max-w-2xl mx-auto mb-4"
           >
-            Explore handcrafted student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, and real community.
+            Explore handcrafted student sanctuaries and vibrant co-living spaces in Pune. Designed for freedom, comfort, and real community.
           </motion.p>
 
           {/* Top-Level City Selector: Pune, Goa, Bangalore */}

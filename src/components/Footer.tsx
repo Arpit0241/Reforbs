@@ -57,7 +57,7 @@ export default function Footer() {
             <div className="space-y-2.5 pt-2 text-xs text-[#E1E7E6] font-medium">
               <div className="flex items-center gap-2.5">
                 <MapPin size={15} className="text-[#4AA8A0] shrink-0" />
-                <span>Viman Nagar, Pune, Maharashtra 411014</span>
+                <span>Pune, Maharashtra 411014</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={15} className="text-[#FFDE59] shrink-0" />
@@ -113,7 +113,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
                 <Link href="/#student-housing" className="hover:text-white transition-colors">
-                  Overview (Viman Nagar)
+                  Overview
                 </Link>
               </li>
               <li>
@@ -142,7 +142,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
                 <Link href="/#co-living" className="hover:text-white transition-colors">
-                  Overview (Viman Nagar)
+                  Overview
                 </Link>
               </li>
               <li>
@@ -179,7 +179,7 @@ export default function Footer() {
                   href="/properties"
                   className="hover:text-white transition-colors flex items-center justify-between gap-3 group"
                 >
-                  <span className="group-hover:text-white transition-colors">Pune (Viman Nagar)</span>
+                  <span className="group-hover:text-white transition-colors">Pune</span>
                   <span className="text-[10px] bg-[#007A7A] text-white px-2.5 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0">
                     Active
                   </span>

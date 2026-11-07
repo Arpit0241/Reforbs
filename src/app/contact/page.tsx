@@ -169,7 +169,7 @@ export default function ContactPage() {
                 {/* Field 3: Preferred Property */}
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#111827] mb-1.5 font-heading">
-                    Preferred Space in Viman Nagar *
+                    Preferred Space at reforbs *
                   </label>
                   <select
                     value={form.property}
@@ -181,6 +181,7 @@ export default function ContactPage() {
                     <option value="Moksha (Co-Living)">Moksha Co-Living (Terrace Garden)</option>
                     <option value="Vipasana (Co-Living)">Vipasana Co-Living (Sanctuary)</option>
                     <option value="Shubh Nirvana (Co-Living)">Shubh Nirvana Co-Living (Lounge)</option>
+                    <option value="Any Available Spaces in Pune">Any Available Spaces in Pune</option>
                   </select>
                 </div>
 

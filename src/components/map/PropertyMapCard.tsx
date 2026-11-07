@@ -135,29 +135,38 @@ export default function PropertyMapCard({
         {/* Right Info Section (7 cols) */}
         <div className="sm:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-black/20">
           <div>
-            {/* Monogram and Locality */}
-            <div className="flex items-start justify-between gap-2 mb-2.5">
-              <a
-                href={property.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-white/95 hover:text-[#FFDE59] transition-colors group/maplink"
-                title={`Open ${property.name} on Google Maps`}
-              >
-                <MapPin size={14} className="text-[#FFDE59] shrink-0 group-hover/maplink:scale-110 transition-transform" />
-                <span className="line-clamp-1">{property.subLocation}</span>
-                <span className="text-[10px] font-black bg-[#FFDE59] text-[#111827] px-2 py-0.5 rounded-full shadow-sm hover:bg-white transition-colors">
-                  Maps ↗
+            {/* Monogram, Locality & Maps Button */}
+            <div className="flex items-center justify-between gap-2.5 mb-2.5">
+              {/* Locality text */}
+              <div className="flex items-center gap-1.5 text-xs font-bold text-white/90 min-w-0 flex-1">
+                <MapPin size={14} className="text-[#FFDE59] shrink-0" />
+                <span className="truncate" title={property.subLocation}>
+                  {property.subLocation}
                 </span>
-              </a>
-              <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center justify-center shrink-0">
-                {property.monogram === "grad" ? (
-                  <GraduationCap size={16} />
-                ) : property.monogram === "compass" ? (
-                  <Compass size={16} />
-                ) : (
-                  <Building2 size={16} />
-                )}
+              </div>
+
+              {/* Action Buttons: Maps Pill + Monogram Icon */}
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={property.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-black bg-[#FFDE59] hover:bg-white text-[#111827] px-2.5 py-1 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-all whitespace-nowrap shrink-0 leading-none"
+                  title={`Open ${property.name} on Google Maps`}
+                >
+                  <span>Maps</span>
+                  <span className="text-[10px]">↗</span>
+                </a>
+
+                <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center justify-center shrink-0">
+                  {property.monogram === "grad" ? (
+                    <GraduationCap size={16} />
+                  ) : property.monogram === "compass" ? (
+                    <Compass size={16} />
+                  ) : (
+                    <Building2 size={16} />
+                  )}
+                </div>
               </div>
             </div>
 
