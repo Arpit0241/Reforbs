@@ -16,6 +16,20 @@ const offeringsPills = [
   { label: "Second Homes", href: "/coming-soon" },
 ];
 
+const featurePills = [
+  { label: "Zero Lock-in Period" },
+  { label: "Private Kitchen & Balconies" },
+  { label: "NO RESTRICTIONS" },
+  { label: "BOHEMIAN DECOR" },
+];
+
+const communityPills = [
+  { label: "Vibrant Community" },
+  { label: "Ample Amenities" },
+  { label: "Delicious Food" },
+  { label: "Absolute Privacy" },
+];
+
 export default function HeroSection() {
   return (
     <section className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[85vh] flex flex-col justify-between lg:justify-center pt-14 sm:pt-16 pb-6 sm:pb-8 lg:py-24 overflow-hidden bg-[#0D1110]">
@@ -96,22 +110,48 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Desktop-Only Offerings / Categories (Equal, uniform, and perfectly styled) */}
-          <div className="hidden lg:flex flex-wrap items-center justify-center gap-3.5 max-w-5xl mx-auto mt-4 px-2">
+          {/* Row 1: Offerings / Properties (Same equal, uniform styling) */}
+          <div className="hidden lg:flex flex-wrap items-center justify-center gap-2.5 max-w-5xl mx-auto mt-4 px-2">
             {offeringsPills.map((pill, idx) => (
               <Link
-                key={idx}
+                key={`offering-${idx}`}
                 href={pill.href}
-                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 min-h-[42px] bg-black/55 backdrop-blur-md text-white border border-white/20 hover:border-[#FFDE59] hover:text-[#FFDE59] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md group"
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 min-h-[38px] bg-black/55 backdrop-blur-md text-white border border-white/20 hover:border-[#FFDE59] hover:text-[#FFDE59] hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm group"
               >
                 <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59] group-hover:scale-125 transition-transform" />
                 <span>{pill.label}</span>
               </Link>
             ))}
           </div>
+
+          {/* Row 2: Feature Highlights (Same equal, uniform styling) */}
+          <div className="hidden lg:flex flex-wrap items-center justify-center gap-2.5 max-w-5xl mx-auto mt-2.5 px-2">
+            {featurePills.map((pill, idx) => (
+              <div
+                key={`feature-${idx}`}
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 min-h-[38px] bg-black/55 backdrop-blur-md text-white/95 border border-white/20 shadow-sm"
+              >
+                <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59]" />
+                <span>{pill.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Mobile-Only Bottom CTA & Offerings Group */}
+        {/* Row 3: Community Highlights (Same equal, uniform styling) */}
+        <div className="hidden lg:flex mt-6 items-center justify-center gap-2.5 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
+          {communityPills.map((pill, idx) => (
+            <div
+              key={`community-${idx}`}
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 min-h-[38px] bg-black/55 backdrop-blur-md text-white/95 border border-white/20 select-none cursor-default shadow-sm"
+            >
+              <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59]" />
+              <span>{pill.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile-Only Bottom CTA & Badges Group */}
         <div className="lg:hidden w-full flex flex-col items-center justify-center mt-auto pt-6 sm:pt-8 pb-1 z-10">
           {/* Sleek, Smaller OUR USPs CTA Button */}
           <div className="mb-3 flex items-center justify-center">
@@ -124,17 +164,37 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Mobile-Only Offerings Pills (Equal, uniform, and perfectly styled) */}
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] sm:text-xs font-bold text-white px-2">
+          {/* Mobile-Only All Pills (Identical, equal styling across all rows) */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 text-[10.5px] sm:text-[11px] font-bold text-white px-2">
             {offeringsPills.map((pill, idx) => (
               <Link
-                key={idx}
+                key={`m-offering-${idx}`}
                 href={pill.href}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
               >
                 <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
                 <span>{pill.label}</span>
               </Link>
+            ))}
+
+            {featurePills.map((pill, idx) => (
+              <div
+                key={`m-feature-${idx}`}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
+              >
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                <span>{pill.label}</span>
+              </div>
+            ))}
+
+            {communityPills.map((pill, idx) => (
+              <div
+                key={`m-community-${idx}`}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
+              >
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                <span>{pill.label}</span>
+              </div>
             ))}
           </div>
         </div>
