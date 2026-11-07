@@ -36,15 +36,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
-              <div className="relative w-44 h-12">
+            <Link href="/" className="inline-flex flex-col items-start group">
+              <div className="relative w-44 h-10">
                 <Image
                   src="/assets/reforbs-logo-white.png"
                   alt="Reforbs Living"
                   fill
-                  className="object-contain"
+                  className="object-contain object-left"
                 />
               </div>
+              <span className="text-[10px] sm:text-[11px] font-black tracking-[0.25em] text-[#FFDE59] uppercase mt-1 pl-0.5 leading-none">
+                #LIVETHEVIBES
+              </span>
             </Link>
 
             <p className="text-xs sm:text-sm text-[#A0AAA5] leading-relaxed max-w-sm font-medium">

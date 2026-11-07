@@ -53,17 +53,24 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo with official user uploaded asset */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-36 h-9 sm:w-44 sm:h-12">
+          {/* Logo with official user uploaded asset and tagline */}
+          <Link href="/" className="flex flex-col items-start group">
+            <div className="relative w-32 h-7 sm:w-40 sm:h-9">
               <Image
                 src={scrolled || isOpen ? "/assets/reforbs-official-logo.png" : "/assets/reforbs-logo-white.png"}
                 alt="Reforbs Living"
                 fill
-                className="object-contain transition-all"
+                className="object-contain object-left transition-all"
                 priority
               />
             </div>
+            <span
+              className={`text-[8px] sm:text-[9.5px] font-black tracking-[0.25em] uppercase transition-colors pl-0.5 leading-none mt-1 ${
+                scrolled || isOpen ? "text-[#007A7A]" : "text-[#FFDE59]"
+              }`}
+            >
+              #LIVETHEVIBES
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
