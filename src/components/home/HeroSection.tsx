@@ -1,28 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   Search,
   ArrowDown,
 } from "lucide-react";
 
-const communityPills = [
-  {
-    label: "Vibrant Community",
-    caption: "Young adult Indian professionals enjoying together in a modern co-living lounge",
-  },
-  {
-    label: "Ample Amenities",
-    caption: "Residents enjoying pool and games in our shared recreation lounge",
-  },
-  {
-    label: "Delicious Food",
-    caption: "Students and young professionals sharing meals in a welcoming modern dining space",
-  },
-  {
-    label: "Absolute Privacy",
-    caption: "Cozy, stylish shared living rooms built for comfort and connection",
-  },
+const offeringsPills = [
+  { label: "Co-Living", href: "/coliving" },
+  { label: "Student Housing", href: "/student-housing" },
+  { label: "Hotels & Resorts", href: "/goa" },
+  { label: "Bag Packers", href: "/goa" },
+  { label: "Cafes", href: "/coming-soon" },
+  { label: "Second Homes", href: "/coming-soon" },
 ];
 
 export default function HeroSection() {
@@ -90,7 +81,7 @@ export default function HeroSection() {
 
           {/* Supporting Description (Desktop only; hidden completely on mobile per prompt) */}
           <p className="hidden lg:block text-base sm:text-lg text-white/90 font-medium max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            Curated student sanctuaries and vibrant co-living spaces in Viman Nagar, Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
+            Curated student sanctuaries and vibrant co-living spaces in Pune. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
           </p>
 
           {/* Desktop-Only Centered OUR USPs Button */}
@@ -105,40 +96,25 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Desktop-Only Feature Highlights Line */}
-          <div className="hidden lg:flex items-center justify-center gap-4 text-xs text-white/90 font-bold mt-4">
-            <span className="px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 shadow-sm">
-              ✓ Zero Lock-in Period
-            </span>
-            <span className="px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 shadow-sm">
-              ✓ Private Kitchen &amp; Balconies
-            </span>
-            <span className="px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 shadow-sm">
-              ✓ NO RESTRICTIONS
-            </span>
-            <span className="px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 shadow-sm">
-              ✓ BOHEMIAN DECOR
-            </span>
+          {/* Desktop-Only Offerings / Categories (Equal, uniform, and perfectly styled) */}
+          <div className="hidden lg:flex flex-wrap items-center justify-center gap-3.5 max-w-5xl mx-auto mt-4 px-2">
+            {offeringsPills.map((pill, idx) => (
+              <Link
+                key={idx}
+                href={pill.href}
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 min-h-[42px] bg-black/55 backdrop-blur-md text-white border border-white/20 hover:border-[#FFDE59] hover:text-[#FFDE59] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md group"
+              >
+                <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59] group-hover:scale-125 transition-transform" />
+                <span>{pill.label}</span>
+              </Link>
+            ))}
           </div>
         </div>
 
-        {/* Desktop-Only Community Highlight Category Pills (Static info pills, non-clickable) */}
-        <div className="hidden lg:flex mt-10 items-center justify-center gap-3 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
-          {communityPills.map((pill, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black whitespace-nowrap shrink-0 min-h-[36px] bg-black/50 backdrop-blur-md text-white/90 border border-white/20 select-none cursor-default shadow-sm"
-            >
-              <span className="w-2 h-2 rounded-full shrink-0 bg-[#FFDE59]" />
-              <span>{pill.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile-Only Bottom CTA & Badges Group (Positioned at bottom over coffee table area) */}
+        {/* Mobile-Only Bottom CTA & Offerings Group */}
         <div className="lg:hidden w-full flex flex-col items-center justify-center mt-auto pt-6 sm:pt-8 pb-1 z-10">
           {/* Sleek, Smaller OUR USPs CTA Button */}
-          <div className="mb-2.5 flex items-center justify-center">
+          <div className="mb-3 flex items-center justify-center">
             <a
               href="#why-reforbs"
               className="px-6 py-2.5 sm:px-7 sm:py-3 rounded-xl sm:rounded-2xl bg-[#007A7A] hover:bg-[#005F5F] text-white font-bold text-sm sm:text-[15px] shadow-lg hover:shadow-glow active:scale-95 inline-flex items-center justify-center transition-all duration-200"
@@ -148,20 +124,18 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Mobile-Only Feature Highlights Line */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-[11px] text-white/90 font-bold px-2">
-            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ Zero Lock-in
-            </span>
-            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ Private Balconies
-            </span>
-            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ NO RESTRICTIONS
-            </span>
-            <span className="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm">
-              ✓ BOHEMIAN DECOR
-            </span>
+          {/* Mobile-Only Offerings Pills (Equal, uniform, and perfectly styled) */}
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] sm:text-xs font-bold text-white px-2">
+            {offeringsPills.map((pill, idx) => (
+              <Link
+                key={idx}
+                href={pill.href}
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
+              >
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                <span>{pill.label}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
