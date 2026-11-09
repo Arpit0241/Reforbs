@@ -64,40 +64,40 @@ export default function PartnerWithUsPage() {
                 uncompromised transparency, and robust operational asset backing.
               </p>
 
-              {/* 3 Core Highlights */}
+              {/* 3 Core Highlights - Crisp White Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-left hover:border-[#FFDE59] transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-white/15 text-[#FFDE59] flex items-center justify-center mb-3 shadow-sm">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white text-[#111827] shadow-xl border border-white/60 hover:border-[#FFDE59] hover:-translate-y-0.5 transition-all text-left">
+                  <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-3 shadow-sm">
                     <TrendingUp size={18} />
                   </div>
-                  <h2 className="text-sm font-bold text-white mb-1">
+                  <h2 className="text-sm font-black text-[#111827] mb-1">
                     Fixed Returns
                   </h2>
-                  <p className="text-xs text-white/85 leading-relaxed">
+                  <p className="text-xs text-[#4A524F] leading-relaxed font-medium">
                     Predictable monthly payouts supported by high-occupancy co-living and student housing.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-left hover:border-[#FFDE59] transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-white/15 text-[#FFDE59] flex items-center justify-center mb-3 shadow-sm">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white text-[#111827] shadow-xl border border-white/60 hover:border-[#FFDE59] hover:-translate-y-0.5 transition-all text-left">
+                  <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-3 shadow-sm">
                     <ShieldCheck size={18} />
                   </div>
-                  <h2 className="text-sm font-bold text-white mb-1">
+                  <h2 className="text-sm font-black text-[#111827] mb-1">
                     100% Transparency
                   </h2>
-                  <p className="text-xs text-white/85 leading-relaxed">
+                  <p className="text-xs text-[#4A524F] leading-relaxed font-medium">
                     Auditable operations, digital contracts, and verifiable milestone performance.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-left hover:border-[#FFDE59] transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-white/15 text-[#FFDE59] flex items-center justify-center mb-3 shadow-sm">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white text-[#111827] shadow-xl border border-white/60 hover:border-[#FFDE59] hover:-translate-y-0.5 transition-all text-left">
+                  <div className="w-10 h-10 rounded-xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-3 shadow-sm">
                     <Building2 size={18} />
                   </div>
-                  <h2 className="text-sm font-bold text-white mb-1">
+                  <h2 className="text-sm font-black text-[#111827] mb-1">
                     Secure Asset-Backed
                   </h2>
-                  <p className="text-xs text-white/85 leading-relaxed">
+                  <p className="text-xs text-[#4A524F] leading-relaxed font-medium">
                     Deployments in prime urban education and corporate corridors like Viman Nagar & Lavale.
                   </p>
                 </div>
@@ -125,15 +125,15 @@ export default function PartnerWithUsPage() {
               </div>
             </div>
 
-            {/* Right Graphic: investor-growth.png */}
+            {/* Right Graphic: investor-growth.jpg */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-none rounded-3xl overflow-hidden p-3 bg-white/15 border border-white/30 backdrop-blur-md shadow-2xl">
-                <div className="relative rounded-2xl overflow-hidden bg-white shadow-inner">
+              <div className="relative w-full max-w-sm sm:max-w-md rounded-3xl overflow-hidden p-3 bg-white border border-white/60 shadow-2xl">
+                <div className="relative rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
                   <Image
-                    src="/images/partner/investor-growth.png"
+                    src="/images/partner/investor-growth.jpg"
                     alt="Reforbs Investors Program Growth Trajectory"
-                    width={640}
-                    height={480}
+                    width={682}
+                    height={1024}
                     className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                     priority
                   />
