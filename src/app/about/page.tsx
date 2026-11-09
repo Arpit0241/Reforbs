@@ -75,15 +75,15 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative h-96 sm:h-[480px] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
               <Image
-                src="/images/properties/pillar-homes/image-1.jpg"
-                alt="Reforbs Spaces and Living Culture"
+                src="/images/about-vision-courtyard.jpg"
+                alt="Reforbs Community Spaces and Living Culture"
                 fill
                 className="object-cover"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
                 <span className="text-white text-sm font-bold">
-                  Reforbs Community Spaces • Viman Nagar, Pune
+                  Reforbs Community Spaces
                 </span>
               </div>
             </div>
