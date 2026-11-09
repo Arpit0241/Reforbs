@@ -48,7 +48,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "A welcoming reforbs family to cope with stress, overcome loneliness, and build lifelong friendships.",
     tag1: "Zero Loneliness",
     tag2: "Reforbs Family",
-    image: "/assets/pdf/extracted/page-7-image-6-X10.jpg",
+    image: "/images/living-reforbs-way.jpg",
   },
   {
     id: "comfort",
@@ -60,7 +60,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "Sustainable design, private setups, high-speed fiber internet, and self-usable amenities.",
     tag1: "Zero Hidden Bills",
     tag2: "Ergonomic Setup",
-    image: "/assets/pdf/extracted/page-4-image-1-X4.jpg",
+    image: "/images/move-in-ready-reforbs.jpg",
   },
   {
     id: "vibes",
@@ -72,7 +72,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "Inspired by vibrant backpacker culture — cool, artistic, hippie properties you love coming home to.",
     tag1: "Zero Moral Policing",
     tag2: "Pure Good Energy",
-    image: "/assets/pdf/extracted/page-7-image-5-X9.jpg",
+    image: "/images/about-vision-courtyard.jpg",
   },
   {
     id: "ownership",
@@ -96,7 +96,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "Bonding through rooftop grills, festive parties, creative jam sessions, and spontaneous weekend road trips.",
     tag1: "Rooftop Jams",
     tag2: "Weekend BBQs",
-    image: "/assets/pdf/extracted/page-2-image-2-X6.jpg",
+    image: "/images/community-rooftop-jams.jpg",
   },
 ];
 
