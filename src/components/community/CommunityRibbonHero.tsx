@@ -1,342 +1,500 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import {
-  Users,
-  Gamepad2,
-  UtensilsCrossed,
-  Music,
-  Laptop,
-  HeartHandshake,
-  PartyPopper,
-  Sparkles,
-  Check,
-  type LucideIcon,
-} from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-export interface CommunityCardItem {
-  id: string;
-  number: string;
-  label: string;
-  icon: LucideIcon;
-  tag1: string;
-  tag2: string;
-  gradient: string;
-  description: string;
+interface RibbonCardItem {
+  id: number;
+  caption: string;
+  tag: string;
   image: string;
+  aspect: number;
 }
 
-export const communityCards: CommunityCardItem[] = [
+const RIBBON_ITEMS: RibbonCardItem[] = [
   {
-    id: "social-bonding",
-    number: "01",
-    label: "Living & Social Bonding",
-    icon: Users,
-    tag1: "Reforbs Community",
-    tag2: "Supportive Tribe",
-    gradient: "from-[#006E6E] via-[#004D4D] to-[#022626]",
-    description:
-      "Channel social bonding towards personal growth through enriching shared living, mutual support, and lifelong friends.",
+    id: 1,
+    caption: "Living & Social Bonding",
+    tag: "Reforbs Community",
     image: "/images/hero-community.webp",
+    aspect: 1.65,
   },
   {
-    id: "recreation-lounge",
-    number: "02",
-    label: "Gaming & Chill Lounge",
-    icon: Gamepad2,
-    tag1: "Unwind & Play",
-    tag2: "Board Games & PS5",
-    gradient: "from-[#0F6274] via-[#0A4552] to-[#04242B]",
-    description:
-      "Unwind after a busy workday with FIFA showdowns, board game championships, and relaxed couch conversations.",
+    id: 2,
+    caption: "Gaming & Chill Lounge",
+    tag: "Unwind & Play",
     image: "/images/hero-recreation.webp",
+    aspect: 1.6,
   },
   {
-    id: "community-feasts",
-    number: "03",
-    label: "Community Feasts & Brunches",
-    icon: UtensilsCrossed,
-    tag1: "Shared Dining",
-    tag2: "Weekend BBQs",
-    gradient: "from-[#047857] via-[#065F46] to-[#02281D]",
-    description:
-      "Cook together in private kitchens, swap traditional family recipes, and feast at weekend rooftop barbecues.",
+    id: 3,
+    caption: "Community Feasts & Brunches",
+    tag: "Shared Dining",
     image: "/images/hero-dining.webp",
+    aspect: 1.65,
   },
   {
-    id: "rooftop-jams",
-    number: "04",
-    label: "Rooftop Jams & Socials",
-    icon: Music,
-    tag1: "Vibe Nights",
-    tag2: "Acoustic Sessions",
-    gradient: "from-[#115E59] via-[#0D4440] to-[#032220]",
-    description:
-      "Acoustic jams under the Pune skies, open-mic storytelling, neon nights, and soulful community vibes.",
+    id: 4,
+    caption: "Rooftop Jams & Socials",
+    tag: "Vibe Nights",
     image: "/images/community-lifestyle.webp",
+    aspect: 1.7,
   },
   {
-    id: "creative-coworking",
-    number: "05",
-    label: "Creative Co-Working Sprints",
-    icon: Laptop,
-    tag1: "Work & Connect",
-    tag2: "High-Speed Fiber",
-    gradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
-    description:
-      "Ergonomic work desks, dedicated fiber connectivity, and spontaneous brainstorming with fellow creators and founders.",
+    id: 5,
+    caption: "Creative Co-Working Sprints",
+    tag: "Work & Connect",
     image: "/images/hero-shared-living.webp",
+    aspect: 1.6,
   },
   {
-    id: "wellness-growth",
-    number: "06",
-    label: "Mindful Mornings & Yoga",
-    icon: HeartHandshake,
-    tag1: "Wellness & Growth",
-    tag2: "Daily Movement",
-    gradient: "from-[#0D5C5A] via-[#083E3D] to-[#022120]",
-    description:
-      "Sunrise yoga, meditation sessions, and wellness habits that keep your energy and mental health at their peak.",
+    id: 6,
+    caption: "Mindful Mornings & Yoga",
+    tag: "Wellness & Growth",
     image: "/images/living-reforbs-way.webp",
+    aspect: 1.65,
   },
   {
-    id: "festivals-celebration",
-    number: "07",
-    label: "Festival Vibes & Celebrations",
-    icon: PartyPopper,
-    tag1: "Reforbs Family",
-    tag2: "Zero Loneliness",
-    gradient: "from-[#006E6E] via-[#0A4552] to-[#022626]",
-    description:
-      "Diwali lights, Holi colors, New Year bashes, and birthday treats celebrated together so you never miss home.",
+    id: 7,
+    caption: "Festival Vibes & Celebrations",
+    tag: "Reforbs Family",
     image: "/images/properties/moksha/image-3.jpg",
+    aspect: 1.6,
   },
   {
-    id: "late-night-talks",
-    number: "08",
-    label: "Late-Night Talks & Stories",
-    icon: Sparkles,
-    tag1: "Home Atmosphere",
-    tag2: "Pure Good Energy",
-    gradient: "from-[#0F6274] via-[#0D4440] to-[#04242B]",
-    description:
-      "Deep balcony conversations, midnight chai runs, and genuine human bonding that turn roommates into family.",
+    id: 8,
+    caption: "Late-Night Talks & Stories",
+    tag: "Home Atmosphere",
     image: "/images/properties/nirvana/image-2.jpg",
+    aspect: 1.65,
   },
 ];
 
-// Triplicate cards array for seamless infinite looping physics
-const LOOP_CARDS = [...communityCards, ...communityCards, ...communityCards];
+// Card Vertex Shader
+const CARD_VERTEX_SHADER = `
+uniform float u_sheetW;
+uniform float u_sheetD;
+uniform float u_sheetT;
+uniform float u_sheetC;
+uniform float u_sheetV;
+uniform float u_leanA;
+uniform float u_leanW;
+uniform float u_diag;
+
+varying vec2 vUv;
+varying vec3 vWorldPos;
+
+#define PI 3.141592653589793
+#define BANK -0.16
+#define VTWIST 1.8
+#define TAIL 1.0
+#define SHIFT -0.2
+
+float ramp(float s) {
+  float cs = clamp(s, -1.0, 1.0);
+  return cs * (1.5 - 0.5 * cs * cs);
+}
+
+void main() {
+  vUv = uv;
+  vec4 wp = modelMatrix * vec4(position, 1.0);
+
+  float W = max(u_sheetW, 0.001);
+  float wx = wp.x;
+  float q = (wx / W) * u_sheetT + SHIFT;
+  float shape = sin(PI * q) * exp(-TAIL * q * q);
+
+  // Surface roll
+  float rollAng = BANK * (cos(PI * q) * exp(-TAIL * q * q)) * u_sheetC;
+  if (u_sheetV > 0.0) {
+    float xRatio = wx / W;
+    rollAng += VTWIST * u_sheetV * smoothstep(0.3, 0.9, abs(xRatio)) * sign(xRatio);
+  }
+
+  // Rotate around X
+  float cosA = cos(rollAng);
+  float sinA = sin(rollAng);
+  float yRot = wp.y * cosA - wp.z * sinA;
+  float zRot = wp.y * sinA + wp.z * cosA;
+  wp.y = yRot;
+  wp.z = zRot;
+
+  // Depth S-curve deformation
+  wp.z += -u_sheetD * shape;
+
+  // Diagonal climb
+  wp.y += u_diag * wx;
+
+  // Lean
+  if (abs(u_leanW) > 0.001) {
+    wp.z += u_leanA * ramp(wx / u_leanW);
+  }
+
+  vWorldPos = wp.xyz;
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`;
+
+// Card Fragment Shader
+const CARD_FRAGMENT_SHADER = `
+precision highp float;
+
+uniform sampler2D u_tex;
+uniform float u_alpha;
+uniform float u_sheetD;
+
+varying vec2 vUv;
+varying vec3 vWorldPos;
+
+void main() {
+  vec4 texColor = texture2D(u_tex, vUv);
+  
+  // Depth shading for 3D realism
+  if (u_sheetD > 0.01) {
+    float depth = clamp((u_sheetD - vWorldPos.z) / (2.0 * u_sheetD), 0.0, 1.0);
+    texColor.rgb = mix(texColor.rgb, texColor.rgb * 0.72, depth * 0.35);
+  }
+
+  // Soft rounded card border fade
+  vec2 uvDist = abs(vUv - 0.5) * 2.0;
+  float edge = max(uvDist.x, uvDist.y);
+  float borderFade = 1.0 - smoothstep(0.97, 1.0, edge);
+
+  gl_FragColor = vec4(texColor.rgb, texColor.a * u_alpha * borderFade);
+}
+`;
 
 export default function CommunityRibbonHero() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [containerWidth, setContainerWidth] = useState(1200);
-  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Animation & physics state refs for 60fps RAF loop
-  const offsetRef = useRef(0);
-  const velocityRef = useRef(-0.8);
-  const lastPointerXRef = useRef(0);
-  const isPointerDownRef = useRef(false);
-  const rafIdRef = useRef<number | null>(null);
-
-  // Card geometry parameters
-  const isMobile = containerWidth < 768;
-  const cardWidth = isMobile ? 260 : 310;
-  const cardGap = isMobile ? 18 : 26;
-  const pitch = cardWidth + cardGap;
-  const totalItems = LOOP_CARDS.length;
-  const singleSetWidth = communityCards.length * pitch;
-
-  // Track container width
   useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth);
-      }
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animId: number;
+    let destroyed = false;
+
+    // Viewport dimensions
+    let vw = container.clientWidth || window.innerWidth || 1200;
+    let vh = container.clientHeight || 560;
+
+    // 100% Transparent WebGL Renderer - NO black background!
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setSize(vw, vh);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0); // Transparent clear
+    container.appendChild(renderer.domElement);
+
+    const camera = new THREE.PerspectiveCamera(53.4, vw / vh, 0.1, 2000);
+    camera.position.set(0, 0, 41.18);
+    camera.lookAt(0, 0, 0);
+
+    const scene = new THREE.Scene();
+
+    // World calculation
+    const fovRad = (53.4 * Math.PI) / 180;
+    const H = Math.tan(fovRad / 2) * 41.18;
+    const W = H * (vw / vh);
+    const k = (2 * H) / vh;
+
+    // Card sizes
+    const cardH = Math.min(0.58 * vh, 460);
+    const cardGap = cardH * 0.18;
+
+    interface CardObj {
+      mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
+      width: number;
+      height: number;
+      basePos: number;
+      canvasTexture: THREE.CanvasTexture;
+      item: RibbonCardItem;
+    }
+
+    const cards: CardObj[] = [];
+    const cardGeom = new THREE.PlaneGeometry(1, 1, 64, 16);
+
+    // Build self-contained canvas texture with image preloading
+    const createCardCanvasTexture = (item: RibbonCardItem, w: number, h: number) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 960;
+      canvas.height = Math.round(960 / item.aspect);
+      const ctx = canvas.getContext("2d")!;
+
+      const cw = canvas.width;
+      const ch = canvas.height;
+
+      const drawInitialContent = () => {
+        const bgGrad = ctx.createLinearGradient(0, 0, cw, ch);
+        bgGrad.addColorStop(0, "#081d24");
+        bgGrad.addColorStop(0.5, "#0b2c34");
+        bgGrad.addColorStop(1, "#06131a");
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, cw, ch);
+
+        renderCardOverlay();
+      };
+
+      const renderCardOverlay = () => {
+        // Bottom readability gradient
+        const scrim = ctx.createLinearGradient(0, ch * 0.35, 0, ch);
+        scrim.addColorStop(0, "rgba(6, 12, 20, 0)");
+        scrim.addColorStop(0.5, "rgba(6, 12, 20, 0.65)");
+        scrim.addColorStop(1, "rgba(6, 12, 20, 0.95)");
+        ctx.fillStyle = scrim;
+        ctx.fillRect(0, 0, cw, ch);
+
+        // Tag pill at top-left
+        const tagText = item.tag.toUpperCase();
+        ctx.font = "800 22px -apple-system, BlinkMacSystemFont, sans-serif";
+        ctx.textAlign = "left";
+        const tagWidth = ctx.measureText(tagText).width;
+        const tagPadX = 24;
+        const tagH = 44;
+        const tagX = 40;
+        const tagY = 40;
+
+        ctx.fillStyle = "#007A7A";
+        ctx.beginPath();
+        ctx.rect(tagX, tagY, tagWidth + tagPadX * 2, tagH);
+        ctx.fill();
+
+        ctx.fillStyle = "#FFDE59";
+        ctx.textBaseline = "middle";
+        ctx.fillText(tagText, tagX + tagPadX, tagY + tagH / 2);
+
+        // Title at bottom
+        ctx.shadowColor = "rgba(0,0,0,0.9)";
+        ctx.shadowBlur = 16;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 2;
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "900 42px -apple-system, BlinkMacSystemFont, sans-serif";
+        ctx.textBaseline = "bottom";
+        ctx.fillText(item.caption, 40, ch - 40);
+
+        // Subtitle "#LIVETHEVIBES"
+        ctx.fillStyle = "#FFDE59";
+        ctx.font = "800 22px -apple-system, BlinkMacSystemFont, sans-serif";
+        ctx.fillText("#LIVETHEVIBES", 40, ch - 96);
+        ctx.shadowColor = "transparent";
+
+        // Sleek card border
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+        ctx.lineWidth = 4;
+        ctx.strokeRect(2, 2, cw - 4, ch - 4);
+      };
+
+      drawInitialContent();
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.generateMipmaps = true;
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = item.image;
+      img.onload = () => {
+        if (destroyed) return;
+        const imgAspect = img.width / img.height;
+        const canvasAspect = cw / ch;
+        let sx = 0,
+          sy = 0,
+          sw = img.width,
+          sh = img.height;
+        if (imgAspect > canvasAspect) {
+          sw = img.height * canvasAspect;
+          sx = (img.width - sw) / 2;
+        } else {
+          sh = img.width / canvasAspect;
+          sy = (img.height - sh) / 2;
+        }
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+        renderCardOverlay();
+        tex.needsUpdate = true;
+      };
+
+      return tex;
     };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
-  }, []);
 
-  // Main 60fps Physics & Momentum RAF Loop
-  useEffect(() => {
+    let runningPos = 0;
+
+    RIBBON_ITEMS.forEach((item) => {
+      const w = cardH * item.aspect;
+      const h = cardH;
+
+      const canvasTex = createCardCanvasTexture(item, w, h);
+
+      const mat = new THREE.ShaderMaterial({
+        vertexShader: CARD_VERTEX_SHADER,
+        fragmentShader: CARD_FRAGMENT_SHADER,
+        uniforms: {
+          u_sheetW: { value: W },
+          u_sheetD: { value: W * 0.22 },
+          u_sheetT: { value: 1.15 },
+          u_sheetC: { value: 1.0 },
+          u_sheetV: { value: 0.0 },
+          u_leanA: { value: -0.12 * W },
+          u_leanW: { value: W },
+          u_diag: { value: 0.02 },
+          u_tex: { value: canvasTex },
+          u_alpha: { value: 1.0 },
+        },
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+      });
+
+      const mesh = new THREE.Mesh(cardGeom, mat);
+      mesh.scale.set(w * k, h * k, 1);
+      scene.add(mesh);
+
+      cards.push({
+        mesh,
+        width: w,
+        height: h,
+        basePos: runningPos,
+        canvasTexture: canvasTex,
+        item,
+      });
+
+      runningPos += w + cardGap;
+    });
+
+    const totalLoopLength = runningPos;
+
+    // Scroll & continuous autoscroll motion
+    let target = 100;
+    let current = 100;
+    let isDragging = false;
+    let lastPointerX = 0;
+    const autoScrollSpeed = 1.35; // Continuous smooth glide
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      target += delta * 1.1;
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      isDragging = true;
+      lastPointerX = e.clientX;
+      container.style.cursor = "grabbing";
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = lastPointerX - e.clientX;
+      lastPointerX = e.clientX;
+      target += dx * 1.5;
+    };
+
+    const onPointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.cursor = "grab";
+    };
+
+    container.addEventListener("wheel", onWheel, { passive: false });
+    container.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    container.style.cursor = "grab";
+
     let lastTime = performance.now();
 
-    const loop = (time: number) => {
-      const dt = Math.min((time - lastTime) / 1000, 0.1);
-      lastTime = time;
+    const animate = () => {
+      if (destroyed) return;
+      animId = requestAnimationFrame(animate);
 
-      if (!isPointerDownRef.current) {
-        // Natural target drift speed (slower when hovered)
-        const targetSpeed = isHovered ? -0.25 : -0.85;
-        // Exponential decay towards auto-scroll speed
-        velocityRef.current = velocityRef.current * 0.95 + targetSpeed * 0.05;
-        offsetRef.current += velocityRef.current * (dt * 60);
-      }
+      const now = performance.now();
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
 
-      // Seamless modular wrap
-      if (offsetRef.current <= -singleSetWidth) {
-        offsetRef.current += singleSetWidth;
-      } else if (offsetRef.current > 0) {
-        offsetRef.current -= singleSetWidth;
-      }
+      // Autoscroll continuously forward
+      target += autoScrollSpeed * dt * 60;
 
-      // Apply 3D cylinder curve transforms directly to DOM elements
-      if (containerRef.current) {
-        const cx = containerWidth / 2;
-        const cards = containerRef.current.querySelectorAll<HTMLDivElement>("[data-card-idx]");
+      // Smooth lag dampening
+      const ratio = Math.min(dt * 60, 2);
+      current += (target - current) * 0.08 * ratio;
 
-        cards.forEach((card) => {
-          const idx = parseInt(card.dataset.cardIdx || "0", 10);
-          let cardX = idx * pitch + offsetRef.current;
+      // Dynamic depth & velocity bend
+      const diff = target - current;
+      const normDiff = Math.tanh(diff / 500);
+      const vel = normDiff * Math.abs(normDiff);
+      const velMag = Math.min(1.0, Math.abs(vel));
 
-          // Wrap position so it stays in visible circular track
-          const fullTrackWidth = totalItems * pitch;
-          cardX = ((cardX % fullTrackWidth) + fullTrackWidth) % fullTrackWidth;
-          if (cardX > fullTrackWidth - pitch * 2) {
-            cardX -= fullTrackWidth;
-          }
+      const curD = W * 0.22 * (1.0 + 1.1 * velMag);
+      const curV = velMag;
 
-          const centerDist = cardX + cardWidth / 2 - cx;
-          const normDist = centerDist / (containerWidth * 0.52);
-          const clampedNorm = Math.max(-1.5, Math.min(1.5, normDist));
+      const leftBound = -(totalLoopLength - vw) / 2;
 
-          // Cylinder curve geometry: Center cards upright, edges curve in 3D
-          const d2 = clampedNorm * clampedNorm;
-          const rotateY = clampedNorm * -24; // Leans inside cylinder
-          const translateZ = -d2 * (isMobile ? 55 : 95); // Deep curve into cylinder
-          const scale = 1 + 0.08 * d2; // Outer cards grow subtly
-          const opacity = Math.max(0.25, 1 - Math.pow(Math.abs(clampedNorm) * 0.75, 4));
+      // Position each card along continuous ribbon
+      cards.forEach((card) => {
+        const rawX = card.basePos - current;
+        const normX =
+          (((rawX - leftBound) % totalLoopLength) + totalLoopLength) % totalLoopLength +
+          leftBound;
 
-          card.style.transform = `translate3d(${cardX}px, 0px, 0px) perspective(1100px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
-          card.style.opacity = `${opacity}`;
-        });
-      }
+        const worldX = (normX + card.width / 2 - vw / 2) * k;
+        const worldY = 0;
 
-      rafIdRef.current = requestAnimationFrame(loop);
+        card.mesh.position.set(worldX, worldY, 0);
+
+        const uniforms = card.mesh.material.uniforms;
+        uniforms.u_sheetD.value = curD;
+        uniforms.u_sheetV.value = curV;
+      });
+
+      renderer.render(scene, camera);
     };
 
-    rafIdRef.current = requestAnimationFrame(loop);
+    animId = requestAnimationFrame(animate);
+
+    // Responsive resize
+    const onResize = () => {
+      if (!container) return;
+      vw = container.clientWidth || window.innerWidth;
+      vh = container.clientHeight || 560;
+      camera.aspect = vw / vh;
+      camera.updateProjectionMatrix();
+      renderer.setSize(vw, vh);
+    };
+
+    window.addEventListener("resize", onResize);
+
     return () => {
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      destroyed = true;
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", onResize);
+      container.removeEventListener("wheel", onWheel);
+      container.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+
+      cards.forEach((c) => {
+        c.mesh.geometry.dispose();
+        c.mesh.material.dispose();
+        c.canvasTexture.dispose();
+      });
+      renderer.dispose();
+      if (renderer.domElement.parentElement) {
+        renderer.domElement.parentElement.removeChild(renderer.domElement);
+      }
     };
-  }, [containerWidth, pitch, singleSetWidth, totalItems, cardWidth, isHovered, isMobile]);
-
-  // Pointer & Drag Handlers
-  const handlePointerDown = (e: React.PointerEvent) => {
-    isPointerDownRef.current = true;
-    lastPointerXRef.current = e.clientX;
-    if (containerRef.current) {
-      containerRef.current.setPointerCapture(e.pointerId);
-    }
-  };
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isPointerDownRef.current) return;
-    const deltaX = e.clientX - lastPointerXRef.current;
-    lastPointerXRef.current = e.clientX;
-    offsetRef.current += deltaX;
-    velocityRef.current = deltaX * 0.85; // Transfer momentum to fling
-  };
-
-  const handlePointerUp = (e: React.PointerEvent) => {
-    isPointerDownRef.current = false;
-    if (containerRef.current && containerRef.current.hasPointerCapture(e.pointerId)) {
-      containerRef.current.releasePointerCapture(e.pointerId);
-    }
-  };
+  }, []);
 
   return (
-    <div className="relative w-full overflow-hidden select-none py-4 bg-transparent">
-      {/* 3D Cylindrical Curved Carousel Track directly on page */}
-      <div
-        ref={containerRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`relative w-full ${
-          isMobile ? "h-[450px]" : "h-[490px]"
-        } cursor-grab active:cursor-grabbing overflow-visible touch-pan-y`}
-        style={{ perspective: "1100px" }}
-        aria-label="3D interactive carousel of Reforbs Community"
-      >
-        {LOOP_CARDS.map((item, idx) => {
-          const Icon = item.icon;
+    <div className="relative w-full h-[480px] sm:h-[540px] md:h-[600px] bg-transparent overflow-hidden select-none">
+      {/* 3D WebGL Canvas mounts directly on transparent background */}
+      <div ref={containerRef} className="absolute inset-0 w-full h-full" />
 
-          return (
-            <div
-              key={`${item.id}-${idx}`}
-              data-card-idx={idx}
-              className="absolute top-0 left-0 w-[260px] md:w-[310px] will-change-transform"
-              style={{
-                transformStyle: "preserve-3d",
-                backfaceVisibility: "hidden",
-              }}
-            >
-              <div
-                className={`relative rounded-3xl p-6 text-white bg-gradient-to-br ${item.gradient} shadow-2xl overflow-hidden border border-white/20 select-none flex flex-col justify-between h-[420px] md:h-[450px] transition-shadow duration-300 hover:shadow-glow`}
-              >
-                {/* Subtle Ambient Radial Glow */}
-                <div className="absolute -top-20 -right-20 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-
-                <div>
-                  {/* Real Photo Frame */}
-                  <div className="relative h-40 sm:h-44 w-full rounded-2xl overflow-hidden shadow-lg bg-black/40 border border-white/20 mb-4 shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.label}
-                      fill
-                      sizes="310px"
-                      draggable={false}
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-                    {/* Monogram Icon & Number Badges */}
-                    <div className="absolute top-2.5 left-2.5 w-9 h-9 rounded-xl bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-[#FFDE59] shadow-sm">
-                      <Icon size={18} />
-                    </div>
-
-                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-[10px] font-black tracking-wider text-white">
-                      {item.number}
-                    </div>
-
-                    <div className="absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#007A7A] text-white shadow-sm">
-                      {item.tag1}
-                    </div>
-                  </div>
-
-                  {/* Headline */}
-                  <h3 className="text-xl sm:text-2xl font-black text-white font-heading tracking-tight mb-2">
-                    {item.label}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-white/85 leading-relaxed font-medium line-clamp-3">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Footer Badges & Tagline */}
-                <div className="pt-3 border-t border-white/15 flex items-center justify-between text-[11px] font-bold text-[#FFDE59]">
-                  <span className="flex items-center gap-1.5">
-                    <Check size={14} className="text-[#FFDE59]" /> {item.tag2}
-                  </span>
-                  <span className="text-white/60 uppercase tracking-widest text-[9px] font-black">
-                    #LIVETHEVIBES
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      {/* Smooth soft edge vignettes that blend into the white page */}
+      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/70 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/70 to-transparent pointer-events-none z-10" />
     </div>
   );
 }
