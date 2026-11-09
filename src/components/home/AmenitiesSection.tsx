@@ -9,10 +9,11 @@ export default function AmenitiesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative h-80 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-card border border-[#E1E7E6]">
             <Image
-              src="/images/properties/pillar-homes/image-4.jpg"
+              src="/images/move-in-ready-reforbs.jpg"
               alt="Start living your best life from day one - Fully furnished modern room"
               fill
               className="object-cover"
+              priority
             />
           </div>
 
