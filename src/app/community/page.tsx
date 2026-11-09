@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Users, Quote, ArrowRight, CheckCircle2 } from "lucide-react";
+import CommunityRibbonHero from "@/components/community/CommunityRibbonHero";
 
 export const metadata = {
   title: "The Reforbs Community & Cult | Co-Living in Pune",
@@ -82,16 +83,7 @@ export default function CommunityPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-xl mb-16">
-            <div className="relative h-72 sm:h-96 md:h-[460px] w-full bg-gray-100">
-              <Image
-                src="/images/properties/park-island/image-1.jpg"
-                alt="Never a dull moment at Reforbs Community"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/40 to-transparent" />
-            </div>
+            <CommunityRibbonHero />
 
             <div className="p-8 sm:p-12 bg-[#111827] text-white">
               <span className="text-[#FFDE59] font-black text-xs uppercase tracking-widest block mb-2 font-heading">
