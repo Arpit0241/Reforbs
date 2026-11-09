@@ -70,7 +70,7 @@ export const activitiesData: ActivityCardItem[] = [
     gradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
     tag1: "Founders & CXOs",
     tag2: "Career Growth",
-    image: "/assets/pdf/extracted/page-4-image-2-X6.jpg",
+    image: "/images/activity-mentorship.jpg",
   },
   {
     id: "movies",
