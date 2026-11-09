@@ -201,14 +201,11 @@ export default function PropertyMapCard({
 
                 <div className="border-l border-white/15 pl-3">
                   <span className="text-[10px] uppercase font-bold text-white/70 block tracking-wider">
-                    Deposit
+                    Deposit <span className="text-emerald-400 font-semibold text-[9.5px] tracking-normal lowercase">(refundable)</span>
                   </span>
                   <div className="flex items-baseline gap-1 mt-0.5">
                     <span className="text-xl sm:text-2xl font-black text-white font-heading whitespace-nowrap">
                       {property.depositDisplay || "1 Month"}
-                    </span>
-                    <span className="text-xs font-bold text-white/70 whitespace-nowrap">
-                      (Refundable)
                     </span>
                   </div>
                 </div>
