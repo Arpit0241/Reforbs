@@ -16,7 +16,7 @@ const BRANDS: BrandItem[] = [
     id: "forbes",
     name: "Forbes",
     category: "Business & Economy",
-    headline: "How Co-Living Ecosystems are Redefining Urban Student Housing in Pune",
+    headline: "How Modern Accommodations are Redefining Urban Student Housing in Pune",
     svg: (
       <svg viewBox="0 0 160 44" className="h-7 sm:h-8 w-auto fill-current text-[#1B1D1C]">
         <text

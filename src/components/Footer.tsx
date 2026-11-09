@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="text-xl sm:text-2xl font-black font-heading text-white">
-                Experience Pune&apos;s Most Vibrant Co-Living Ecosystem
+                Experience Pune&apos;s Most Vibrant Accommodation
               </h3>
               <p className="text-white/90 text-xs sm:text-sm mt-1 font-medium">
                 Zero pushy calls. Zero hidden lock-ins. 100% freedom, community, and emotional connect.

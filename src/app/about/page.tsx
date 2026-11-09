@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "About Us | Reforbs Living - Pune's Vibrant Co-Living Ecosystem",
+  title: "About Us | Reforbs Living - Pune's Vibrant Accommodation",
   description:
     "Reforbs is an innovative living space solution in Pune built on Privacy, Comfort, Support & Vibes. Inspired by backpacker culture for students and professionals.",
 };
