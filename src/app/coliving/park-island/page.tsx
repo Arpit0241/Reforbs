@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/o1S39E1QnLh1K7C77",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Food details to be confirmed with the team.",
+  foodPolicy: "Food & daily meals included.",
   laundryPolicy: "Professional laundry services on premises",
   heroImage: "/images/properties/park-island/image-1.jpg",
   galleryImages: [
@@ -48,6 +48,7 @@ const property: PropertyData = {
     },
   ],
   amenities: [
+    { name: "Food & Meals Included", included: true },
     { name: "Dedicated Corporate Facility", included: true },
     { name: "Enterprise Optical Fiber Wi-Fi", included: true },
     { name: "Professional Daily Housekeeping", included: true },

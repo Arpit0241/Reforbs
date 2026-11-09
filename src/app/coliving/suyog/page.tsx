@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/j3K9N2M8P7L1X6W58",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Contact property team for details.",
+  foodPolicy: "Food & daily meals included.",
   laundryPolicy: "Professional laundry services on premises",
   heroImage: "/images/properties/suyog/image-1.jpg",
   galleryImages: [
@@ -48,6 +48,7 @@ const property: PropertyData = {
     },
   ],
   amenities: [
+    { name: "Food & Meals Included", included: true },
     { name: "Dedicated Corporate Guesthouse", included: true },
     { name: "Behind Bajaj Finserv Hub", included: true },
     { name: "Enterprise Optical Fiber Wi-Fi", included: true },

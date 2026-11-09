@@ -20,7 +20,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/u5K8f7H9Y4X2Z1W18",
   coupleFriendly: false,
   annualLockIn: false,
-  foodPolicy: "Contact property team for details.",
+  foodPolicy: "Food & daily meals included.",
   laundryPolicy: "In-house laundry management",
   heroImage: "/images/properties/pillar-homes/image-1.jpg",
   galleryImages: [
@@ -48,6 +48,7 @@ const property: PropertyData = {
     },
   ],
   amenities: [
+    { name: "Food & Meals Included", included: true },
     { name: "Exclusive Corporate Guesthouse", included: true },
     { name: "Clover Park Prime Location", included: true },
     { name: "High-Speed Enterprise Wi-Fi", included: true },

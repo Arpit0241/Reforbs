@@ -21,7 +21,7 @@ const property: PropertyData = {
   googleMapsUrl: "https://maps.app.goo.gl/8MsiHGMq8s6R2At28",
   coupleFriendly: true,
   annualLockIn: false,
-  foodPolicy: "Optional food arrangements available. Contact the property team for details.",
+  foodPolicy: "Food & daily meals included.",
   laundryPolicy: "Washing machine available on premises",
   heroImage: "/images/properties/vipasna/image-1.jpg",
   galleryImages: [
@@ -61,6 +61,7 @@ const property: PropertyData = {
     },
   ],
   amenities: [
+    { name: "Food & Meals Included", included: true },
     { name: "Hotel-Style Ensuite Rooms", included: true },
     { name: "Couple Friendly Freedom", included: true },
     { name: "Zero Lock-in Period", included: true },
