@@ -632,8 +632,8 @@ export default function PartnerWithUsPage() {
           {/* Founders Profiles */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Arpit Agarwal */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-[#FFDE59] shadow-xl group-hover:scale-105 transition-transform">
+            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-5 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-white border-4 border-[#FFDE59] shadow-2xl ring-4 ring-white/15 group-hover:scale-105 transition-transform duration-300 shrink-0">
                 <Image
                   src="/images/partner/arpit-agarwal.png"
                   alt="Arpit Agarwal - Founder, Reforbs"
@@ -642,11 +642,11 @@ export default function PartnerWithUsPage() {
                 />
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-black font-heading text-white tracking-tight">
+              <div className="space-y-1">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white tracking-tight">
                   Arpit Agarwal
                 </h3>
-                <span className="px-3.5 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block mt-1 shadow-sm">
+                <span className="px-4 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block shadow-sm">
                   Founder
                 </span>
               </div>
@@ -655,14 +655,14 @@ export default function PartnerWithUsPage() {
                 &ldquo;Reforbs was born out of personal conviction. Having experienced sterile, restrictive rentals firsthand, we set out to build spaces where freedom, community, and peace of mind coexist harmoniously.&rdquo;
               </p>
 
-              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80">
+              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80 w-full">
                 Product Vision • Community Architecture • Brand Culture
               </div>
             </div>
 
             {/* Moinkhan Y Pathan */}
-            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-yellow-300 shadow-xl group-hover:scale-105 transition-transform">
+            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-5 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-white border-4 border-[#FFDE59] shadow-2xl ring-4 ring-white/15 group-hover:scale-105 transition-transform duration-300 shrink-0">
                 <Image
                   src="/images/partner/moinkhan-pathan.png"
                   alt="Moinkhan Y Pathan - Founder, Reforbs"
@@ -671,11 +671,11 @@ export default function PartnerWithUsPage() {
                 />
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-black font-heading text-white tracking-tight">
+              <div className="space-y-1">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white tracking-tight">
                   Moinkhan Y Pathan
                 </h3>
-                <span className="px-3.5 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block mt-1 shadow-sm">
+                <span className="px-4 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block shadow-sm">
                   Founder
                 </span>
               </div>
@@ -684,7 +684,7 @@ export default function PartnerWithUsPage() {
                 &ldquo;Every property we operate is managed with institutional precision. Our commitment to property owners is unwavering: absolute transparency, punctual payments, and the highest standards of physical upkeep.&rdquo;
               </p>
 
-              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80">
+              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80 w-full">
                 Hospitality Operations • Owner Relations • Expansion Strategy
               </div>
             </div>
