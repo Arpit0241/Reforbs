@@ -80,22 +80,24 @@ export default function CommunityPage() {
       </section>
 
       {/* Community Visual Feature */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-xl mb-16">
+          {/* Open 3D Ribbon Showcase */}
+          <div className="w-full relative rounded-3xl overflow-hidden shadow-2xl mb-12 bg-[#060a0f]">
             <CommunityRibbonHero />
+          </div>
 
-            <div className="p-8 sm:p-12 bg-[#111827] text-white">
-              <span className="text-[#FFDE59] font-black text-xs uppercase tracking-widest block mb-2 font-heading">
-                STEP INTO REFORBS COMMUNITY !!
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black font-heading mb-4 text-white">
-                Channeling Social Bonding Towards Personal Growth
-              </h2>
-              <p className="text-white/90 text-sm sm:text-base leading-relaxed max-w-3xl font-medium">
-                The bachelors today have their own network of friends and colleagues; it is important to channel the social bonding towards personal growth. You can laugh, eat, and breathe your way to wellness through memorable living experiences that are enriching, ensure personal growth and networking. That has something for everyone!!
-              </p>
-            </div>
+          {/* Text Content Below */}
+          <div className="p-8 sm:p-12 bg-[#111827] text-white rounded-3xl shadow-xl mb-16">
+            <span className="text-[#FFDE59] font-black text-xs uppercase tracking-widest block mb-2 font-heading">
+              STEP INTO REFORBS COMMUNITY !!
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black font-heading mb-4 text-white">
+              Channeling Social Bonding Towards Personal Growth
+            </h2>
+            <p className="text-white/90 text-sm sm:text-base leading-relaxed max-w-3xl font-medium">
+              The bachelors today have their own network of friends and colleagues; it is important to channel the social bonding towards personal growth. You can laugh, eat, and breathe your way to wellness through memorable living experiences that are enriching, ensure personal growth and networking. That has something for everyone!!
+            </p>
           </div>
 
           {/* Activities Grid */}
