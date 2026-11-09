@@ -467,78 +467,79 @@ export default function PartnerWithUsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Feature 1 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <Clock size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <Clock size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">1. Long Lease</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">1. Long Lease</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Enjoy multi-year lease security (3 to 9 years). Eliminate frequent tenant vacancies, brokerage expenses, and repetitive marketing efforts.
                 </p>
               </div>
 
               {/* Feature 2 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <ShieldCheck size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <ShieldCheck size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">2. Reliable Service</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">2. Reliable Service</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Dedicated property supervisors, trained security, and rapid 24/7 host assistance ensure smooth daily management of your building.
                 </p>
               </div>
 
               {/* Feature 3 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <Wrench size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <Wrench size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">3. End to End Maintenance</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">3. End to End Maintenance</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Reforbs covers interior upkeep, plumbing, electrical installations, painting, and deep sanitation, keeping your asset in pristine condition.
                 </p>
               </div>
 
               {/* Feature 4 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <FileText size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <FileText size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">4. Transparent Practices</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">4. Transparent Practices</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Direct founder communication, auditable digital accounting, and clearly documented contractual terms with zero hidden deductions.
                 </p>
               </div>
 
               {/* Feature 5 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <TrendingUp size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <TrendingUp size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">5. Timely Rent</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">5. Timely Rent</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Receive guaranteed on-time monthly rent disbursement directly into your bank account on or before the committed date every single month.
                 </p>
               </div>
 
               {/* Feature 6 */}
-              <div className="p-6 rounded-3xl bg-white border border-[#E1E7E6] shadow-sm hover:border-[#007A7A] hover:shadow-card transition-all space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center font-black">
-                  <Lock size={20} />
+              <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/20 shadow-lg hover:border-[#FFDE59]/60 hover:shadow-2xl hover:-translate-y-1 transition-all space-y-3 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                  <Lock size={22} />
                 </div>
-                <h4 className="text-base font-black text-[#111827]">6. Legal Operations</h4>
-                <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">6. Legal Operations</h4>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                   Strict mandatory police verification for every resident, comprehensive KYC checks, and registered agreements that keep your property 100% compliant.
                 </p>
               </div>
 
               {/* Feature 7 (Full width on md/lg) */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#E6F4F3] to-[#FFF9D4] border-2 border-[#CDE3E1] md:col-span-2 lg:col-span-3 space-y-3 shadow-sm">
-                <div className="w-10 h-10 rounded-2xl bg-[#007A7A] text-white flex items-center justify-center font-black shadow-sm">
-                  <HeartHandshake size={20} />
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#006E6E] via-[#007A7A] to-[#268672] text-white border-2 border-[#FFDE59]/50 md:col-span-2 lg:col-span-3 space-y-3 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group">
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#FFDE59]/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="w-12 h-12 rounded-2xl bg-[#FFDE59] text-[#111827] flex items-center justify-center font-black shadow-md group-hover:scale-110 transition-transform">
+                  <HeartHandshake size={22} />
                 </div>
-                <h4 className="text-base sm:text-lg font-black text-[#111827]">7. Ethical Operations</h4>
-                <p className="text-xs sm:text-sm text-[#262A29] leading-relaxed font-medium">
+                <h4 className="text-base sm:text-xl font-black font-heading text-white tracking-tight">7. Ethical Operations</h4>
+                <p className="text-xs sm:text-sm text-white/95 leading-relaxed font-normal">
                   We balance resident autonomy with high community standards. Reforbs enforces strict zero-nuisance, zero-drug, and respect-based community rules that preserve neighborhood tranquility and protect the societal reputation of your building.
                 </p>
               </div>
@@ -587,42 +588,42 @@ export default function PartnerWithUsPage() {
 
           {/* 4 Core Pillars of Living */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
-            <div className="p-5 sm:p-6 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] shadow-sm text-center space-y-2 hover:border-[#007A7A] transition-all">
-              <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] mx-auto flex items-center justify-center font-black">
-                <Lock size={18} />
+            <div className="p-6 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white shadow-lg border border-white/20 text-center space-y-3 hover:border-[#FFDE59]/60 hover:shadow-xl hover:-translate-y-1 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] mx-auto flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                <Lock size={20} />
               </div>
-              <h3 className="text-base font-black text-[#111827]">Privacy</h3>
-              <p className="text-xs text-[#4A524F] font-medium leading-relaxed">
+              <h3 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">Privacy</h3>
+              <p className="text-xs text-white/90 font-normal leading-relaxed">
                 Private bedrooms, attached washrooms, and respectful boundaries where personal space is sacred.
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] shadow-sm text-center space-y-2 hover:border-[#007A7A] transition-all">
-              <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] mx-auto flex items-center justify-center font-black">
-                <Award size={18} />
+            <div className="p-6 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white shadow-lg border border-white/20 text-center space-y-3 hover:border-[#FFDE59]/60 hover:shadow-xl hover:-translate-y-1 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] mx-auto flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                <Award size={20} />
               </div>
-              <h3 className="text-base font-black text-[#111827]">Comfort</h3>
-              <p className="text-xs text-[#4A524F] font-medium leading-relaxed">
+              <h3 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">Comfort</h3>
+              <p className="text-xs text-white/90 font-normal leading-relaxed">
                 Ergonomic study/work desks, individual AC units, high-speed fiber internet, and premium orthopaedic bedding.
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] shadow-sm text-center space-y-2 hover:border-[#007A7A] transition-all">
-              <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] mx-auto flex items-center justify-center font-black">
-                <HeartHandshake size={18} />
+            <div className="p-6 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white shadow-lg border border-white/20 text-center space-y-3 hover:border-[#FFDE59]/60 hover:shadow-xl hover:-translate-y-1 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] mx-auto flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                <HeartHandshake size={20} />
               </div>
-              <h3 className="text-base font-black text-[#111827]">Support</h3>
-              <p className="text-xs text-[#4A524F] font-medium leading-relaxed">
+              <h3 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">Support</h3>
+              <p className="text-xs text-white/90 font-normal leading-relaxed">
                 Dedicated on-site host care, quick ticket resolution, transparent deposits, and zero bureaucracy.
               </p>
             </div>
 
-            <div className="p-5 sm:p-6 rounded-3xl bg-[#FAFAFA] border border-[#E1E7E6] shadow-sm text-center space-y-2 hover:border-[#007A7A] transition-all">
-              <div className="w-10 h-10 rounded-2xl bg-[#E6F4F3] text-[#007A7A] mx-auto flex items-center justify-center font-black">
-                <Users size={18} />
+            <div className="p-6 rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white shadow-lg border border-white/20 text-center space-y-3 hover:border-[#FFDE59]/60 hover:shadow-xl hover:-translate-y-1 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-[#FFDE59] mx-auto flex items-center justify-center font-black group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                <Users size={20} />
               </div>
-              <h3 className="text-base font-black text-[#111827]">Vibes</h3>
-              <p className="text-xs text-[#4A524F] font-medium leading-relaxed">
+              <h3 className="text-base sm:text-lg font-black font-heading text-white tracking-tight">Vibes</h3>
+              <p className="text-xs text-white/90 font-normal leading-relaxed">
                 A warm backpacker-inspired community with rooftop jams, co-working sprints, and genuine friendships.
               </p>
             </div>
@@ -631,8 +632,8 @@ export default function PartnerWithUsPage() {
           {/* Founders Profiles */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Arpit Agarwal */}
-            <div className="rounded-3xl bg-white border border-[#E1E7E6] shadow-card p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#007A7A] transition-all">
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-[#007A7A] shadow-lg">
+            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
+              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-[#FFDE59] shadow-xl group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/partner/arpit-agarwal.png"
                   alt="Arpit Agarwal - Founder, Reforbs"
@@ -642,26 +643,26 @@ export default function PartnerWithUsPage() {
               </div>
 
               <div>
-                <h3 className="text-xl sm:text-2xl font-black font-heading text-[#111827]">
+                <h3 className="text-xl sm:text-2xl font-black font-heading text-white tracking-tight">
                   Arpit Agarwal
                 </h3>
-                <span className="text-xs font-black uppercase text-[#007A7A] tracking-wider block mt-0.5">
+                <span className="px-3.5 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block mt-1 shadow-sm">
                   Founder
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed italic font-medium">
+              <p className="text-xs sm:text-sm text-white/95 leading-relaxed italic font-normal max-w-sm">
                 &ldquo;Reforbs was born out of personal conviction. Having experienced sterile, restrictive rentals firsthand, we set out to build spaces where freedom, community, and peace of mind coexist harmoniously.&rdquo;
               </p>
 
-              <div className="pt-2 text-[11px] font-bold text-[#6B7280]">
+              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80">
                 Product Vision • Community Architecture • Brand Culture
               </div>
             </div>
 
             {/* Moinkhan Y Pathan */}
-            <div className="rounded-3xl bg-white border border-[#E1E7E6] shadow-card p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#007A7A] transition-all">
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-[#FFDE59] shadow-lg">
+            <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-4 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
+              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-yellow-300 shadow-xl group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/partner/moinkhan-pathan.png"
                   alt="Moinkhan Y Pathan - Founder, Reforbs"
@@ -671,19 +672,19 @@ export default function PartnerWithUsPage() {
               </div>
 
               <div>
-                <h3 className="text-xl sm:text-2xl font-black font-heading text-[#111827]">
+                <h3 className="text-xl sm:text-2xl font-black font-heading text-white tracking-tight">
                   Moinkhan Y Pathan
                 </h3>
-                <span className="text-xs font-black uppercase text-[#007A7A] tracking-wider block mt-0.5">
+                <span className="px-3.5 py-1 rounded-full bg-black/25 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-[#FFDE59] tracking-wider inline-block mt-1 shadow-sm">
                   Founder
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed italic font-medium">
+              <p className="text-xs sm:text-sm text-white/95 leading-relaxed italic font-normal max-w-sm">
                 &ldquo;Every property we operate is managed with institutional precision. Our commitment to property owners is unwavering: absolute transparency, punctual payments, and the highest standards of physical upkeep.&rdquo;
               </p>
 
-              <div className="pt-2 text-[11px] font-bold text-[#6B7280]">
+              <div className="pt-3 border-t border-white/20 text-[11px] font-bold text-white/80">
                 Hospitality Operations • Owner Relations • Expansion Strategy
               </div>
             </div>
