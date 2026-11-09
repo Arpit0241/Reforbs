@@ -58,8 +58,8 @@ export default function PropertiesPage() {
             Explore Residences in <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Pune</span>
           </h1>
 
-          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-semibold text-white drop-shadow-md">
-            Browse our handpicked student sanctuaries and co-living spaces with live map tracking. Hover any card on desktop or scroll to automatically pinpoint locations in Pune.
+          <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-semibold drop-shadow-md">
+            Discover Reforbs handpicked co-living and student residences across prime Pune hubs like Viman Nagar and Lavale. Thoughtfully curated for freedom, comfort, zero lock-ins, and vibrant community living.
           </p>
         </div>
       </div>
