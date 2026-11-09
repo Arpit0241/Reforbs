@@ -59,7 +59,7 @@ export default function PropertiesPage() {
           </h1>
 
           <p className="text-white text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-semibold drop-shadow-md">
-            Discover Reforbs handpicked co-living and student residences across prime Pune hubs like Viman Nagar and Lavale. Thoughtfully curated for freedom, comfort, zero lock-ins, and vibrant community living.
+            Discover Reforbs handpicked co-living and student residences across prime locations in Pune. Thoughtfully curated for freedom, comfort, zero lock-ins, and vibrant community living.
           </p>
         </div>
       </div>
