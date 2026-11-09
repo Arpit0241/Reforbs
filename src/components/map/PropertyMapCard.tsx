@@ -217,7 +217,7 @@ export default function PropertyMapCard({
                   Inclusions
                 </span>
                 <span className="font-semibold text-white/95 mt-0.5 block leading-snug">
-                  {property.inclusionsDisplay || "Wi-Fi, Housekeeping, Water"}
+                  {property.inclusionsDisplay || "Food, Wi-Fi, Daily Housekeeping, Water"}
                 </span>
               </div>
 

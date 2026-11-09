@@ -36,7 +36,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "Zero forced food packages, zero lock-ins, and no arbitrary bans. Live as if you own the place.",
     tag1: "Zero Lock-ins",
     tag2: "Cooking Freedom",
-    image: "/assets/pdf/extracted/page-7-image-2-X6.jpg",
+    image: "/images/difference-freedom.jpg",
   },
   {
     id: "community",
@@ -84,7 +84,7 @@ export const differenceItems: DifferenceCardItem[] = [
       "Total peace of mind with 24/7 dedicated host care, rapid maintenance, and complete resident autonomy.",
     tag1: "Dedicated Hosts",
     tag2: "Full Autonomy",
-    image: "/assets/pdf/extracted/page-6-image-1-X4.jpg",
+    image: "/images/difference-ownership.jpg",
   },
   {
     id: "connection",
