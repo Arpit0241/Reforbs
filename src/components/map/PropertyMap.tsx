@@ -107,6 +107,7 @@ export default function PropertyMap() {
       center: [VIMAN_NAGAR_CENTER.lat, VIMAN_NAGAR_CENTER.lng],
       zoom: VIMAN_NAGAR_CENTER.defaultZoom,
       zoomControl: false,
+      attributionControl: false,
       scrollWheelZoom: true,
       maxZoom: 19,
       minZoom: 11,

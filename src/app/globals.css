@@ -127,6 +127,10 @@ p {
   touch-action: pan-x pan-y !important;
 }
 
+.leaflet-control-attribution {
+  display: none !important;
+}
+
 /* CRITICAL FIX: Prevent Tailwind Preflight reset (img { max-width: 100%; height: auto; }) from distorting or breaking Leaflet tiles */
 .leaflet-container img.leaflet-tile {
   max-width: none !important;
