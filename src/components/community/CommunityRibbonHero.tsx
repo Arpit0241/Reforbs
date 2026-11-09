@@ -149,10 +149,10 @@ varying vec3 vWorldPos;
 void main() {
   vec4 texColor = texture2D(u_tex, vUv);
   
-  // Depth shading for 3D realism
+  // Depth shading for subtle 3D realism without darkening cards
   if (u_sheetD > 0.01) {
     float depth = clamp((u_sheetD - vWorldPos.z) / (2.0 * u_sheetD), 0.0, 1.0);
-    texColor.rgb = mix(texColor.rgb, texColor.rgb * 0.72, depth * 0.35);
+    texColor.rgb = mix(texColor.rgb, texColor.rgb * 0.92, depth * 0.12);
   }
 
   // Soft rounded card border fade
@@ -239,11 +239,11 @@ export default function CommunityRibbonHero() {
       };
 
       const renderCardOverlay = () => {
-        // Bottom readability gradient
-        const scrim = ctx.createLinearGradient(0, ch * 0.35, 0, ch);
-        scrim.addColorStop(0, "rgba(6, 12, 20, 0)");
-        scrim.addColorStop(0.5, "rgba(6, 12, 20, 0.65)");
-        scrim.addColorStop(1, "rgba(6, 12, 20, 0.95)");
+        // Bottom readability gradient - keep upper 68% pristine, bright & fully visible
+        const scrim = ctx.createLinearGradient(0, ch * 0.65, 0, ch);
+        scrim.addColorStop(0, "rgba(0, 0, 0, 0)");
+        scrim.addColorStop(0.5, "rgba(0, 0, 0, 0.40)");
+        scrim.addColorStop(1, "rgba(0, 0, 0, 0.75)");
         ctx.fillStyle = scrim;
         ctx.fillRect(0, 0, cw, ch);
 
