@@ -23,7 +23,7 @@ const RIBBON_ITEMS: RibbonCardItem[] = [
     id: 2,
     caption: "Gaming & Chill Lounge",
     tag: "Unwind & Play",
-    image: "/images/hero-recreation.webp",
+    image: "/images/community-gaming-lounge.jpg",
     aspect: 1.6,
   },
   {
@@ -65,7 +65,7 @@ const RIBBON_ITEMS: RibbonCardItem[] = [
     id: 8,
     caption: "Late-Night Talks & Stories",
     tag: "Home Atmosphere",
-    image: "/images/properties/nirvana/image-2.jpg",
+    image: "/images/community-night-talks.jpg",
     aspect: 1.65,
   },
 ];
