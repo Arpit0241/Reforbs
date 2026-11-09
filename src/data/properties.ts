@@ -40,6 +40,13 @@ export interface PropertyItem {
   isGuesthouse: boolean;
   totalBedsInfo: string;
   depositInfo: string;
+  // Six Required Property Card Fields
+  rentDisplay?: string;
+  depositDisplay?: string;
+  inclusionsDisplay?: string;
+  roomConfigDisplay?: string;
+  acRoomsDisplay?: string;
+  attachedWashroomDisplay?: string;
 }
 
 export const propertiesData: PropertyItem[] = [
@@ -75,14 +82,14 @@ export const propertiesData: PropertyItem[] = [
     gender: "Co-Ed",
     roomTypes: ["Twin", "Private"],
     cardGradient: "from-[#164E63] via-[#0E3846] to-[#031F27]",
-    coverImage: "/images/properties/nirvana/image-1.jpg",
+    coverImage: "/images/properties/nirvana/image-2.jpg",
     gallery: [
-      "/images/properties/nirvana/image-1.jpg",
       "/images/properties/nirvana/image-2.jpg",
       "/images/properties/nirvana/image-3.jpg",
       "/images/properties/nirvana/image-4.jpg",
       "/images/properties/nirvana/image-5.jpg",
       "/images/properties/nirvana/image-6.jpg",
+      "/images/properties/nirvana/image-1.jpg",
     ],
     description:
       "Standalone 3-storey building with four 1RK units per floor (two twin-sharing and two single/private). Every unit features a separate entrance, private attached kitchen, and attached washroom with individual AC. Best suited for couples and residents preferring absolute privacy.",
@@ -97,6 +104,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "26 Twin Beds, 7 Private Beds",
     depositInfo: "Twin: ₹17,000 | Private: ₹29,000 (1 month rent, fully refundable with 30 days notice)",
+    rentDisplay: "₹17,000 / month",
+    depositDisplay: "₹17,000 (1 Month, Refundable)",
+    inclusionsDisplay: "Wi-Fi, Daily Housekeeping, Water",
+    roomConfigDisplay: "1RK Private Suites (Private Kitchen)",
+    acRoomsDisplay: "Yes (Individual AC in all units)",
+    attachedWashroomDisplay: "Yes (Private attached washroom)",
   },
 
   // 2. MOKSHA
@@ -149,6 +162,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "18 Twin Beds, 11 Private Beds",
     depositInfo: "Twin: ₹17,000 | Private: ₹24,000 (1 month rent, fully refundable with 30 days notice)",
+    rentDisplay: "₹17,000 / month",
+    depositDisplay: "₹17,000 (1 Month, Refundable)",
+    inclusionsDisplay: "Wi-Fi, Daily Housekeeping, Water, Common Balcony",
+    roomConfigDisplay: "Spacious 3BHK Floors (Max 4 residents/floor)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Ensuite / Dedicated washrooms)",
   },
 
   // 3. VIPASNA
@@ -201,6 +220,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "6 Twin Beds, 8 Private Beds",
     depositInfo: "Twin: ₹17,000 | Private: ₹27,000 (1 month rent, fully refundable with 30 days notice)",
+    rentDisplay: "₹17,000 / month",
+    depositDisplay: "₹17,000 (1 Month, Refundable)",
+    inclusionsDisplay: "Wi-Fi, Daily Housekeeping, Water, Shared Kitchen",
+    roomConfigDisplay: "Hotel-Style Ensuite Rooms (4 rooms/floor)",
+    acRoomsDisplay: "Yes (AC in every room)",
+    attachedWashroomDisplay: "Yes (Ensuite attached washroom in all rooms)",
   },
 
   // =============================================================
@@ -258,6 +283,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "42 Girls' Twin Beds, 24 Boys' Twin Beds",
     depositInfo: "₹40,000 (Fully refundable subject to 30 days notice & no damage; No cancellation refund)",
+    rentDisplay: "₹25,000 – ₹27,000 / month",
+    depositDisplay: "₹40,000 (Refundable)",
+    inclusionsDisplay: "Breakfast & Dinner, Laundry (2x/wk, 5kg), Wi-Fi, Cleaning",
+    roomConfigDisplay: "Gated Society 3BHK (Boys & Girls Separate Towers)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Attached washrooms)",
   },
 
   // 5. BRINDAVAN
@@ -310,6 +341,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "32 Twin Beds, 16 Private Beds",
     depositInfo: "₹30,000 (Fully refundable subject to 30 days notice & no damage; No cancellation refund)",
+    rentDisplay: "₹27,000 – ₹32,000 / month",
+    depositDisplay: "₹30,000 (Refundable)",
+    inclusionsDisplay: "All 3 Meals (BF, Lunch, Dinner), Laundry (2x/wk), Wi-Fi",
+    roomConfigDisplay: "Curated 1BHK Units (3 residents per 1BHK)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Private washroom per unit)",
   },
 
   // 6. VAIRAGYA
@@ -362,6 +399,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: false,
     totalBedsInfo: "24 Twin Beds, 27 Triple Beds",
     depositInfo: "₹20,000 (Fully refundable subject to 30 days notice & no damage; No cancellation refund)",
+    rentDisplay: "₹15,000 – ₹17,000 / month",
+    depositDisplay: "₹20,000 (Refundable)",
+    inclusionsDisplay: "Breakfast & Dinner (In-House Mess), Wi-Fi, Housekeeping",
+    roomConfigDisplay: "Spacious 1BHK Units (Triple & Twin Sharing)",
+    acRoomsDisplay: "No (Non-AC)",
+    attachedWashroomDisplay: "Yes (Attached washroom in each unit)",
   },
 
   // =============================================================
@@ -418,6 +461,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: true,
     totalBedsInfo: "12 Twin Beds (Private rooms NA)",
     depositInfo: "₹20,000 (Fully refundable subject to 30 days notice & no damage)",
+    rentDisplay: "₹20,000 / month",
+    depositDisplay: "₹20,000 (Refundable)",
+    inclusionsDisplay: "Daily Cleaning, High-Speed Wi-Fi, Maintenance, Kitchen Access",
+    roomConfigDisplay: "Executive 3BHK Corporate Apartments (Corporate Only)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Attached & Dedicated washrooms)",
   },
 
   // 8. PILLAR HOMES
@@ -470,6 +519,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: true,
     totalBedsInfo: "27 Twin Beds (Private rooms NA)",
     depositInfo: "₹25,000 (Fully refundable subject to 30 days notice & no damage)",
+    rentDisplay: "₹25,000 / month",
+    depositDisplay: "₹25,000 (Refundable)",
+    inclusionsDisplay: "Daily Cleaning, High-Speed Wi-Fi, Maintenance, Furnished Kitchen",
+    roomConfigDisplay: "Premium 3BHK Corporate Apartments (Corporate Only)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Attached washrooms in all master bedrooms)",
   },
 
   // 9. SUYOG ENCLAVE
@@ -522,6 +577,12 @@ export const propertiesData: PropertyItem[] = [
     isGuesthouse: true,
     totalBedsInfo: "18 Twin Beds (Private rooms NA)",
     depositInfo: "₹25,000 (Fully refundable subject to 30 days notice & no damage)",
+    rentDisplay: "₹25,000 / month",
+    depositDisplay: "₹25,000 (Refundable)",
+    inclusionsDisplay: "Daily Cleaning, High-Speed Wi-Fi, Maintenance, Furnished Kitchen",
+    roomConfigDisplay: "Comfort 3BHK Corporate Apartments (Corporate Only)",
+    acRoomsDisplay: "Yes (AC in all rooms)",
+    attachedWashroomDisplay: "Yes (Attached washrooms)",
   },
 ];
 

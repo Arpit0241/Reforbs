@@ -23,14 +23,14 @@ const property: PropertyData = {
   annualLockIn: false,
   foodPolicy: "Optional food arrangements available. Contact the property team for details.",
   laundryPolicy: "Washing machine available on premises",
-  heroImage: "/images/properties/nirvana/image-1.jpg",
+  heroImage: "/images/properties/nirvana/image-2.jpg",
   galleryImages: [
-    "/images/properties/nirvana/image-1.jpg",
     "/images/properties/nirvana/image-2.jpg",
     "/images/properties/nirvana/image-3.jpg",
     "/images/properties/nirvana/image-4.jpg",
     "/images/properties/nirvana/image-5.jpg",
     "/images/properties/nirvana/image-6.jpg",
+    "/images/properties/nirvana/image-1.jpg",
   ],
   description:
     "Nirvana provides independent 1RK apartments designed with attached private kitchens, ensuite washrooms, and private balconies. Enjoy 100% couple-friendly freedom with zero lock-in period and hotel-grade housekeeping.",

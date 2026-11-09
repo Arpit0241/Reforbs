@@ -43,7 +43,7 @@ const colivingProperties = [
     name: "Shubh Nirvana",
     sub: "Flagship backpacker & hippie themed property",
     price: "₹15,000",
-    image: "/images/properties/nirvana/image-1.jpg",
+    image: "/images/properties/nirvana/image-2.jpg",
     link: "/coliving/shubh-nirvana",
     rating: "5.0",
     reviews: 189,

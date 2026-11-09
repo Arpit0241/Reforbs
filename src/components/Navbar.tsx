@@ -139,6 +139,19 @@ export default function Navbar() {
             >
               Contact
             </Link>
+
+            <Link
+              href="/partner-with-us"
+              className={`text-sm font-bold transition-colors ${
+                pathname === "/partner-with-us"
+                  ? "text-[#007A7A]"
+                  : scrolled
+                  ? "text-[#1B1D1C] hover:text-[#007A7A]"
+                  : "text-white/90 hover:text-white"
+              }`}
+            >
+              Partner with us
+            </Link>
           </nav>
 
           {/* Desktop Action CTAs */}
@@ -276,6 +289,14 @@ export default function Navbar() {
               className="flex items-center min-h-[44px] text-base font-extrabold text-[#111827] hover:text-[#007A7A]"
             >
               Contact
+            </Link>
+
+            <Link
+              href="/partner-with-us"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center min-h-[44px] text-base font-extrabold text-[#111827] hover:text-[#007A7A]"
+            >
+              Partner with us
             </Link>
 
             <div className="pt-2 flex flex-col gap-3">

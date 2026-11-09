@@ -8,8 +8,11 @@ import {
   RefreshCw,
   Phone,
   FileCheck,
+  Building2,
+  GraduationCap,
 } from "lucide-react";
 import ChatbotMessage, { Message } from "./ChatbotMessage";
+import FaqModal from "@/components/faq/FaqModal";
 import {
   searchKnowledgePDF,
   loadAndIndexPDF,
@@ -22,6 +25,8 @@ import {
 
 export default function ReforbsChatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [faqModalOpen, setFaqModalOpen] = useState(false);
+  const [faqType, setFaqType] = useState<"coliving" | "student-housing">("coliving");
   const [inputQuery, setInputQuery] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isEngineReady, setIsEngineReady] = useState(false);
@@ -301,31 +306,91 @@ export default function ReforbsChatbot() {
         </div>
       )}
 
-      {/* Floating Launcher Button */}
+      {/* Floating Action Buttons Stack: FAQ Co-Living, FAQ Student Housing, Reforbs Assistant */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className={`flex items-center justify-center bg-[#007A7A] hover:bg-[#005F5F] active:scale-95 text-white rounded-full shadow-[0_4px_22px_rgba(0,122,122,0.4)] hover:shadow-[0_6px_28px_rgba(0,122,122,0.5)] transition-all duration-300 border-2 border-[#FFDE59]/70 ${
-            isMobileMapOpen
-              ? "w-11 h-11 p-0"
-              : "w-11 h-11 sm:w-auto p-0 sm:pl-3.5 sm:pr-4 sm:py-2.5 min-h-[44px] sm:min-h-[46px]"
-          }`}
-          aria-label="Open Reforbs Support Assistant"
-          aria-expanded={isOpen}
-        >
-          <div className="relative flex items-center justify-center">
-            <MessageSquare size={19} className="text-[#FFDE59]" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFDE59] rounded-full animate-ping" />
-          </div>
-          <span
-            className={`text-xs font-black tracking-wide font-heading ml-2.5 ${
-              isMobileMapOpen ? "hidden" : "hidden sm:inline"
+        <div className="flex flex-col items-end gap-2">
+          {/* FAQ Co-Living Button */}
+          <button
+            onClick={() => {
+              setFaqType("coliving");
+              setFaqModalOpen(true);
+            }}
+            className={`flex items-center justify-center bg-[#073333] hover:bg-[#005F5F] active:scale-95 text-white rounded-full shadow-[0_4px_18px_rgba(0,122,122,0.35)] hover:shadow-[0_6px_24px_rgba(0,122,122,0.5)] transition-all duration-300 border border-[#FFDE59]/50 ${
+              isMobileMapOpen
+                ? "w-11 h-11 p-0"
+                : "w-auto px-3.5 py-2 sm:px-4 sm:py-2.5 min-h-[40px] sm:min-h-[44px]"
             }`}
+            aria-label="Open FAQ Co-Living"
           >
-            Reforbs Assistant
-          </span>
-        </button>
+            <div className="relative flex items-center justify-center text-[#FFDE59]">
+              <Building2 size={16} />
+            </div>
+            <span
+              className={`text-xs font-black tracking-wide font-heading ml-2 ${
+                isMobileMapOpen ? "hidden" : "inline"
+              }`}
+            >
+              FAQ Co-Living
+            </span>
+          </button>
+
+          {/* FAQ Student Housing Button */}
+          <button
+            onClick={() => {
+              setFaqType("student-housing");
+              setFaqModalOpen(true);
+            }}
+            className={`flex items-center justify-center bg-[#073333] hover:bg-[#005F5F] active:scale-95 text-white rounded-full shadow-[0_4px_18px_rgba(0,122,122,0.35)] hover:shadow-[0_6px_24px_rgba(0,122,122,0.5)] transition-all duration-300 border border-[#FFDE59]/50 ${
+              isMobileMapOpen
+                ? "w-11 h-11 p-0"
+                : "w-auto px-3.5 py-2 sm:px-4 sm:py-2.5 min-h-[40px] sm:min-h-[44px]"
+            }`}
+            aria-label="Open FAQ Student Housing"
+          >
+            <div className="relative flex items-center justify-center text-[#FFDE59]">
+              <GraduationCap size={16} />
+            </div>
+            <span
+              className={`text-xs font-black tracking-wide font-heading ml-2 ${
+                isMobileMapOpen ? "hidden" : "inline"
+              }`}
+            >
+              FAQ Student Housing
+            </span>
+          </button>
+
+          {/* Reforbs Assistant Button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className={`flex items-center justify-center bg-[#007A7A] hover:bg-[#005F5F] active:scale-95 text-white rounded-full shadow-[0_4px_22px_rgba(0,122,122,0.4)] hover:shadow-[0_6px_28px_rgba(0,122,122,0.5)] transition-all duration-300 border-2 border-[#FFDE59]/70 ${
+              isMobileMapOpen
+                ? "w-11 h-11 p-0"
+                : "w-auto px-3.5 py-2 sm:px-4 sm:py-2.5 min-h-[44px] sm:min-h-[46px]"
+            }`}
+            aria-label="Open Reforbs Support Assistant"
+            aria-expanded={isOpen}
+          >
+            <div className="relative flex items-center justify-center">
+              <MessageSquare size={18} className="text-[#FFDE59]" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FFDE59] rounded-full animate-ping" />
+            </div>
+            <span
+              className={`text-xs font-black tracking-wide font-heading ml-2.5 ${
+                isMobileMapOpen ? "hidden" : "inline"
+              }`}
+            >
+              Reforbs Assistant
+            </span>
+          </button>
+        </div>
       )}
+
+      {/* Standalone FAQ Accordion Modal */}
+      <FaqModal
+        isOpen={faqModalOpen}
+        onClose={() => setFaqModalOpen(false)}
+        initialType={faqType}
+      />
     </aside>
   );
 }

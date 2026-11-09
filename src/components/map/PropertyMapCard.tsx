@@ -177,34 +177,74 @@ export default function PropertyMapCard({
               </h3>
             </Link>
 
-            <p className="text-xs text-white/80 font-medium leading-relaxed mb-3.5 line-clamp-2">
+            <p className="text-xs text-white/80 font-medium leading-relaxed mb-3 line-clamp-2">
               {property.description}
             </p>
 
-            {/* Rent Section */}
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-black/25 backdrop-blur-md border border-white/15 mb-3.5">
-              <span className="text-[10px] uppercase font-bold text-white/70 block tracking-wider">
-                Rent
-              </span>
-              <div className="flex items-baseline gap-1 mt-0.5">
-                <span className="text-xl sm:text-2xl font-black text-[#FFDE59] font-heading">
-                  {property.price}
-                </span>
-                <span className="text-xs font-bold text-white/70">/month</span>
-              </div>
-            </div>
+            {/* 6 Required Verified Property Specifications */}
+            <div className="rounded-2xl bg-black/35 backdrop-blur-md border border-white/15 p-3.5 mb-3.5 space-y-2.5 text-left">
+              {/* Row 1: Rent & Deposit */}
+              <div className="grid grid-cols-2 gap-3 pb-2.5 border-b border-white/10">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    1. Rent
+                  </span>
+                  <div className="text-base sm:text-lg font-black text-[#FFDE59] font-heading mt-0.5">
+                    {property.rentDisplay || `${property.price}/month`}
+                  </div>
+                </div>
 
-            {/* Feature Pills */}
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {property.highlights.slice(0, 3).map((item, idx) => (
-                <span
-                  key={idx}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/15 text-white backdrop-blur-sm border border-white/20"
-                >
-                  <Check size={11} className="text-[#FFDE59]" />
-                  <span>{item}</span>
-                </span>
-              ))}
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    2. Deposit
+                  </span>
+                  <div className="text-xs sm:text-sm font-bold text-white mt-1 truncate" title={property.depositDisplay}>
+                    {property.depositDisplay || "1 Month"}
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 2: Inclusions & Room Configuration */}
+              <div className="space-y-2 pb-2.5 border-b border-white/10 text-xs">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    3. Inclusions
+                  </span>
+                  <span className="font-semibold text-white/95 mt-0.5 block leading-snug" title={property.inclusionsDisplay}>
+                    {property.inclusionsDisplay || "Wi-Fi, Housekeeping, Water"}
+                  </span>
+                </div>
+
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    4. Room Configuration
+                  </span>
+                  <span className="font-semibold text-white/95 mt-0.5 block leading-snug">
+                    {property.roomConfigDisplay || property.outcome}
+                  </span>
+                </div>
+              </div>
+
+              {/* Row 3: AC Rooms & Attached Washroom */}
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    5. AC Rooms
+                  </span>
+                  <span className="font-bold text-[#FFDE59] mt-0.5 block text-[11px] truncate" title={property.acRoomsDisplay}>
+                    {property.acRoomsDisplay || (property.airConditioning ? "Yes (AC)" : "No")}
+                  </span>
+                </div>
+
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                    6. Washroom
+                  </span>
+                  <span className="font-bold text-emerald-300 mt-0.5 block text-[11px] truncate" title={property.attachedWashroomDisplay}>
+                    {property.attachedWashroomDisplay || "Attached Washroom"}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
