@@ -94,7 +94,7 @@ export default function CommunitySection() {
             href="/contact"
             className="btn-teal text-xs py-3.5 px-7 font-extrabold shrink-0 shadow-md whitespace-nowrap"
           >
-            <span>Join Our Pune Tribe</span>
+            <span>Join Our Reforbs Family</span>
             <ArrowRight size={14} />
           </Link>
         </div>
