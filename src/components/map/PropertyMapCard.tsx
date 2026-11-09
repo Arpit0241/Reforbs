@@ -181,67 +181,76 @@ export default function PropertyMapCard({
               {property.description}
             </p>
 
-            {/* 6 Required Verified Property Specifications */}
-            <div className="rounded-2xl bg-black/35 backdrop-blur-md border border-white/15 p-3.5 mb-3.5 space-y-2.5 text-left">
-              {/* Row 1: Rent & Deposit */}
-              <div className="grid grid-cols-2 gap-3 pb-2.5 border-b border-white/10">
+            {/* Verified Property Specifications */}
+            <div className="rounded-2xl bg-black/30 backdrop-blur-md border border-white/15 p-3.5 mb-3.5 space-y-2.5 text-left">
+              {/* Row 1: Rent & Deposit (Side-by-side, perfectly aligned) */}
+              <div className="grid grid-cols-2 gap-3 pb-2.5 border-b border-white/10 items-baseline">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    1. Rent
+                  <span className="text-[10px] uppercase font-bold text-white/70 block tracking-wider">
+                    Rent
                   </span>
-                  <div className="text-base sm:text-lg font-black text-[#FFDE59] font-heading mt-0.5">
-                    {property.rentDisplay || `${property.price}/month`}
+                  <div className="flex items-baseline gap-1 mt-0.5">
+                    <span className="text-xl sm:text-2xl font-black text-[#FFDE59] font-heading whitespace-nowrap">
+                      {property.rentDisplay || property.price}
+                    </span>
+                    <span className="text-xs font-bold text-white/70 whitespace-nowrap">
+                      /month
+                    </span>
                   </div>
                 </div>
 
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    2. Deposit
+                <div className="border-l border-white/15 pl-3">
+                  <span className="text-[10px] uppercase font-bold text-white/70 block tracking-wider">
+                    Deposit
                   </span>
-                  <div className="text-xs sm:text-sm font-bold text-white mt-1 truncate" title={property.depositDisplay}>
-                    {property.depositDisplay || "1 Month"}
+                  <div className="flex items-baseline gap-1 mt-0.5">
+                    <span className="text-xl sm:text-2xl font-black text-white font-heading whitespace-nowrap">
+                      {property.depositDisplay || "1 Month"}
+                    </span>
+                    <span className="text-xs font-bold text-white/70 whitespace-nowrap">
+                      (Refundable)
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Row 2: Inclusions & Room Configuration */}
-              <div className="space-y-2 pb-2.5 border-b border-white/10 text-xs">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    3. Inclusions
-                  </span>
-                  <span className="font-semibold text-white/95 mt-0.5 block leading-snug" title={property.inclusionsDisplay}>
-                    {property.inclusionsDisplay || "Wi-Fi, Housekeeping, Water"}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    4. Room Configuration
-                  </span>
-                  <span className="font-semibold text-white/95 mt-0.5 block leading-snug">
-                    {property.roomConfigDisplay || property.outcome}
-                  </span>
-                </div>
+              {/* Row 2: Inclusions */}
+              <div className="pb-2 border-b border-white/10 text-xs">
+                <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                  Inclusions
+                </span>
+                <span className="font-semibold text-white/95 mt-0.5 block leading-snug">
+                  {property.inclusionsDisplay || "Wi-Fi, Housekeeping, Water"}
+                </span>
               </div>
 
-              {/* Row 3: AC Rooms & Attached Washroom */}
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              {/* Row 3: Room Configuration */}
+              <div className="pb-2 border-b border-white/10 text-xs">
+                <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
+                  Room Configuration
+                </span>
+                <span className="font-semibold text-white/95 mt-0.5 block leading-snug">
+                  {property.roomConfigDisplay || property.outcome}
+                </span>
+              </div>
+
+              {/* Row 4: AC Rooms & Washroom */}
+              <div className="grid grid-cols-2 gap-3 text-xs">
                 <div>
                   <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    5. AC Rooms
+                    AC Rooms
                   </span>
-                  <span className="font-bold text-[#FFDE59] mt-0.5 block text-[11px] truncate" title={property.acRoomsDisplay}>
-                    {property.acRoomsDisplay || (property.airConditioning ? "Yes (AC)" : "No")}
+                  <span className="font-bold text-[#FFDE59] mt-0.5 block text-xs truncate">
+                    {property.acRoomsDisplay || (property.airConditioning ? "Yes (AC in all rooms)" : "No (Non-AC)")}
                   </span>
                 </div>
 
                 <div>
                   <span className="text-[10px] uppercase font-bold text-white/60 block tracking-wider">
-                    6. Washroom
+                    Washroom
                   </span>
-                  <span className="font-bold text-emerald-300 mt-0.5 block text-[11px] truncate" title={property.attachedWashroomDisplay}>
-                    {property.attachedWashroomDisplay || "Attached Washroom"}
+                  <span className="font-bold text-emerald-300 mt-0.5 block text-xs truncate">
+                    {property.attachedWashroomDisplay || "Yes (Attached Washroom)"}
                   </span>
                 </div>
               </div>
