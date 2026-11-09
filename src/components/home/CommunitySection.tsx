@@ -14,10 +14,11 @@ export default function CommunitySection() {
         <div className="relative rounded-3xl overflow-hidden border border-[#272B29] mb-16 shadow-2xl bg-[#1B1D1C]">
           <div className="relative h-72 sm:h-96 md:h-[460px] w-full">
             <Image
-              src="/images/properties/park-island/image-1.jpg"
+              src="/images/reforbs-community-bonding.jpg"
               alt="Never a dull moment at Reforbs Community - Social bonding and vibrant atmosphere"
               fill
               className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111312] via-[#111312]/40 to-transparent" />
           </div>
