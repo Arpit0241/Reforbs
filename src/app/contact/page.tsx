@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: "Where are your properties located in Pune?",
-    a: "All our residences are located in the heart of Viman Nagar, Pune: walking distance from Symbiosis Law School (SLS), Symbiosis Centre for Management Studies (SCMS), and minutes from Phoenix Marketcity, IT corridors, and Pune Airport.",
+    a: "All our residences are located in prime hubs across Pune, with effortless connectivity to colleges, IT corridors, lifestyle avenues, and Pune Airport.",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function ContactPage() {
             Book a Site Tour or <span className="text-[#FFDE59] underline decoration-[#FFDE59]/40 underline-offset-8">Say Hello</span>
           </h1>
           <p className="text-white text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
-            Drop by any of our Viman Nagar properties for a relaxed walkthrough. No sales reps pestering you later — that&apos;s our Reforbs guarantee!
+            Drop by any of our Pune properties for a relaxed walkthrough. No sales reps pestering you later — that&apos;s our Reforbs guarantee!
           </p>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                   Request Confirmed!
                 </h3>
                 <p className="text-sm text-[#1F2937] max-w-md mx-auto mb-6 font-semibold">
-                  Thank you, <strong>{form.name}</strong>. Our on-ground host in Viman Nagar will text you on WhatsApp ({form.phone}) with building location and timings.
+                  Thank you, <strong>{form.name}</strong>. Our on-ground host in Pune will text you on WhatsApp ({form.phone}) with building location and timings.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-3">
                   <a
@@ -220,10 +220,7 @@ export default function ContactPage() {
                       Locations
                     </span>
                     <span className="text-sm font-black text-[#111827]">
-                      Viman Nagar, Pune, Maharashtra 411014
-                    </span>
-                    <span className="text-xs text-[#374151] block mt-0.5 font-semibold">
-                      (Near Symbiosis SLS &amp; SCMS campuses)
+                      Pune, Maharashtra
                     </span>
                   </div>
                 </div>
@@ -283,7 +280,7 @@ export default function ContactPage() {
 
               <div className="pt-4 border-t border-[#E1E7E6]">
                 <a
-                  href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Viman%20Nagar."
+                  href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Pune."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-yellow w-full py-3.5 rounded-2xl justify-center font-black text-xs shadow-md"
