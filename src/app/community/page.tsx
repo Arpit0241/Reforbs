@@ -82,8 +82,8 @@ export default function CommunityPage() {
       {/* Community Visual Feature */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Open 3D Ribbon Showcase */}
-          <div className="w-full relative rounded-3xl overflow-hidden shadow-2xl mb-12 bg-[#060a0f]">
+          {/* 3D Community Showcase Directly On Page */}
+          <div className="w-full relative mb-12 overflow-hidden">
             <CommunityRibbonHero />
           </div>
 
