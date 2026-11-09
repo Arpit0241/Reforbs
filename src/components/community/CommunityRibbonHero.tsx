@@ -30,14 +30,14 @@ const RIBBON_ITEMS: RibbonCardItem[] = [
     id: 3,
     caption: "Community Feasts & Brunches",
     tag: "Shared Dining",
-    image: "/images/hero-dining.webp",
+    image: "/images/community-feasts-brunches.jpg",
     aspect: 1.65,
   },
   {
     id: 4,
     caption: "Rooftop Jams & Socials",
     tag: "Vibe Nights",
-    image: "/images/community-lifestyle.webp",
+    image: "/images/community-rooftop-jams.jpg",
     aspect: 1.7,
   },
   {
@@ -51,14 +51,14 @@ const RIBBON_ITEMS: RibbonCardItem[] = [
     id: 6,
     caption: "Mindful Mornings & Yoga",
     tag: "Wellness & Growth",
-    image: "/images/living-reforbs-way.webp",
+    image: "/images/community-mindful-yoga.jpg",
     aspect: 1.65,
   },
   {
     id: 7,
     caption: "Festival Vibes & Celebrations",
     tag: "Reforbs Family",
-    image: "/images/properties/moksha/image-3.jpg",
+    image: "/images/community-festival-celebrations.jpg",
     aspect: 1.6,
   },
   {
