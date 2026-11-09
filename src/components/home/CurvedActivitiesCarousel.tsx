@@ -258,16 +258,16 @@ export default function CurvedActivitiesCarousel() {
               {/* Ambient Glow */}
               <div className="absolute -top-16 -right-16 w-36 h-36 bg-white/15 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-700" />
 
-              {/* Top Photo Tile with Aspect Ratio & Subtle Vignette */}
-              <div className="relative h-44 sm:h-48 w-full overflow-hidden border-b border-white/15 z-10 bg-black/40">
+              {/* Top Photo Tile with Aspect Ratio */}
+              <div className="relative h-44 sm:h-48 w-full overflow-hidden border-b border-white/15 z-10 bg-[#0e1717]">
                 <Image
                   src={act.image}
                   alt={act.title}
                   fill
                   sizes="320px"
-                  className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#021818] via-transparent to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
                 {/* Top Overlay Badge & Number */}
                 <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
