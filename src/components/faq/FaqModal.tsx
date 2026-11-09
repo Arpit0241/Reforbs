@@ -111,9 +111,6 @@ export default function FaqModal({
                   <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-[#FFDE59]">
                     Official Reforbs Knowledge Base
                   </span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/15 text-white">
-                    {currentFaqs.length} FAQs
-                  </span>
                 </div>
                 <h2
                   id="faq-modal-title"
@@ -178,7 +175,7 @@ export default function FaqModal({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={`Search ${currentFaqs.length} ${
+              placeholder={`Search ${
                 activeTab === "coliving" ? "co-living" : "student housing"
               } questions (e.g., rent, deposit, notice, food)...`}
               className="w-full pl-9 pr-8 py-2.5 bg-black/20 focus:bg-black/35 text-white placeholder-white/50 text-xs sm:text-sm rounded-xl border border-white/20 focus:outline-none focus:border-[#FFDE59] transition-all"
