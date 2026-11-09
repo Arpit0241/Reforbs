@@ -62,7 +62,7 @@ export default function CommunityPage() {
           </h1>
 
           <p className="text-white text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium text-white/95">
-            We understand the profound importance of social interactions and bonding. The Reforbs family gives every member a supportive tribe to laugh, grow, and thrive together.
+            We understand the profound importance of social interactions and bonding. The Reforbs family gives every member a supportive reforbs family to laugh, grow, and thrive together.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold text-white">

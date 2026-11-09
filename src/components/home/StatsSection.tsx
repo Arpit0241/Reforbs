@@ -45,9 +45,9 @@ export const differenceItems: DifferenceCardItem[] = [
     icon: Users,
     gradient: "from-[#0F6274] via-[#0A4552] to-[#04242B]",
     description:
-      "A welcoming tribe to cope with stress, overcome loneliness, and build lifelong friendships.",
+      "A welcoming reforbs family to cope with stress, overcome loneliness, and build lifelong friendships.",
     tag1: "Zero Loneliness",
-    tag2: "Supportive Tribe",
+    tag2: "Reforbs Family",
     image: "/assets/pdf/extracted/page-7-image-6-X10.jpg",
   },
   {
