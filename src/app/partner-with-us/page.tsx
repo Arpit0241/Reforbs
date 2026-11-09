@@ -132,8 +132,8 @@ export default function PartnerWithUsPage() {
                   <Image
                     src="/images/partner/investor-growth.jpg"
                     alt="Reforbs Investors Program Growth Trajectory"
-                    width={682}
-                    height={1024}
+                    width={896}
+                    height={1200}
                     className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                     priority
                   />
