@@ -66,7 +66,7 @@ const RIBBON_ITEMS: RibbonCardItem[] = [
     caption: "Late-Night Talks & Stories",
     tag: "Home Atmosphere",
     image: "/images/community-night-talks.jpg",
-    aspect: 1.65,
+    aspect: 1.68,
   },
 ];
 
@@ -152,7 +152,7 @@ void main() {
   // Depth shading for subtle 3D realism without darkening cards
   if (u_sheetD > 0.01) {
     float depth = clamp((u_sheetD - vWorldPos.z) / (2.0 * u_sheetD), 0.0, 1.0);
-    texColor.rgb = mix(texColor.rgb, texColor.rgb * 0.92, depth * 0.12);
+    texColor.rgb = mix(texColor.rgb, texColor.rgb * 0.96, depth * 0.04);
   }
 
   // Soft rounded card border fade
@@ -240,11 +240,11 @@ export default function CommunityRibbonHero() {
       };
 
       const renderCardOverlay = () => {
-        // Bottom readability gradient - keep upper 68% pristine, bright & fully visible
-        const scrim = ctx.createLinearGradient(0, ch * 0.65, 0, ch);
+        // Subtle, lightweight bottom scrim - keeps the photo luminous & fully visible while ensuring title legibility
+        const scrim = ctx.createLinearGradient(0, ch * 0.72, 0, ch);
         scrim.addColorStop(0, "rgba(0, 0, 0, 0)");
-        scrim.addColorStop(0.5, "rgba(0, 0, 0, 0.40)");
-        scrim.addColorStop(1, "rgba(0, 0, 0, 0.75)");
+        scrim.addColorStop(0.5, "rgba(0, 0, 0, 0.20)");
+        scrim.addColorStop(1, "rgba(0, 0, 0, 0.45)");
         ctx.fillStyle = scrim;
         ctx.fillRect(0, 0, cw, ch);
 
