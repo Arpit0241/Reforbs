@@ -70,9 +70,9 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between lg:justify-center">
-        <div className="text-center max-w-4xl mx-auto w-full pt-10 sm:pt-14 lg:pt-0">
-          {/* Master Headline with Custom Styled Underline on 'experience' */}
-          <h1 className="text-[26px] sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.15] mb-2 sm:mb-4 font-heading drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
+        <div className="text-center max-w-sm sm:max-w-xl lg:max-w-4xl mx-auto w-full pt-16 sm:pt-20 lg:pt-0 px-2 sm:px-0">
+          {/* Master Headline with Custom Styled Underline on 'experience' - Bigger & perfectly positioned on mobile */}
+          <h1 className="text-[32px] sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-2 sm:mb-4 font-heading drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
             Not just an accommodation, <br className="hidden sm:block" />
             but an{" "}
             <span className="relative inline-block text-[#FFDE59]">
