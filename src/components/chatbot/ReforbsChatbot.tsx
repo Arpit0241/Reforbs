@@ -165,7 +165,7 @@ export default function ReforbsChatbot() {
       className={`fixed transition-all duration-300 z-50 pointer-events-auto ${
         isMobileMapOpen
           ? "bottom-[155px] right-3.5"
-          : "bottom-20 sm:bottom-6 right-3 sm:right-6"
+          : "bottom-[76px] sm:bottom-6 right-3 sm:right-6"
       }`}
     >
       {/* Chat Window Panel */}

@@ -366,15 +366,15 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
         </div>
       </div>
 
-      {/* Floating Mobile Map / List Toggle Button (Centered at bottom, visible when on list view) */}
+      {/* Floating Mobile Map / List Toggle Button (Left-aligned at bottom-[76px] to prevent collision with Reforbs Assistant) */}
       {!isMobileMapOpen && (
-        <div className="lg:hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-40">
+        <div className="lg:hidden fixed bottom-[76px] left-3 z-40">
           <button
             onClick={toggleMobileMap}
-            className="inline-flex items-center gap-2 min-h-[46px] px-5 py-2.5 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-2xl font-black text-xs tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20 whitespace-nowrap"
+            className="inline-flex items-center gap-2 min-h-[44px] px-3.5 py-2 rounded-full bg-[#111827] text-white hover:bg-[#007A7A] shadow-2xl font-black text-xs tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20 whitespace-nowrap"
             aria-label="Switch to Map View"
           >
-            <MapIcon size={16} className="text-[#FFDE59]" />
+            <MapIcon size={15} className="text-[#FFDE59]" />
             <span>Explore Map ({listings.length})</span>
           </button>
         </div>

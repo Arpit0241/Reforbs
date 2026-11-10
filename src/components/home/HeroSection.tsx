@@ -70,7 +70,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between lg:justify-center">
-        <div className="text-center max-w-4xl mx-auto w-full pt-1 sm:pt-3">
+        <div className="text-center max-w-4xl mx-auto w-full pt-10 sm:pt-14 lg:pt-0">
           {/* Master Headline with Custom Styled Underline on 'experience' */}
           <h1 className="text-[26px] sm:text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.15] mb-2 sm:mb-4 font-heading drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]">
             Not just an accommodation, <br className="hidden sm:block" />
@@ -164,38 +164,74 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Mobile-Only All Pills (Identical, equal styling across all rows) */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 text-[10.5px] sm:text-[11px] font-bold text-white px-2">
-            {offeringsPills.map((pill, idx) => (
-              <Link
-                key={`m-offering-${idx}`}
-                href={pill.href}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
-              >
-                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
-                <span>{pill.label}</span>
-              </Link>
-            ))}
+          {/* Mobile-Only All Pills (Cleanly arranged row-by-row, one below another starting with the 3 main yellow points) */}
+          <div className="flex flex-col items-center justify-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-white px-2">
+            {/* Row 1: The Three Core Yellow Points (Co-Living, Student Housing, Hotels & Resorts) */}
+            <div className="flex items-center justify-center gap-1.5">
+              {offeringsPills.slice(0, 3).map((pill, idx) => (
+                <Link
+                  key={`m-offering-top-${idx}`}
+                  href={pill.href}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                  <span>{pill.label}</span>
+                </Link>
+              ))}
+            </div>
 
-            {featurePills.map((pill, idx) => (
-              <div
-                key={`m-feature-${idx}`}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
-              >
-                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
-                <span>{pill.label}</span>
-              </div>
-            ))}
+            {/* Row 2: Secondary Offerings */}
+            <div className="flex items-center justify-center gap-1.5">
+              {offeringsPills.slice(3, 6).map((pill, idx) => (
+                <Link
+                  key={`m-offering-sub-${idx}`}
+                  href={pill.href}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm hover:border-[#FFDE59] active:scale-95 transition-all"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                  <span>{pill.label}</span>
+                </Link>
+              ))}
+            </div>
 
-            {communityPills.map((pill, idx) => (
-              <div
-                key={`m-community-${idx}`}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
-              >
-                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
-                <span>{pill.label}</span>
-              </div>
-            ))}
+            {/* Row 3: Freedom & Amenities */}
+            <div className="flex items-center justify-center gap-1.5">
+              {featurePills.slice(0, 2).map((pill, idx) => (
+                <div
+                  key={`m-feature-1-${idx}`}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                  <span>{pill.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 4: Lifestyle & Aesthetic */}
+            <div className="flex items-center justify-center gap-1.5">
+              {featurePills.slice(2, 4).map((pill, idx) => (
+                <div
+                  key={`m-feature-2-${idx}`}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                  <span>{pill.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 5: Community & Food Highlights */}
+            <div className="flex items-center justify-center gap-1.5">
+              {communityPills.slice(0, 3).map((pill, idx) => (
+                <div
+                  key={`m-community-${idx}`}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 whitespace-nowrap shadow-sm"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#FFDE59]" />
+                  <span>{pill.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
