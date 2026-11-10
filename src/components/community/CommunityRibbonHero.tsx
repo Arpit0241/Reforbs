@@ -201,9 +201,10 @@ export default function CommunityRibbonHero() {
     const W = H * (vw / vh);
     const k = (2 * H) / vh;
 
-    // Card sizes
-    const cardH = Math.min(0.58 * vh, 460);
-    const cardGap = cardH * 0.18;
+    // Card sizes: slightly more compact on mobile per user request ("a bit smaller not too much small just a bit small")
+    const isMobile = vw < 640;
+    const cardH = isMobile ? Math.min(0.48 * vh, 360) : Math.min(0.58 * vh, 460);
+    const cardGap = cardH * (isMobile ? 0.14 : 0.18);
 
     interface CardObj {
       mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
@@ -333,11 +334,11 @@ export default function CommunityRibbonHero() {
         fragmentShader: CARD_FRAGMENT_SHADER,
         uniforms: {
           u_sheetW: { value: W },
-          u_sheetD: { value: W * 0.22 },
+          u_sheetD: { value: W * (isMobile ? 0.18 : 0.22) },
           u_sheetT: { value: 1.15 },
           u_sheetC: { value: 1.0 },
           u_sheetV: { value: 0.0 },
-          u_leanA: { value: -0.12 * W },
+          u_leanA: { value: (isMobile ? -0.09 : -0.12) * W },
           u_leanW: { value: W },
           u_diag: { value: 0.02 },
           u_tex: { value: canvasTex },
@@ -427,7 +428,7 @@ export default function CommunityRibbonHero() {
       const vel = normDiff * Math.abs(normDiff);
       const velMag = Math.min(1.0, Math.abs(vel));
 
-      const curD = W * 0.22 * (1.0 + 1.1 * velMag);
+      const curD = W * (isMobile ? 0.18 : 0.22) * (1.0 + 1.1 * velMag);
       const curV = velMag;
 
       const leftBound = -(totalLoopLength - vw) / 2;
@@ -488,13 +489,13 @@ export default function CommunityRibbonHero() {
   }, []);
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[540px] md:h-[600px] bg-transparent overflow-hidden select-none">
+    <div className="relative w-full h-[420px] sm:h-[540px] md:h-[600px] bg-transparent overflow-hidden select-none">
       {/* 3D WebGL Canvas mounts directly on transparent background */}
       <div ref={containerRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Smooth soft edge vignettes that blend into the white page */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/70 to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/70 to-transparent pointer-events-none z-10" />
+      {/* Smooth soft edge vignettes that blend into the white page (Desktop only; removed on mobile to keep card images 100% crisp) */}
+      <div className="hidden sm:block absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/70 to-transparent pointer-events-none z-10" />
+      <div className="hidden sm:block absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/70 to-transparent pointer-events-none z-10" />
     </div>
   );
 }
