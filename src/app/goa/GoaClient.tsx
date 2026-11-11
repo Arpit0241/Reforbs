@@ -12,16 +12,13 @@ import {
   Phone,
   Building2,
   Users,
-  Waves,
-  Sun,
-  Coffee,
   Wifi,
   ShieldCheck,
 } from "lucide-react";
 
 export default function GoaComingSoonPage() {
   return (
-    <main className="min-h-screen pt-24 pb-20 bg-[#FAFAFA]">
+    <div className="min-h-screen pt-24 pb-20 bg-[#FAFAFA]">
       {/* Hero Banner with Goa Panoramic Collage Background */}
       <section className="relative overflow-hidden bg-[#002D2D] text-white py-16 sm:py-24">
         {/* Background Photograph */}
@@ -233,6 +230,6 @@ export default function GoaComingSoonPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

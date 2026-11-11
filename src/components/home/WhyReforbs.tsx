@@ -48,7 +48,7 @@ export default function WhyReforbs() {
                     PRIVACY
                   </h4>
                   <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed">
-                    It&apos;s safe to say that you get all the privacy you need when you stay with us, since all our rooms are for single occupants and you&apos;re the only tenant who will be staying in one room.
+                    Get the privacy you need across our private 1RK studios, single-occupancy rooms, and low-density twin-sharing suites where your space stays genuinely yours.
                   </p>
                 </div>
               </div>
@@ -157,8 +157,8 @@ export default function WhyReforbs() {
               src="/images/living-reforbs-way.jpg"
               alt="Living The Reforbs Way - Unique spaces full of personality"
               fill
+              sizes="(max-width: 1024px) 100vw, 1200px"
               className="object-cover"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111312] via-[#111312]/40 to-transparent" />
           </div>

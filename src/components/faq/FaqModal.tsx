@@ -12,7 +12,7 @@ import {
   HelpCircle,
   ExternalLink,
 } from "lucide-react";
-import { colivingFaqs, studentHousingFaqs, FaqItem } from "@/data/faqs";
+import { colivingFaqs, studentHousingFaqs } from "@/data/faqs";
 
 interface FaqModalProps {
   isOpen: boolean;

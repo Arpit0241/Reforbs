@@ -17,7 +17,7 @@ const offeringsPills = [
 ];
 
 const featurePills = [
-  { label: "Zero Lock-in Period" },
+  { label: "Zero Lock-in Co-Living" },
   { label: "Private Kitchen & Balconies" },
   { label: "NO RESTRICTIONS" },
   { label: "BOHEMIAN DECOR" },
@@ -95,7 +95,7 @@ export default function HeroSection() {
 
           {/* Supporting Description (Desktop only; hidden completely on mobile per prompt) */}
           <p className="hidden lg:block text-base sm:text-lg text-white/90 font-medium max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            Curated student sanctuaries and vibrant co-living spaces. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
+            Curated student housing near Symbiosis campuses and vibrant co-living residences in Pune — designed for freedom, comfort, and direct host pricing.
           </p>
 
           {/* Desktop-Only Centered OUR USPs Button */}

@@ -12,8 +12,8 @@ export default function AmenitiesSection() {
               src="/images/move-in-ready-reforbs.jpg"
               alt="Start living your best life from day one - Fully furnished modern room"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
-              priority
             />
           </div>
 
@@ -53,9 +53,9 @@ export default function AmenitiesSection() {
               Your clothes and bag will not be fighting for space on the same chair. At Reforbs Living, there&apos;s ample room for all your possessions. Even a framed photo of your family, for the rare occasions you miss home.
             </p>
             <div className="bg-[#FAF6E8] p-5 rounded-2xl border border-[#E6D7A8] text-xs sm:text-sm text-[#1B1D1C]">
-              <p className="font-extrabold mb-1">Single &amp; Double Privacy Guaranteed:</p>
+              <p className="font-extrabold mb-1">Private &amp; Twin Comfort Guaranteed:</p>
               <p className="text-gray-800 font-medium">
-                All single rooms are for single occupants only. You get your private sanctuary without feeling cramped.
+                Private 1RK and single-occupancy rooms give solo residents complete personal space, while spacious twin suites keep roommates comfortable.
               </p>
             </div>
           </div>
@@ -65,8 +65,8 @@ export default function AmenitiesSection() {
               src="/images/spacious-room-storage.jpg"
               alt="Room that has room for everything - Spacious layout with ample storage"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
-              priority
             />
           </div>
         </div>
@@ -78,8 +78,8 @@ export default function AmenitiesSection() {
               src="/images/chores-taken-care.jpg"
               alt="Housekeeping and chores taken care of - Clean serviced living spaces"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
-              priority
             />
           </div>
 

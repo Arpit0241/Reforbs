@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import {
   Sparkles,
   MapPin,
   Palmtree,
   Building2,
   ArrowRight,
-  Phone,
-  Bell,
-  ShieldCheck,
-  CheckCircle2,
 } from "lucide-react";
 
 import { buildPageMetadata } from "@/lib/seoMetadata";

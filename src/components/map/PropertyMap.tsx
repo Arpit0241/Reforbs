@@ -167,7 +167,7 @@ export default function PropertyMap() {
     const map = mapInstanceRef.current;
     if (!container || !map || !isMapReady) return;
 
-    let resizeTimer: any;
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
     const ro = new ResizeObserver(() => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {

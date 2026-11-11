@@ -1,95 +1,19 @@
-import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
-
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import PropertyDetailView from "@/components/PropertyDetailView";
 import { buildPageMetadata } from "@/lib/seoMetadata";
+import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
-export const metadata = buildPageMetadata({
-  title: "Nirvana | Co-Living in Sanjay Park, Pune from ₹17,000",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Nirvana Co-Living in Sanjay Park, Viman Nagar | Reforbs",
   description:
-    "Couple-friendly 1RK suites in Sanjay Park, Pune with private kitchen, AC, Wi-Fi & housekeeping. Twin ₹17,000/mo, private ₹29,000/mo, zero lock-in.",
+    "Furnished twin (₹17k) & private 1RK (₹29k) co-living with private kitchens in Sanjay Park, 1.5 km from Viman Nagar & Pune Airport. Zero lock-in.",
   path: "/coliving/nirvana",
-  image: "/images/properties/nirvana/image-2.jpg",
+  image: "/images/properties/nirvana/image-1.jpg",
 });
 
-const property: PropertyData = {
-  id: "nirvana",
-  name: "Nirvana",
-  category: "Co-Living",
-  tagline: "Private 1RK Living with Kitchen & Couple-Friendly Freedom",
-  address: "Plot 34, Lane 2A, Sanjay Park, Pune 411032",
-  landmark: "Opposite green open space, Sanjay Park",
-  rating: "4.9",
-  reviewsCount: 168,
-  priceSingle: "₹29,000",
-  priceDouble: "₹17,000",
-  contactPhone: "+91 74200 40241",
-  googleMapsUrl: "https://maps.app.goo.gl/8MsiHGMq8s6R2At28",
-  coupleFriendly: true,
-  annualLockIn: false,
-  foodPolicy: "Food & daily meals included.",
-  laundryPolicy: "Washing machine available on premises",
-  heroImage: "/images/properties/nirvana/image-2.jpg",
-  galleryImages: [
-    "/images/properties/nirvana/image-2.jpg",
-    "/images/properties/nirvana/image-3.jpg",
-    "/images/properties/nirvana/image-4.jpg",
-    "/images/properties/nirvana/image-5.jpg",
-    "/images/properties/nirvana/image-6.jpg",
-    "/images/properties/nirvana/image-1.jpg",
-  ],
-  description:
-    "Nirvana provides independent 1RK apartments designed with attached private kitchens, ensuite washrooms, and private balconies. Enjoy 100% couple-friendly freedom with zero lock-in period and hotel-grade housekeeping.",
-  roomTypes: [
-    {
-      type: "Twin Sharing 1RK",
-      price: "₹17,000",
-      deposit: "₹17,000 (1 Month Rent)",
-      features: [
-        "Two luxury wooden beds with orthopaedic spring mattresses",
-        "Attached modular kitchen with induction & cooking freedom",
-        "Individual wardrobes & dedicated storage",
-        "Ensuite modern washroom with 24/7 hot water geyser",
-        "High-speed fiber Wi-Fi & daily housekeeping included",
-        "Food included",
-      ],
-    },
-    {
-      type: "Private 1RK Apartment",
-      price: "₹29,000",
-      deposit: "₹29,000 (1 Month Rent)",
-      features: [
-        "100% private 1RK studio apartment exclusively for you",
-        "King-size bed with orthopaedic mattress",
-        "Private modular kitchen with cooking freedom",
-        "Couple friendly with zero judgment or curfews",
-        "Private balcony & individual split AC",
-        "Food included",
-      ],
-    },
-  ],
-  amenities: [
-    { name: "Food & Meals Included", included: true },
-    { name: "Private Kitchen in 1RK", included: true },
-    { name: "Couple Friendly Policy", included: true },
-    { name: "Zero Lock-in Period", included: true },
-    { name: "Gigabit Fiber Wi-Fi", included: true },
-    { name: "Professional Housekeeping", included: true },
-    { name: "Washing Machine Access", included: true },
-    { name: "Inverter Backup", included: true },
-    { name: "24/7 Security & CCTV", included: true },
-  ],
-  landmarks: [
-    { name: "Pune Airport", distance: "1 km" },
-    { name: "Symbiosis Law School", distance: "2 km" },
-    { name: "Symbiosis Management College", distance: "2 km" },
-    { name: "Commerzone IT Park", distance: "2.5 km" },
-    { name: "Phoenix Mall", distance: "3 km" },
-    { name: "Gigaspace IT Park", distance: "3 km" },
-    { name: "Metro Station", distance: "3 km" },
-    { name: "Panchshil Tech Park", distance: "3.2 km" },
-    { name: "Business Bay", distance: "4 km" },
-  ],
-};
-
 export default function NirvanaPage() {
-  return <PropertyDetailView property={property} />;
+  const item = getPropertyById("nirvana");
+  if (!item) notFound();
+  return <PropertyDetailView property={toPropertyDetailData(item)} />;
 }

@@ -18,7 +18,6 @@ import { SearchResult } from "./pdfKnowledgeEngine";
 import {
   PROPERTIES_V4,
   PropertyKnowledge,
-  CONTACT_PHONE,
   CONTACT_EMAIL,
   APPROVED_FALLBACK,
 } from "./knowledgeConfig";

@@ -21,20 +21,20 @@ const faqs = [
     a: "Absolutely NOT! At Reforbs, our philosophy is 'Take it if you like it!! We don't push for sales. You will never receive an unsolicited follow-up call from our side.' We only share the directions and details you request.",
   },
   {
-    q: "Are guests and friends allowed inside the properties?",
-    a: "Yes! 'This is YOUR home!! Live as if you OWN it...' We do not believe in imposing restrictions and bans. Friends are warmly welcomed as long as we respect fellow community members within positive social norms.",
+    q: "Are guests and visitors allowed inside Reforbs residences?",
+    a: "In Co-Living (Nirvana, Moksha, Vipasna), stays are couple-friendly with zero moral policing while respecting community norms. Student Housing balances independence with parent-trust rules: Shubh Gateway has gender-segregated towers (opposite-gender visitors not permitted), while Brindavan and Vairagya have property-specific visiting hours.",
   },
   {
-    q: "Is there a compulsory food or mess package?",
-    a: "No! Unlike traditional PGs that force subpar food subscriptions, Reforbs gives you absolute freedom of choice. You have full access to private kitchen setups to cook, hire a cook, or order from Pune's best food joints.",
+    q: "Are meals included in the monthly rent?",
+    a: "Yes. Listed monthly rents cover daily meal arrangements across our Pune residences. In Co-Living, every flat or floor also has private or shared kitchens with 24/7 cooking access, and residents can discuss specific meal preferences directly with our team.",
   },
   {
     q: "What is the lock-in period?",
-    a: "Zero rigid lock-in pressure. We believe in earning your stay through quality spaces, outstanding maintenance, and unforgettable vibes rather than locking you in with harsh contracts.",
+    a: "Co-Living residences (Nirvana, Moksha, Vipasna) have zero lock-in period with a standard 30-day calendar notice served by the 5th of the month. Dedicated Student Housing near Symbiosis follows an annual academic lock-in aligned with the college calendar.",
   },
   {
     q: "Where are your properties located in Pune?",
-    a: "All our residences are located in prime hubs across Pune, with effortless connectivity to colleges, IT corridors, lifestyle avenues, and Pune Airport.",
+    a: "Our public residences span Sanjay Park & Viman Nagar (Nirvana, Moksha, Vipasna, Shubh Gateway, Brindavan near Symbiosis SLS/SCMS/SID) and Lavale (Vairagya near Symbiosis University/ISBM).",
   },
 ];
 
@@ -177,19 +177,21 @@ export default function ContactPage() {
                     className="w-full px-4 py-3.5 rounded-2xl border-2 border-[#E1E7E6] focus:border-[#007A7A] text-base sm:text-sm text-[#111827] font-bold focus:outline-none bg-[#FAFAFA] cursor-pointer transition-all min-h-[48px]"
                   >
                     <option value="Shubh Gateway (Opp. SLS)">Shubh Gateway (Opp. Symbiosis SLS)</option>
-                    <option value="Reforbs Living Sakore Nagar (SCMS)">Reforbs Sakore Nagar (Near SCMS)</option>
-                    <option value="Moksha (Co-Living)">Moksha Co-Living (Terrace Garden)</option>
-                    <option value="Vipasana (Co-Living)">Vipasana Co-Living (Sanctuary)</option>
-                    <option value="Shubh Nirvana (Co-Living)">Shubh Nirvana Co-Living (Lounge)</option>
+                    <option value="Brindavan (Near SCMS/SID)">Brindavan (Symbiosis Rd, Viman Nagar)</option>
+                    <option value="Vairagya (Near Symbiosis Lavale)">Vairagya (Near Symbiosis Lavale &amp; ISBM)</option>
+                    <option value="Nirvana (Co-Living)">Nirvana Co-Living (Sanjay Park)</option>
+                    <option value="Moksha (Co-Living)">Moksha Co-Living (Sanjay Park)</option>
+                    <option value="Vipasna (Co-Living)">Vipasna Co-Living (Sanjay Park)</option>
                     <option value="Any Available Spaces in Pune">Any Available Spaces in Pune</option>
                   </select>
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-teal w-full py-4 rounded-2xl font-black text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] mt-2"
+                  disabled={submitting}
+                  className="btn-teal w-full py-4 rounded-2xl font-black text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] mt-2 disabled:opacity-60"
                 >
-                  <span>Request Callback / Book Free Visit</span>
+                  <span>{submitting ? "Submitting..." : "Request Callback / Book Free Visit"}</span>
                   <ArrowRight size={16} />
                 </button>
 

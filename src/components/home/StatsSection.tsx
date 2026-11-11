@@ -33,7 +33,7 @@ export const differenceItems: DifferenceCardItem[] = [
     icon: Smile,
     gradient: "from-[#006E6E] via-[#004D4D] to-[#022626]",
     description:
-      "Zero forced food packages, zero lock-ins, and no arbitrary bans. Live as if you own the place.",
+      "Daily meals included, private or shared kitchens for 24/7 cooking, zero lock-in in Co-Living, and zero moral policing.",
     tag1: "Zero Lock-ins",
     tag2: "Cooking Freedom",
     image: "/images/difference-freedom.jpg",
@@ -106,7 +106,7 @@ const LOOP_CARDS = [...differenceItems, ...differenceItems, ...differenceItems];
 export default function StatsSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerWidth, setContainerWidth] = useState(1200);
-  const [isDragging, setIsDragging] = useState(false);
+  const [, setIsDragging] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   // Animation & physics state refs for 60fps RAF loop

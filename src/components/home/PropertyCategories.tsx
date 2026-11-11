@@ -50,15 +50,15 @@ export default function PropertyCategories() {
                 <div className="space-y-2.5 mb-8">
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-yellow shrink-0" />
-                    <span><strong>ABC</strong> — Walking distance to Symbiosis Law School (SLS)</span>
+                    <span><strong>Shubh Gateway</strong> — 150m opposite Symbiosis Law School (SLS)</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-yellow shrink-0" />
-                    <span><strong>XYZ</strong> — Walking distance to Symbiosis Centre for Mgmt (SCMS)</span>
+                    <span><strong>Brindavan &amp; Vairagya</strong> — 150m to SCMS/SID &amp; 500m to Lavale</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-yellow shrink-0" />
-                    <span>Single &amp; Double occupancy options with zero forced food plans</span>
+                    <span>AC rooms with attached washrooms &amp; daily meals included</span>
                   </div>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function PropertyCategories() {
               <div className="pt-6 border-t border-white/10 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-slate-400">Starting from</div>
-                  <div className="text-xl font-black font-heading text-brand-yellow">₹12,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
+                  <div className="text-xl font-black font-heading text-brand-yellow">₹15,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
                 </div>
                 <Link
                   href="/student-housing"
@@ -106,15 +106,15 @@ export default function PropertyCategories() {
                 <div className="space-y-2.5 mb-8">
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-teal shrink-0" />
-                    <span><strong>Reforbs Nirvana</strong> — Ultra-chill vibes in Viman Nagar</span>
+                    <span><strong>Reforbs Nirvana</strong> — Private 1RK kitchens &amp; twin rooms in Sanjay Park</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-teal shrink-0" />
-                    <span><strong>Reforbs Moksha</strong> — Premium co-living with private amenities</span>
+                    <span><strong>Reforbs Moksha &amp; Vipasna</strong> — Zero lock-in, couple-friendly stays</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle size={16} className="text-brand-teal shrink-0" />
-                    <span>Proximity to EON Free Zone, Magarpatta, Yerwada &amp; Airport</span>
+                    <span>1.5 km to Viman Nagar, Phoenix Marketcity &amp; Pune Airport</span>
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function PropertyCategories() {
               <div className="pt-6 border-t border-white/10 flex items-center justify-between">
                 <div>
                   <div className="text-xs text-slate-400">Starting from</div>
-                  <div className="text-xl font-black font-heading text-brand-teal">₹15,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
+                  <div className="text-xl font-black font-heading text-brand-teal">₹17,000 <span className="text-xs font-normal text-slate-300">/month</span></div>
                 </div>
                 <Link
                   href="/coliving"

@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seoMetadata";
 import WhyPropertyOwnersCarousel from "@/components/partner/WhyPropertyOwnersCarousel";
@@ -8,10 +7,6 @@ import {
   TrendingUp,
   ShieldCheck,
   Building2,
-  FileText,
-  Clock,
-  Wrench,
-  CheckCircle2,
   Sparkles,
   HeartHandshake,
   Users,
@@ -20,7 +15,6 @@ import {
   Phone,
   MessageSquare,
   Lock,
-  Compass,
 } from "lucide-react";
 
 export const metadata: Metadata = buildPageMetadata({

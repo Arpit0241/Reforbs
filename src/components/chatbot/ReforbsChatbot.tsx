@@ -7,7 +7,6 @@ import {
   Send,
   RefreshCw,
   Phone,
-  FileCheck,
   Building2,
   GraduationCap,
 } from "lucide-react";
@@ -29,7 +28,7 @@ export default function ReforbsChatbot() {
   const [faqType, setFaqType] = useState<"coliving" | "student-housing">("coliving");
   const [inputQuery, setInputQuery] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isEngineReady, setIsEngineReady] = useState(false);
+  const [, setIsEngineReady] = useState(false);
   const [engineError, setEngineError] = useState<string | null>(null);
 
   const [messages, setMessages] = useState<Message[]>([

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Users, Quote, ArrowRight, CheckCircle2 } from "lucide-react";
 import CommunityRibbonHero from "@/components/community/CommunityRibbonHero";

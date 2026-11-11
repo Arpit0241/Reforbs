@@ -219,7 +219,7 @@ export default function CommunityRibbonHero() {
     const cardGeom = new THREE.PlaneGeometry(1, 1, 64, 16);
 
     // Build self-contained canvas texture with image preloading
-    const createCardCanvasTexture = (item: RibbonCardItem, w: number, h: number) => {
+    const createCardCanvasTexture = (item: RibbonCardItem) => {
       const canvas = document.createElement("canvas");
       canvas.width = 960;
       canvas.height = Math.round(960 / item.aspect);
@@ -327,7 +327,7 @@ export default function CommunityRibbonHero() {
       const w = cardH * item.aspect;
       const h = cardH;
 
-      const canvasTex = createCardCanvasTexture(item, w, h);
+      const canvasTex = createCardCanvasTexture(item);
 
       const mat = new THREE.ShaderMaterial({
         vertexShader: CARD_VERTEX_SHADER,

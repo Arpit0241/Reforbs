@@ -5,8 +5,7 @@ import {
   Users, 
   Compass, 
   ArrowRight, 
-  HeartHandshake, 
-  CheckCircle2
+  HeartHandshake
 } from "lucide-react";
 
 import { buildPageMetadata } from "@/lib/seoMetadata";
@@ -59,9 +58,9 @@ export default function AboutPage() {
               <div className="text-[11px] text-[#6B7280] font-medium">Student &amp; Co-Living Havens</div>
             </div>
             <div className="p-4">
-              <div className="text-3xl sm:text-4xl font-black text-[#007A7A] font-heading">4.9 / 5</div>
-              <div className="text-xs sm:text-sm font-bold text-[#111827] mt-1">Resident Satisfaction</div>
-              <div className="text-[11px] text-[#6B7280] font-medium">Verified Google Reviews</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#007A7A] font-heading">3P + 3D</div>
+              <div className="text-xs sm:text-sm font-bold text-[#111827] mt-1">Operating Standard</div>
+              <div className="text-[11px] text-[#6B7280] font-medium">Privacy • Details • Care</div>
             </div>
             <div className="p-4">
               <div className="text-3xl sm:text-4xl font-black text-[#007A7A] font-heading">0</div>
@@ -81,8 +80,8 @@ export default function AboutPage() {
                 src="/images/about-vision-courtyard.jpg"
                 alt="Reforbs Community Spaces and Living Culture"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
                 <span className="text-white text-sm font-bold">
@@ -221,7 +220,7 @@ export default function AboutPage() {
                 <div className="bg-[#FFFDF0] p-4 rounded-2xl border border-[#F3E7A0]">
                   <h4 className="font-black text-[#111827] text-base mb-1.5 font-heading">PRIVACY</h4>
                   <p className="text-[#1F2937] leading-relaxed font-semibold">
-                    You get all the privacy you need when you stay with us, since all our rooms are for single occupants and you are the only tenant staying in your room.
+                    You get all the privacy you need across our private 1RK studios, single-occupancy rooms, and spacious twin-sharing layouts where your personal space stays peaceful and protected.
                   </p>
                 </div>
                 <div className="bg-[#FFFDF0] p-4 rounded-2xl border border-[#F3E7A0]">

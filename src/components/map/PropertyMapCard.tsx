@@ -8,7 +8,6 @@ import { usePropertyMap } from "@/context/PropertyMapContext";
 import {
   MapPin,
   Star,
-  Check,
   ArrowRight,
   GraduationCap,
   Building2,
@@ -91,10 +90,16 @@ export default function PropertyMapCard({
               <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-black/40 backdrop-blur-md text-white border border-white/25 shadow-sm">
                 {property.category}
               </span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-sm flex items-center gap-1">
-                <Star size={11} className="text-[#FFDE59] fill-[#FFDE59]" />
-                <span>{property.rating}</span>
-              </span>
+              {property.verifiedRating ? (
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-sm flex items-center gap-1">
+                  <Star size={11} className="text-[#FFDE59] fill-[#FFDE59]" />
+                  <span>{property.verifiedRating.ratingValue.toFixed(1)}</span>
+                </span>
+              ) : (
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-sm">
+                  {property.locality}
+                </span>
+              )}
             </div>
 
             {/* Price Pill on Photo */}
@@ -123,7 +128,7 @@ export default function PropertyMapCard({
                 }`}
                 aria-label={`Show photo ${idx + 1} of ${property.name}`}
               >
-                <Image src={thumb} alt="" fill sizes="44px" className="object-cover" />
+                <Image src={thumb} alt={property.imagesMeta?.[idx]?.alt || `${property.name} gallery photo ${idx + 1}`} fill sizes="44px" className="object-cover" />
               </button>
             ))}
             <span className="text-[10px] text-white/70 font-semibold ml-auto pr-1 whitespace-nowrap">

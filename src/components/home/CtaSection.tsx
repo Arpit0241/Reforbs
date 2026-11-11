@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
-import { submitLead, buildWhatsAppUrl } from "@/lib/leads";
+import { submitLead } from "@/lib/leads";
 
 export default function CtaSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -157,9 +157,10 @@ export default function CtaSection() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-[#007A7A] hover:bg-[#006060] text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2 mt-4 cursor-pointer"
+                    disabled={submitting}
+                    className="w-full py-3.5 bg-[#007A7A] hover:bg-[#006060] text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2 mt-4 cursor-pointer disabled:opacity-60"
                   >
-                    <span>Request Free Callback &amp; Visit</span>
+                    <span>{submitting ? "Submitting..." : "Request Free Callback & Visit"}</span>
                     <ArrowRight size={16} />
                   </button>
 

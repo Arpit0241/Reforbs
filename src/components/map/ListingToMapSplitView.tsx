@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,15 +11,9 @@ import {
   List,
   Map as MapIcon,
   Search,
-  Filter,
   X,
   GraduationCap,
   Building2,
-  SlidersHorizontal,
-  ArrowRight,
-  Phone,
-  MessageCircle,
-  Star,
   ChevronLeft,
   ChevronRight,
   RotateCcw,
@@ -29,11 +23,14 @@ import {
 const PropertyMap = dynamic(() => import("./PropertyMap"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-[400px] rounded-3xl bg-[#F0F4F4] animate-pulse flex flex-col items-center justify-center text-[#666B68] border border-[#E1E7E6]">
-      <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-3 animate-spin">
+    <div className="w-full h-full min-h-[400px] rounded-3xl bg-[#F0F4F4] flex flex-col items-center justify-center p-6 text-center text-[#666B68] border border-[#E1E7E6]">
+      <div className="w-12 h-12 rounded-2xl bg-[#E6F4F3] text-[#007A7A] flex items-center justify-center mb-3 animate-pulse">
         <MapPin size={24} />
       </div>
-      <p className="text-xs font-bold uppercase tracking-wider text-[#007A7A]">Loading interactive map...</p>
+      <p className="text-xs font-bold uppercase tracking-wider text-[#007A7A] mb-2">Loading interactive Pune map...</p>
+      <p className="text-xs text-[#4A524F] max-w-xs font-medium">
+        Viman Nagar • Sanjay Park • Sakore Nagar • Symbiosis Road • Lavale
+      </p>
     </div>
   ),
 });
@@ -45,7 +42,6 @@ interface ListingToMapSplitViewProps {
 export default function ListingToMapSplitView({ isEmbedded = false }: ListingToMapSplitViewProps) {
   const {
     listings,
-    allListings,
     activeListingId,
     hoveredListingId,
     activeListing,
@@ -57,7 +53,6 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
     toggleMobileMap,
   } = usePropertyMap();
 
-  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const listContainerRef = useRef<HTMLDivElement | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -155,17 +150,13 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
               <Building2 size={15} />
               <span>Co-Living</span>
             </button>
-            <button
-              onClick={() => setFilter("category", "guesthouse")}
-              className={`min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 ${
-                filters.category === "guesthouse"
-                  ? "bg-[#007A7A] text-white shadow-sm"
-                  : "bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
-              }`}
+            <Link
+              href="/corporate-stays"
+              className="min-h-[44px] px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-1.5 whitespace-nowrap active:scale-95 bg-[#FAFAFA] text-[#4A524F] hover:bg-[#E6F4F3] hover:text-[#007A7A] border border-[#E1E7E6]"
             >
               <Building2 size={15} />
-              <span>Company Guesthouses</span>
-            </button>
+              <span>Corporate Stays →</span>
+            </Link>
           </div>
 
           {/* Quick Search & Filter Drawer Trigger */}
@@ -291,8 +282,9 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
                 <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-[#111827] border border-white/20">
                   <Image
                     src={activeListing.coverImage}
-                    alt={activeListing.name}
+                    alt={activeListing.imagesMeta?.[0]?.alt || `${activeListing.name} in ${activeListing.locality}, Pune`}
                     fill
+                    sizes="80px"
                     className="object-cover"
                   />
                   <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[8px] sm:text-[9px] font-black uppercase bg-black/60 text-white border border-white/20">

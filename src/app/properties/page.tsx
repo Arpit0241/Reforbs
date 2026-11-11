@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PropertyMapProvider } from "@/context/PropertyMapContext";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
-import { MapPin, Sparkles, Building2, GraduationCap, Palmtree } from "lucide-react";
+import { MapPin, Building2, Palmtree } from "lucide-react";
 
 import { buildPageMetadata } from "@/lib/seoMetadata";
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function PropertiesPage() {
   return (
-    <main className="min-h-screen pt-24 pb-16 bg-[#FAFAFA]">
+    <div className="min-h-screen pt-24 pb-16 bg-[#FAFAFA]">
       {/* Page Header with Pune Landmarks Background Collage */}
       <div className="relative text-white py-12 sm:py-16 overflow-hidden mb-6 bg-[#002D2D]">
         {/* Background Photograph */}
@@ -72,6 +72,6 @@ export default function PropertiesPage() {
       <PropertyMapProvider initialCategory="all">
         <ListingToMapSplitView />
       </PropertyMapProvider>
-    </main>
+    </div>
   );
 }

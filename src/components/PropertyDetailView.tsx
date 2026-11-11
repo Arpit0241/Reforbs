@@ -12,25 +12,40 @@ import {
   Check,
   Star,
   CheckCheck,
+  ChevronDown,
+  Calendar,
 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
 import { normalizeTelHref } from "@/lib/siteUrl";
 
+export interface PropertyRelatedSummary {
+  name: string;
+  href: string;
+  category: string;
+  locality: string;
+  price: string;
+}
+
 export interface PropertyData {
   id: string;
+  slug?: string;
   name: string;
   category: "Student Housing" | "Student Accommodation" | "Co-Living" | "Company Guesthouse";
   tagline: string;
+  locality?: string;
   address: string;
   landmark: string;
-  rating: string;
-  reviewsCount: number;
+  rating?: string;
+  reviewsCount?: number;
   priceSingle?: string;
   priceDouble?: string;
   priceTriple?: string;
   heroImage: string;
+  heroAlt?: string;
   galleryImages: string[];
+  galleryAlts?: string[];
   description: string;
+  answerFirstSummary?: string;
   roomTypes: {
     type: string;
     price: string;
@@ -41,10 +56,17 @@ export interface PropertyData {
   landmarks: { name: string; distance: string }[];
   coupleFriendly?: boolean;
   annualLockIn?: boolean;
+  lockInPolicy?: string;
+  visitorPolicy?: string;
+  genderPolicy?: string;
   foodPolicy?: string;
   laundryPolicy?: string;
   contactPhone?: string;
   googleMapsUrl?: string;
+  faq?: { question: string; answer: string }[];
+  lastUpdated?: string;
+  isGuesthouse?: boolean;
+  relatedProperties?: PropertyRelatedSummary[];
 }
 
 export default function PropertyDetailView({ property }: { property: PropertyData }) {
@@ -54,6 +76,13 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
   const [whatsappUrl, setWhatsappUrl] = useState("");
   const [visitForm, setVisitForm] = useState({ name: "", phone: "", date: "" });
   const [activePhoto, setActivePhoto] = useState(property.heroImage);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const activePhotoIndex = property.galleryImages.indexOf(activePhoto);
+  const activeAlt =
+    activePhotoIndex >= 0 && property.galleryAlts?.[activePhotoIndex]
+      ? property.galleryAlts[activePhotoIndex]
+      : property.heroAlt || `${property.name} ${property.category} in ${property.locality || "Pune"}`;
 
   const handleVisitSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,14 +103,25 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
     <div className="pt-24 pb-20 bg-[#FAFAFA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs font-bold text-[#666B68] mb-6 overflow-x-auto whitespace-nowrap py-1">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-bold text-[#666B68] mb-6 overflow-x-auto whitespace-nowrap py-1">
           <Link href="/" className="hover:text-[#007A7A]">Home</Link>
           <span>/</span>
-          <Link href="/#properties" className="hover:text-[#007A7A]">Pune</Link>
+          <Link href="/properties" className="hover:text-[#007A7A]">Properties</Link>
           <span>/</span>
-          <span className="text-[#666B68]">Viman Nagar</span>
+          <span className="text-[#666B68]">{property.locality || "Pune"}</span>
           <span>/</span>
-          <span className="text-[#666B68]">{property.category}</span>
+          <Link
+            href={
+              property.category === "Co-Living"
+                ? "/coliving"
+                : property.isGuesthouse
+                ? "/corporate-stays"
+                : "/student-housing"
+            }
+            className="text-[#666B68] hover:text-[#007A7A]"
+          >
+            {property.category}
+          </Link>
           <span>/</span>
           <span className="font-extrabold text-[#1B1D1C]">{property.name}</span>
         </nav>
@@ -108,12 +148,20 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="bg-white px-4 py-2 rounded-2xl border border-[#E1E7E6] shadow-sm flex items-center gap-1.5">
-              <Star size={15} className="text-amber-500 fill-amber-500" />
-              <span className="font-black text-[#1B1D1C] text-base">{property.rating}</span>
-              <span className="text-xs text-[#666B68] font-medium">({property.reviewsCount} reviews)</span>
-            </div>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {property.rating && property.reviewsCount ? (
+              <div className="bg-white px-4 py-2 rounded-2xl border border-[#E1E7E6] shadow-sm flex items-center gap-1.5">
+                <Star size={15} className="text-amber-500 fill-amber-500" />
+                <span className="font-black text-[#1B1D1C] text-base">{property.rating}</span>
+                <span className="text-xs text-[#666B68] font-medium">({property.reviewsCount} reviews)</span>
+              </div>
+            ) : null}
+            {property.lastUpdated && (
+              <div className="bg-white px-3.5 py-2 rounded-2xl border border-[#E1E7E6] shadow-sm flex items-center gap-1.5 text-xs font-bold text-[#4A524F]">
+                <Calendar size={14} className="text-[#007A7A]" />
+                <span>Updated {property.lastUpdated}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -124,8 +172,9 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
             <div className="md:col-span-8 relative rounded-3xl overflow-hidden shadow-card bg-[#111312] border border-[#E1E7E6]">
               <Image
                 src={activePhoto}
-                alt={property.name}
+                alt={activeAlt}
                 fill
+                sizes="(max-width: 768px) 100vw, 66vw"
                 className="object-cover transition-all duration-300"
                 priority
               />
@@ -139,6 +188,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                 {property.galleryImages.slice(0, 4).map((img, i) => (
                   <button
                     key={i}
+                    type="button"
                     onClick={() => setActivePhoto(img)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       activePhoto === img ? "bg-[#FFDE59] w-4" : "bg-white/60"
@@ -164,8 +214,9 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                 >
                   <Image
                     src={img}
-                    alt={`${property.name} gallery ${i}`}
+                    alt={property.galleryAlts?.[i] || `${property.name} view ${i + 1}`}
                     fill
+                    sizes="180px"
                     className="object-cover"
                   />
                 </button>
@@ -188,8 +239,9 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               >
                 <Image
                   src={img}
-                  alt={`${property.name} mobile thumb ${i}`}
+                  alt={property.galleryAlts?.[i] || `${property.name} mobile photo ${i + 1}`}
                   fill
+                  sizes="80px"
                   className="object-cover"
                 />
               </button>
@@ -200,33 +252,52 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
         {/* Content + Sticky Booking Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8 space-y-8">
-            {/* Overview */}
+            {/* Overview & Answer-First Key Facts */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card">
-              <h2 className="text-xl font-black font-heading text-[#1B1D1C] mb-4">
+              <h2 className="text-xl font-black font-heading text-[#1B1D1C] mb-3">
                 About {property.name}
               </h2>
+              {property.answerFirstSummary && (
+                <p className="text-sm sm:text-base text-[#1B1D1C] bg-[#E6F4F3]/60 border border-[#BDE3DF] rounded-2xl p-4 mb-4 font-semibold leading-relaxed">
+                  {property.answerFirstSummary}
+                </p>
+              )}
               <p className="text-sm sm:text-base text-[#4A524F] leading-relaxed mb-6 font-medium">
                 {property.description}
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-[#E1E7E6] text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#E1E7E6] text-xs">
                 <div>
                   <span className="text-[#666B68] block font-bold">Occupancy</span>
-                  <span className="font-black text-[#1B1D1C] text-sm">Single &amp; Double</span>
+                  <span className="font-black text-[#1B1D1C] text-sm">
+                    {property.roomTypes.map((r) => r.type.replace(/\s*\(.*\)/, "")).join(", ") || "Single & Double"}
+                  </span>
                 </div>
                 <div>
-                  <span className="text-[#666B68] block font-bold">Food</span>
+                  <span className="text-[#666B68] block font-bold">Food Policy</span>
                   <span className="font-black text-[#1B1D1C] text-sm">
                     {property.foodPolicy || "Contact property team"}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[#666B68] block font-bold">House Rules</span>
+                  <span className="text-[#666B68] block font-bold">Lock-in</span>
                   <span className="font-black text-[#007A7A] text-sm">
-                    {property.annualLockIn ? "Annual Lock-in" : "Zero Lock-in"}
+                    {property.lockInPolicy || (property.annualLockIn ? "Annual Lock-in" : "Zero Lock-in")}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[#666B68] block font-bold">Resident Profile</span>
+                  <span className="font-black text-[#1B1D1C] text-sm">
+                    {property.genderPolicy || (property.coupleFriendly ? "Unisex & Couple-Friendly" : "Co-Living / Student")}
                   </span>
                 </div>
               </div>
+
+              {property.visitorPolicy && (
+                <div className="mt-4 pt-4 border-t border-[#E1E7E6] text-xs text-[#4A524F] font-medium">
+                  <strong className="text-[#1B1D1C]">Visitors &amp; Freedom Policy:</strong> {property.visitorPolicy}
+                </div>
+              )}
             </div>
 
             {/* Room Options & Pricing */}
@@ -336,12 +407,79 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                 This is YOUR home !! Live as if you OWN it ……
               </h3>
               <p className="text-xs sm:text-sm text-[#4A524F] leading-relaxed mb-4 font-medium">
-                We don&apos;t believe in imposing restrictions and bans. Instead, it&apos;s all about mutual compatibility and understanding. As long as we do things within social norms !! (Smily)
+                We don&apos;t believe in imposing restrictions and bans. Instead, it&apos;s all about mutual compatibility and understanding. As long as we do things within social norms !!
               </p>
               <div className="inline-flex items-center gap-2 text-xs font-bold text-[#007A7A] bg-white px-3.5 py-1.5 rounded-full border border-[#E6D7A8]">
                 <CheckCircle2 size={14} /> Reforbs Freedom Policy
               </div>
             </div>
+
+            {/* Property FAQs */}
+            {property.faq && property.faq.length > 0 && (
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card">
+                <h2 className="text-xl font-black font-heading text-[#1B1D1C] mb-4">
+                  Frequently Asked Questions — {property.name}
+                </h2>
+                <div className="space-y-3">
+                  {property.faq.map((item, idx) => {
+                    const isOpen = openFaq === idx;
+                    return (
+                      <div key={idx} className="rounded-2xl border border-[#E1E7E6] overflow-hidden bg-[#FAFAFA]">
+                        <button
+                          type="button"
+                          onClick={() => setOpenFaq(isOpen ? null : idx)}
+                          aria-expanded={isOpen}
+                          className="w-full px-4 py-3.5 flex items-center justify-between text-left font-bold text-sm text-[#1B1D1C] hover:bg-[#F2F6F5] transition-colors"
+                        >
+                          <span>{item.question}</span>
+                          <ChevronDown
+                            size={16}
+                            className={`text-[#007A7A] shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 pb-4 text-xs sm:text-sm text-[#4A524F] leading-relaxed font-medium">
+                            {item.answer}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Related Reforbs Residences */}
+            {property.relatedProperties && property.relatedProperties.length > 0 && (
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card">
+                <h2 className="text-xl font-black font-heading text-[#1B1D1C] mb-2">
+                  Explore Nearby Reforbs Residences in Pune
+                </h2>
+                <p className="text-xs sm:text-sm text-[#666B68] mb-5 font-medium">
+                  Compare other verified direct-host Reforbs homes across Viman Nagar, Sanjay Park, and Lavale.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {property.relatedProperties.map((rel) => (
+                    <Link
+                      key={rel.href}
+                      href={rel.href}
+                      className="p-4 rounded-2xl border border-[#E1E7E6] bg-[#FAFAFA] hover:border-[#007A7A] hover:bg-[#E6F4F3]/30 transition-all flex flex-col justify-between gap-2"
+                    >
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#007A7A]">
+                          {rel.category} • {rel.locality}
+                        </span>
+                        <h3 className="text-sm font-black text-[#1B1D1C] mt-1">{rel.name}</h3>
+                      </div>
+                      <div className="flex items-center justify-between pt-2 border-t border-[#E1E7E6] text-xs font-black text-[#1B1D1C]">
+                        <span>From {rel.price}/mo</span>
+                        <ArrowRight size={14} className="text-[#007A7A]" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Sticky Booking Widget */}
@@ -353,7 +491,9 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                 </span>
                 <div className="flex items-baseline gap-2 mt-1">
                   <span className="text-3xl font-black text-[#007A7A] font-heading">
-                    {selectedOccupancy === "double" ? property.priceDouble : property.priceSingle}
+                    {selectedOccupancy === "double"
+                      ? property.priceDouble || property.priceSingle || property.priceTriple
+                      : property.priceSingle || property.priceDouble || property.priceTriple}
                   </span>
                   <span className="text-xs text-[#666B68] font-bold">/ month</span>
                 </div>
@@ -435,9 +575,10 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
 
                   <button
                     type="submit"
-                    className="btn-teal w-full min-h-[48px] py-3.5 rounded-xl justify-center font-black text-xs shadow-md active:scale-98"
+                    disabled={submitting}
+                    className="btn-teal w-full min-h-[48px] py-3.5 rounded-xl justify-center font-black text-xs shadow-md active:scale-98 disabled:opacity-60"
                   >
-                    <span>Confirm Free Site Visit</span>
+                    <span>{submitting ? "Scheduling..." : "Confirm Free Site Visit"}</span>
                     <ArrowRight size={14} />
                   </button>
                 </form>

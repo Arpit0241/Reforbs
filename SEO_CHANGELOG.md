@@ -1,0 +1,10 @@
+# SEO & GEO/AEO Changelog (`SEO_CHANGELOG.md`)
+
+## Phase 1: Domain, Canonicals, Redirects & Indexing Hygiene
+- **Canonical Origin & URL Helpers (`src/lib/siteUrl.ts`, `src/lib/seoMetadata.ts`):** Added `NEXT_PUBLIC_SITE_URL` (default `https://reforbs.com`), tracking-parameter stripping, `canonicalUrl()`, `normalizeTelHref()` (`tel:+91...`), and shared `buildPageMetadata()` helper.
+- **Root Layout Metadata (`src/app/layout.tsx`):** Updated `<html lang="en-IN">`, removed `meta keywords`, pointed default Open Graph image to `/images/reforbs-hero-community.webp`, and added Google/Bing verification slots via env vars.
+- **Permanent 301/308 Redirects & Caching Headers (`next.config.mjs`):** Consolidated alias slugs (`/coliving/shubh-nirvana` -> `/coliving/nirvana`, `/coliving/vipasana` -> `/coliving/vipasna`, `/student-housing/abc-near-sls` -> `/student-housing/shubh-gateway`, `/student-housing/sakore-nagar` & `/student-housing/xyz-near-scms` -> `/student-housing/brindavan`); removed duplicate page files; enabled `image/avif` & `image/webp`; added immutable cache headers for static `/images/*` and `/assets/*`.
+- **Host Canonicalization Middleware (`src/middleware.ts`):** Emits `X-Robots-Tag: noindex, nofollow` on non-canonical hosts (`*.vercel.app`) and supports `ENFORCE_CANONICAL_REDIRECT=true` 301 cutover redirect.
+- **Crawling & Sitemaps (`src/lib/aiBots.ts`, `src/app/robots.ts`, `src/app/sitemap.ts`):** Added `robots.txt` with configurable search/answer & training bot rules and `sitemap.xml` listing only active indexable canonical routes.
+- **`noindex, follow` & Server Wrapper Separation:** Separated `goa/page.tsx`, `bangalore/page.tsx`, and `contact/page.tsx` from `"use client"` views; set `noindex, follow` on `/goa`, `/bangalore`, `/coming-soon`, `/coliving/park-island`, `/coliving/pillar-homes`, `/coliving/suyog`, and `/coliving/langston-downtown`.
+- **Internal Links & `tel:+91` Cleanup (`Footer.tsx`, `Navbar.tsx`, `FaqModal.tsx`, `SpotlightMarquee.tsx`, `partner-with-us/page.tsx`, `PropertyDetailView.tsx`):** Fixed broken/alias footer links and added `+91` country code across `tel:` links.

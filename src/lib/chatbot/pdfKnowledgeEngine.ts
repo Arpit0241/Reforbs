@@ -40,7 +40,6 @@ export interface EngineStatus {
  */
 let cachedPassages: KnowledgeItem[] | null = null;
 let isIndexingPromise: Promise<KnowledgeItem[]> | null = null;
-let cachedPagesCount = 0;
 
 /**
  * Dynamically loads and extracts text from the PDF using Mozilla PDF.js
@@ -58,7 +57,6 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
     try {
       if (typeof window === "undefined") {
         cachedPassages = VERIFIED_PDF_PASSAGES;
-        cachedPagesCount = 17;
         return cachedPassages;
       }
 
@@ -87,7 +85,6 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
       const arrayBuffer = await response.arrayBuffer();
       const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) });
       const pdfDoc = await loadingTask.promise;
-      cachedPagesCount = pdfDoc.numPages;
 
       // Actively extract text from all 21 pages
       for (let i = 1; i <= pdfDoc.numPages; i++) {
@@ -100,7 +97,6 @@ export async function loadAndIndexPDF(): Promise<KnowledgeItem[]> {
     } catch (err) {
       console.warn("Client PDF.js parsing fallback to verified owner QA knowledge base:", err);
       cachedPassages = VERIFIED_PDF_PASSAGES;
-      cachedPagesCount = 17;
       return cachedPassages;
     }
   })();

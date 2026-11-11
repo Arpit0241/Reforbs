@@ -1,17 +1,12 @@
 import type { MetadataRoute } from "next";
 import { canonicalUrl } from "@/lib/siteUrl";
+import { publicPropertiesData } from "@/data/properties";
 
-const INDEXABLE_CORE_ROUTES: { path: string; lastModified: string; changeFrequency: "weekly" | "monthly"; priority: number }[] = [
+const INDEXABLE_STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: "weekly" | "monthly"; priority: number }[] = [
   { path: "/", lastModified: "2026-11-11", changeFrequency: "weekly", priority: 1.0 },
   { path: "/properties", lastModified: "2026-11-11", changeFrequency: "weekly", priority: 0.9 },
   { path: "/coliving", lastModified: "2026-11-11", changeFrequency: "weekly", priority: 0.9 },
   { path: "/student-housing", lastModified: "2026-11-11", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/coliving/nirvana", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/coliving/moksha", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/coliving/vipasna", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/student-housing/shubh-gateway", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/student-housing/brindavan", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/student-housing/vairagya", lastModified: "2026-11-04", changeFrequency: "weekly", priority: 0.85 },
   { path: "/about", lastModified: "2026-11-11", changeFrequency: "monthly", priority: 0.7 },
   { path: "/community", lastModified: "2026-11-11", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", lastModified: "2026-11-11", changeFrequency: "monthly", priority: 0.75 },
@@ -19,10 +14,19 @@ const INDEXABLE_CORE_ROUTES: { path: string; lastModified: string; changeFrequen
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return INDEXABLE_CORE_ROUTES.map((entry) => ({
+  const propertyEntries: MetadataRoute.Sitemap = publicPropertiesData.map((prop) => ({
+    url: canonicalUrl(prop.slug),
+    lastModified: new Date(prop.lastUpdated),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  const staticEntries: MetadataRoute.Sitemap = INDEXABLE_STATIC_ROUTES.map((entry) => ({
     url: canonicalUrl(entry.path),
     lastModified: new Date(entry.lastModified),
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
   }));
+
+  return [...staticEntries, ...propertyEntries];
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from "react";
-import { PropertyItem, propertiesData } from "@/data/properties";
+import { PropertyItem, propertiesData, publicPropertiesData } from "@/data/properties";
 
 export interface FilterState {
   category: "all" | "student" | "coliving" | "guesthouse";
@@ -23,7 +23,7 @@ interface PropertyMapContextType {
   setActiveListingId: (id: string | null) => void;
   setHoveredListingId: (id: string | null) => void;
   markAsVisited: (id: string) => void;
-  setFilter: (key: keyof FilterState, value: any) => void;
+  setFilter: <K extends keyof FilterState>(key: K, value: FilterState[K]) => void;
   resetFilters: () => void;
   toggleMobileMap: () => void;
   setIsMobileMapOpen: (open: boolean) => void;
@@ -86,7 +86,7 @@ export function PropertyMapProvider({
     }
   }, []);
 
-  const setFilter = useCallback((key: keyof FilterState, value: any) => {
+  const setFilter = useCallback(<K extends keyof FilterState>(key: K, value: FilterState[K]) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
     setFitBoundsTrigger((prev) => prev + 1);
   }, []);
@@ -106,7 +106,12 @@ export function PropertyMapProvider({
 
   // Filter listings based on single source of truth
   const filteredListings = useMemo(() => {
-    return propertiesData.filter((item) => {
+    const sourcePool =
+      filters.category === "guesthouse"
+        ? propertiesData
+        : publicPropertiesData;
+
+    return sourcePool.filter((item) => {
       // Category filter
       if (filters.category === "student" && item.category !== "Student Accommodation") {
         return false;
