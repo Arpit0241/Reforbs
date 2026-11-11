@@ -84,6 +84,8 @@ export default function PropertyMap() {
 
   const [showSearchThisArea, setShowSearchThisArea] = useState(false);
   const [isMapReady, setIsMapReady] = useState(false);
+  const markerUiStateRef = useRef({ activeListingId, hoveredListingId, visitedListingIds });
+  markerUiStateRef.current = { activeListingId, hoveredListingId, visitedListingIds };
 
   // Initialize Map
   useEffect(() => {
@@ -251,9 +253,10 @@ export default function PropertyMap() {
     listings.forEach((item) => {
       bounds.extend([item.lat, item.lng]);
 
-      const isActive = item.id === activeListingId;
-      const isHovered = item.id === hoveredListingId;
-      const isVisited = visitedListingIds.includes(item.id);
+      const { activeListingId: activeId, hoveredListingId: hoveredId, visitedListingIds: visitedIds } = markerUiStateRef.current;
+      const isActive = item.id === activeId;
+      const isHovered = item.id === hoveredId;
+      const isVisited = visitedIds.includes(item.id);
 
       const html = getMarkerHtml(item, isActive, isHovered, isVisited);
       const zIndex = (isActive || isHovered) ? 1000 : 100 + Math.round((item.lat - 18.5) * 10000);
@@ -340,9 +343,10 @@ export default function PropertyMap() {
       const marker = markersRef.current[item.id];
       if (!marker) return;
 
-      const isActive = item.id === activeListingId;
-      const isHovered = item.id === hoveredListingId;
-      const isVisited = visitedListingIds.includes(item.id);
+      const { activeListingId: activeId, hoveredListingId: hoveredId, visitedListingIds: visitedIds } = markerUiStateRef.current;
+      const isActive = item.id === activeId;
+      const isHovered = item.id === hoveredId;
+      const isVisited = visitedIds.includes(item.id);
 
       const html = getMarkerHtml(item, isActive, isHovered, isVisited);
       const zIndex = (isActive || isHovered) ? 1000 : 100 + Math.round((item.lat - 18.5) * 10000);
