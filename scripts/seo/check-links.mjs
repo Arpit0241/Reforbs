@@ -19,6 +19,10 @@ const args = Object.fromEntries(
   })
 );
 const BASE_URL = args["base-url"] ? args["base-url"].replace(/\/+$/, "") : null;
+const EXPECTED_SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "") || "https://reforbs.com";
+const ESCAPED_SITE_URL = EXPECTED_SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const CANONICAL_RE = new RegExp(`<link[^>]+rel="canonical"[^>]+href="${ESCAPED_SITE_URL}`, "i");
 
 const failures = [];
 const passes = [];
@@ -70,7 +74,7 @@ for (const file of htmlFiles) {
 
   // Canonical link check on public HTML routes
   if (routeKey !== "_not-found") {
-    const hasCanonical = /<link[^>]+rel="canonical"[^>]+href="https:\/\/reforbs\.com/i.test(html);
+    const hasCanonical = CANONICAL_RE.test(html);
     if (!hasCanonical) {
       missingCanonicals++;
       failures.push(`Missing canonical tag in ${routeKey}`);
@@ -101,7 +105,7 @@ for (const file of htmlFiles) {
 }
 
 check(htmlFiles.length >= 30, `Scanned ${htmlFiles.length} prerendered HTML files`, `Too few HTML files: ${htmlFiles.length}`);
-check(missingCanonicals === 0, "All HTML routes contain reforbs.com canonical link", `${missingCanonicals} routes missing canonical`);
+check(missingCanonicals === 0, `All HTML routes contain ${EXPECTED_SITE_URL} canonical link`, `${missingCanonicals} routes missing canonical`);
 check(nestedMains === 0, "Zero duplicate/nested <main> elements", `${nestedMains} pages have multiple <main> elements`);
 check(imgsMissingAlt === 0, "Zero <img> elements missing alt attribute", `${imgsMissingAlt} <img> elements missing alt`);
 check(badTelLinks === 0, "All tel: hrefs normalized to E.164 (+91)", `${badTelLinks} non-E.164 tel: links found`);

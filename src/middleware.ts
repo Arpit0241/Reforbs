@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SITE_URL, stripTrackingSearchParams } from "@/lib/siteUrl";
-
-const CANONICAL_HOST = new URL(SITE_URL).host.toLowerCase();
-const ENFORCE_CANONICAL_REDIRECT =
-  process.env.ENFORCE_CANONICAL_REDIRECT === "true";
+import {
+  IS_CANONICAL_DOMAIN_ACTIVE,
+  SITE_HOST,
+  SITE_URL,
+} from "@/lib/siteUrl";
 
 function wantsMarkdown(request: NextRequest, pathname: string): boolean {
   if (pathname.startsWith("/api/") || pathname.startsWith("/md/")) return false;
@@ -18,8 +18,10 @@ function wantsMarkdown(request: NextRequest, pathname: string): boolean {
 }
 
 export function middleware(request: NextRequest) {
-  const host = (request.headers.get("host") || "").toLowerCase().split(":")[0];
-  const { pathname, searchParams } = request.nextUrl;
+  const rawHost =
+    request.headers.get("x-forwarded-host") || request.headers.get("host") || "";
+  const host = rawHost.split(",")[0].trim().toLowerCase().split(":")[0];
+  const { pathname, search } = request.nextUrl;
 
   const isLocalHost =
     host === "localhost" ||
@@ -27,22 +29,25 @@ export function middleware(request: NextRequest) {
     host === "::1" ||
     host.endsWith(".local");
 
+  const vercelEnv = process.env.VERCEL_ENV;
+  const isNonProdDeployment = Boolean(vercelEnv) && vercelEnv !== "production";
+
+  const isVercelHost = host.endsWith(".vercel.app");
+  const isWwwHost = host === `www.${SITE_HOST}`;
   const isPreviewOrAliasHost =
-    !isLocalHost &&
-    (host.endsWith(".vercel.app") ||
-      (host !== CANONICAL_HOST && host !== `www.${CANONICAL_HOST}`));
+    isNonProdDeployment ||
+    (!isLocalHost &&
+      (isVercelHost || (host !== SITE_HOST && host !== `www.${SITE_HOST}`)));
 
-  const isWwwHost = host === `www.${CANONICAL_HOST}`;
-
-  // Optional 301 canonical host redirect once custom domain is live
+  // 301 redirect production *.vercel.app and www hostnames -> canonical apex (path + query preserved).
+  // Gated so redirects activate only on non-preview deployments when NEXT_PUBLIC_SITE_URL=https://reforbs.com.
   if (
-    ENFORCE_CANONICAL_REDIRECT &&
+    IS_CANONICAL_DOMAIN_ACTIVE &&
+    !isNonProdDeployment &&
     !isLocalHost &&
-    (isWwwHost || host.endsWith(".vercel.app"))
+    (isWwwHost || isVercelHost)
   ) {
-    const cleanParams = stripTrackingSearchParams(searchParams);
-    const qs = cleanParams.toString();
-    const target = `${SITE_URL}${pathname}${qs ? `?${qs}` : ""}`;
+    const target = `${SITE_URL}${pathname}${search || ""}`;
     return NextResponse.redirect(target, 301);
   }
 
@@ -65,7 +70,7 @@ export function middleware(request: NextRequest) {
     const mdUrl = request.nextUrl.clone();
     mdUrl.pathname = `/md${rewritePath.startsWith("/") ? rewritePath : `/${rewritePath}`}`;
     const mdResponse = NextResponse.rewrite(mdUrl);
-    if (isPreviewOrAliasHost || (!ENFORCE_CANONICAL_REDIRECT && host.endsWith(".vercel.app"))) {
+    if (isPreviewOrAliasHost) {
       mdResponse.headers.set("X-Robots-Tag", "noindex, nofollow");
     }
     return mdResponse;
@@ -73,8 +78,8 @@ export function middleware(request: NextRequest) {
 
   const response = NextResponse.next();
 
-  // Prevent preview deployments (*.vercel.app or staging aliases) from indexing
-  if (isPreviewOrAliasHost || (!ENFORCE_CANONICAL_REDIRECT && host.endsWith(".vercel.app"))) {
+  // Prevent preview deployments (non-production) or unredirected *.vercel.app aliases from indexing
+  if (isPreviewOrAliasHost) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
 

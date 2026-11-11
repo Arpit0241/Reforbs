@@ -6,6 +6,8 @@
  * Deterministic Browser-Only Retrieval Configuration (v5.0 - Owner QA - 4 November 2026)
  */
 
+import { canonicalUrl } from "@/lib/siteUrl";
+
 export interface KnowledgeItem {
   id: string;
   pageNumber: number;
@@ -131,7 +133,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Panchshil Tech Park", estimate: "2.5 km" },
       { place: "Metro", estimate: "3 km" },
     ],
-    propertyUrl: "https://reforbs.com/student-housing/shubh-gateway",
+    propertyUrl: canonicalUrl("/student-housing/shubh-gateway"),
     ratingInfo: "4.9 / 5 (148 reviews)",
     coupleFriendly: false,
     annualLockIn: true,
@@ -193,7 +195,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Metro", estimate: "1.5 km" },
       { place: "Symbiosis Law School", estimate: "2 km" },
     ],
-    propertyUrl: "https://reforbs.com/student-housing/brindavan",
+    propertyUrl: canonicalUrl("/student-housing/brindavan"),
     ratingInfo: "4.9 / 5 (136 reviews)",
     coupleFriendly: false,
     annualLockIn: true,
@@ -249,7 +251,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Symbiosis University Lavale Campus", estimate: "500 m" },
       { place: "ISBM College", estimate: "500 m" },
     ],
-    propertyUrl: "https://reforbs.com/student-housing/vairagya",
+    propertyUrl: canonicalUrl("/student-housing/vairagya"),
     ratingInfo: "4.9 / 5 (128 reviews)",
     coupleFriendly: false,
     annualLockIn: true,
@@ -314,7 +316,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Metro", estimate: "3 km" },
       { place: "Business Bay", estimate: "4 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/nirvana",
+    propertyUrl: canonicalUrl("/coliving/nirvana"),
     ratingInfo: "4.9 / 5 (168 reviews)",
     coupleFriendly: true,
     annualLockIn: false,
@@ -381,7 +383,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Metro", estimate: "3 km" },
       { place: "Business Bay", estimate: "4 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/moksha",
+    propertyUrl: canonicalUrl("/coliving/moksha"),
     ratingInfo: "4.9 / 5 (160 reviews)",
     coupleFriendly: true,
     annualLockIn: false,
@@ -448,7 +450,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Metro", estimate: "3 km" },
       { place: "Business Bay", estimate: "4 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/vipasna",
+    propertyUrl: canonicalUrl("/coliving/vipasna"),
     ratingInfo: "4.9 / 5 (152 reviews)",
     coupleFriendly: true,
     annualLockIn: false,
@@ -504,7 +506,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Metro", estimate: "5 km" },
       { place: "Panchshil Tech Park", estimate: "6 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/park-island",
+    propertyUrl: canonicalUrl("/coliving/park-island"),
     ratingInfo: "4.9 / 5 (142 reviews)",
     coupleFriendly: false,
     annualLockIn: false,
@@ -563,7 +565,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Airport", estimate: "2.5 km" },
       { place: "Symbiosis Law School", estimate: "3 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/pillar-homes",
+    propertyUrl: canonicalUrl("/coliving/pillar-homes"),
     ratingInfo: "4.9 / 5 (135 reviews)",
     coupleFriendly: false,
     annualLockIn: false,
@@ -622,7 +624,7 @@ export const PROPERTIES_V4: PropertyKnowledge[] = [
       { place: "Airport", estimate: "2.5 km" },
       { place: "Symbiosis Law School", estimate: "2.5 km" },
     ],
-    propertyUrl: "https://reforbs.com/coliving/suyog",
+    propertyUrl: canonicalUrl("/coliving/suyog"),
     ratingInfo: "4.9 / 5 (138 reviews)",
     coupleFriendly: false,
     annualLockIn: false,

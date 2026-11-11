@@ -9,7 +9,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Pillar Homes in Sakore Nagar, Viman Nagar is an exclusive company guesthouse for corporate partner employees in Pune. Not open as a retail PG.",
   path: "/coliving/pillar-homes",
-  image: "/images/properties/pillar/image-1.jpg",
+  image: "/images/properties/pillar-homes/image-1.jpg",
   noindex: true,
 });
 

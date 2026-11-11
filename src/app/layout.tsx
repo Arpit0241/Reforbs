@@ -31,7 +31,7 @@ export const viewport: Viewport = {
   themeColor: "#007A7A",
 };
 
-import { getSiteUrl } from "@/lib/siteUrl";
+import { canonicalUrl, getSiteUrl } from "@/lib/siteUrl";
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
     description:
       "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included.",
-    url: "/",
+    url: canonicalUrl("/"),
     siteName: "Reforbs Living",
     images: [
       {

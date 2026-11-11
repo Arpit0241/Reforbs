@@ -2,9 +2,20 @@ import type { MetadataRoute } from "next";
 import { AI_BOT_RULES } from "@/lib/aiBots";
 import { SITE_URL } from "@/lib/siteUrl";
 
+export const dynamic = "force-dynamic";
+
 const PRIVATE_PATHS = ["/api/", "/_next/"];
 
 export default function robots(): MetadataRoute.Robots {
+  if (process.env.VERCEL_ENV !== "production") {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
+
   return {
     rules: [
       {

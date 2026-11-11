@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { SITE_HOST } from "@/lib/siteUrl";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -112,7 +113,7 @@ export function renderReforbsOgImage({
               {badgeText}
             </div>
           ) : (
-            <div style={{ fontSize: "22px", fontWeight: 700, color: "#FFFFFF" }}>reforbs.com</div>
+            <div style={{ fontSize: "22px", fontWeight: 700, color: "#FFFFFF" }}>{SITE_HOST}</div>
           )}
         </div>
       </div>

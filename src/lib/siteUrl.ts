@@ -1,7 +1,13 @@
-const RAW_SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://reforbs.com";
+const RAW_CONFIGURED_SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "") || "";
 
-export const SITE_URL = RAW_SITE_URL.replace(/\/+$/, "");
+const RAW_SITE_URL = RAW_CONFIGURED_SITE_URL || "https://reforbs.com";
+
+export const CONFIGURED_SITE_URL = RAW_CONFIGURED_SITE_URL;
+export const SITE_URL = RAW_SITE_URL;
+export const SITE_HOST = new URL(SITE_URL).host.toLowerCase();
+export const IS_CANONICAL_DOMAIN_ACTIVE =
+  RAW_CONFIGURED_SITE_URL.toLowerCase() === "https://reforbs.com";
 
 export function getSiteUrl(): URL {
   return new URL(SITE_URL);
