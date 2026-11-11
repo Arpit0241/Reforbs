@@ -624,7 +624,7 @@ export default function PartnerWithUsPage() {
 
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <a
-                href="https://wa.me/917420040241?text=Hello%20Reforbs%20Founders!%20I%20would%20like%20to%20discuss%20a%20partnership%20opportunity."
+                href="https://wa.me/917391919163?text=Hello%20Reforbs%20Founders!%20I%20would%20like%20to%20discuss%20a%20partnership%20opportunity."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-2xl bg-[#FFDE59] hover:bg-[#ffd633] text-[#111827] text-xs sm:text-sm font-black shadow-lg transition-all active:scale-95 flex items-center gap-2"
