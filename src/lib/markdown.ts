@@ -4,11 +4,68 @@ import {
   colivingPropertiesData,
   studentPropertiesData,
   corporatePropertiesData,
+  getPropertyById,
   type PropertyItem,
 } from "@/data/properties";
 import { SITE_CONFIG } from "@/data/site";
 import { HOME_FAQS, COLIVING_HUB_FAQS, STUDENT_HUB_FAQS } from "@/data/hubFaqs";
+import { LOCAL_GUIDES, getLocalGuideBySlug, type LocalGuidePage } from "@/data/guides";
 import { canonicalUrl } from "@/lib/siteUrl";
+
+function renderGuideMarkdown(guide: LocalGuidePage): string {
+  const featured = guide.propertyIds
+    .map((id) => getPropertyById(id))
+    .filter((p): p is PropertyItem => Boolean(p));
+
+  const lines: string[] = [
+    `# ${guide.h1}`,
+    ``,
+    `> ${guide.answerFirstSummary}`,
+    ``,
+    `- **Canonical URL**: ${canonicalUrl(guide.slug)}`,
+    `- **Contact Phone / WhatsApp**: ${SITE_CONFIG.primaryPhoneDisplay} (${SITE_CONFIG.tourHours})`,
+    `- **Last Verified**: ${guide.lastUpdated}`,
+    ``,
+  ];
+
+  if (featured.length > 0) {
+    lines.push(`## Recommended Reforbs Residences`, ``);
+    for (const p of featured) {
+      lines.push(
+        `- [${p.name}](${canonicalUrl(p.slug)}) (${p.category}, ${p.locality}): Starting ${p.price}/month — ${p.tag}. Address: ${p.address}. Lock-in: ${p.lockInPolicy}.`
+      );
+    }
+    lines.push(``);
+  }
+
+  if (guide.comparisonTable) {
+    const t = guide.comparisonTable;
+    lines.push(
+      `## ${t.heading}`,
+      ``,
+      `| ${t.headers.join(" | ")} |`,
+      `| --- | --- | --- | --- |`,
+      ...t.rows.map((r) => `| ${r.feature} | ${r.col1} | ${r.col2} | ${r.col3} |`),
+      ``
+    );
+  }
+
+  for (const sec of guide.sections) {
+    lines.push(`## ${sec.heading}`, ``);
+    for (const p of sec.paragraphs) {
+      lines.push(p, ``);
+    }
+  }
+
+  if (guide.faqs.length > 0) {
+    lines.push(`## Frequently Asked Questions`, ``);
+    for (const f of guide.faqs) {
+      lines.push(`### ${f.question}`, f.answer, ``);
+    }
+  }
+
+  return lines.join("\n").trim() + "\n";
+}
 
 function renderPropertyMarkdown(prop: PropertyItem): string {
   const lines: string[] = [
@@ -221,6 +278,11 @@ export function renderMarkdownForPath(rawPath: string): string | null {
     return renderPropertyMarkdown(matchedProp);
   }
 
+  const matchedGuide = getLocalGuideBySlug(normalized);
+  if (matchedGuide) {
+    return renderGuideMarkdown(matchedGuide);
+  }
+
   return null;
 }
 
@@ -254,6 +316,11 @@ export function buildLlmsTxt(): string {
         `- [${p.name}](${canonicalUrl(`${p.slug}.md`)}) — ${p.locality}, Pune: Starting ${p.price}/month. ${p.tag}.`
     ),
     ``,
+    `## Pune Location & Comparison Guides`,
+    ...LOCAL_GUIDES.map(
+      (g) => `- [${g.navLabel}](${canonicalUrl(`${g.slug}.md`)}) — ${g.description}`
+    ),
+    ``,
     `## Corporate Company Guesthouses (Enterprise Only — Not Open as Public PGs)`,
     `- [Corporate Stays Directory](${canonicalUrl("/corporate-stays.md")}): Park Island (Shastri Nagar), Pillar Homes (Sakore Nagar), and Suyog Enclave (Sakore Nagar) are dedicated to partner company employees only.`,
   ].join("\n") + "\n";
@@ -277,6 +344,11 @@ export function buildLlmsFullTxt(): string {
     `# Detailed Property Specifications`,
     ``,
     ...publicPropertiesData.map(renderPropertyMarkdown),
+    `---`,
+    ``,
+    `# Pune Location & Comparison Guides`,
+    ``,
+    ...LOCAL_GUIDES.map(renderGuideMarkdown),
     `---`,
     ``,
     `# Corporate Guesthouses (B2B Only)`,

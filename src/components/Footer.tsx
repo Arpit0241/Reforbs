@@ -223,6 +223,48 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* Pune Neighbourhood & Comparison Guides */}
+        <div className="mt-10 pt-6 border-t border-[#272B29]/70">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#8C9690] mb-3 font-heading">
+            Pune Housing &amp; Local Guides
+          </p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-[#A0AAA5] font-medium">
+            <Link href="/student-housing-near-symbiosis-law-school-pune" className="hover:text-white transition-colors">
+              Near Symbiosis Law School
+            </Link>
+            <Link href="/student-housing-near-scms-sid-viman-nagar-pune" className="hover:text-white transition-colors">
+              Near SCMS &amp; SID Viman Nagar
+            </Link>
+            <Link href="/student-housing-near-symbiosis-lavale-pune" className="hover:text-white transition-colors">
+              Near Symbiosis Lavale
+            </Link>
+            <Link href="/coliving-viman-nagar-pune" className="hover:text-white transition-colors">
+              Co-Living Viman Nagar
+            </Link>
+            <Link href="/coliving-sanjay-park-yerwada-pune" className="hover:text-white transition-colors">
+              Co-Living Sanjay Park
+            </Link>
+            <Link href="/couple-friendly-coliving-pune" className="hover:text-white transition-colors">
+              Couple-Friendly Co-Living
+            </Link>
+            <Link href="/coliving-with-private-kitchen-pune" className="hover:text-white transition-colors">
+              Private Kitchen Co-Living
+            </Link>
+            <Link href="/coliving-near-airport-pune" className="hover:text-white transition-colors">
+              Near Pune Airport
+            </Link>
+            <Link href="/coliving-near-commerzone-it-park-pune" className="hover:text-white transition-colors">
+              Near Commerzone IT Park
+            </Link>
+            <Link href="/pg-vs-coliving-vs-hostel-pune" className="hover:text-white transition-colors">
+              PG vs Co-Living vs Hostel
+            </Link>
+            <Link href="/coliving-cost-in-pune" className="hover:text-white transition-colors">
+              Co-Living Cost in Pune
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Legal bar with safe-area spacing for mobile sticky bottom bar */}

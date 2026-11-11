@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { canonicalUrl } from "@/lib/siteUrl";
 import { publicPropertiesData } from "@/data/properties";
+import { LOCAL_GUIDES } from "@/data/guides";
 
 const INDEXABLE_STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: "weekly" | "monthly"; priority: number }[] = [
   { path: "/", lastModified: "2026-11-11", changeFrequency: "weekly", priority: 1.0 },
@@ -21,6 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const guideEntries: MetadataRoute.Sitemap = LOCAL_GUIDES.map((guide) => ({
+    url: canonicalUrl(guide.slug),
+    lastModified: new Date(guide.lastUpdated),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   const staticEntries: MetadataRoute.Sitemap = INDEXABLE_STATIC_ROUTES.map((entry) => ({
     url: canonicalUrl(entry.path),
     lastModified: new Date(entry.lastModified),
@@ -28,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: entry.priority,
   }));
 
-  return [...staticEntries, ...propertyEntries];
+  return [...staticEntries, ...propertyEntries, ...guideEntries];
 }
