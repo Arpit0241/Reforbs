@@ -115,7 +115,7 @@ export default function PartnerWithUsPage() {
                 </a>
 
                 <a
-                  href="https://wa.me/917420040241?text=Hello%20Reforbs%20Leadership!%20I%20am%20interested%20in%20learning%20more%20about%20the%20Reforbs%20Investors%20Program."
+                  href="https://wa.me/917391919163?text=Hello%20Reforbs%20Leadership!%20I%20am%20interested%20in%20learning%20more%20about%20the%20Reforbs%20Investors%20Program."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-sm border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
