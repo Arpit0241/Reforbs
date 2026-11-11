@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   MapPin,
   Phone,
@@ -14,6 +14,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
+import { trackEvent } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -48,6 +49,13 @@ export default function ContactPage() {
     phone: "",
     property: "Shubh Gateway (Opp. SLS)",
   });
+  const startedRef = useRef(false);
+
+  const handleFormStart = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("visit_form_start", { source: "contact_page" });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +66,7 @@ export default function ContactPage() {
       property: form.property,
       source: "Contact Page Form",
     });
+    trackEvent("visit_form_submit", { source: "contact_page", property: form.property });
     setWhatsappUrl(res.whatsappUrl);
     setSubmitted(true);
     setSubmitting(false);
@@ -123,7 +132,7 @@ export default function ContactPage() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} onFocus={handleFormStart} className="space-y-5">
                 <div>
                   <h2 className="text-xl sm:text-2xl font-black font-heading text-[#111827]">
                     Request a Callback / Schedule Visit
@@ -237,6 +246,7 @@ export default function ContactPage() {
                     </span>
                     <a
                       href="tel:+917420040241"
+                      onClick={() => trackEvent("call_click", { source: "contact_page" })}
                       className="btn-teal !px-5 !py-2 !text-xs !rounded-full shadow-sm inline-flex items-center gap-1.5"
                     >
                       <Phone size={14} />
@@ -285,6 +295,7 @@ export default function ContactPage() {
                   href="https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20am%20looking%20for%20accommodation%20in%20Pune."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { source: "contact_page" })}
                   className="btn-yellow w-full py-3.5 rounded-2xl justify-center font-black text-xs shadow-md"
                 >
                   <MessageCircle size={16} />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail, ArrowRight, Heart } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
   return (
@@ -62,7 +63,11 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex items-center gap-2.5">
                   <Phone size={15} className="text-[#FFDE59] shrink-0" />
-                  <a href="tel:+917420040241" className="hover:text-[#FFDE59] transition-colors font-bold">
+                  <a
+                    href="tel:+917420040241"
+                    onClick={() => trackEvent("call_click", { source: "footer" })}
+                    className="hover:text-[#FFDE59] transition-colors font-bold"
+                  >
                     Call Us
                   </a>
                 </div>
@@ -76,6 +81,7 @@ export default function Footer() {
                     href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Pune."
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("whatsapp_click", { source: "footer" })}
                     className="hover:text-[#25D366] transition-colors font-bold"
                   >
                     Chat on WhatsApp

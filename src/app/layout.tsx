@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DeferredChatbot from "@/components/chatbot/DeferredChatbot";
 import StickyBottomBar from "@/components/StickyBottomBar";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/schema";
 
@@ -83,6 +84,7 @@ export default function RootLayout({
         <Footer />
         <DeferredChatbot />
         <StickyBottomBar />
+        <GoogleAnalytics />
       </body>
     </html>
   );

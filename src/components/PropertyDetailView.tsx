@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
 import { normalizeTelHref } from "@/lib/siteUrl";
+import { trackEvent } from "@/lib/analytics";
 
 export interface PropertyRelatedSummary {
   name: string;
@@ -77,6 +78,13 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
   const [visitForm, setVisitForm] = useState({ name: "", phone: "", date: "" });
   const [activePhoto, setActivePhoto] = useState(property.heroImage);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const startedRef = useRef(false);
+
+  const handleFormStart = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("visit_form_start", { source: "property_detail", property: property.name });
+  };
 
   const activePhotoIndex = property.galleryImages.indexOf(activePhoto);
   const activeAlt =
@@ -94,6 +102,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
       visitDate: visitForm.date,
       source: `Property Detail: ${property.name}`,
     });
+    trackEvent("visit_form_submit", { source: "property_detail", property: property.name });
     setWhatsappUrl(res.whatsappUrl);
     setVisitSubmitted(true);
     setSubmitting(false);
@@ -530,13 +539,14 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                     }
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("whatsapp_click", { source: "property_detail_confirmation", property: property.name })}
                     className="btn-teal text-xs py-2.5 px-4 w-full justify-center"
                   >
                     Open WhatsApp Chat
                   </a>
                 </div>
               ) : (
-                <form onSubmit={handleVisitSubmit} className="space-y-3">
+                <form onSubmit={handleVisitSubmit} onFocus={handleFormStart} className="space-y-3">
                   <h4 className="font-black text-[#1B1D1C] text-sm font-heading">
                     Schedule a Free Walkthrough
                   </h4>
@@ -588,6 +598,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <a
                   href={normalizeTelHref(property.contactPhone)}
+                  onClick={() => trackEvent("call_click", { source: "property_detail", property: property.name })}
                   className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#007A7A] bg-[#E6F4F3] hover:bg-[#007A7A] hover:text-white text-[#007A7A] text-xs font-black transition-all active:scale-95 shadow-sm"
                   title="Call Us"
                   aria-label="Call Us"
@@ -608,6 +619,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
                   )}%20(${encodeURIComponent(property.address)}).`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { source: "property_detail", property: property.name })}
                   className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-md transition-all active:scale-95"
                   title="WhatsApp Property Manager"
                 >

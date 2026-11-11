@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, MapPin } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -158,6 +159,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2.5">
             <a
               href="tel:+917420040241"
+              onClick={() => trackEvent("call_click", { source: "navbar_desktop" })}
               className={`flex items-center gap-2 text-xs font-black px-4 py-2.5 rounded-full transition-all border ${
                 scrolled
                   ? "text-[#1B1D1C] bg-[#F1F4F4] hover:bg-[#E6F4F3] hover:text-[#007A7A] border-[#E1E7E6]"
@@ -174,6 +176,7 @@ export default function Navbar() {
               href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Viman%20Nagar%2C%20Pune."
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { source: "navbar_desktop" })}
               className="flex items-center gap-2 text-xs font-black px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md hover:scale-105 active:scale-95 transition-all"
               aria-label="Chat with Us on WhatsApp"
             >
@@ -326,6 +329,7 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-2.5">
                 <a
                   href="tel:+917420040241"
+                  onClick={() => trackEvent("call_click", { source: "navbar_mobile_drawer" })}
                   className="flex items-center justify-center gap-2 min-h-[48px] text-xs font-bold text-[#111827] border border-[#E1E7E6] rounded-2xl bg-[#F8FAFA] active:bg-[#E6F4F3]"
                   aria-label="Call Us"
                 >
@@ -336,6 +340,7 @@ export default function Navbar() {
                   href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Viman%20Nagar%2C%20Pune."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { source: "navbar_mobile_drawer" })}
                   className="flex items-center justify-center gap-2 min-h-[48px] text-xs font-bold bg-[#25D366] text-white rounded-2xl active:bg-[#20bd5a]"
                 >
                   <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">

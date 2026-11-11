@@ -1,18 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
 import { submitLead } from "@/lib/leads";
+import { trackEvent } from "@/lib/analytics";
 
 export default function CtaSection() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState("");
+  const startedRef = useRef(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     property: "Shubh Gateway (Opp. SLS Campus)",
   });
+
+  const handleFormStart = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("visit_form_start", { source: "homepage_cta" });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +30,10 @@ export default function CtaSection() {
       phone: form.phone,
       property: form.property,
       source: "Homepage CTA Form",
+    });
+    trackEvent("visit_form_submit", {
+      source: "homepage_cta",
+      property: form.property,
     });
     setWhatsappUrl(res.whatsappUrl);
     setSubmitted(true);
@@ -86,13 +98,14 @@ export default function CtaSection() {
                     href={whatsappUrl || "https://wa.me/917420040241?text=Hi%20Reforbs!%20I%20just%20scheduled%20a%20site%20visit."}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("whatsapp_click", { source: "homepage_cta_confirmation", property: form.property })}
                     className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3.5 rounded-full font-bold text-sm shadow hover:bg-[#20bd5a] transition"
                   >
                     Open WhatsApp Directly
                   </a>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} onFocus={handleFormStart} className="space-y-4">
                   <div>
                     <span className="inline-block text-[11px] font-black tracking-wider uppercase text-[#007A7A] bg-[#007A7A]/10 px-2.5 py-1 rounded-md mb-2 font-heading">
                       Quick 30-Second Inquiry

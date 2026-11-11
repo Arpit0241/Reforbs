@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function StickyBottomBar() {
   return (
@@ -12,6 +13,7 @@ export default function StickyBottomBar() {
           href="https://wa.me/917420040241?text=Hi%20Reforbs%20Living!%20I%20am%20exploring%20spaces%20in%20Viman%20Nagar%2C%20Pune."
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", { source: "sticky_bottom_bar" })}
           className="flex items-center justify-center gap-2 min-h-[46px] px-3 rounded-2xl bg-[#25D366] active:bg-[#20bd5a] text-white font-extrabold text-xs shadow-md transition-all active:scale-95"
           aria-label="Chat on WhatsApp"
         >
