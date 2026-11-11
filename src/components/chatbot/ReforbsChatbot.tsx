@@ -57,8 +57,9 @@ export default function ReforbsChatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize PDF Knowledge index once per session
+  // Initialize PDF Knowledge index lazily only when the chat drawer opens
   useEffect(() => {
+    if (!isOpen) return;
     let mounted = true;
     loadAndIndexPDF()
       .then(() => {
@@ -75,7 +76,7 @@ export default function ReforbsChatbot() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [isOpen]);
 
   // Auto-scroll conversation to latest message
   useEffect(() => {

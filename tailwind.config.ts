@@ -57,10 +57,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ["Montserrat", "sans-serif"],
-        sans: ["Montserrat", "sans-serif"],
-        body: ["Montserrat", "sans-serif"],
-        caption: ["Inter", "sans-serif"],
+        heading: ["var(--font-montserrat)", "sans-serif"],
+        sans: ["var(--font-montserrat)", "sans-serif"],
+        body: ["var(--font-montserrat)", "sans-serif"],
+        caption: ["var(--font-inter)", "sans-serif"],
       },
       boxShadow: {
         card: "0 4px 20px -2px rgba(0, 122, 122, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04)",

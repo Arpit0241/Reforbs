@@ -1,11 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ReforbsChatbot from "@/components/chatbot/ReforbsChatbot";
+import DeferredChatbot from "@/components/chatbot/DeferredChatbot";
 import StickyBottomBar from "@/components/StickyBottomBar";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/schema";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -60,13 +75,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" className={`${montserrat.variable} ${inter.variable}`}>
       <body className="antialiased font-sans bg-white text-slate-900 selection:bg-brand-teal selection:text-white">
         <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <ReforbsChatbot />
+        <DeferredChatbot />
         <StickyBottomBar />
       </body>
     </html>

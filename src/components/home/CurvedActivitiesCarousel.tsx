@@ -85,8 +85,8 @@ export const activitiesData: ActivityCardItem[] = [
   },
 ];
 
-// Triplicate the cards array for seamless infinite looping
-const LOOP_CARDS = [...activitiesData, ...activitiesData, ...activitiesData];
+// Duplicate the cards array 2x for seamless infinite looping with lighter DOM weight
+const LOOP_CARDS = [...activitiesData, ...activitiesData];
 
 export default function CurvedActivitiesCarousel() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -121,70 +121,92 @@ export default function CurvedActivitiesCarousel() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // Main 60fps Physics & Momentum RAF Loop
+  // Main 60fps Physics & Momentum RAF Loop (paused automatically when off-screen)
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll<HTMLDivElement>("[data-card-idx]"));
+    let isVisible = true;
     let lastTime = performance.now();
 
+    const applyTransforms = () => {
+      const cx = containerWidth / 2;
+      const fullTrackWidth = totalItems * pitch;
+
+      cards.forEach((card) => {
+        const idx = parseInt(card.dataset.cardIdx || "0", 10);
+        let cardX = idx * pitch + offsetRef.current;
+        cardX = ((cardX % fullTrackWidth) + fullTrackWidth) % fullTrackWidth;
+        if (cardX > fullTrackWidth - pitch * 2) {
+          cardX -= fullTrackWidth;
+        }
+
+        const centerDist = cardX + cardWidth / 2 - cx;
+        const normDist = centerDist / (containerWidth * 0.52);
+        const clampedNorm = Math.max(-1.5, Math.min(1.5, normDist));
+
+        const d2 = clampedNorm * clampedNorm;
+        const rotateY = clampedNorm * -24;
+        const translateZ = -d2 * (isMobile ? 55 : 95);
+        const scale = 1 + 0.08 * d2;
+        const opacity = Math.max(0.2, 1 - Math.pow(Math.abs(clampedNorm) * 0.75, 4));
+
+        card.style.transform = `translate3d(${cardX}px, 0px, 0px) perspective(1100px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+        card.style.opacity = `${opacity}`;
+      });
+    };
+
+    applyTransforms();
+
     const loop = (time: number) => {
+      if (!isVisible) {
+        rafIdRef.current = null;
+        return;
+      }
+
       const dt = Math.min((time - lastTime) / 1000, 0.1);
       lastTime = time;
 
       if (!isPointerDownRef.current) {
-        // Natural target drift speed (slower when hovered)
         const targetSpeed = isHovered ? -0.2 : -0.8;
-        // Exponential decay towards auto-scroll speed
         velocityRef.current = velocityRef.current * 0.95 + targetSpeed * 0.05;
         offsetRef.current += velocityRef.current * (dt * 60);
       }
 
-      // Seamless modular wrap
       if (offsetRef.current <= -singleSetWidth) {
         offsetRef.current += singleSetWidth;
       } else if (offsetRef.current > 0) {
         offsetRef.current -= singleSetWidth;
       }
 
-      // Re-apply cylinder transforms directly to DOM elements for ultra-high 60fps performance
-      if (containerRef.current) {
-        const cx = containerWidth / 2;
-        const cards = containerRef.current.querySelectorAll<HTMLDivElement>("[data-card-idx]");
-
-        cards.forEach((card) => {
-          const idx = parseInt(card.dataset.cardIdx || "0", 10);
-          // Position relative to viewport center
-          let cardX = idx * pitch + offsetRef.current;
-          
-          // Wrap position so it stays in visible circular track
-          const fullTrackWidth = totalItems * pitch;
-          cardX = ((cardX % fullTrackWidth) + fullTrackWidth) % fullTrackWidth;
-          // Shift track so it spans smoothly across -pitch to fullTrackWidth
-          if (cardX > fullTrackWidth - pitch * 2) {
-            cardX -= fullTrackWidth;
-          }
-
-          const centerDist = cardX + cardWidth / 2 - cx;
-          const normDist = centerDist / (containerWidth * 0.52);
-          const clampedNorm = Math.max(-1.5, Math.min(1.5, normDist));
-
-          // Cylinder curve geometry from Reelmark prompt:
-          // Center cards are upright; edge cards are taller with their outer edge taller than the inner edge
-          const d2 = clampedNorm * clampedNorm;
-          const rotateY = clampedNorm * -24; // Leans inside cylinder
-          const translateZ = -d2 * (isMobile ? 55 : 95); // Deep curve into cylinder
-          const scale = 1 + 0.08 * d2; // Outer cards grow taller
-          const opacity = Math.max(0.2, 1 - Math.pow(Math.abs(clampedNorm) * 0.75, 4));
-
-          card.style.transform = `translate3d(${cardX}px, 0px, 0px) perspective(1100px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
-          card.style.opacity = `${opacity}`;
-        });
-      }
-
+      applyTransforms();
       rafIdRef.current = requestAnimationFrame(loop);
     };
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0]?.isIntersecting ?? true;
+        if (isVisible && rafIdRef.current === null) {
+          lastTime = performance.now();
+          rafIdRef.current = requestAnimationFrame(loop);
+        } else if (!isVisible && rafIdRef.current !== null) {
+          cancelAnimationFrame(rafIdRef.current);
+          rafIdRef.current = null;
+        }
+      },
+      { rootMargin: "120px" }
+    );
+
+    observer.observe(container);
     rafIdRef.current = requestAnimationFrame(loop);
+
     return () => {
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      observer.disconnect();
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
     };
   }, [containerWidth, pitch, singleSetWidth, totalItems, cardWidth, isHovered, isMobile]);
 
@@ -245,6 +267,7 @@ export default function CurvedActivitiesCarousel() {
             <div
               key={`${act.id}-${i}`}
               data-card-idx={i}
+              aria-hidden={i >= activitiesData.length}
               className="absolute top-4 left-0 will-change-transform rounded-3xl overflow-hidden shadow-2xl border border-white/20 group"
               style={{
                 width: `${cardWidth}px`,

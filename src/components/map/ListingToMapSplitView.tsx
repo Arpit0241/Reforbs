@@ -238,12 +238,13 @@ export default function ListingToMapSplitView({ isEmbedded = false }: ListingToM
               </button>
             </div>
           ) : (
-            listings.map((property) => (
+            listings.map((property, idx) => (
               <PropertyMapCard
                 key={property.id}
                 property={property}
                 isActive={property.id === activeListingId}
                 isHovered={property.id === hoveredListingId}
+                priority={!isEmbedded && idx === 0}
               />
             ))
           )}

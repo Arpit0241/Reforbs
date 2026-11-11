@@ -18,12 +18,14 @@ interface PropertyMapCardProps {
   property: PropertyItem;
   isActive: boolean;
   isHovered: boolean;
+  priority?: boolean;
 }
 
 export default function PropertyMapCard({
   property,
   isActive,
   isHovered,
+  priority = false,
 }: PropertyMapCardProps) {
   const { setActiveListingId, setHoveredListingId } = usePropertyMap();
   const [activePhoto, setActivePhoto] = useState(property.coverImage);
@@ -80,6 +82,7 @@ export default function PropertyMapCard({
               src={activePhoto}
               alt={property.name}
               fill
+              priority={priority}
               sizes="(max-width: 640px) 100vw, 320px"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />

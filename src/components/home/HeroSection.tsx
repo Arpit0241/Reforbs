@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -42,7 +40,7 @@ export default function HeroSection() {
           priority
           sizes="100vw"
           className="object-cover object-[center_28%] sm:object-center transform scale-[1.01]"
-          quality={92}
+          quality={78}
         />
 
         {/* Subtle, Fresh Dark Teal Gradient Overlay for Mobile (Keeps daylight, brightness & fresh lifestyle colors) */}
@@ -60,7 +58,7 @@ export default function HeroSection() {
           priority
           sizes="100vw"
           className="object-cover object-center transform scale-[1.01]"
-          quality={92}
+          quality={78}
         />
 
         {/* Subtle, Fresh Dark Teal Gradient Overlay for Desktop */}
