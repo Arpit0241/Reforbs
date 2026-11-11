@@ -5,6 +5,10 @@ import { ArrowRight, CheckCircle2, Phone, Building2, Star } from "lucide-react";
 import { buildPageMetadata } from "@/lib/seoMetadata";
 import { colivingPropertiesData } from "@/data/properties";
 import { SITE_CONFIG } from "@/data/site";
+import { COLIVING_HUB_FAQS } from "@/data/hubFaqs";
+import SsrFaqSection from "@/components/seo/SsrFaqSection";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildBreadcrumbSchema, buildFaqSchema, buildPropertyListSchema } from "@/lib/schema";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Co-Living in Viman Nagar & Sanjay Park, Pune | Reforbs",
@@ -137,6 +141,22 @@ export default function ColivingIndex() {
           </Link>
         </div>
       </div>
+
+      <SsrFaqSection
+        title="Co-Living in Pune FAQs"
+        subtitle="Answers on zero lock-in notice, security deposit refund, private kitchens, couple-friendly rules, and sub-metered electricity."
+        faqs={COLIVING_HUB_FAQS}
+      />
+      <JsonLd
+        data={[
+          buildPropertyListSchema("Co-Living Residences in Pune", "/coliving", colivingPropertiesData),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Co-Living", path: "/coliving" },
+          ]),
+          buildFaqSchema(COLIVING_HUB_FAQS),
+        ]}
+      />
     </div>
   );
 }

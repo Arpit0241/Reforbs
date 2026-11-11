@@ -5,9 +5,13 @@ import { ArrowRight, CheckCircle2, Phone, GraduationCap, Star } from "lucide-rea
 import { buildPageMetadata } from "@/lib/seoMetadata";
 import { studentPropertiesData } from "@/data/properties";
 import { SITE_CONFIG } from "@/data/site";
+import { STUDENT_HUB_FAQS } from "@/data/hubFaqs";
+import SsrFaqSection from "@/components/seo/SsrFaqSection";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildBreadcrumbSchema, buildFaqSchema, buildPropertyListSchema } from "@/lib/schema";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Student Housing Near Symbiosis Viman Nagar & Lavale | Reforbs",
+  title: "Student Housing Near Symbiosis Pune | Reforbs Living",
   description:
     "Reforbs student housing 150m from SLS, SCMS & SID in Viman Nagar and 500m from Symbiosis Lavale. Meals, AC & Wi-Fi included from ₹15,000/month.",
   path: "/student-housing",
@@ -128,6 +132,22 @@ export default function StudentHousingIndex() {
           </p>
         </div>
       </div>
+
+      <SsrFaqSection
+        title="Student Housing Near Symbiosis FAQs"
+        subtitle="Everything students and parents need to know about distance from SLS/SCMS/Lavale, annual lock-in, meals, laundry, and safety."
+        faqs={STUDENT_HUB_FAQS}
+      />
+      <JsonLd
+        data={[
+          buildPropertyListSchema("Student Housing Near Symbiosis Pune", "/student-housing", studentPropertiesData),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Student Housing", path: "/student-housing" },
+          ]),
+          buildFaqSchema(STUDENT_HUB_FAQS),
+        ]}
+      />
     </div>
   );
 }

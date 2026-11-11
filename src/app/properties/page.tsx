@@ -4,6 +4,9 @@ import Image from "next/image";
 import { PropertyMapProvider } from "@/context/PropertyMapContext";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
 import { MapPin, Building2, Palmtree } from "lucide-react";
+import { publicPropertiesData } from "@/data/properties";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildBreadcrumbSchema, buildPropertyListSchema } from "@/lib/schema";
 
 import { buildPageMetadata } from "@/lib/seoMetadata";
 
@@ -72,6 +75,62 @@ export default function PropertiesPage() {
       <PropertyMapProvider initialCategory="all">
         <ListingToMapSplitView />
       </PropertyMapProvider>
+
+      {/* Server-Rendered Pune Property Directory Summary for Direct Crawling & Quick Comparison */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E1E7E6] shadow-card">
+          <h2 className="text-xl sm:text-2xl font-black font-heading text-[#1B1D1C] mb-2">
+            Compare All Active Reforbs Residences in Pune
+          </h2>
+          <p className="text-xs sm:text-sm text-[#4A524F] mb-6 font-medium">
+            Verified rents, refundable deposits, and lock-in policies across Viman Nagar, Sanjay Park, and Lavale. Looking for B2B employee accommodation? See{" "}
+            <Link href="/corporate-stays" className="text-[#007A7A] underline font-bold">
+              Corporate Stays
+            </Link>
+            .
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-[#E1E7E6] text-[#1B1D1C] font-black">
+                  <th className="py-3 pr-4">Residence</th>
+                  <th className="py-3 pr-4">Category</th>
+                  <th className="py-3 pr-4">Locality &amp; Landmark</th>
+                  <th className="py-3 pr-4">Starting Rent</th>
+                  <th className="py-3 pr-4">Lock-in</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#E1E7E6] font-medium text-[#4A524F]">
+                {publicPropertiesData.map((prop) => (
+                  <tr key={prop.id} className="hover:bg-[#FAFAFA]">
+                    <td className="py-3 pr-4 font-black text-[#007A7A]">
+                      <Link href={prop.slug} className="hover:underline">
+                        {prop.name}
+                      </Link>
+                    </td>
+                    <td className="py-3 pr-4">{prop.category}</td>
+                    <td className="py-3 pr-4">
+                      {prop.locality} ({prop.landmark})
+                    </td>
+                    <td className="py-3 pr-4 font-bold text-[#1B1D1C]">{prop.price}/mo</td>
+                    <td className="py-3 pr-4">{prop.lockInPeriod === "Annual" ? "Annual Academic" : "Zero Lock-in"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <JsonLd
+        data={[
+          buildPropertyListSchema("Reforbs Pune Properties", "/properties", publicPropertiesData),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Properties", path: "/properties" },
+          ]),
+        ]}
+      />
     </div>
   );
 }

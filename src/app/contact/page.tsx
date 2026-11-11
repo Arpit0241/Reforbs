@@ -1,4 +1,6 @@
 import { buildPageMetadata } from "@/lib/seoMetadata";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildBreadcrumbSchema } from "@/lib/schema";
 import ContactPage from "./ContactClient";
 
 export const metadata = buildPageMetadata({
@@ -9,5 +11,15 @@ export const metadata = buildPageMetadata({
 });
 
 export default function ContactRoutePage() {
-  return <ContactPage />;
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
+      <ContactPage />
+    </>
+  );
 }

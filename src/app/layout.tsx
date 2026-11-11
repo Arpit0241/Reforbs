@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ReforbsChatbot from "@/components/chatbot/ReforbsChatbot";
 import StickyBottomBar from "@/components/StickyBottomBar";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/schema";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -60,6 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <body className="antialiased font-sans bg-white text-slate-900 selection:bg-brand-teal selection:text-white">
+        <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
         <Navbar />
         <main>{children}</main>
         <Footer />

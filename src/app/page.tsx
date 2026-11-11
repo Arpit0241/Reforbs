@@ -7,7 +7,10 @@ import AmenitiesSection from "@/components/home/AmenitiesSection";
 import CommunitySection from "@/components/home/CommunitySection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
-
+import SsrFaqSection from "@/components/seo/SsrFaqSection";
+import JsonLd from "@/components/seo/JsonLd";
+import { HOME_FAQS } from "@/data/hubFaqs";
+import { buildFaqSchema } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/seoMetadata";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -20,6 +23,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function Home() {
   return (
     <>
+      <JsonLd data={buildFaqSchema(HOME_FAQS)} />
       <HeroSection />
       <FeaturedProperties />
       <StatsSection />
@@ -27,6 +31,11 @@ export default function Home() {
       <AmenitiesSection />
       <CommunitySection />
       <TestimonialsSection />
+      <SsrFaqSection
+        title="Frequently Asked Questions About Reforbs Pune"
+        subtitle="Clear, direct answers on monthly rent, security deposits, Co-Living zero lock-in, Student Housing terms, meals, and scheduling a visit."
+        faqs={HOME_FAQS}
+      />
       <CtaSection />
     </>
   );
