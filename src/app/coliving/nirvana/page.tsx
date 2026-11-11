@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Nirvana | Premium Co-Living Sanjay Park Pune - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Nirvana | Co-Living in Sanjay Park, Pune from ₹17,000",
   description:
-    "Nirvana by Reforbs - Premium 1RK co-living in Sanjay Park, Pune. Attached private kitchen, couple friendly, zero lock-in, high-speed Wi-Fi.",
-};
+    "Couple-friendly 1RK suites in Sanjay Park, Pune with private kitchen, AC, Wi-Fi & housekeeping. Twin ₹17,000/mo, private ₹29,000/mo, zero lock-in.",
+  path: "/coliving/nirvana",
+  image: "/images/properties/nirvana/image-2.jpg",
+});
 
 const property: PropertyData = {
   id: "nirvana",

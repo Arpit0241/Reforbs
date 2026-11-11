@@ -13,10 +13,15 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Coming Soon | Reforbs Expansion",
-  description: "Reforbs is expanding to Goa and Bangalore! Register for early bird access and launch updates.",
-};
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Coming Soon to Goa & Bangalore | Reforbs Living",
+  description:
+    "Reforbs Living is expanding to Goa and Bangalore. Register interest for launch updates on upcoming backpacker hostels and co-living spaces.",
+  path: "/coming-soon",
+  noindex: true,
+});
 
 export default function ComingSoonPage() {
   return (

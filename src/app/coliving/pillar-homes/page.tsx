@@ -1,10 +1,15 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Pillar Homes | Corporate Company Guesthouse Clover Park - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Pillar Homes Corporate Guesthouse, Viman Nagar | Reforbs",
   description:
-    "Reforbs Pillar Homes - Dedicated company guesthouse for corporate partner employees in Clover Park, Viman Nagar, Pune. Managed corporate residence (not an open PG).",
-};
+    "Dedicated corporate company guesthouse for partner enterprise employees in Clover Park, Viman Nagar, Pune. Not available as public PG accommodation.",
+  path: "/coliving/pillar-homes",
+  image: "/images/properties/pillar-homes/image-1.jpg",
+  noindex: true,
+});
 
 const property: PropertyData = {
   id: "pillar-homes",

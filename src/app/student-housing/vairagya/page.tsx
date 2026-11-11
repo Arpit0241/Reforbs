@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Vairagya | Student Accommodation near Symbiosis Lavale - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Vairagya | Student Housing near Symbiosis Lavale from ₹15k",
   description:
-    "Reforbs Vairagya - Peaceful student accommodation 500m from Symbiosis University Lavale and ISBM. Triple & Twin sharing, breakfast & dinner mess included, annual lock-in.",
-};
+    "Budget student housing 500m from Symbiosis University Lavale & ISBM, Pune. Breakfast, dinner mess, Wi-Fi and attached washrooms from ₹15,000/month.",
+  path: "/student-housing/vairagya",
+  image: "/images/properties/vairagya/image-1.jpg",
+});
 
 const property: PropertyData = {
   id: "vairagya",

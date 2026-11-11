@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seoMetadata";
 import WhyPropertyOwnersCarousel from "@/components/partner/WhyPropertyOwnersCarousel";
 import {
   TrendingUp,
@@ -22,11 +23,13 @@ import {
   Compass,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Partner With Us | Reforbs Investors Program & Property Partnerships",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Partner Your Property or Invest With Us | Reforbs Pune",
+
   description:
-    "Explore the Reforbs Investors Program offering structured returns up to 22.5%, or partner your residential property with zero-hassle long-term leases, 100% transparent operations, and end-to-end maintenance.",
-};
+    "Lease your Pune residential building to Reforbs Living on long-term contracts with full property management, or explore hospitality partnerships.",
+  path: "/partner-with-us",
+});
 
 export default function PartnerWithUsPage() {
   return (
@@ -634,7 +637,7 @@ export default function PartnerWithUsPage() {
               </a>
 
               <a
-                href="tel:7420040241"
+                href="tel:+917420040241"
                 className="px-6 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold border border-white/30 transition-all flex items-center gap-2"
               >
                 <Phone size={16} className="text-[#FFDE59]" />

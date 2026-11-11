@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Shubh Gateway | Student Accommodation Opposite SLS Viman Nagar - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Shubh Gateway | Student Housing Opp. SLS Pune from ₹25k",
   description:
-    "Reforbs Shubh Gateway - Premier student accommodation directly opposite Symbiosis Law School gate. Gender-segregated towers, breakfast & dinner included, laundry twice weekly, annual lock-in.",
-};
+    "Student housing 150m opposite Symbiosis Law School gate, Viman Nagar, Pune. Gender-segregated towers with meals, AC & laundry from ₹25,000/month.",
+  path: "/student-housing/shubh-gateway",
+  image: "/images/properties/sls/image-1.jpg",
+});
 
 const property: PropertyData = {
   id: "shubh-gateway",

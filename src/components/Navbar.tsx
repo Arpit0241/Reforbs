@@ -157,7 +157,7 @@ export default function Navbar() {
           {/* Desktop Action CTAs */}
           <div className="hidden lg:flex items-center gap-2.5">
             <a
-              href="tel:7420040241"
+              href="tel:+917420040241"
               className={`flex items-center gap-2 text-xs font-black px-4 py-2.5 rounded-full transition-all border ${
                 scrolled
                   ? "text-[#1B1D1C] bg-[#F1F4F4] hover:bg-[#E6F4F3] hover:text-[#007A7A] border-[#E1E7E6]"
@@ -325,7 +325,7 @@ export default function Navbar() {
 
               <div className="grid grid-cols-2 gap-2.5">
                 <a
-                  href="tel:7420040241"
+                  href="tel:+917420040241"
                   className="flex items-center justify-center gap-2 min-h-[48px] text-xs font-bold text-[#111827] border border-[#E1E7E6] rounded-2xl bg-[#F8FAFA] active:bg-[#E6F4F3]"
                   aria-label="Call Us"
                 >

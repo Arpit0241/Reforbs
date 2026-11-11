@@ -5,11 +5,15 @@ import { PropertyMapProvider } from "@/context/PropertyMapContext";
 import ListingToMapSplitView from "@/components/map/ListingToMapSplitView";
 import { MapPin, Sparkles, Building2, GraduationCap, Palmtree } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Properties & Interactive Map | Reforbs Living Viman Nagar, Pune",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Co-Living & Student Housing in Pune: Properties | Reforbs",
   description:
-    "Browse student housing and co-living residences in Viman Nagar, Pune with our interactive live map sync. Explore Shubh Gateway, Sakore Nagar, Moksha, Vipasana, and Shubh Nirvana.",
-};
+    "Compare Reforbs co-living and student housing properties in Pune by price, location and room type. Rents, deposits and inclusions listed upfront.",
+  path: "/properties",
+  image: "/images/pune-hero-banner.jpg",
+});
 
 export default function PropertiesPage() {
   return (

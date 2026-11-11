@@ -114,7 +114,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 sm:space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/#student-housing" className="hover:text-white transition-colors">
+                <Link href="/student-housing" className="hover:text-white transition-colors">
                   Overview
                 </Link>
               </li>
@@ -124,8 +124,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/student-housing/sakore-nagar" className="hover:text-white transition-colors">
-                  Sakore Nagar (Near SCMS)
+                <Link href="/student-housing/brindavan" className="hover:text-white transition-colors">
+                  Brindavan (Near SCMS)
+                </Link>
+              </li>
+              <li>
+                <Link href="/student-housing/vairagya" className="hover:text-white transition-colors">
+                  Vairagya (Symbiosis Lavale)
                 </Link>
               </li>
               <li>
@@ -143,28 +148,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 sm:space-y-2.5 text-xs text-[#A0AAA5] font-medium">
               <li>
-                <Link href="/#co-living" className="hover:text-white transition-colors">
+                <Link href="/coliving" className="hover:text-white transition-colors">
                   Overview
                 </Link>
               </li>
               <li>
                 <Link href="/coliving/moksha" className="hover:text-white transition-colors">
-                  Moksha (Terraces)
+                  Moksha (Sanjay Park)
                 </Link>
               </li>
               <li>
-                <Link href="/coliving/vipasana" className="hover:text-white transition-colors">
-                  Vipasana (Sanctuary)
+                <Link href="/coliving/vipasna" className="hover:text-white transition-colors">
+                  Vipasna (Sanjay Park)
                 </Link>
               </li>
               <li>
-                <Link href="/coliving/shubh-nirvana" className="hover:text-white transition-colors">
-                  Shubh Nirvana (Lounge)
+                <Link href="/coliving/nirvana" className="hover:text-white transition-colors">
+                  Nirvana (Sanjay Park)
                 </Link>
               </li>
               <li>
                 <Link href="/community" className="hover:text-white transition-colors">
-                  Community Cult &amp; Events
+                  Community &amp; Events
                 </Link>
               </li>
             </ul>

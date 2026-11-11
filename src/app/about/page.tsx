@@ -9,11 +9,14 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-export const metadata = {
-  title: "About Us | Reforbs Living - Pune's Vibrant Accommodation",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "About Reforbs: Pune's Backpacker-Style Co-Living",
   description:
-    "Reforbs is an innovative living space solution in Pune built on Privacy, Comfort, Support & Vibes. Inspired by backpacker culture for students and professionals.",
-};
+    "Discover the Reforbs Living story, our 3P and 3D living standard, and how we manage co-living and student accommodations across Pune.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

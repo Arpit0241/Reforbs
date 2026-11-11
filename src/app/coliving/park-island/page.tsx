@@ -1,10 +1,15 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Park Island | Dedicated Corporate Guesthouse Shastrinagar - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Park Island Corporate Guesthouse, Shastrinagar | Reforbs",
   description:
-    "Reforbs Park Island - Dedicated company guesthouse for corporate partner employees in Shastrinagar, Pune. Corporate managed housing (not open to general public / retail PGs).",
-};
+    "Dedicated corporate company guesthouse for partner enterprise employees in Shastrinagar, Pune. Managed 3BHK corporate residence, not open as public PG.",
+  path: "/coliving/park-island",
+  image: "/images/properties/park-island/image-1.jpg",
+  noindex: true,
+});
 
 const property: PropertyData = {
   id: "park-island",

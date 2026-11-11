@@ -276,7 +276,7 @@ export default function FaqModal({
                         {faq.actionType === "call" && (
                           <div className="mt-3 pt-2">
                             <a
-                              href="tel:7420040241"
+                              href="tel:+917420040241"
                               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#007A7A] hover:bg-[#005F5F] text-white text-xs font-bold shadow-sm transition-all active:scale-95"
                             >
                               <Phone size={14} />
@@ -313,7 +313,7 @@ export default function FaqModal({
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <a
-              href="tel:7420040241"
+              href="tel:+917420040241"
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-[#E1E7E6] text-xs font-bold text-[#111827] hover:bg-gray-50"
             >
               <Phone size={14} className="text-[#007A7A]" />

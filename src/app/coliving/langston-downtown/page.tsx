@@ -1,10 +1,15 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Langston Downtown | Executive Co-Living in Viman Nagar - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Langston Downtown | Co-Living in Viman Nagar - Reforbs",
   description:
-    "Langston Downtown - Premier executive co-living for corporate professionals & founders. Soundproof work booths, business lounge, private kitchens, zero lock-ins.",
-};
+    "Executive co-living inquiry page in Viman Nagar, Pune. Contact Reforbs Living for verified active availability.",
+  path: "/coliving/langston-downtown",
+  image: "/images/properties/langston-downtown/image-1.jpg",
+  noindex: true,
+});
 
 const property: PropertyData = {
   id: "langston-downtown",

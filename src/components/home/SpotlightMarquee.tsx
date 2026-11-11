@@ -389,7 +389,7 @@ export default function SpotlightMarquee() {
           <div className="mt-6 pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#666B68]">
             <span>Press inquiries & media interviews: <strong className="text-[#1B1D1C]">contact@reforbs.com</strong></span>
             <a
-              href="tel:7420040241"
+              href="tel:+917420040241"
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6F4F3] hover:bg-[#007A7A] text-[#007A7A] hover:text-white transition-colors text-xs font-bold shadow-sm"
               aria-label="Call Us"
             >

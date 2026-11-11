@@ -3,11 +3,14 @@ import Link from "next/link";
 import { Users, Quote, ArrowRight, CheckCircle2 } from "lucide-react";
 import CommunityRibbonHero from "@/components/community/CommunityRibbonHero";
 
-export const metadata = {
-  title: "The Reforbs Community & Cult | Co-Living in Pune",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Reforbs Community: Events, Yoga & Rooftop Jams in Pune",
   description:
-    "Explore the Reforbs Community in Pune. Group yoga, DIY art, weekend picnics, founder mentorships, and zero forced rules. A family away from family.",
-};
+    "See what Reforbs residents do together in Pune: morning rooftop yoga, DIY art nights, community BBQs, festivals, and founder mentorship sessions.",
+  path: "/community",
+});
 
 const communityMoments = [
   {

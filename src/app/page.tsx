@@ -8,11 +8,14 @@ import CommunitySection from "@/components/home/CommunitySection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
 
-export const metadata: Metadata = {
-  title: "Reforbs Living | Modern Co-Living & Student Housing in Pune",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
   description:
-    "Reforbs offers innovative co-living spaces and student housing in Viman Nagar, Pune. Single & double occupancy rooms, benchmark amenities, vibrant backpacker-inspired community, and zero restrictions.",
-};
+    "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
+  path: "/",
+});
 
 export default function Home() {
   return (

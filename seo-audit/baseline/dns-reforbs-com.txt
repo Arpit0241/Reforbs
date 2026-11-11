@@ -1,0 +1,12 @@
+﻿
+Name         Type  TTL IPAddress NameExchange Strings    
+----         ----  --- --------- ------------ -------    
+reforbs.com HINFO 3789                        {RFC8482, }
+
+
+
+Name             Type  TTL IPAddress NameHost
+----             ----  --- --------- --------
+www.reforbs.com HINFO 3789                   
+
+

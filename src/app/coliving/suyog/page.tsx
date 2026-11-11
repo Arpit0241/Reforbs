@@ -1,10 +1,15 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Suyog Enclave | Dedicated Corporate Guesthouse Sakore Nagar - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Suyog Enclave Corporate Guesthouse, Sakore Nagar | Reforbs",
   description:
-    "Reforbs Suyog Enclave - Dedicated company guesthouse behind Bajaj Finserv in Sakore Nagar, Pune. Exclusively for corporate partner employees (not open to general public / retail PGs).",
-};
+    "Dedicated corporate company guesthouse behind Bajaj Finserv in Sakore Nagar, Pune. Reserved strictly for corporate partner employees, not public PG.",
+  path: "/coliving/suyog",
+  image: "/images/properties/suyog/image-1.jpg",
+  noindex: true,
+});
 
 const property: PropertyData = {
   id: "suyog-enclave",

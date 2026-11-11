@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, Building2, Star, Phone } from "lucide-react";
 
-export const metadata = {
-  title: "Co-Living Spaces in Viman Nagar Pune | Reforbs Living",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Co-Living in Pune from ₹17,000/month | Reforbs",
   description:
-    "Reforbs Moksha, Vipasana & Shubh Nirvana - Boutique co-living for working professionals in Viman Nagar, Pune. Private balconies, gyms, vibrant rooftop lounges, zero restrictions.",
-};
+    "Private rooms and 1RK suites with AC, kitchen access, Wi-Fi and housekeeping included. Couple-friendly co-living with zero lock-in in Sanjay Park, Pune.",
+  path: "/coliving",
+});
 
 const colivingProperties = [
   {

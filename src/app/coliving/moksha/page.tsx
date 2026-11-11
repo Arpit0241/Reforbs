@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Moksha | Boutique Co-Living Sanjay Park Pune - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Moksha | Co-Living in Sanjay Park, Pune from ₹17,000",
   description:
-    "Reforbs Moksha - Serene 3BHK co-living (max 4 per floor) in Sanjay Park, Pune. Couple friendly, zero lock-in, private kitchens & high-speed Wi-Fi.",
-};
+    "Bohemian 3BHK co-living floors in Sanjay Park, Pune (max 4/floor) with kitchen access, AC, Wi-Fi & housekeeping. Zero lock-in, from ₹17,000/month.",
+  path: "/coliving/moksha",
+  image: "/images/properties/moksha/image-1.jpg",
+});
 
 const property: PropertyData = {
   id: "moksha",

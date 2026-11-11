@@ -13,21 +13,42 @@ export const viewport: Viewport = {
   themeColor: "#007A7A",
 };
 
+import { getSiteUrl } from "@/lib/siteUrl";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://reforbs.com"),
-  title: "Reforbs Living | Modern Co-Living & Student Housing in Pune",
+  metadataBase: getSiteUrl(),
+  title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
   description:
-    "Reforbs offers innovative co-living spaces and student housing in Viman Nagar, Pune. Enjoy single & double occupancy rooms, benchmark amenities, vibrant backpacker-inspired community, and zero restrictions. Discover Nirvana, Moksha, ABC (near SLS) & XYZ (near SCMS).",
-  keywords:
-    "coliving pune, student housing pune, viman nagar pg, reforbs, reforbs living, symbiosis law school accommodation, scms pune pg, nirvana coliving, moksha coliving, pune coliving spaces",
+    "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
+  },
   openGraph: {
-    title: "Reforbs Living | Modern Co-Living & Student Housing in Pune",
+    title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
     description:
-      "Experience the future of shared living in Pune. Curated spaces built for comfort, freedom, and emotional connect.",
-    url: "https://reforbs.com",
+      "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included.",
+    url: "/",
     siteName: "Reforbs Living",
-    images: [{ url: "/images/hero-community.webp", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/images/reforbs-hero-community.webp",
+        width: 1200,
+        height: 630,
+        alt: "Reforbs Living Co-Living & Student Housing Community in Pune",
+      },
+    ],
     type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
+    description:
+      "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks.",
+    images: ["/images/reforbs-hero-community.webp"],
   },
 };
 
@@ -37,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body className="antialiased font-sans bg-white text-slate-900 selection:bg-brand-teal selection:text-white">
         <Navbar />
         <main>{children}</main>

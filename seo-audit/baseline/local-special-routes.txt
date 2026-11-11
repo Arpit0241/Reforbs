@@ -1,0 +1,4 @@
+/robots.txt -> 404
+/sitemap.xml -> 404
+/llms.txt -> 404
+/llms-full.txt -> 404

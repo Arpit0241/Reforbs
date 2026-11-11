@@ -14,6 +14,7 @@ import {
   CheckCheck,
 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
+import { normalizeTelHref } from "@/lib/siteUrl";
 
 export interface PropertyData {
   id: string;
@@ -445,7 +446,7 @@ export default function PropertyDetailView({ property }: { property: PropertyDat
               {/* Direct Instant Action Buttons - Stanza Living Style */}
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <a
-                  href={`tel:${property.contactPhone ? property.contactPhone.replace(/\s+/g, "") : "+917420040241"}`}
+                  href={normalizeTelHref(property.contactPhone)}
                   className="flex items-center justify-center gap-1.5 min-h-[46px] py-3 px-3 rounded-2xl border border-[#007A7A] bg-[#E6F4F3] hover:bg-[#007A7A] hover:text-white text-[#007A7A] text-xs font-black transition-all active:scale-95 shadow-sm"
                   title="Call Us"
                   aria-label="Call Us"

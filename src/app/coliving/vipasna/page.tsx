@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Vipasna | Hotel-Style Ensuite Co-Living Sanjay Park Pune - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Vipasna | Co-Living in Sanjay Park, Pune from ₹17,000",
   description:
-    "Reforbs Vipasna - Mindful, hotel-style ensuite co-living in Sanjay Park, Pune. Couple friendly, zero lock-in, fiber internet & tranquil social lounges.",
-};
+    "Hotel-style ensuite co-living in Sanjay Park, Pune with AC, attached washrooms, Wi-Fi & shared kitchen. Couple-friendly, zero lock-in from ₹17,000/mo.",
+  path: "/coliving/vipasna",
+  image: "/images/properties/vipasna/image-1.jpg",
+});
 
 const property: PropertyData = {
   id: "vipasna",

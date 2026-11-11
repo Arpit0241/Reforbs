@@ -1,10 +1,14 @@
 import PropertyDetailView, { PropertyData } from "@/components/PropertyDetailView";
 
-export const metadata = {
-  title: "Brindavan | All-Inclusive Student Accommodation Sakore Nagar - Reforbs",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Brindavan | Student Housing near SCMS Pune from ₹27,000",
   description:
-    "Reforbs Brindavan - All-inclusive student accommodation on Symbiosis Rd behind Dr Lal Path Lab, Sakore Nagar, Pune. All 3 meals (breakfast, lunch, dinner) included, laundry twice weekly, annual lock-in.",
-};
+    "All-inclusive student housing in Sakore Nagar, Viman Nagar (400m to SCMS). 3 daily meals, laundry, AC & Wi-Fi included on annual term from ₹27,000/mo.",
+  path: "/student-housing/brindavan",
+  image: "/images/properties/scmc-sid/image-1.jpg",
+});
 
 const property: PropertyData = {
   id: "brindavan",

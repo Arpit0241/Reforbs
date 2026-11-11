@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, GraduationCap, Star, Phone } from "lucide-react";
 
-export const metadata = {
-  title: "Student Housing in Viman Nagar Pune | Reforbs Living",
+import { buildPageMetadata } from "@/lib/seoMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Student Accommodation near Symbiosis, Pune | Reforbs",
   description:
-    "Curated student accommodations opposite Symbiosis Law School (SLS) and near Symbiosis Centre for Management Studies (SCMS) in Viman Nagar, Pune. Single & double occupancy.",
-};
+    "Student housing near Symbiosis Law School, SCMS, SID and Symbiosis Lavale in Pune with daily meals, Wi-Fi and housekeeping. From ₹15,000/month.",
+  path: "/student-housing",
+});
 
 const studentProperties = [
   {
