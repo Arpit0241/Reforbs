@@ -89,14 +89,11 @@ export default function HeroSection() {
               </svg>
             </span>{" "}
             to cherish.
-            <span className="block text-[11px] sm:text-sm md:text-base font-extrabold uppercase tracking-[0.18em] text-[#FFDE59]/95 mt-2 sm:mt-3">
-              Co-Living &amp; Student Housing in Pune
-            </span>
           </h1>
 
           {/* Supporting Description (Desktop only; hidden completely on mobile per prompt) */}
           <p className="hidden lg:block text-base sm:text-lg text-white/90 font-medium max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            Curated student housing near Symbiosis campuses and vibrant co-living residences in Pune — designed for freedom, comfort, and direct host pricing.
+            Curated student sanctuaries and vibrant co-living spaces. Designed for freedom, comfort, zero lock-ins, and direct host pricing.
           </p>
 
           {/* Desktop-Only Centered OUR USPs Button */}
