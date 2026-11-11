@@ -37,7 +37,6 @@ export default function FeaturedProperties() {
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider mb-3.5 font-heading"
           >
-            <Sparkles size={14} className="text-[#007A7A]" />
             <span>Curated Living Experiences</span>
           </motion.div>
 
@@ -136,7 +135,6 @@ export default function FeaturedProperties() {
 
           <div className="relative z-10 text-center max-w-2xl mx-auto mb-10">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FFDE59] to-[#FACC15] text-[#111827] font-black text-xs uppercase tracking-wider mb-3 shadow-md font-heading">
-              <Sparkles size={14} className="text-[#111827]" />
               <span>All-Inclusive Amenities</span>
             </span>
             <h3 className="text-3xl sm:text-4xl font-black text-white font-heading tracking-tight">

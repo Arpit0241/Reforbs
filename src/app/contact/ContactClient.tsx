@@ -7,7 +7,6 @@ import {
   Mail,
   Clock,
   CheckCircle2,
-  Sparkles,
   ShieldCheck,
   ArrowRight,
   MessageCircle,
@@ -81,7 +80,6 @@ export default function ContactPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#111827] font-black text-xs uppercase tracking-wider mb-6 font-heading shadow-md">
-            <Sparkles size={14} className="text-[#111827]" />
             <span>Connect with Reforbs</span>
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-4 text-white">

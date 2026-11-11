@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
 import { submitLead } from "@/lib/leads";
 import { trackEvent } from "@/lib/analytics";
 
@@ -47,7 +47,7 @@ export default function CtaSection() {
           {/* Left Info */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFDE59] text-[#111827] font-black text-xs uppercase tracking-wider shadow-sm font-heading">
-              <Sparkles size={14} className="text-[#111827]" /> Ready to experience the vibe?
+              <span>Ready to experience the vibe?</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading leading-tight text-white">

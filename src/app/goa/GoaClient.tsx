@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   Compass,
   Palmtree,
-  Sparkles,
   MapPin,
   CheckCircle2,
   Bell,
@@ -61,7 +60,6 @@ export default function GoaComingSoonPage() {
 
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/35 backdrop-blur-md border border-white/25 text-[#FFDE59] font-black text-xs uppercase tracking-wider mb-5 shadow-sm">
-            <Sparkles size={14} className="text-[#FFDE59] animate-pulse" />
             <span>Coming Soon</span>
           </div>
 

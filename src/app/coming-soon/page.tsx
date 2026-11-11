@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Sparkles,
   MapPin,
   Palmtree,
   Building2,
@@ -23,7 +22,6 @@ export default function ComingSoonPage() {
     <div className="min-h-screen pt-28 pb-20 bg-[#FAFAFA]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider mb-5">
-          <Sparkles size={14} className="text-[#007A7A]" />
           <span>New Destinations Launching Soon</span>
         </div>
 

@@ -7,7 +7,6 @@ import {
   TrendingUp,
   ShieldCheck,
   Building2,
-  Sparkles,
   HeartHandshake,
   Users,
   Award,
@@ -165,7 +164,6 @@ export default function PartnerWithUsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider font-heading border border-[#007A7A]/20 shadow-sm">
-              <Sparkles size={14} className="text-[#007A7A]" />
               <span>Fixed Return Framework</span>
             </div>
 
@@ -491,8 +489,7 @@ export default function PartnerWithUsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider font-heading border border-[#007A7A]/20 shadow-sm">
-              <Sparkles size={14} className="text-[#007A7A]" />
-              <span>Leadership & Philosophy</span>
+              <span>Leadership &amp; Philosophy</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-black font-heading tracking-tight text-[#111827]">
