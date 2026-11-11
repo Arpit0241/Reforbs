@@ -13,7 +13,7 @@ export function buildPageMetadata({
   title,
   description,
   path,
-  image = "/images/reforbs-hero-community.webp",
+  image,
   noindex = false,
 }: BuildMetadataOptions): Metadata {
   const canonical = canonicalUrl(path);
@@ -43,20 +43,24 @@ export function buildPageMetadata({
       siteName: "Reforbs Living",
       type: "website",
       locale: "en_IN",
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      ...(image
+        ? {
+            images: [
+              {
+                url: image,
+                width: 1200,
+                height: 630,
+                alt: title,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      ...(image ? { images: [image] } : {}),
     },
   };
 }

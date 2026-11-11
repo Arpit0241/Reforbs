@@ -91,6 +91,9 @@ export default function HeroSection() {
               </svg>
             </span>{" "}
             to cherish.
+            <span className="block text-[11px] sm:text-sm md:text-base font-extrabold uppercase tracking-[0.18em] text-[#FFDE59]/95 mt-2 sm:mt-3">
+              Co-Living &amp; Student Housing in Pune
+            </span>
           </h1>
 
           {/* Supporting Description (Desktop only; hidden completely on mobile per prompt) */}
