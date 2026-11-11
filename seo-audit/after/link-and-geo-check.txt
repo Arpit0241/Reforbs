@@ -1,0 +1,28 @@
+✅ noindex verified on /bangalore
+✅ noindex verified on /coliving/langston-downtown
+✅ noindex verified on /coliving/park-island
+✅ noindex verified on /coliving/pillar-homes
+✅ noindex verified on /coliving/suyog
+✅ noindex verified on /coming-soon
+✅ noindex verified on /corporate-stays
+✅ noindex verified on /goa
+✅ Scanned 33 prerendered HTML files
+✅ All HTML routes contain reforbs.com canonical link
+✅ Zero duplicate/nested <main> elements
+✅ Zero <img> elements missing alt attribute
+✅ All tel: hrefs normalized to E.164 (+91)
+✅ GET /robots.txt -> 200 (1079 bytes)
+✅ GET /sitemap.xml -> 200 (4331 bytes)
+✅ /sitemap.xml contains 25 <loc> URLs
+✅ /sitemap.xml excludes noindex routes
+✅ GET /llms.txt -> 200 (5108 bytes)
+✅ GET /llms-full.txt -> 200 (63377 bytes)
+✅ GET /coliving/nirvana.md -> 200 text/markdown with canonical Link header
+✅ Accept: text/markdown negotiation on /coliving/nirvana -> text/markdown
+✅ Redirect /coliving/shubh-nirvana -> 308 /coliving/nirvana
+✅ Redirect /coliving/vipasana -> 308 /coliving/vipasna
+✅ Redirect /student-housing/abc-near-sls -> 308 /student-housing/shubh-gateway
+✅ Redirect /student-housing/sakore-nagar -> 308 /student-housing/brindavan
+✅ Redirect /student-housing/xyz-near-scms -> 308 /student-housing/brindavan
+
+🎉 SEO link, canonical, redirect & GEO verification passed (26 checks).

@@ -9,7 +9,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seo:data": "node scripts/seo/validate-data.mjs",
+    "seo:schema": "node scripts/seo/validate-schema.mjs",
+    "seo:check": "node scripts/seo/check-links.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",

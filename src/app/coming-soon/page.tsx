@@ -20,7 +20,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ComingSoonPage() {
   return (
-    <main className="min-h-screen pt-28 pb-20 bg-[#FAFAFA]">
+    <div className="min-h-screen pt-28 pb-20 bg-[#FAFAFA]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E6F4F3] text-[#007A7A] font-black text-xs uppercase tracking-wider mb-5">
           <Sparkles size={14} className="text-[#007A7A]" />
@@ -95,10 +95,10 @@ export default function ComingSoonPage() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#007A7A] text-white font-bold text-sm shadow-md hover:bg-[#005F5F] transition-all"
           >
             <MapPin size={16} className="text-[#FFDE59]" />
-            <span>Explore Active Pune Properties (10 Spaces)</span>
+            <span>Explore Active Pune Residences</span>
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

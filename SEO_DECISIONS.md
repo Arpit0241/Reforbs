@@ -36,3 +36,11 @@
 
 8. **Next.js `output` & Deployment:**
    - Kept full Next.js Node.js App Router runtime (Hostinger Node.js Web App compatible) so `POST /api/lead`, `/_next/image`, `robots.ts`, `sitemap.ts`, `middleware.ts`, and `.md` endpoints work seamlessly without breaking existing integrations.
+   - Configured `@vercel/og` `opengraph-image.tsx` routes with `export const runtime = "edge"` to ensure cross-platform build stability including Windows build hosts.
+
+9. **Local Guides & Footer Internal Linking:**
+   - Added 11 static App Router guide pages backed by typed `src/data/guides.ts` rather than dynamic `[slug]` catch-alls so Next.js pre-renders each page at build time with dedicated metadata, `BreadcrumbList` + `FAQPage` JSON-LD, Markdown twins, and compact footer discovery links.
+
+10. **CWV & Privacy-Safe Measurement:**
+    - Loaded Google Analytics 4 only when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is present and omitted all PII from `trackEvent()` payloads.
+    - Deferred `PDF.js` extraction until drawer open and paused 3D carousel RAF loops while scrolled offscreen so first-paint CPU overhead stays minimal without changing visual behavior.

@@ -1,0 +1,153 @@
+=== GET /robots.txt (200) [text/plain] ===
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+User-Agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+
+=== GET /sitemap.xml (200) [application/xml] ===
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://reforbs.com/</loc>
+<lastmod>2026-11-11T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://reforbs.com/properties</loc>
+<lastmod>2026-11-11T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://reforbs.com/coliving</loc>
+<lastmod>2026-11-11T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://reforbs.com/student-housing</loc>
+<lastmod>2026-11-11T00:00:00.000Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+
+=== GET /llms.txt (200) [text/plain; charset=utf-8] ===
+# Reforbs Living
+
+> Curated Co-Living (Sanjay Park / Viman Nagar, Pune — zero lock-in, couple-friendly, private kitchens) and Student Housing near Symbiosis campuses (SLS, SCMS, SID, and Lavale — annual academic term with meals included). Zero brokerage.
+
+- Canonical Domain: https://reforbs.com/
+- Contact: +91 74200 40241 | hello@reforbs.com (Every day, 10:00 AM to 10:00 PM)
+- Full Structured Context: https://reforbs.com/llms-full.txt
+
+## Key Hubs
+- [Homepage](https://reforbs.com/index.md): Overview, 3P/3D living standard, and residence comparisons.
+- [All Pune Properties](https://reforbs.com/properties.md): Interactive map & rent comparison across 6 public Pune residences.
+- [Co-Living Overview](https://reforbs.com/coliving.md): Zero lock-in residences for working professionals and couples from ₹17,000/month.
+- [Student Housing Overview](https://reforbs.com/student-housing.md): Walking-distance Symbiosis student accommodations from ₹15,000/month.
+- [About Reforbs](https://reforbs.com/about.md): Philosophy, 3P & 3D standards, and editorial verification policy.
+- [Schedule a Visit](https://reforbs.com/contact.md): Zero-spam walkthrough booking.
+
+## Public Co-Living Properties (Zero Lock-In, Couple-Friendly)
+- [Nirvana](https://reforbs.com/coliving/nirvana.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹29,000. Couple-Friendly 1RK Suites with Private Kitchen.
+- [Moksha](https://reforbs.com/coliving/moksha.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹24,000. Bohemian 3BHK Floors with Green Terraces.
+- [Vipasna](https://reforbs.com/coliving/vipasna.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹27,000. Hotel-Style Premium Ensuite Suites.
+
+## Public Student Housing Near Symbiosis (Annual Academic Term)
+- [Shubh Gateway](https://reforbs.com/student-housing/shubh-gateway.md) — Viman Nagar, Pune: Starting ₹25,000/month. Opposite Symbiosis Law School (150m).
+- [Brindavan](https://reforbs.com/student-housing/brindavan.md) — Sakore Nagar, Viman Nagar, Pune: Starting ₹27,000/month. Near SCMS & SCMC Campus (400m).
+- [Vairagya](https://reforbs.com/student-housing/vairagya.md) — Lavale, Pune: Starting ₹15,000/month. Best Suited for Symbiosis University, Lavale.
+
+=== GET /llms-full.txt (200) [text/plain; charset=utf-8] ===
+# Reforbs Living
+
+> Curated Co-Living (Sanjay Park / Viman Nagar, Pune — zero lock-in, couple-friendly, private kitchens) and Student Housing near Symbiosis campuses (SLS, SCMS, SID, and Lavale — annual academic term with meals included). Zero brokerage.
+
+- Canonical Domain: https://reforbs.com/
+- Contact: +91 74200 40241 | hello@reforbs.com (Every day, 10:00 AM to 10:00 PM)
+- Full Structured Context: https://reforbs.com/llms-full.txt
+
+## Key Hubs
+- [Homepage](https://reforbs.com/index.md): Overview, 3P/3D living standard, and residence comparisons.
+- [All Pune Properties](https://reforbs.com/properties.md): Interactive map & rent comparison across 6 public Pune residences.
+- [Co-Living Overview](https://reforbs.com/coliving.md): Zero lock-in residences for working professionals and couples from ₹17,000/month.
+- [Student Housing Overview](https://reforbs.com/student-housing.md): Walking-distance Symbiosis student accommodations from ₹15,000/month.
+- [About Reforbs](https://reforbs.com/about.md): Philosophy, 3P & 3D standards, and editorial verification policy.
+- [Schedule a Visit](https://reforbs.com/contact.md): Zero-spam walkthrough booking.
+
+## Public Co-Living Properties (Zero Lock-In, Couple-Friendly)
+- [Nirvana](https://reforbs.com/coliving/nirvana.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹29,000. Couple-Friendly 1RK Suites with Private Kitchen.
+- [Moksha](https://reforbs.com/coliving/moksha.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹24,000. Bohemian 3BHK Floors with Green Terraces.
+- [Vipasna](https://reforbs.com/coliving/vipasna.md) — Sanjay Park, Pune: Twin ₹17,000, Private ₹27,000. Hotel-Style Premium Ensuite Suites.
+
+## Public Student Housing Near Symbiosis (Annual Academic Term)
+- [Shubh Gateway](https://reforbs.com/student-housing/shubh-gateway.md) — Viman Nagar, Pune: Starting ₹25,000/month. Opposite Symbiosis Law School (150m).
+- [Brindavan](https://reforbs.com/student-housing/brindavan.md) — Sakore Nagar, Viman Nagar, Pune: Starting ₹27,000/month. Near SCMS & SCMC Campus (400m).
+- [Vairagya](https://reforbs.com/student-housing/vairagya.md) — Lavale, Pune: Starting ₹15,000/month. Best Suited for Symbiosis University, Lavale.
+
+=== GET /coliving/nirvana.md (200) ===
+Content-Type: text/markdown; charset=utf-8
+Link: <https://reforbs.com/coliving/nirvana>; rel="canonical"
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept
+# Nirvana (Co-Living)
+
+> Nirvana is a couple-friendly co-living building in Sanjay Park, Viman Nagar, Pune, offering self-contained 1RK units with a private kitchen, attached washroom, and individual AC. Twin sharing starts at ₹17,000/month and private 1RKs are ₹29,000/month with a refundable 1-month deposit and zero lock-in.
+
+- **Canonical URL**: https://reforbs.com/coliving/nirvana
+- **Locality**: Sanjay Park, Pune
+- **Address**: Plot 34, Lane 2A, Sanjay Park, Viman Nagar, Pune – 411032
+- **Key Landmark**: Opposite green open space, Sanjay Park
+- **Public Retail PG Access**: Yes
+- **Starting Rent**: ₹17,000/month (Zero Brokerage)
+- **Security Deposit**: Twin: ₹17,000 | Private: ₹29,000 (1 month rent, refundable with 30 days notice)
+- **Lock-In & Notice Policy**: Zero lock-in period (30-day calendar notice served by the 5th of the month)
+- **Food Policy**: Included – Daily meals & food arrangements included
+- **Laundry Policy**: Self-use washing machines available; paid service also available
+- **Visitor & Gender Policy**: Co-Ed (Independent 1RK suites) — Couple-friendly; friends welcome in private units while respecting fellow residents
+
+=== Accept: text/markdown on /coliving/nirvana (200) ===
+Content-Type: text/markdown; charset=utf-8
+Link: <https://reforbs.com/coliving/nirvana>; rel="canonical"
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept
+# Nirvana (Co-Living)
+
+> Nirvana is a couple-friendly co-living building in Sanjay Park, Viman Nagar, Pune, offering self-contained 1RK units with a private kitchen, attached washroom, and individual AC. Twin sharing starts at ₹17,000/month and private 1RKs are ₹29,000/month with a refundable 1-month deposit and zero lock-in.
+
+- **Canonical URL**: https://reforbs.com/coliving/nirvana
+- **Locality**: Sanjay Park, Pune
+- **Address**: Plot 34, Lane 2A, Sanjay Park, Viman Nagar, Pune – 411032
+- **Key Landmark**: Opposite green open space, Sanjay Park
+- **Public Retail PG Access**: Yes
+- **Starting Rent**: ₹17,000/month (Zero Brokerage)
+- **Security Deposit**: Twin: ₹17,000 | Private: ₹29,000 (1 month rent, refundable with 30 days notice)
+- **Lock-In & Notice Policy**: Zero lock-in period (30-day calendar notice served by the 5th of the month)
+- **Food Policy**: Included – Daily meals & food arrangements included
+- **Laundry Policy**: Self-use washing machines available; paid service also available
+- **Visitor & Gender Policy**: Co-Ed (Independent 1RK suites) — Couple-friendly; friends welcome in private units while respecting fellow residents
+
+REDIRECT /coliving/shubh-nirvana -> 308 Location: /coliving/nirvana
+REDIRECT /coliving/vipasana -> 308 Location: /coliving/vipasna
+REDIRECT /student-housing/abc-near-sls -> 308 Location: /student-housing/shubh-gateway
+REDIRECT /student-housing/sakore-nagar -> 308 Location: /student-housing/brindavan
+REDIRECT /student-housing/xyz-near-scms -> 308 Location: /student-housing/brindavan
