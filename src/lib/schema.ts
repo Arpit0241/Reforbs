@@ -37,6 +37,18 @@ export function buildOrganizationSchema(): Record<string, unknown> {
       name: "Pune",
     },
     sameAs: SITE_CONFIG.sameAs,
+    keywords: [
+      "PG in Pune",
+      "PG for students in Pune",
+      "PG for working professionals in Pune",
+      "Paying Guest accommodation in Pune",
+      "Best PG in Pune",
+      "Co-Living Pune",
+      "Student housing near Symbiosis Pune",
+      "Couple friendly PG in Pune",
+      "1RK for rent in Pune",
+      "PG with private kitchen Pune"
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",

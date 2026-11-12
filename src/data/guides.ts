@@ -607,7 +607,271 @@ export const LOCAL_GUIDES: LocalGuidePage[] = [
       "/student-housing-near-symbiosis-lavale-pune",
     ],
     ctaText: "Schedule a Zero-Pressure Tour",
-    lastUpdated: "2026-11-11",
+    lastUpdated: "2026-11-12",
+  },
+  {
+    slug: "/pg-in-pune",
+    navLabel: "PG in Pune (Master Guide)",
+    eyebrow: "2026 Definitive City Guide",
+    title: "PG in Pune | Best Paying Guest Stays for Students & Professionals | Reforbs Living",
+    description:
+      "Find the best PG in Pune across Sanjay Park, Viman Nagar & Lavale. Curated accommodations for students, working professionals & couples. Meals & Wi-Fi included. Zero lock-in available.",
+    h1: "Best PG in Pune for Students, Working Professionals & Couples",
+    heroSubtitle:
+      "Skip restrictive landlords, arbitrary curfews, and broker fees. Reforbs Living operates modern PG and co-living residences designed for freedom, privacy, home-style food, and transparent zero lock-in agreements.",
+    answerFirstSummary:
+      "Reforbs Living operates premier PG accommodations in Pune across Sanjay Park, Viman Nagar, and Lavale. Rents range from ₹15,000 to ₹32,000/month with ₹0 brokerage. For working professionals and couples, Sanjay Park PGs (Nirvana, Moksha, Vipasna) offer private 1RK studio apartments with private kitchens, individual split ACs, and zero lock-in periods with 30-day notice. For university students, Reforbs offers secure campus-adjacent housing: Shubh Gateway (150m from Symbiosis Law School SLS), Brindavan (400m from SCMS & SID), and Vairagya (500m from Symbiosis Lavale), complete with daily mess meals and laundry included.",
+    propertyIds: ["nirvana", "moksha", "vipasna", "shubh-gateway", "brindavan", "vairagya"],
+    comparisonTable: {
+      heading: "Compare Reforbs PG Residences in Pune by Cohort & Location",
+      headers: ["Residence & Locality", "Ideal For", "Monthly Rent", "Key Amenities & Terms"],
+      rows: [
+        {
+          feature: "Nirvana (Sanjay Park, Viman Nagar)",
+          col1: "Working Professionals & Couples",
+          col2: "Twin ₹17,000 | Private 1RK ₹29,000",
+          col3: "Private kitchen per 1RK, split AC, zero lock-in, 1-mo deposit",
+        },
+        {
+          feature: "Moksha (Sanjay Park, Viman Nagar)",
+          col1: "Professionals & Remote Workers",
+          col2: "Twin ₹17,000 | Private ₹24,000",
+          col3: "3BHK flat layout, max 4/floor, floor kitchen, zero lock-in",
+        },
+        {
+          feature: "Vipasna (Sanjay Park, Lane 3)",
+          col1: "Corporate Transferees & Execs",
+          col2: "Twin ₹17,000 | Private ₹27,000",
+          col3: "Hotel-style ensuite washroom in every room, AC, zero lock-in",
+        },
+        {
+          feature: "Shubh Gateway (Opposite SLS Pune)",
+          col1: "Symbiosis Law School Students",
+          col2: "Girls Twin ₹25,000 | Boys Twin ₹27,000",
+          col3: "150m walk to SLS gate, separate towers, mess + 2x laundry",
+        },
+        {
+          feature: "Brindavan (Sakore Nagar)",
+          col1: "SCMS & SID Design Students",
+          col2: "Twin ₹27,000 | Private ₹32,000",
+          col3: "400m walk to SCMS/SID, all 3 daily meals, laundry included",
+        },
+        {
+          feature: "Vairagya (Lavale Campus)",
+          col1: "SIU Lavale & ISBM Students",
+          col2: "Triple ₹15,000 | Twin ₹17,000",
+          col3: "500m walk to SIU Lavale, running mess (breakfast+dinner)",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Why Traditional PGs in Pune Fall Short — And How Reforbs Is Different",
+        paragraphs: [
+          "Most traditional paying guest (PG) accommodations in Pune come with restrictive curfews, forced 11-month lock-in agreements, unhygienic shared bathrooms, and unpredictable food quality. Landlords frequently withhold security deposits over vague deduction clauses.",
+          "Reforbs Living was built to eliminate these pain points. We operate purpose-built residences with professional hospitality management, daily housekeeping, sub-metered electricity at transparent ₹11/unit rates, high-speed fiber Wi-Fi, and clear refund timelines (7 working days).",
+        ],
+      },
+      {
+        heading: "Choosing the Right Locality for Your PG in Pune",
+        paragraphs: [
+          "Viman Nagar & Sanjay Park: Ideal for professionals working in Commerzone IT Park, Yerwada Business Bay, and Kharadi, as well as students at Symbiosis Law School, SCMS, and SID. Sanjay Park offers quiet, leafy lanes away from heavy airport traffic while keeping you 3 minutes from Viman Nagar cafes and Phoenix Marketcity.",
+          "Lavale: Located on the scenic hillside outskirts of western Pune, Lavale is home to Symbiosis International University (SIU) hilltop campus and ISBM. Staying in Lavale spares students a grueling 45-minute daily commute from Baner or Kothrud.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the average cost of a PG in Pune?",
+        answer:
+          "In Pune, quality PG rents range from ₹15,000/month for shared student rooms in Lavale to ₹17,000/month for twin sharing in Viman Nagar/Sanjay Park, and ₹24,000–₹29,000/month for private 1RK studio suites with attached kitchens at Reforbs Living.",
+      },
+      {
+        question: "Is there any lock-in period at Reforbs PG in Pune?",
+        answer:
+          "Our Co-Living PGs in Sanjay Park (Nirvana, Moksha, Vipasna) feature ZERO lock-in period with an easy 30-day calendar notice. Student Housing residences operate on an annual academic term aligned with the university calendar.",
+      },
+      {
+        question: "Are Reforbs PGs in Pune couple-friendly?",
+        answer:
+          "Yes! Our private 1RK studio apartments at Nirvana (Sanjay Park) are 100% couple-friendly with zero moral policing and complete privacy.",
+      },
+      {
+        question: "Are meals included in the PG rent?",
+        answer:
+          "Yes. Student Housing includes fresh daily mess meals (breakfast & dinner or all 3 meals) and laundry. Co-Living residences include meal plans and provide private or floor kitchens for 24/7 cooking.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-for-students-pune",
+      "/pg-for-working-professionals-pune",
+      "/couple-friendly-coliving-pune",
+      "/coliving-cost-in-pune",
+    ],
+    ctaText: "Explore All Reforbs Pune PGs",
+    lastUpdated: "2026-11-12",
+  },
+  {
+    slug: "/pg-for-students-pune",
+    navLabel: "PG for Students in Pune",
+    eyebrow: "Symbiosis Student Housing",
+    title: "PG for Students in Pune | Hostels Near Symbiosis SLS, SCMS & Lavale | Reforbs",
+    description:
+      "Looking for a PG for students in Pune? Reforbs Living offers verified student housing opposite Symbiosis Law School (150m), SCMS & SID (400m), and SIU Lavale (500m). Mess meals & laundry included.",
+    h1: "PG for Students in Pune Near Symbiosis Campuses",
+    heroSubtitle:
+      "Safe, structured student accommodations walking distance from Symbiosis Law School, SCMS, SID, and SIU Lavale. Gender-segregated towers, wholesome daily mess dining, and twice-weekly laundry.",
+    answerFirstSummary:
+      "Reforbs Living offers specialized student PG accommodations in Pune located walking distance from major Symbiosis colleges. Shubh Gateway is directly opposite Symbiosis Law School (SLS) on New Airport Road (150m walk), featuring dedicated gender-segregated towers for boys (₹27,000/mo) and girls (₹25,000/mo) with breakfast, dinner, and 2x/week laundry included. Brindavan is on Symbiosis Road in Sakore Nagar (400m walk to SCMS and SID), offering twin (₹27k/mo) and private (₹32k/mo) rooms with all 3 meals and laundry included. Vairagya is located 500m from SIU Lavale and ISBM, providing twin (₹17k/mo) and triple (₹15k/mo) sharing rooms with mess dining.",
+    propertyIds: ["shubh-gateway", "brindavan", "vairagya"],
+    comparisonTable: {
+      heading: "Reforbs Student PG Options by Symbiosis Campus",
+      headers: ["Residence", "Nearest Campus & Distance", "Monthly Rent", "Inclusions"],
+      rows: [
+        {
+          feature: "Shubh Gateway",
+          col1: "Directly opposite Symbiosis Law School (SLS) — 150m (2 min walk)",
+          col2: "Girls Twin ₹25,000 | Boys Twin ₹27,000",
+          col3: "Gender-segregated towers, breakfast & dinner mess, twice-weekly laundry (5kg), AC, Wi-Fi",
+        },
+        {
+          feature: "Brindavan",
+          col1: "Symbiosis Centre for Management Studies (SCMS) & SID — 400m (5 min walk)",
+          col2: "Twin ₹27,000 | Private ₹32,000",
+          col3: "All 3 daily meals (breakfast, lunch, dinner), twice-weekly laundry, attached washroom, study desk",
+        },
+        {
+          feature: "Vairagya",
+          col1: "Symbiosis International University (SIU) Lavale & ISBM — 500m (7 min walk)",
+          col2: "Triple ₹15,000 | Twin ₹17,000",
+          col3: "Daily running mess (breakfast & dinner), attached washrooms, high-speed Wi-Fi, natural hillside ventilation",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Campus Discipline & Safety for Outstation Students",
+        paragraphs: [
+          "Moving to a new city for university can be daunting for students and parents alike. At Reforbs Student Housing, safety and structured living are top priorities.",
+          "Shubh Gateway enforces strictly gender-segregated residential towers with dedicated wardens, biometric access control, and 24/7 CCTV surveillance. Opposite-gender visitors are strictly prohibited inside student apartments, creating a secure, focused academic environment.",
+        ],
+      },
+      {
+        heading: "Eliminating the Daily Pune Commute",
+        paragraphs: [
+          "Traffic in Pune East along Airport Road and Nagar Road can add 45-60 minutes to your daily commute if you stay in distant neighborhoods. By staying directly opposite SLS or 400m from SCMS, students can wake up 20 minutes before morning lectures, walk to class, and return home for lunch or study sessions without spending money on daily auto-rickshaws.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Which PG is closest to Symbiosis Law School Pune?",
+        answer:
+          "Shubh Gateway by Reforbs Living is the closest student housing to SLS Pune, located directly opposite the college gate on New Airport Road (150 meters / 2-minute walk).",
+      },
+      {
+        question: "Are laundry and meals included in the student PG package?",
+        answer:
+          "Yes! Shubh Gateway includes daily breakfast, dinner, and twice-weekly laundry (up to 5 kg). Brindavan includes all 3 daily meals (breakfast, lunch, dinner) and twice-weekly laundry.",
+      },
+      {
+        question: "What is the lock-in period for student housing?",
+        answer:
+          "Student accommodations operate on an annual academic term lock-in aligned with the university college calendar.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-in-pune",
+      "/student-housing-near-symbiosis-law-school-pune",
+      "/student-housing-near-scms-sid-viman-nagar-pune",
+      "/student-housing-near-symbiosis-lavale-pune",
+    ],
+    ctaText: "Check Student Room Availability",
+    lastUpdated: "2026-11-12",
+  },
+  {
+    slug: "/pg-for-working-professionals-pune",
+    navLabel: "PG for Working Professionals in Pune",
+    eyebrow: "Executive Co-Living Stays",
+    title: "PG for Working Professionals in Pune | Luxury 1RK & Private Stays | Reforbs",
+    description:
+      "Executive PG for working professionals in Pune near Viman Nagar, Sanjay Park & Yerwada IT corridors. Private 1RK suites with private kitchens, individual split AC, zero lock-in & couple-friendly.",
+    h1: "PG for Working Professionals in Pune (Zero Lock-in & Private Kitchens)",
+    heroSubtitle:
+      "Upgrade from crowded hostels to spacious 1RK suites and curated 3BHK flats. Designed for tech leads, remote workers, and corporate executives with zero moral policing and 30-day notice flexibility.",
+    answerFirstSummary:
+      "Reforbs Living offers premium PG and co-living residences tailored for working professionals in Pune's eastern IT corridor (Sanjay Park, Viman Nagar, Yerwada). Located within 5–10 minutes of Commerzone IT Park, Business Bay, and Phoenix Marketcity, residences feature private 1RK apartment suites with attached private kitchens (Nirvana, ₹29,000/mo single or couple; ₹17,000/mo twin), floor-limited 3BHK layouts with max 4 residents per floor (Moksha, ₹24,000/mo private; ₹17,000/mo twin), and hotel-style ensuite rooms (Vipasna, ₹27,000/mo private; ₹17,000/mo twin). All residences feature ZERO lock-in agreements with 30-day notice, high-speed fiber Wi-Fi, daily housekeeping, and transparent sub-metered electricity at ₹11/unit.",
+    propertyIds: ["nirvana", "moksha", "vipasna"],
+    comparisonTable: {
+      heading: "Reforbs Executive PG Options for Working Professionals",
+      headers: ["Property", "Room Layout", "Monthly Rent", "Key Executive Features"],
+      rows: [
+        {
+          feature: "Nirvana (Sanjay Park)",
+          col1: "Private 1RK Studio Apartments",
+          col2: "Twin ₹17,000 | Private 1RK ₹29,000",
+          col3: "Independent private kitchen in every 1RK, split AC, couple-friendly, zero lock-in",
+        },
+        {
+          feature: "Moksha (Sanjay Park)",
+          col1: "Spacious 3BHK Residential Flat",
+          col2: "Twin ₹17,000 | Private ₹24,000",
+          col3: "Max 4 residents/floor, expansive living room, balcony, common kitchen, zero lock-in",
+        },
+        {
+          feature: "Vipasna (Sanjay Park)",
+          col1: "Hotel-Style Ensuite Rooms",
+          col2: "Twin ₹17,000 | Private ₹27,000",
+          col3: "Private attached bathroom in every room, split AC, quiet residential lane, zero lock-in",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Why Tech & Corporate Professionals Choose Sanjay Park, Viman Nagar",
+        paragraphs: [
+          "Sanjay Park is Pune's best-kept residential secret for young professionals. Situated right across Airport Road from Viman Nagar, it offers quiet, leafy residential cul-de-sacs without commercial traffic noise.",
+          "You are located just 5 minutes from Commerzone IT Park (Yerwada), 8 minutes from Business Bay, 10 minutes from World Trade Center (WTC) Kharadi, and 1.2 km from Phoenix Marketcity. Fast fiber Wi-Fi and quiet surroundings make work-from-home calls effortless.",
+        ],
+      },
+      {
+        heading: "Zero Lock-in Period & 100% Couple-Friendly Living",
+        paragraphs: [
+          "Corporate transfers, job transitions, and hybrid work require flexibility. Unlike traditional Pune landlords who demand 11-month registered leases and 3 months' deposit, Reforbs Co-Living requires only a 1-month refundable security deposit and zero lock-in—move out anytime with a standard 30-day notice.",
+          "Furthermore, private suites at Nirvana are completely couple-friendly with zero moral policing, giving young working couples their own private sanctuary in Pune.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is there a lock-in period for working professionals at Reforbs?",
+        answer:
+          "No. All our Co-Living properties for working professionals in Sanjay Park operate on ZERO lock-in period with a simple 30-day calendar notice.",
+      },
+      {
+        question: "Are private kitchens available for cooking?",
+        answer:
+          "Yes! At Nirvana, every 1RK unit has its own independent attached kitchen equipped with an induction cooktop, microwave, and refrigerator.",
+      },
+      {
+        question: "How close are these PGs to Commerzone and Yerwada IT parks?",
+        answer:
+          "Our Sanjay Park residences are located approximately 1.8 km (5–7 minutes drive) from Commerzone IT Park and Yerwada business centers.",
+      },
+      {
+        question: "What is the security deposit?",
+        answer:
+          "The security deposit is equal to 1 month's rent and is refunded within 7 working days of checkout.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-in-pune",
+      "/coliving-with-private-kitchen-pune",
+      "/couple-friendly-coliving-pune",
+      "/coliving-near-commerzone-it-park-pune",
+    ],
+    ctaText: "Book an Executive Room Tour",
+    lastUpdated: "2026-11-12",
   },
 ];
 

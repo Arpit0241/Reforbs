@@ -14,9 +14,9 @@ import { buildFaqSchema } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/seoMetadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
+  title: "PG in Pune | Best PG for Students & Working Professionals | Reforbs Living",
   description:
-    "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
+    "Looking for the best PG in Pune? Reforbs Living offers premium PGs for students and working professionals near Symbiosis & Viman Nagar IT corridors. Single 1RK & twin sharing, meals & Wi-Fi included. Zero lock-in.",
   path: "/",
 });
 

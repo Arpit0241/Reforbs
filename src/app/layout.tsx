@@ -35,9 +35,9 @@ import { canonicalUrl, getSiteUrl } from "@/lib/siteUrl";
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
-  title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
+  title: "PG in Pune | Best PG for Students & Working Professionals | Reforbs Living",
   description:
-    "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
+    "Furnished PG and co-living in Pune for students and working professionals near Symbiosis, Viman Nagar and IT corridors. Private kitchens, food and Wi-Fi included. Zero lock-in.",
   icons: {
     icon: [
       { url: "/icon.png", sizes: "192x192", type: "image/png" },
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
       : undefined,
   },
   openGraph: {
-    title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
+    title: "PG in Pune | Best PG for Students & Working Professionals | Reforbs Living",
     description:
-      "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included.",
+      "Furnished PG and co-living in Pune for students and working professionals near Symbiosis, Viman Nagar and IT corridors. Private kitchens, food and Wi-Fi included. Zero lock-in.",
     url: canonicalUrl("/"),
     siteName: "Reforbs Living",
     images: [

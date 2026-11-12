@@ -6,6 +6,9 @@ import {
 } from "lucide-react";
 
 const offeringsPills = [
+  { label: "PG in Pune", href: "/pg-in-pune" },
+  { label: "PG for Students", href: "/pg-for-students-pune" },
+  { label: "PG for Professionals", href: "/pg-for-working-professionals-pune" },
   { label: "Co-Living", href: "/coliving" },
   { label: "Student Housing", href: "/student-housing" },
   { label: "Hotels & Resorts", href: "/goa" },

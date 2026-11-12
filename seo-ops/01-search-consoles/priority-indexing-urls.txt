@@ -1,8 +1,11 @@
 # Priority URL Inspection & Indexing Queue for Reforbs Living
 # Submit in Google Search Console (URL Inspection -> Request Indexing) in this exact order:
 
-# Phase 1: Core Hubs (Submit First)
+# Phase 1: Core Hubs & PG Pillars (Submit First)
 https://reforbs.com/
+https://reforbs.com/pg-in-pune
+https://reforbs.com/pg-for-students-pune
+https://reforbs.com/pg-for-working-professionals-pune
 https://reforbs.com/properties
 https://reforbs.com/coliving
 https://reforbs.com/student-housing
