@@ -13,6 +13,8 @@
 | 2026-11-12 | Hostinger DNS / GSC | DNS TXT verification record published & verified on 8.8.8.8 | `reforbs.com` TXT | Live on DNS | Saad |
 | 2026-11-12 | Google Search Console | Sitemap submitted (https://reforbs.com/sitemap.xml) | GSC Sitemaps | Done | Saad |
 | 2026-11-12 | Google Search Console | Homepage priority indexing requested | `https://reforbs.com/` | Queued in Priority Crawl | Saad |
+| 2026-11-12 | Google Search Console | Priority indexing requested for PG in Pune pillars | `/pg-in-pune`, `/pg-for-students-pune`, `/pg-for-working-professionals-pune` | Queued in Priority Crawl | Saad |
+| 2026-11-12 | Codebase / SEO Pillars | Launched 3 dedicated PG in Pune pillar pages & homepage title upgrade | `https://reforbs.com/pg-in-pune` | Deployed (Commit `fe623ae`) | Antigravity |
 | 2026-11-12 | Codebase / Metadata | Deployed Google-compliant high-res favicons (192x192 & 512x512) | `public/icon.png`, `layout.tsx` | Deployed (Commit `ce022d2`) | Antigravity |
 | 2026-11-12 | Google Business Profile | Task B profiles preparation | `seo-ops/02-google-business-profile/` | In Queue | Pending Fact Sheet Confirmation |
 | 2026-11-12 | Directory Listings | Task C NAP audit spreadsheet preparation | `seo-ops/03-listing-audit/` | In Queue | Pending Fact Sheet Confirmation |
