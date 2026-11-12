@@ -11,7 +11,9 @@
 | 2026-11-12 | Status Dashboard | Created full lifecycle task matrix across Tasks A through I | `seo-ops/00-status-dashboard.md` | Initialized | Agent |
 | 2026-11-12 | Operations Routine | Created weekly and monthly operating checklist | `seo-ops/09-weekly-monthly-routine.md` | Initialized | Agent |
 | 2026-11-12 | Hostinger DNS / GSC | DNS TXT verification record published & verified on 8.8.8.8 | `reforbs.com` TXT | Live on DNS | Saad |
-| 2026-11-12 | Codebase / Next.js | Added fallback Google verification meta tag to layout.tsx | `https://reforbs.com` | Deployed (Commit `f5fc65f`) | Antigravity |
+| 2026-11-12 | Google Search Console | Sitemap submitted (https://reforbs.com/sitemap.xml) | GSC Sitemaps | Done | Saad |
+| 2026-11-12 | Google Search Console | Homepage priority indexing requested | `https://reforbs.com/` | Queued in Priority Crawl | Saad |
+| 2026-11-12 | Codebase / Metadata | Deployed Google-compliant high-res favicons (192x192 & 512x512) | `public/icon.png`, `layout.tsx` | Deployed (Commit `ce022d2`) | Antigravity |
 | 2026-11-12 | Google Business Profile | Task B profiles preparation | `seo-ops/02-google-business-profile/` | In Queue | Pending Fact Sheet Confirmation |
 | 2026-11-12 | Directory Listings | Task C NAP audit spreadsheet preparation | `seo-ops/03-listing-audit/` | In Queue | Pending Fact Sheet Confirmation |
 | 2026-11-12 | Reviews & Reputation | Task D review flows & consent system | `seo-ops/04-reviews/` | In Queue | Pending Fact Sheet Confirmation |
