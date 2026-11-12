@@ -581,7 +581,7 @@ export default function PartnerWithUsPage() {
             <div className="rounded-3xl bg-gradient-to-b from-[#006E6E] to-[#268672] text-white border border-white/25 shadow-xl p-6 sm:p-8 flex flex-col items-center text-center space-y-5 hover:border-[#FFDE59]/60 hover:shadow-2xl transition-all group">
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-white border-4 border-[#FFDE59] shadow-2xl ring-4 ring-white/15 group-hover:scale-105 transition-transform duration-300 shrink-0">
                 <Image
-                  src="/images/partner/moinkhan-pathan.png"
+                  src="/images/partner/moinkhan-pathan-founder.png"
                   alt="Moinkhan Y Pathan - Founder, Reforbs"
                   fill
                   className="object-cover"
