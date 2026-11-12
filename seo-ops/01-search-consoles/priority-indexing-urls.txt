@@ -1,0 +1,35 @@
+# Priority URL Inspection & Indexing Queue for Reforbs Living
+# Submit in Google Search Console (URL Inspection -> Request Indexing) in this exact order:
+
+# Phase 1: Core Hubs (Submit First)
+https://reforbs.com/
+https://reforbs.com/properties
+https://reforbs.com/coliving
+https://reforbs.com/student-housing
+
+# Phase 2: Active Property Detail Pages
+https://reforbs.com/coliving/nirvana
+https://reforbs.com/coliving/moksha
+https://reforbs.com/coliving/vipasna
+https://reforbs.com/student-housing/shubh-gateway
+https://reforbs.com/student-housing/brindavan
+https://reforbs.com/student-housing/vairagya
+
+# Phase 3: High-Intent Local & Student SEO Landing Guides
+https://reforbs.com/student-housing-near-symbiosis-law-school-pune
+https://reforbs.com/student-housing-near-scms-sid-viman-nagar-pune
+https://reforbs.com/student-housing-near-symbiosis-lavale-pune
+https://reforbs.com/coliving-viman-nagar-pune
+https://reforbs.com/coliving-sanjay-park-yerwada-pune
+https://reforbs.com/couple-friendly-coliving-pune
+https://reforbs.com/coliving-with-private-kitchen-pune
+https://reforbs.com/coliving-near-airport-pune
+https://reforbs.com/coliving-near-commerzone-it-park-pune
+https://reforbs.com/pg-vs-coliving-vs-hostel-pune
+https://reforbs.com/coliving-cost-in-pune
+
+# Phase 4: Supporting Institutional Pages
+https://reforbs.com/contact
+https://reforbs.com/about
+https://reforbs.com/community
+https://reforbs.com/partner-with-us
