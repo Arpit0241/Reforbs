@@ -8,8 +8,8 @@
 | **SETUP-01** | Production Domain Verification & Apex Canonical | `https://reforbs.com` | Saad / Antigravity | **Done** | Domain live on Vercel; `www` 308-redirects to apex |
 | **SETUP-02** | Founder Portrait & Executive Bio Update | `/partner-with-us` | Saad / Antigravity | **Done** | High-res portrait (`moinkhan-pathan-v3.png`) deployed |
 | **OPS-00** | Canonical Fact Sheet & Discrepancy Resolution | `seo-ops/FACT_SHEET.md` | Saad / Antigravity | **Waiting on Saad** | Confirm 7 batch questions in `FACT_SHEET.md` |
-| **A-01** | Google Search Console Domain Property Setup (DNS TXT) | `search.google.com/search-console` | Saad (w/ Agent guide) | **Waiting on Saad** | Saad to paste DNS TXT record at registrar (Godaddy/Namecheap/Cloudflare) |
-| **A-02** | Submit Production Sitemap | `https://reforbs.com/sitemap.xml` | Saad | **Waiting on Saad** | Submit XML sitemap inside GSC once domain is verified |
+| **A-01** | Google Search Console Domain Property Setup (DNS TXT) | `search.google.com/search-console` | Saad / Antigravity | **Done** | TXT record active on Google Public DNS (`8.8.8.8`) |
+| **A-02** | Submit Production Sitemap | `https://reforbs.com/sitemap.xml` | Saad | **In Progress** | Enter `sitemap.xml` in GSC Sitemaps tab and click Submit |
 | **A-03** | Priority URL Inspection & Indexing Queue | 18 Priority URLs list | Saad | **Waiting on Saad** | Run URL Inspection & click "Request Indexing" on high-priority routes |
 | **A-04** | Bing Webmaster Tools & IndexNow Activation | `bing.com/webmasters` | Saad | **Waiting on Saad** | Import verified site from GSC into Bing Webmaster Tools |
 | **A-05** | Page Indexing Report Diagnostics & Fix Tickets | GSC Indexing Report | Antigravity | **Not started** | Run crawl audit once GSC completes initial indexing pass |

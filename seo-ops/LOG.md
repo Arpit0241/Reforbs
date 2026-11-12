@@ -10,7 +10,8 @@
 | 2026-11-12 | Internal Data Audit | Synthesized canonical Fact Sheet from `properties.ts`, `site.ts` & `FACTS_TO_CONFIRM.md` | `seo-ops/FACT_SHEET.md` | Completed (Pending User Confirmations) | Saad (In Review) |
 | 2026-11-12 | Status Dashboard | Created full lifecycle task matrix across Tasks A through I | `seo-ops/00-status-dashboard.md` | Initialized | Agent |
 | 2026-11-12 | Operations Routine | Created weekly and monthly operating checklist | `seo-ops/09-weekly-monthly-routine.md` | Initialized | Agent |
-| 2026-11-12 | Search Console | Task A guide & checklist preparation | `seo-ops/01-search-consoles/` | Ready for User Action | Pending User Approval |
+| 2026-11-12 | Hostinger DNS / GSC | DNS TXT verification record published & verified on 8.8.8.8 | `reforbs.com` TXT | Live on DNS | Saad |
+| 2026-11-12 | Codebase / Next.js | Added fallback Google verification meta tag to layout.tsx | `https://reforbs.com` | Deployed (Commit `f5fc65f`) | Antigravity |
 | 2026-11-12 | Google Business Profile | Task B profiles preparation | `seo-ops/02-google-business-profile/` | In Queue | Pending Fact Sheet Confirmation |
 | 2026-11-12 | Directory Listings | Task C NAP audit spreadsheet preparation | `seo-ops/03-listing-audit/` | In Queue | Pending Fact Sheet Confirmation |
 | 2026-11-12 | Reviews & Reputation | Task D review flows & consent system | `seo-ops/04-reviews/` | In Queue | Pending Fact Sheet Confirmation |
