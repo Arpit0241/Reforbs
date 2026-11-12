@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description:
     "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
   verification: {
-    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "qoSKpPpZxskd9cuwhgm0Q6MjeD83pi2Y8IJCecYhM9w",
     other: process.env.NEXT_PUBLIC_BING_VERIFICATION
       ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
       : undefined,
