@@ -38,6 +38,17 @@ export const metadata: Metadata = {
   title: "Co-Living & Student Housing in Pune, Zero Lock-in | Reforbs",
   description:
     "Furnished co-living and student housing in Pune near Symbiosis, Viman Nagar and IT parks. Private kitchens, food and Wi-Fi included. Book a free visit.",
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "qoSKpPpZxskd9cuwhgm0Q6MjeD83pi2Y8IJCecYhM9w",
     other: process.env.NEXT_PUBLIC_BING_VERIFICATION
