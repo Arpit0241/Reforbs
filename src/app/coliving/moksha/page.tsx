@@ -7,9 +7,9 @@ import { buildPropertySchema } from "@/lib/schema";
 import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Moksha Co-Living in Sanjay Park, Viman Nagar | Reforbs",
+  title: "Moksha | 3BHK Co-Living & PG in Sanjay Park, Viman Nagar | Reforbs",
   description:
-    "Stylish 3BHK co-living in Sanjay Park, Viman Nagar, Pune. Twin rooms from ₹17k & private rooms ₹24k with daily food, Wi-Fi & zero lock-in.",
+    "Low-density 3BHK PG in Sanjay Park near Viman Nagar & Yerwada. Max 4 residents per floor. Twin ₹17k & private ₹24k with daily food, Wi-Fi & zero lock-in.",
   path: "/coliving/moksha",
 });
 

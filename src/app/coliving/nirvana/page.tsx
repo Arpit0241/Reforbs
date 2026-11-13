@@ -7,9 +7,9 @@ import { buildPropertySchema } from "@/lib/schema";
 import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Nirvana Co-Living in Sanjay Park, Viman Nagar | Reforbs",
+  title: "Nirvana | Couple Friendly PG in Viman Nagar & Sanjay Park | Reforbs",
   description:
-    "Furnished twin (₹17k) & private 1RK (₹29k) co-living with private kitchens in Sanjay Park, 1.5 km from Viman Nagar & Pune Airport. Zero lock-in.",
+    "Couple friendly PG in Viman Nagar & Sanjay Park with private kitchen & AC. Twin (₹17k) & private 1RK suites (₹29k). Zero lock-in with 30-day notice. Food included.",
   path: "/coliving/nirvana",
 });
 

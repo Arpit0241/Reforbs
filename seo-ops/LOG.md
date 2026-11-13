@@ -13,6 +13,7 @@
 | 2026-11-12 | Hostinger DNS / GSC | DNS TXT verification record published & verified on 8.8.8.8 | `reforbs.com` TXT | Live on DNS | Saad |
 | 2026-11-12 | Google Search Console | Sitemap submitted (https://reforbs.com/sitemap.xml) | GSC Sitemaps | Done | Saad |
 | 2026-11-12 | Google Search Console | Homepage priority indexing requested | `https://reforbs.com/` | Queued in Priority Crawl | Saad |
+| 2026-11-13 | Backend SEO & Micro-Markets | Deployed Viman Nagar, Yerwada & Kharadi location pillars & metadata | `/pg-in-viman-nagar`, `/pg-in-yerwada`, `/pg-in-kharadi` | Deployed & Tested (0 Frontend Changes) | Antigravity |
 | 2026-11-13 | Google Ads / GTM | Installed Google tag (GTM-PZLMHTR5) & gtag container in layout.tsx | `https://reforbs.com` | Live & Verified in Head (Commit `89873f9`) | Saad |
 | 2026-11-12 | Google Search Console | Priority indexing requested for PG in Pune pillars | `/pg-in-pune`, `/pg-for-students-pune`, `/pg-for-working-professionals-pune` | Queued in Priority Crawl | Saad |
 | 2026-11-12 | Codebase / SEO Pillars | Launched 3 dedicated PG in Pune pillar pages & homepage title upgrade | `https://reforbs.com/pg-in-pune` | Deployed (Commit `fe623ae`) | Antigravity |

@@ -7,9 +7,9 @@ import { buildPropertySchema } from "@/lib/schema";
 import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Brindavan Student Housing in Viman Nagar, Pune | Reforbs",
+  title: "Brindavan | Student PG in Viman Nagar near SCMS & SID | Reforbs",
   description:
-    "Boho student housing on Symbiosis Road, Sakore Nagar, Viman Nagar, 150m from SCMS & SID. Twin ₹27k & Private ₹32k/month with daily meals & AC.",
+    "Student PG on Symbiosis Road, Sakore Nagar, Viman Nagar, 400m from SCMS & SID. Twin (₹27k) & Private (₹32k) with all 3 meals & laundry included.",
   path: "/student-housing/brindavan",
 });
 

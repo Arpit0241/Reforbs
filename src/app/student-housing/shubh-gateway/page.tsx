@@ -7,9 +7,9 @@ import { buildPropertySchema } from "@/lib/schema";
 import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Shubh Gateway Student Housing Opp. SLS Pune | Reforbs",
+  title: "Shubh Gateway | Boys & Girls PG in Viman Nagar Opp. SLS Pune | Reforbs",
   description:
-    "Student housing 150m opposite Symbiosis Law School, Viman Nagar, Pune. Girls Twin ₹25k & Boys Twin ₹27k with meals, laundry & gated towers.",
+    "Premier Boys PG & Girls PG in Viman Nagar directly opposite Symbiosis Law School (150m walk). Gender-segregated towers, meals & 2x/wk laundry included. AC rooms.",
   path: "/student-housing/shubh-gateway",
 });
 

@@ -7,9 +7,9 @@ import { buildPropertySchema } from "@/lib/schema";
 import { getPropertyById, toPropertyDetailData } from "@/data/properties";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Vipasna Co-Living in Sanjay Park, Pune | Reforbs Living",
+  title: "Vipasna | Hotel-Style Ensuite PG in Sanjay Park, Viman Nagar | Reforbs",
   description:
-    "Hotel-style ensuite co-living in Sanjay Park near Viman Nagar, Pune. Twin ₹17k & private ₹27k with daily meals, AC, housekeeping & zero lock-in.",
+    "Boutique ensuite PG in Lane 3, Sanjay Park near Viman Nagar & Yerwada. Every room has private bathroom & AC. Twin ₹17k & private ₹27k. Zero lock-in.",
   path: "/coliving/vipasna",
 });
 

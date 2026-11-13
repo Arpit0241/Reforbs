@@ -873,6 +873,293 @@ export const LOCAL_GUIDES: LocalGuidePage[] = [
     ctaText: "Book an Executive Room Tour",
     lastUpdated: "2026-11-12",
   },
+  {
+    slug: "/pg-in-viman-nagar",
+    navLabel: "PG in Viman Nagar (Complete Guide)",
+    eyebrow: "Viman Nagar Accommodation Hub",
+    title: "PG in Viman Nagar | Boys, Girls & Couple Friendly PGs | Reforbs",
+    description:
+      "Best PG in Viman Nagar for students & working professionals. Shubh Gateway (Boys & Girls PG opp SLS 150m), Brindavan near SCMS, and couple-friendly 1RK suites in Sanjay Park. Meals & Wi-Fi included.",
+    h1: "PG in Viman Nagar: Boys, Girls, Couple-Friendly & Student Stays",
+    heroSubtitle:
+      "Curated PG accommodations across Viman Nagar, Sakore Nagar & Sanjay Park. Zero brokerage, daily home-style meals, high-speed Wi-Fi, and flexible zero lock-in agreements.",
+    answerFirstSummary:
+      "Reforbs Living operates premier PG accommodations in and around Viman Nagar, Pune across 5 residences. For university students, Shubh Gateway (Sr. No 227, Plot No. 1, New Airport Rd) offers dedicated gender-segregated towers for Boys (₹27,000/mo) and Girls (₹25,000/mo) located directly opposite Symbiosis Law School SLS (150m walk) with breakfast, dinner, and twice-weekly laundry included. Brindavan (Symbiosis Rd, Sakore Nagar) is 400m from SCMS and SID with all 3 meals included (Twin ₹27,000 | Private ₹32,000). For working professionals and couples, Sanjay Park residences (Nirvana, Moksha, Vipasna) just 1.5 km from central Viman Nagar offer private 1RK suites with private kitchens (₹29,000/mo), low-density 3BHK flats (₹17k twin / ₹24k private), and ensuite rooms (₹17k twin / ₹27k private) with zero lock-in periods.",
+    propertyIds: ["shubh-gateway", "brindavan", "nirvana", "moksha", "vipasna"],
+    comparisonTable: {
+      heading: "Verified Reforbs PG Residences in & Around Viman Nagar",
+      headers: ["Residence & Locality", "PG Type / Cohort", "Monthly Rent", "Key Inclusions & Terms"],
+      rows: [
+        {
+          feature: "Shubh Gateway (Opp. SLS, Airport Rd)",
+          col1: "Boys PG & Girls PG (Separate Towers)",
+          col2: "Girls Twin ₹25,000 | Boys Twin ₹27,000",
+          col3: "150m walk to SLS gate, mess (breakfast+dinner), 2x/wk laundry (5kg), AC",
+        },
+        {
+          feature: "Brindavan (Sakore Nagar, Viman Nagar)",
+          col1: "Student PG (400m to SCMS & SID)",
+          col2: "Twin ₹27,000 | Private ₹32,000",
+          col3: "All 3 daily meals (breakfast, lunch, dinner), 2x/wk laundry, attached washroom",
+        },
+        {
+          feature: "Nirvana (Sanjay Park, Viman Nagar)",
+          col1: "Couple Friendly PG & Private 1RK",
+          col2: "Twin ₹17,000 | Private 1RK ₹29,000",
+          col3: "Private kitchen in every 1RK, split AC, couple-friendly, zero lock-in",
+        },
+        {
+          feature: "Moksha (Sanjay Park, Viman Nagar)",
+          col1: "Curated 3BHK PG (Max 4/floor)",
+          col2: "Twin ₹17,000 | Private ₹24,000",
+          col3: "Low density, floor kitchen, living hall, balcony, zero lock-in",
+        },
+        {
+          feature: "Vipasna (Sanjay Park, Lane 3)",
+          col1: "Hotel-Style Ensuite PG",
+          col2: "Twin ₹17,000 | Private ₹27,000",
+          col3: "Private ensuite washroom in every room, split AC, zero lock-in",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Boys PG and Girls PG in Viman Nagar with Campus Safety",
+        paragraphs: [
+          "Finding verified, disciplined, and secure Boys PG or Girls PG accommodation in Viman Nagar near Symbiosis campuses can be challenging. Many independent PGs operate without proper security oversight, enforce arbitrary curfews, or pack too many students into cramped rooms.",
+          "Shubh Gateway by Reforbs Living solves this with purpose-built, gender-segregated residential towers located directly opposite Symbiosis Law School (150m walk). Featuring 24/7 security, biometric access, CCTV monitoring, and strict prohibitions against opposite-gender visitors inside student apartments, it offers students and parents unmatched peace of mind.",
+        ],
+      },
+      {
+        heading: "Couple Friendly PG in Viman Nagar: Zero Moral Policing",
+        paragraphs: [
+          "Working couples and progressive professionals frequently encounter intrusive questioning and moral policing when renting from traditional housing societies in Viman Nagar.",
+          "Reforbs Nirvana, located in the quiet residential lanes of Sanjay Park (1.5 km from central Viman Nagar), features self-contained 1RK studio apartments with private kitchens. These units are completely couple-friendly with zero moral policing, giving couples the independence of their own private flat combined with the maintenance support of managed living.",
+        ],
+      },
+      {
+        heading: "Affordable & Best PG in Viman Nagar: Inclusions vs Extra Charges",
+        paragraphs: [
+          "At Reforbs Living, listed rents include furnished accommodation, high-speed fiber Wi-Fi, daily housekeeping (brooming & mopping), water charges, and home-style meals (with laundry included in student residences).",
+          "There is zero brokerage, zero monthly maintenance fee, and heavy appliances (ACs, geysers, induction cooktops) are sub-metered transparently at ₹11 per unit. Deposits are capped at 1 month for co-living residences and refunded within 7 working days upon exit.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Which is the best Boys PG and Girls PG near Symbiosis Law School Viman Nagar?",
+        answer:
+          "Shubh Gateway by Reforbs Living is located directly opposite the Symbiosis Law School (SLS) campus gate (150m / 2-minute walk) and offers dedicated separate towers for Boys and Girls with breakfast, dinner, and laundry included.",
+      },
+      {
+        question: "Are there couple-friendly PGs in Viman Nagar with private kitchens?",
+        answer:
+          "Yes! Nirvana by Reforbs Living in Sanjay Park (adjacent to Viman Nagar) offers independent 1RK studio suites with private attached kitchens, split AC, and a zero moral policing policy for couples.",
+      },
+      {
+        question: "What is the average rent for a PG in Viman Nagar?",
+        answer:
+          "PG rents in Viman Nagar at Reforbs Living start at ₹17,000/month for twin sharing in co-living residences, ₹25,000–₹27,000/month for student housing with all meals and laundry, and ₹29,000/month for private 1RK studio apartments.",
+      },
+      {
+        question: "Are meals and laundry included in Viman Nagar student PGs?",
+        answer:
+          "Yes. Shubh Gateway includes daily breakfast, dinner, and twice-weekly laundry (up to 5 kg). Brindavan includes all 3 daily meals (breakfast, lunch, dinner) and laundry twice weekly.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-in-pune",
+      "/pg-in-yerwada",
+      "/pg-in-kharadi",
+      "/couple-friendly-coliving-pune",
+    ],
+    ctaText: "Check Viman Nagar PG Availability",
+    lastUpdated: "2026-11-13",
+  },
+  {
+    slug: "/pg-in-yerwada",
+    navLabel: "PG in Yerwada (Commerzone & IT Corridor)",
+    eyebrow: "Commerzone & Yerwada Tech Hub",
+    title: "PG in Yerwada | Couple Friendly & Professional PGs Near Commerzone | Reforbs",
+    description:
+      "Looking for a PG in Yerwada? Reforbs Living operates curated residences in Sanjay Park, just 5-7 mins (1.8 km) from Commerzone IT Park, Yerwada. Private 1RK with kitchen, couple-friendly, zero lock-in.",
+    h1: "PG in Yerwada: Executive Co-Living & PGs Near Commerzone IT Park",
+    heroSubtitle:
+      "Quiet residential living in Sanjay Park just 1.8 km from Commerzone Yerwada. Private 1RK suites with private kitchens, zero lock-ins, home-style meals, and couple-friendly privacy.",
+    answerFirstSummary:
+      "Reforbs Living serves IT and corporate professionals working in Yerwada through its cluster of residences in Sanjay Park (Plot 34 & 61 Lane 2A, and Plot 36 Lane 3), located just 1.8 km (5–7 minutes drive) from Commerzone IT Park and 3.5 km from Business Bay, Yerwada. Nirvana offers couple-friendly private 1RK suites with independent attached kitchens (₹29,000/mo single/couple; ₹17,000/mo twin sharing). Moksha offers curated 3BHK layouts with a maximum of 4 residents per floor (₹24k private / ₹17k twin). Vipasna offers hotel-style ensuite rooms with private attached washrooms (₹27k private / ₹17k twin). All Sanjay Park residences feature zero lock-in periods with 30-day notice, high-speed fiber Wi-Fi, daily housekeeping, and zero brokerage.",
+    propertyIds: ["nirvana", "moksha", "vipasna", "shubh-gateway"],
+    comparisonTable: {
+      heading: "Verified Accommodation Options Serving the Yerwada Corridor",
+      headers: ["Residence & Address", "Layout & Room Type", "Monthly Rent", "Key Executive Features"],
+      rows: [
+        {
+          feature: "Nirvana (Plot 34, Lane 2A, Sanjay Park)",
+          col1: "Private 1RK Studio Suites",
+          col2: "Twin ₹17,000 | Private 1RK ₹29,000",
+          col3: "Private kitchen in every 1RK, split AC, couple-friendly, zero lock-in, 1.8 km to Commerzone",
+        },
+        {
+          feature: "Moksha (Plot 61, Lane 2A, Sanjay Park)",
+          col1: "Curated 3BHK Flat Layout",
+          col2: "Twin ₹17,000 | Private ₹24,000",
+          col3: "Max 4 residents/floor, expansive living room, balcony, common kitchen, zero lock-in",
+        },
+        {
+          feature: "Vipasna (Plot 36, Lane 3, Sanjay Park)",
+          col1: "Hotel-Style Ensuite Rooms",
+          col2: "Twin ₹17,000 | Private ₹27,000",
+          col3: "Ensuite private washroom in every room, split AC, quiet residential lane, zero lock-in",
+        },
+        {
+          feature: "Shubh Gateway (New Airport Rd)",
+          col1: "Student PG (Separate Towers)",
+          col2: "Girls Twin ₹25,000 | Boys Twin ₹27,000",
+          col3: "3 km from Yerwada, meals & laundry included, gated 24/7 security",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Why Yerwada IT Professionals Choose Sanjay Park Over Highway Commercial Buildings",
+        paragraphs: [
+          "Yerwada is one of Pune's major corporate and IT hubs, hosting Commerzone IT Park, Business Bay, and several multinational corporate offices. However, finding peaceful, clean residential housing directly along the Yerwada main roads can be difficult due to heavy traffic, flyover construction, and commercial vehicle congestion.",
+          "Sanjay Park, situated directly adjacent to Yerwada along Airport Road (pincode 411032), provides the ideal residential balance. It features quiet, tree-lined residential cul-de-sacs with virtually no commercial through-traffic, while allowing professionals to reach Commerzone IT Park in just 5 to 7 minutes.",
+        ],
+      },
+      {
+        heading: "Couple Friendly & Executive Stays with Private Kitchens Near Commerzone",
+        paragraphs: [
+          "Unlike restrictive local PGs in Yerwada that enforce strict curfews and forbid kitchen cooking, Reforbs Nirvana provides self-contained 1RK studio apartments with independent kitchens, induction cooktops, microwaves, and refrigerators.",
+          "These units are 100% couple-friendly and have zero moral policing, making them the preferred choice for relocating couples, corporate transferees, and remote tech engineers.",
+        ],
+      },
+      {
+        heading: "Zero Lock-in Contracts for Project Consultants & Tech Transferees",
+        paragraphs: [
+          "Consultants and software engineers working on short-term project assignments in Yerwada often find traditional 11-month lease agreements impractical.",
+          "Reforbs Co-Living residences require zero lock-in agreements—residents only provide a standard 30-day calendar notice before move-out, and the refundable security deposit is capped at just 1 month's rent.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How far are Reforbs properties from Commerzone IT Park Yerwada?",
+        answer:
+          "Our Sanjay Park properties (Nirvana, Moksha, Vipasna) are located approximately 1.8 km from Commerzone IT Park, Yerwada—a short 5 to 7 minute drive or auto-rickshaw ride via Airport Road.",
+      },
+      {
+        question: "Is there a couple-friendly PG near Yerwada with private cooking facilities?",
+        answer:
+          "Yes. Nirvana by Reforbs Living offers private 1RK studio apartments equipped with an attached private kitchen, induction, and microwave with a couple-friendly residency policy.",
+      },
+      {
+        question: "What is the lock-in and notice period for Yerwada professionals?",
+        answer:
+          "Reforbs Co-Living properties have zero lock-in period. You only need to serve a standard 30-day calendar notice by the 5th of the month for month-end checkout.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-in-viman-nagar",
+      "/pg-in-pune",
+      "/coliving-near-commerzone-it-park-pune",
+      "/coliving-with-private-kitchen-pune",
+    ],
+    ctaText: "Explore Yerwada Executive PGs",
+    lastUpdated: "2026-11-13",
+  },
+  {
+    slug: "/pg-in-kharadi",
+    navLabel: "PG in Kharadi (Commuter & Living Guide)",
+    eyebrow: "Kharadi IT Commuter Guide",
+    title: "PG in Kharadi (Commuter & Living Guide) | Tech Stays Near EON & WTC | Reforbs",
+    description:
+      "Seeking a PG near Kharadi? Reforbs Living operates premium co-living & PGs in neighboring Viman Nagar/Sanjay Park, 12-15 mins from EON IT Park & WTC. Zero lock-in, private kitchens & couple-friendly.",
+    h1: "PG Near Kharadi: Tech Professional Stays in Viman Nagar & Sanjay Park",
+    heroSubtitle:
+      "12–15 minutes from EON IT Park and World Trade Center (WTC). Experience Viman Nagar's vibrant cafes and leafy lanes with zero lock-in agreements, private kitchens, and zero brokerage.",
+    answerFirstSummary:
+      "Reforbs Living does not operate physical buildings inside the Kharadi township; instead, Reforbs provides commuter accommodations for tech professionals working at EON Free Zone and World Trade Center (WTC) Kharadi who choose to live in neighboring Viman Nagar and Sanjay Park (5–6 km / 12–15 minutes drive via Nagar Road). Techies prefer Reforbs in Viman Nagar/Sanjay Park because it offers superior social infrastructure, cafes, Phoenix Marketcity, and green residential cul-de-sacs without Kharadi's rigid 11-month landlord leases and 3-month deposits. Available options include Nirvana (couple-friendly private 1RK with private kitchen at ₹29,000/mo or ₹17,000/mo twin), Moksha (low-density 3BHK at ₹24,000/mo private or ₹17,000/mo twin), and Vipasna (ensuite rooms at ₹27,000/mo private), all with zero lock-in and 30-day notice.",
+    propertyIds: ["nirvana", "moksha", "vipasna", "shubh-gateway"],
+    comparisonTable: {
+      heading: "Reforbs Accommodations Serving Kharadi IT Professionals",
+      headers: ["Residence & Locality", "Room Layout", "Monthly Rent", "Key Features & Commute to Kharadi"],
+      rows: [
+        {
+          feature: "Nirvana (Sanjay Park, Viman Nagar)",
+          col1: "Private 1RK Studio Suites",
+          col2: "Twin ₹17,000 | Private 1RK ₹29,000",
+          col3: "12-15 mins to EON Kharadi, private kitchen, split AC, couple-friendly, zero lock-in",
+        },
+        {
+          feature: "Moksha (Sanjay Park, Viman Nagar)",
+          col1: "Spacious 3BHK Flat Layout",
+          col2: "Twin ₹17,000 | Private ₹24,000",
+          col3: "12-15 mins to WTC Kharadi, max 4 residents/floor, floor kitchen, living room",
+        },
+        {
+          feature: "Vipasna (Sanjay Park, Lane 3)",
+          col1: "Hotel-Style Ensuite Rooms",
+          col2: "Twin ₹17,000 | Private ₹27,000",
+          col3: "12-15 mins to Kharadi IT hub, private attached washroom in every room, split AC",
+        },
+        {
+          feature: "Shubh Gateway (Airport Rd)",
+          col1: "Student PG (Separate Towers)",
+          col2: "Girls Twin ₹25,000 | Boys Twin ₹27,000",
+          col3: "Quick access to Kharadi bypass, meals and laundry included, 24/7 security",
+        },
+      ],
+    },
+    sections: [
+      {
+        heading: "Why Kharadi Tech Professionals Choose to Live in Viman Nagar & Sanjay Park",
+        paragraphs: [
+          "Kharadi is home to colossal IT campuses like EON Free Zone and World Trade Center (WTC). However, Kharadi's residential towers are often isolated, and local landlords commonly demand 11-month registered lease commitments and hefty 2 to 3-month security deposits.",
+          "Many tech professionals choose to live in neighboring Viman Nagar and Sanjay Park instead. Viman Nagar offers lively nightlife, hundreds of cafes, fitness clubs, and Phoenix Marketcity, while remaining just a smooth 12 to 15-minute commute from Kharadi offices via Nagar Road or the Somnath Nagar bypass.",
+        ],
+      },
+      {
+        heading: "Service Coverage Transparency: Where Reforbs Properties Are Located",
+        paragraphs: [
+          "We believe in 100% honesty: Reforbs Living does NOT operate properties physically inside the Kharadi boundary lines.",
+          "Our properties are located in neighboring Sanjay Park and Viman Nagar, which directly serve professionals working in Kharadi who prioritize flexible zero lock-in agreements, private kitchens, and better neighborhood walkability over living right next to a commercial IT park.",
+        ],
+      },
+      {
+        heading: "Couple Friendly Living & Zero Lock-in for Kharadi Software Engineers",
+        paragraphs: [
+          "Moving to Pune for a new role at Barclays, Credit Suisse, or BNY Mellon in Kharadi? With Reforbs Living, you don't need to commit to a long-term apartment lease before you understand the city.",
+          "Enjoy zero lock-in terms with an easy 30-day notice, high-speed fiber Wi-Fi, daily housekeeping, and private couple-friendly suites at Nirvana.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does Reforbs operate properties physically inside Kharadi?",
+        answer:
+          "No. Reforbs Living does not operate properties physically inside Kharadi. Our residences are located in adjacent Viman Nagar and Sanjay Park, providing quick 12–15 minute transit to Kharadi's EON IT Park and WTC.",
+      },
+      {
+        question: "How long does it take to commute from Reforbs Viman Nagar to EON IT Park Kharadi?",
+        answer:
+          "The commute is approximately 5 to 6 km, taking between 12 and 15 minutes by two-wheeler, car, or auto-rickshaw via Nagar Road or the Somnath Nagar bypass route.",
+      },
+      {
+        question: "Are there couple-friendly accommodation options for Kharadi professionals with zero lock-in?",
+        answer:
+          "Yes. Nirvana by Reforbs Living in Sanjay Park (Viman Nagar) offers couple-friendly private 1RK studio suites with independent kitchens, split AC, and zero lock-in periods.",
+      },
+    ],
+    relatedGuideSlugs: [
+      "/pg-in-viman-nagar",
+      "/pg-in-yerwada",
+      "/pg-in-pune",
+      "/coliving-near-commerzone-it-park-pune",
+    ],
+    ctaText: "Check Kharadi Commuter Stays",
+    lastUpdated: "2026-11-13",
+  },
 ];
 
 export function getLocalGuideBySlug(slug: string): LocalGuidePage | undefined {
