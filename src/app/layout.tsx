@@ -88,7 +88,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN" className={`${montserrat.variable} ${inter.variable}`}>
+      <head>
+        {/* Google Tag (Google Ads & Tag Manager: GTM-PZLMHTR5) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-PZLMHTR5"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased font-sans bg-white text-slate-900 selection:bg-brand-teal selection:text-white">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PZLMHTR5"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
         <Navbar />
         <main>{children}</main>

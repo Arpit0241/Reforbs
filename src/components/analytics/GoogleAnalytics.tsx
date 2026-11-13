@@ -7,20 +7,12 @@ export default function GoogleAnalytics() {
   }
 
   return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`}
-        strategy="afterInteractive"
-      />
-      <Script id="ga4-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', '${measurementId}', { anonymize_ip: true });
-        `}
-      </Script>
-    </>
+    <Script id="ga4-config" strategy="afterInteractive">
+      {`
+        if (typeof window.gtag === 'function') {
+          window.gtag('config', '${measurementId}', { anonymize_ip: true });
+        }
+      `}
+    </Script>
   );
 }
